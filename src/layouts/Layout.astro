@@ -2,6 +2,7 @@
 import ContactModal from "../components/ContactModal.astro";
 import Footer from "../components/Footer.astro";
 import type { Locale } from "../i18n/translations";
+import "../styles/global.css";
 
 interface Props {
   title?: string;
@@ -41,7 +42,6 @@ const {
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
   <body class="min-h-screen bg-[#fbfbfc] text-slate-900 antialiased selection:bg-violet-600/20 flex flex-col justify-between">
     <div class="flex-1">
