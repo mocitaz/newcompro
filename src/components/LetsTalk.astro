@@ -55,11 +55,12 @@ const t = getTranslations(lang);
         class="absolute -inset-2 sm:-inset-2.5 bg-gradient-to-r from-violet-400/40 via-purple-300/50 to-indigo-400/40 rounded-full blur-md sm:blur-lg opacity-85 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 -z-10 pointer-events-none"
       ></div>
 
-      <!-- Action Button: Smaller, sleek & refined with 44px min touch target -->
-      <button
-        type="button"
-        class="btn-trigger-contact relative inline-flex items-center justify-center gap-1.5 px-6 sm:px-7 py-3 sm:py-2.5 rounded-full bg-slate-950 hover:bg-slate-900 text-white font-medium text-xs sm:text-sm shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 min-h-[44px]"
-        aria-haspopup="dialog"
+      <!-- Action Button: Direct WhatsApp Link -->
+      <a
+        href="https://wa.me/628517442245"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="relative inline-flex items-center justify-center gap-1.5 px-6 sm:px-7 py-3 sm:py-2.5 rounded-full bg-slate-950 hover:bg-slate-900 text-white font-medium text-xs sm:text-sm shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 min-h-[44px]"
       >
         <span class="tracking-tight">{t.letsTalk.cta}</span>
         <svg
@@ -72,7 +73,7 @@ const t = getTranslations(lang);
         >
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
         </svg>
-      </button>
+      </a>
     </div>
   </div>
 </section>

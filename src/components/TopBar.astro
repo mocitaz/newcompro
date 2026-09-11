@@ -543,14 +543,16 @@ const toggleAriaLabel = isCurrentId
 
     <!-- Right: Action Controls (Contact CTA + Circular Flag on Desktop) -->
     <div class="hidden lg:flex items-center gap-3 shrink-0">
-      <!-- Contact CTA Button -->
-      <button
-        type="button"
+      <!-- Contact CTA Button (Direct to WhatsApp) -->
+      <a
+        href="https://wa.me/628517442245"
+        target="_blank"
+        rel="noopener noreferrer"
         id="btn-open-contact-header"
         class="header-contact-btn inline-flex items-center justify-center px-4.5 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 active:scale-95 cursor-pointer shadow-sm border whitespace-nowrap"
       >
         {t.nav.contact}
-      </button>
+      </a>
 
       <!-- Circular Flag Language Switcher -->
       <a
@@ -827,13 +829,15 @@ const toggleAriaLabel = isCurrentId
     </div>
 
     <div class="pt-2">
-      <button
-        type="button"
+      <a
+        href="https://wa.me/628517442245"
+        target="_blank"
+        rel="noopener noreferrer"
         id="btn-open-contact-mobile"
         class="w-full text-center px-4 py-3 rounded-full bg-slate-950 hover:bg-slate-800 active:scale-98 text-white text-sm font-semibold transition-all cursor-pointer min-h-[48px] flex items-center justify-center shadow-sm"
       >
         {t.nav.contact}
-      </button>
+      </a>
     </div>
   </div>
 </header>
