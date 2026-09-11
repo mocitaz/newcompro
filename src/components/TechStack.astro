@@ -1,0 +1,188 @@
+---
+// TechStack.astro - "Yes, we cover the tech stack and AI coding tools you rely on."
+// Menampilkan ekosistem 100+ teknologi, bahasa pemrograman, dan AI coding tools modern (2 Baris Besar)
+import type { Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'id' } = Astro.props;
+
+const isEn = lang === 'en';
+
+const headingText = isEn
+  ? "Yes, we cover the tech stack and AI coding tools you rely on"
+  : "Fondasi tumpukan teknologi dan AI coding tools yang Anda andalkan";
+
+const subtitleText = isEn
+  ? "Our team has expertise in 100+ technologies and programming languages, including the AI coding tools rewriting how software gets built."
+  : "Tim rekayasa kami menguasai 100+ teknologi dan bahasa pemrograman, serta perkakas AI coding modern yang mempercepat delivery perangkat lunak enterprise.";
+
+const row1 = [
+  "Node.js",
+  "Java",
+  "React",
+  ".NET",
+  "Python",
+  "C#",
+  "Rails",
+  "TypeScript",
+  "Next.js",
+  "PostgreSQL",
+  "GitHub Copilot",
+  "OpenAI",
+  "Docker",
+  "Rust",
+  "Kafka"
+];
+
+const row2 = [
+  "Swift",
+  "Angular",
+  "PHP",
+  "Android",
+  "iOS",
+  "Golang",
+  "Vue.js",
+  "C++",
+  "Kubernetes",
+  "Cursor",
+  "Claude Code",
+  "AWS",
+  "Redis",
+  "GraphQL",
+  "Flutter",
+  "PyTorch"
+];
+---
+
+<section
+  id="tech-stack"
+  aria-label="Tech Stack and AI Coding Tools"
+  class="relative pt-10 sm:pt-16 pb-14 sm:pb-24 overflow-hidden select-none w-full max-w-full"
+>
+  <!-- Background Image with Ultra-Smooth Radial & Linear Feathering -->
+  <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none tech-bg-feather">
+    <picture>
+      <source srcset="/tech_stack_bg.webp" type="image/webp" />
+      <img
+        src="/tech_stack_bg.jpg"
+        alt=""
+        class="w-full h-full object-cover object-center opacity-25 sm:opacity-30"
+        loading="lazy"
+        decoding="async"
+        aria-hidden="true"
+      />
+    </picture>
+    <!-- Soft top & bottom gradient transition -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white pointer-events-none"></div>
+  </div>
+
+  <!-- Header Area (Tengah & Solid) -->
+  <div class="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 mb-7 sm:mb-10 text-center">
+    <h2 class="text-2xl sm:text-3xl lg:text-[44px] font-bold text-slate-950 tracking-[-0.025em] leading-[1.2] font-sans">
+      {headingText}.
+    </h2>
+    <p class="text-slate-600 text-xs sm:text-base lg:text-lg leading-relaxed mt-2.5 sm:mt-4 font-sans tracking-[-0.01em] max-w-2xl mx-auto">
+      {subtitleText}
+    </p>
+  </div>
+
+  <!-- Flowing Typography Ticker Tracks (Tighter, Compact 2-Row Lockup) -->
+  <div class="relative z-10 w-full space-y-1 sm:space-y-2 md:space-y-2.5 overflow-hidden py-1 tech-marquee-container">
+    <!-- Baris 1: Bergerak ke Kiri (Besar & Tegas) -->
+    <div class="tech-marquee-track-1 flex items-center py-0">
+      <div class="tech-marquee-group flex items-center gap-7 sm:gap-12 md:gap-16 lg:gap-20 shrink-0 px-4 sm:px-9">
+        {row1.map((item) => (
+          <span class="inline-block py-0.5 leading-none text-2xl sm:text-3xl md:text-5xl lg:text-[52px] font-extrabold text-slate-400 hover:text-slate-950 transition-colors duration-200 cursor-default tracking-tight font-sans whitespace-nowrap">
+            {item}
+          </span>
+        ))}
+      </div>
+      <div class="tech-marquee-group flex items-center gap-7 sm:gap-12 md:gap-16 lg:gap-20 shrink-0 px-4 sm:px-9" aria-hidden="true">
+        {row1.map((item) => (
+          <span class="inline-block py-0.5 leading-none text-2xl sm:text-3xl md:text-5xl lg:text-[52px] font-extrabold text-slate-400 hover:text-slate-950 transition-colors duration-200 cursor-default tracking-tight font-sans whitespace-nowrap">
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Baris 2: Bergerak ke Kanan (Besar & Tegas) -->
+    <div class="tech-marquee-track-2 flex items-center py-0">
+      <div class="tech-marquee-group flex items-center gap-7 sm:gap-12 md:gap-16 lg:gap-20 shrink-0 px-4 sm:px-9">
+        {row2.map((item) => (
+          <span class="inline-block py-0.5 leading-none text-2xl sm:text-3xl md:text-5xl lg:text-[52px] font-extrabold text-slate-400 hover:text-slate-950 transition-colors duration-200 cursor-default tracking-tight font-sans whitespace-nowrap">
+            {item}
+          </span>
+        ))}
+      </div>
+      <div class="tech-marquee-group flex items-center gap-7 sm:gap-12 md:gap-16 lg:gap-20 shrink-0 px-4 sm:px-9" aria-hidden="true">
+        {row2.map((item) => (
+          <span class="inline-block py-0.5 leading-none text-2xl sm:text-3xl md:text-5xl lg:text-[52px] font-extrabold text-slate-400 hover:text-slate-950 transition-colors duration-200 cursor-default tracking-tight font-sans whitespace-nowrap">
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Ultra-smooth feathering for ambient gray background */
+  .tech-bg-feather {
+    -webkit-mask-image: radial-gradient(ellipse 90% 75% at 50% 50%, black 25%, transparent 90%);
+    mask-image: radial-gradient(ellipse 90% 75% at 50% 50%, black 25%, transparent 90%);
+  }
+
+  /* Minimal Edge Fade Mask: 96% of the screen is solid and unclipped */
+  .tech-marquee-container {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 2.5%, black 97.5%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 2.5%, black 97.5%, transparent);
+  }
+
+  /* Smooth Infinite Typography Flow */
+  .tech-marquee-track-1 {
+    display: flex;
+    width: max-content;
+    animation: techScrollLeft 45s linear infinite;
+    will-change: transform;
+  }
+
+  .tech-marquee-track-2 {
+    display: flex;
+    width: max-content;
+    animation: techScrollRight 48s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes techScrollLeft {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @keyframes techScrollRight {
+    0% {
+      transform: translate3d(-50%, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tech-marquee-track-1,
+    .tech-marquee-track-2 {
+      animation: none;
+      transform: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+</style>

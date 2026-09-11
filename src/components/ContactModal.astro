@@ -1,0 +1,198 @@
+---
+// ContactModal.astro - Reusable accessible consultation/contact modal with bilingual support
+import { getTranslations, type Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'id' } = Astro.props;
+const isEn = lang === 'en';
+
+const labels = {
+  badge: isEn ? "Corporate Partnership" : "Kemitraan Korporasi",
+  title: isEn ? "Software Engineering Consultation" : "Konsultasi Rekayasa Perangkat Lunak",
+  closeAria: isEn ? "Close consultation dialog" : "Tutup Dialog Konsultasi",
+  nameLabel: isEn ? "Full Name / PIC" : "Nama Lengkap / PIC",
+  namePlaceholder: isEn ? "Your Name" : "Nama Anda",
+  emailLabel: isEn ? "Corporate Email" : "Email Korporat",
+  emailPlaceholder: isEn ? "name@company.com" : "nama@perusahaan.co.id",
+  solutionLabel: isEn ? "Solution Scope" : "Kebutuhan Solusi",
+  optArchitecture: isEn ? "Enterprise System Architecture" : "Arsitektur Sistem Enterprise",
+  optEngineering: isEn ? "Custom Software Engineering" : "Rekayasa Perangkat Lunak Kustom",
+  optCloud: isEn ? "Cloud Transformation & Governance" : "Transformasi & Tata Kelola Cloud",
+  optOther: isEn ? "Other Technical Inquiries" : "Konsultasi Umum Lainnya",
+  messageLabel: isEn ? "Project Requirements Summary" : "Ringkasan Kebutuhan Proyek",
+  messagePlaceholder: isEn
+    ? "Describe your system requirements, concurrency targets, or architecture challenges..."
+    : "Jelaskan kebutuhan atau tantangan sistem yang ingin diselesaikan...",
+  cancelBtn: isEn ? "Cancel" : "Batal",
+  submitBtn: isEn ? "Submit Inquiry" : "Kirim Permintaan",
+  successMsg: isEn
+    ? "Your consultation inquiry has been submitted. Our engineering team will follow up within 24 business hours."
+    : "Permintaan konsultasi Anda berhasil dikirimkan. Tim teknis kami akan segera menghubungi Anda."
+};
+---
+
+<div
+  id="contact-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="contact-modal-title"
+  class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-md transition-opacity duration-200"
+>
+  <div class="relative w-full max-w-lg max-h-[92dvh] overflow-y-auto rounded-2xl bg-slate-900/95 border border-white/15 p-5 sm:p-8 shadow-2xl text-slate-100 space-y-4 sm:space-y-5">
+    <div class="flex items-start justify-between gap-4 border-b border-white/10 pb-3.5">
+      <div>
+        <span class="text-xs font-semibold uppercase tracking-wider text-violet-400 font-mono">{labels.badge}</span>
+        <h3 id="contact-modal-title" class="text-lg sm:text-xl font-bold text-white mt-1">
+          {labels.title}
+        </h3>
+      </div>
+      <button
+        type="button"
+        id="btn-close-contact-modal"
+        class="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 cursor-pointer"
+        aria-label={labels.closeAria}
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <form id="form-consultation" class="space-y-3.5 sm:space-y-4 text-sm" data-success-msg={labels.successMsg}>
+      <div class="space-y-1.5">
+        <label for="input-nama" class="block font-medium text-slate-200">{labels.nameLabel}</label>
+        <input
+          type="text"
+          id="input-nama"
+          required
+          placeholder={labels.namePlaceholder}
+          class="w-full px-3.5 py-2.5 min-h-[44px] rounded-xl bg-black/50 border border-white/15 text-white placeholder-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+        />
+      </div>
+
+      <div class="space-y-1.5">
+        <label for="input-email" class="block font-medium text-slate-200">{labels.emailLabel}</label>
+        <input
+          type="email"
+          id="input-email"
+          required
+          placeholder={labels.emailPlaceholder}
+          class="w-full px-3.5 py-2.5 min-h-[44px] rounded-xl bg-black/50 border border-white/15 text-white placeholder-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+        />
+      </div>
+
+      <div class="space-y-1.5">
+        <label for="select-kebutuhan" class="block font-medium text-slate-200">{labels.solutionLabel}</label>
+        <select
+          id="select-kebutuhan"
+          class="w-full px-3.5 py-2.5 min-h-[44px] rounded-xl bg-black/80 border border-white/15 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+        >
+          <option value="enterprise-architecture">{labels.optArchitecture}</option>
+          <option value="custom-software">{labels.optEngineering}</option>
+          <option value="cloud-transformation">{labels.optCloud}</option>
+          <option value="other">{labels.optOther}</option>
+        </select>
+      </div>
+
+      <div class="space-y-1.5">
+        <label for="textarea-pesan" class="block font-medium text-slate-200">{labels.messageLabel}</label>
+        <textarea
+          id="textarea-pesan"
+          rows="3"
+          required
+          placeholder={labels.messagePlaceholder}
+          class="w-full px-3.5 py-2.5 rounded-xl bg-black/50 border border-white/15 text-white placeholder-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 resize-none"
+        ></textarea>
+      </div>
+
+      <div id="form-feedback" class="hidden p-3 rounded-xl text-xs font-medium"></div>
+
+      <div class="pt-2 flex items-center justify-end gap-3">
+        <button
+          type="button"
+          id="btn-cancel-contact"
+          class="px-4 py-2.5 min-h-[44px] rounded-xl text-slate-300 hover:text-white hover:bg-white/10 text-xs font-semibold transition-colors cursor-pointer"
+        >
+          {labels.cancelBtn}
+        </button>
+        <button
+          type="submit"
+          id="btn-submit-contact"
+          class="px-5 py-2.5 min-h-[44px] rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-semibold shadow-lg shadow-violet-600/30 transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-violet-400"
+        >
+          {labels.submitBtn}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Global Modal Interactions & Accessibility
+  const contactModal = document.getElementById('contact-modal');
+  const btnCloseContact = document.getElementById('btn-close-contact-modal');
+  const btnCancelContact = document.getElementById('btn-cancel-contact');
+  const formConsultation = document.getElementById('form-consultation');
+  const formFeedback = document.getElementById('form-feedback');
+
+  const openModal = () => {
+    if (!contactModal) return;
+    contactModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    if (!contactModal) return;
+    contactModal.classList.add('hidden');
+    document.body.style.overflow = '';
+  };
+
+  // Wire up all buttons that trigger contact modal
+  const bindContactButtons = () => {
+    const triggerButtons = document.querySelectorAll('#btn-open-contact-header, #btn-open-contact-mobile, .btn-trigger-contact');
+    triggerButtons.forEach((btn) => {
+      btn.removeEventListener('click', openModal);
+      btn.addEventListener('click', openModal);
+    });
+  };
+
+  bindContactButtons();
+  document.addEventListener('astro:page-load', bindContactButtons);
+
+  btnCloseContact?.addEventListener('click', closeModal);
+  btnCancelContact?.addEventListener('click', closeModal);
+
+  // Close modal on backdrop click
+  contactModal?.addEventListener('click', (e) => {
+    if (e.target === contactModal) {
+      closeModal();
+    }
+  });
+
+  // Close modal on Escape key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (contactModal && !contactModal.classList.contains('hidden')) closeModal();
+    }
+  });
+
+  // Form submission handling
+  formConsultation?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!formFeedback) return;
+
+    const successMsg = formConsultation.getAttribute('data-success-msg') || 'Inquiry sent successfully.';
+    formFeedback.classList.remove('hidden', 'bg-red-500/20', 'text-red-300', 'border-red-500/30');
+    formFeedback.classList.add('bg-emerald-500/20', 'text-emerald-300', 'border', 'border-emerald-500/30');
+    formFeedback.textContent = successMsg;
+
+    setTimeout(() => {
+      closeModal();
+      (formConsultation as HTMLFormElement).reset();
+      formFeedback.classList.add('hidden');
+    }, 2000);
+  });
+</script>

@@ -1,0 +1,168 @@
+---
+// Footer.astro - Corporate Enterprise Footer (Dark Theme with logo_hero & Bilingual Support)
+import { getTranslations, type Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'id' } = Astro.props;
+const t = getTranslations(lang);
+
+const homeUrl = lang === 'id' ? '/id' : '/';
+const aboutUrl = lang === 'id' ? '/id/tentang-kami' : '/about';
+const portoUrl = lang === 'id' ? '/id/portofolio' : '/portofolio';
+const layananUrl = lang === 'id' ? '/id/layanan' : '/layanan';
+---
+
+<footer
+  class="relative z-10 bg-slate-900 border-t border-slate-800 text-slate-400"
+  aria-label={lang === 'en' ? "Corporate Information & Accreditations" : "Informasi Perusahaan & Legalitas"}
+>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 pt-16 sm:pt-20 pb-12">
+    <!-- Main Footer Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
+      <!-- 1. Identitas Perusahaan & Logo -->
+      <div class="lg:col-span-4 space-y-5">
+        <a href={homeUrl} class="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded-lg" aria-label="Beranda PT Teknalogi Transformasi Digital">
+          <img
+            src="/logo_hero.png"
+            alt="Logo PT Teknalogi Transformasi Digital"
+            width="250"
+            height="75"
+            class="h-8 sm:h-9 w-auto object-contain"
+            loading="lazy"
+          />
+        </a>
+        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
+          {t.footer.tagline}
+        </p>
+      </div>
+
+      <!-- 2. Navigasi Cepat -->
+      <div class="lg:col-span-2 space-y-4">
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-white font-mono">
+          {t.footer.navTitle}
+        </h3>
+        <ul class="space-y-1.5 text-xs sm:text-sm">
+          <li>
+            <a
+              href={homeUrl}
+              class="text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded py-1.5 inline-flex items-center min-h-[36px]"
+            >
+              {t.footer.home}
+            </a>
+          </li>
+          <li>
+            <a
+              href={aboutUrl}
+              class="text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded py-1.5 inline-flex items-center min-h-[36px]"
+            >
+              {t.nav.about}
+            </a>
+          </li>
+          <li>
+            <a
+              href={portoUrl}
+              class="text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded py-1.5 inline-flex items-center min-h-[36px]"
+            >
+              {t.footer.portfolio}
+            </a>
+          </li>
+          <li>
+            <a
+              href={layananUrl}
+              class="text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded py-1.5 inline-flex items-center min-h-[36px]"
+            >
+              {t.footer.services}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 3. Virtual Office -->
+      <div class="lg:col-span-3 space-y-3">
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-white font-mono">
+          {t.footer.virtualOfficeTitle}
+        </h3>
+        <address class="not-italic text-xs sm:text-sm text-slate-400 leading-relaxed">
+          <span class="font-semibold text-white">Tekna Home Office</span><br />
+          Jl. Eyang Weri 103<br />
+          Kuningan, Jawa Barat, Indonesia
+        </address>
+      </div>
+
+      <!-- 4. Kontak Langsung -->
+      <div class="lg:col-span-3 space-y-3">
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-white font-mono">
+          {t.footer.contactTitle}
+        </h3>
+        <ul class="space-y-1.5 text-xs sm:text-sm">
+          <li>
+            <a
+              href="mailto:info@teknalogi.id"
+              class="inline-flex items-center gap-2.5 text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded py-1.5 min-h-[38px] group"
+            >
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-white transition-colors shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
+                <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
+              </svg>
+              <span>info@teknalogi.id</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://wa.me/628517442245"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2.5 text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded py-1.5 min-h-[38px] group"
+            >
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-white transition-colors shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
+              </svg>
+              <span>+62 851-7442-245</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright & Accreditation Strip -->
+    <div class="border-t border-slate-800 pt-8 mt-12 sm:mt-16 flex flex-col sm:flex-row items-center justify-between gap-5 text-xs text-slate-400">
+      <p class="text-center sm:text-left">
+        {t.footer.copyright}
+      </p>
+
+      <!-- Logo Kelayakan (Kecil-Kecil, Sejajar & Wrap Lembut di Mobile) -->
+      <div class="flex flex-wrap items-center justify-center sm:justify-end gap-3.5 sm:gap-4 shrink-0">
+        <img
+          src="/kelayakan/ahu.png"
+          alt="Kemenkumham RI - AHU"
+          title="Kemenkumham RI - AHU"
+          width="122"
+          height="160"
+          class="h-5 sm:h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+          loading="lazy"
+        />
+        <img
+          src="/kelayakan/nib.png"
+          alt="Nomor Induk Berusaha (NIB)"
+          title="Nomor Induk Berusaha (NIB)"
+          width="180"
+          height="140"
+          class="h-4.5 sm:h-5 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+          loading="lazy"
+        />
+        <img
+          src="/kelayakan/pajak.png"
+          alt="Direktorat Jenderal Pajak"
+          title="Direktorat Jenderal Pajak"
+          width="150"
+          height="140"
+          class="h-5 sm:h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</footer>

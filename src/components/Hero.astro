@@ -1,0 +1,73 @@
+---
+// Hero.astro - Fullscreen Video Hero with Multi-Language Support
+import { getTranslations, type Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'id' } = Astro.props;
+const t = getTranslations(lang);
+---
+
+<section class="relative min-h-[100dvh] w-full flex flex-col justify-between overflow-hidden bg-slate-950">
+  <!-- 1. Background Video Layer -->
+  <div class="absolute inset-0 z-0">
+    <video
+      id="hero-video-element"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="auto"
+      class="w-full h-full object-cover scale-105 transition-transform duration-1000 ease-out"
+    >
+      <source src="/hero.mp4" type="video/mp4" />
+      Browser Anda tidak mendukung pemutar video HTML5.
+    </video>
+
+    <!-- Filter Overlay Abu-abu Elegan (Slightly Gray/Slate Opacity Filter) -->
+    <div class="absolute inset-0 bg-slate-900/30 pointer-events-none"></div>
+
+    <!-- Soft Gradient Mask di Sisi Kiri untuk Keterbacaan Teks yang Luas -->
+    <div class="absolute inset-y-0 left-0 w-full sm:w-4/5 lg:w-3/5 bg-gradient-to-r from-slate-950/65 via-slate-950/30 to-transparent pointer-events-none"></div>
+
+    <!-- Overlay Gradasi Halus Atas & Bawah Berwarna Slate/Abu Gelap -->
+    <div class="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-slate-950/50 via-slate-900/15 to-transparent pointer-events-none"></div>
+    <div class="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-slate-950/60 via-slate-900/20 to-transparent pointer-events-none"></div>
+
+    <!-- Transisi Halus (Smooth Dissolve) Tipis & Lembut ke Background Utama (#fbfbfc) -->
+    <div class="absolute inset-x-0 bottom-0 h-16 sm:h-24 pointer-events-none z-10 hero-transition-gradient"></div>
+  </div>
+
+  <!-- Spacer Atas untuk Mengimbangi Floating TopBar -->
+  <div class="pt-20 sm:pt-24 lg:pt-28"></div>
+
+  <!-- 2. Content: Headline Display & Sub-narasi (Lebih Besar & Posisinya Naik Lebih ke Atas) -->
+  <div class="relative z-20 max-w-7xl mx-auto w-full px-5 sm:px-8 pb-24 sm:pb-36 lg:pb-44">
+    <div class="max-w-2xl space-y-4 sm:space-y-5">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[76px] font-extrabold tracking-[-0.035em] text-white leading-[1.08] font-sans drop-shadow-lg">
+        {t.hero.headlinePart1}<br />{t.hero.headlinePart2}
+      </h1>
+      <p class="text-sm sm:text-base md:text-lg lg:text-xl text-slate-200/90 font-normal leading-relaxed max-w-xl drop-shadow-md">
+        {t.hero.subtitle}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-transition-gradient {
+    background: linear-gradient(
+      to bottom,
+      rgba(251, 251, 252, 0) 0%,
+      rgba(251, 251, 252, 0.02) 30%,
+      rgba(251, 251, 252, 0.10) 58%,
+      rgba(251, 251, 252, 0.30) 78%,
+      rgba(251, 251, 252, 0.65) 92%,
+      rgba(251, 251, 252, 0.90) 98%,
+      #fbfbfc 100%
+    );
+  }
+</style>
+

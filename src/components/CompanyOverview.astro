@@ -1,0 +1,92 @@
+---
+// CompanyOverview.astro - Precision Bento Section adapted from Binari reference
+import { getTranslations, type Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'id' } = Astro.props;
+const t = getTranslations(lang);
+const overview = t.companyOverview;
+---
+
+<section
+  id="company-overview"
+  aria-label={lang === 'en' ? "Company Overview & Value Proposition" : "Sekilas Perusahaan & Nilai Tambah"}
+  class="pt-6 sm:pt-8 lg:pt-10 pb-12 sm:pb-16 lg:pb-20 px-5 sm:px-8 max-w-7xl mx-auto"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-stretch">
+    <!-- Left Column: Narrative Intro + Symmetrical 2x2 Bento Grid -->
+    <div class="lg:col-span-7 flex flex-col justify-start">
+      <!-- Intro Paragraph -->
+      <p class="text-slate-700 text-base sm:text-lg lg:text-[18.5px] leading-[1.65] font-normal tracking-[-0.01em] font-sans">
+        {overview.description}
+      </p>
+
+      <!-- 2x2 Bento Grid (Pixel-locked matching column heights) -->
+      <div class="mt-6 sm:mt-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- Left Bento Column: Stat Card (Top), Feature Card (Bottom) -->
+        <div class="flex flex-col gap-4">
+          <!-- Card 1: Stat (Strict 92px height) -->
+          <div class="h-[88px] sm:h-[92px] shrink-0 rounded-[18px] border border-slate-950 bg-white px-5 sm:px-6 flex items-center gap-3.5 transition-all duration-200 hover:shadow-md">
+            <span class="text-3xl sm:text-[32px] font-extrabold tracking-tight text-slate-950 font-sans leading-none shrink-0">
+              {overview.card1.stat}
+            </span>
+            <span class="text-sm sm:text-[14.5px] font-medium text-slate-700 leading-snug font-sans">
+              {overview.card1.label}
+            </span>
+          </div>
+
+          <!-- Card 2: Feature (Clean White, Strict 190px height) -->
+          <div class="h-auto min-h-[175px] sm:h-[190px] shrink-0 rounded-[18px] border border-slate-950 bg-white p-5 sm:p-5.5 flex flex-col justify-start overflow-hidden transition-all duration-200 hover:shadow-md">
+            <h3 class="text-base sm:text-[17.5px] font-bold text-slate-950 tracking-[-0.01em] mb-2 font-sans leading-snug">
+              {overview.card2.title}
+            </h3>
+            <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal font-sans">
+              {overview.card2.description}
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Bento Column: Feature Card (Top), Stat Card (Bottom) -->
+        <div class="flex flex-col gap-4">
+          <!-- Card 3: Feature (Clean White, Strict 190px height) -->
+          <div class="h-auto min-h-[175px] sm:h-[190px] shrink-0 rounded-[18px] border border-slate-950 bg-white p-5 sm:p-5.5 flex flex-col justify-start overflow-hidden transition-all duration-200 hover:shadow-md">
+            <h3 class="text-base sm:text-[17.5px] font-bold text-slate-950 tracking-[-0.01em] mb-2 font-sans leading-snug">
+              {overview.card3.title}
+            </h3>
+            <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal font-sans">
+              {overview.card3.description}
+            </p>
+          </div>
+
+          <!-- Card 4: Stat (Strict 92px height) -->
+          <div class="h-[88px] sm:h-[92px] shrink-0 rounded-[18px] border border-slate-950 bg-white px-5 sm:px-6 flex items-center gap-3.5 transition-all duration-200 hover:shadow-md">
+            <span class="text-3xl sm:text-[32px] font-extrabold tracking-tight text-slate-950 font-sans leading-none shrink-0">
+              {overview.card4.stat}
+            </span>
+            <span class="text-sm sm:text-[14.5px] font-medium text-slate-700 leading-snug font-sans">
+              {overview.card4.label}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Symmetrical Building Facade Photo (Strictly aligned to Left Col Top & Bottom) -->
+    <div class="lg:col-span-5 relative min-h-[340px] sm:min-h-[400px] lg:min-h-0">
+      <div class="w-full h-full lg:absolute lg:inset-0 rounded-[18px] overflow-hidden border border-slate-950 bg-slate-100 shadow-sm">
+        <img
+          src="/company_overview_facade.jpg?v=4"
+          alt={lang === 'en' ? "Modern architectural enterprise building facade" : "Gedung pusat rekayasa teknologi dan arsitektur enterprise modern"}
+          class="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+          loading="lazy"
+          width="780"
+          height="900"
+        />
+        <div class="pointer-events-none absolute inset-0 rounded-[18px] ring-1 ring-inset ring-black/10"></div>
+      </div>
+    </div>
+  </div>
+</section>

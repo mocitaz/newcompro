@@ -1,0 +1,78 @@
+---
+// LetsTalk.astro - Realistic Light Mode Celestial Moon Horizon CTA Section
+import { getTranslations, type Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = getTranslations(lang);
+---
+
+<section
+  id="lets-talk-cta"
+  class="relative overflow-hidden bg-[#fbfbfc] text-center pt-28 sm:pt-48 md:pt-60 lg:pt-72 pb-14 sm:pb-24"
+  aria-labelledby="lets-talk-heading"
+>
+  <!-- Realistic Celestial Moon Horizon Background spanning full width -->
+  <div class="absolute inset-0 pointer-events-none select-none overflow-hidden flex items-start justify-center">
+    <picture class="w-full h-full block">
+      <source srcset="/moon_horizon_light.webp" type="image/webp" />
+      <img
+        src="/moon_horizon_light.jpg"
+        alt="Luminous Moon Horizon"
+        class="w-full h-full object-cover object-top opacity-95"
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
+    
+    <!-- Seamless edge gradient masks blending into surrounding white canvas -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#fbfbfc] via-transparent to-[#fbfbfc] pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#fbfbfc]/80 via-transparent to-[#fbfbfc]/80 pointer-events-none"></div>
+  </div>
+
+  <!-- Content Container: Pushed lower into the moon dome with sleek, compact proportions -->
+  <div class="relative z-10 max-w-xl mx-auto px-5 sm:px-6 flex flex-col items-center">
+    <!-- Main Headline: Compact & elegant -->
+    <h2
+      id="lets-talk-heading"
+      class="text-2xl sm:text-4xl md:text-[44px] font-bold tracking-[-0.03em] text-slate-950 font-plus-jakarta leading-tight"
+    >
+      {t.letsTalk.headline}
+    </h2>
+
+    <!-- Subtitle Description: Refined compact sizing -->
+    <p class="mt-3 sm:mt-4 text-xs sm:text-sm md:text-[15px] text-slate-600 max-w-md sm:max-w-lg mx-auto leading-relaxed font-normal">
+      {t.letsTalk.subtitle}
+    </p>
+
+    <!-- Sleek Compact Pill CTA Button with Radiant Ethereal Glow -->
+    <div class="relative inline-block mt-5 sm:mt-6 group">
+      <!-- Ethereal soft violet/purple radiant glow behind button -->
+      <div
+        class="absolute -inset-2 sm:-inset-2.5 bg-gradient-to-r from-violet-400/40 via-purple-300/50 to-indigo-400/40 rounded-full blur-md sm:blur-lg opacity-85 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 -z-10 pointer-events-none"
+      ></div>
+
+      <!-- Action Button: Smaller, sleek & refined with 44px min touch target -->
+      <button
+        type="button"
+        class="btn-trigger-contact relative inline-flex items-center justify-center gap-1.5 px-6 sm:px-7 py-3 sm:py-2.5 rounded-full bg-slate-950 hover:bg-slate-900 text-white font-medium text-xs sm:text-sm shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 min-h-[44px]"
+        aria-haspopup="dialog"
+      >
+        <span class="tracking-tight">{t.letsTalk.cta}</span>
+        <svg
+          class="w-3.5 h-3.5 text-slate-300 group-hover:text-white group-hover:translate-x-0.5 transition-transform duration-200"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2.5"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>

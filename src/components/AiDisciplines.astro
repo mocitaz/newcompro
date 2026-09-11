@@ -1,0 +1,83 @@
+---
+// AiDisciplines.astro - 4 Core Services: Website Development, Software & App, SEO & AI, Maintenance
+import { getTranslations, type Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'id' } = Astro.props;
+const t = getTranslations(lang);
+const disciplines = t.aiDisciplines.items;
+const layananUrl = lang === 'id' ? '/id/layanan' : '/layanan';
+---
+
+<section
+  id="ai-disciplines"
+  aria-label={lang === 'en' ? "Core Engineering & Digital Services" : "Layanan Utama Rekayasa & Platform Digital"}
+  class="pt-14 sm:pt-24 lg:pt-28 pb-12 sm:pb-16 lg:pb-20 px-5 sm:px-8 max-w-7xl mx-auto"
+>
+  <!-- Section Header: Minimalist Split Layout (Title on Left, Description & CTA on Right) -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-14 items-start mb-8 sm:mb-14">
+    <div class="lg:col-span-5">
+      <h2 class="text-2xl sm:text-3xl lg:text-[2.15rem] font-bold text-slate-950 tracking-[-0.02em] leading-tight font-sans">
+        {t.aiDisciplines.headline}
+      </h2>
+    </div>
+    <div class="lg:col-span-7 flex flex-col items-start gap-3.5 sm:gap-5">
+      <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal font-sans">
+        {t.aiDisciplines.description}
+      </p>
+      <div>
+        <a
+          href={layananUrl}
+          class="group inline-flex items-center gap-2 text-slate-900 font-semibold text-sm sm:text-base border-b-2 border-slate-900 pb-0.5 hover:text-slate-600 hover:border-slate-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 font-sans cursor-pointer min-h-[44px]"
+        >
+          <span>{t.aiDisciplines.viewAllCta}</span>
+          <svg
+            class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4-Cards Grid: Full-Bleed 3D Visual Cards (Direct text, no white container box) -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+    {
+      disciplines.map((item) => (
+        <a
+          href={layananUrl}
+          class="group relative flex flex-col justify-end rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-slate-300 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer min-h-[320px] sm:min-h-[400px] lg:min-h-[440px] aspect-[4/5] sm:aspect-[3/4.2] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+        >
+          <!-- Full-Bleed Image Filling 100% of Card Canvas -->
+          <picture class="absolute inset-0 w-full h-full block">
+            <source srcset={item.image} type="image/webp" />
+            <img
+              src={item.fallback}
+              alt={item.title}
+              class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500 ease-out"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="1000"
+            />
+          </picture>
+
+          <!-- Direct Text at Bottom (Seamless gradient, no white container box) -->
+          <div class="relative z-10 p-5 sm:p-6 pt-14 sm:pt-16 bg-gradient-to-t from-white/95 via-white/40 to-transparent">
+            <h3 class="text-base sm:text-lg font-bold text-slate-950 font-sans tracking-tight leading-snug group-hover:text-slate-700 transition-colors">
+              {item.title}
+            </h3>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</section>

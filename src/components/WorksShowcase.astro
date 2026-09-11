@@ -1,0 +1,287 @@
+---
+// src/components/WorksShowcase.astro
+// "Your Trustworthy Partner for Customized IT Solutions"
+// Minimalist, compact 16:9 slider locked strictly to widescreen landscape aspect ratio.
+import { getTranslations, type Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = getTranslations(lang);
+const isEn = lang === 'en';
+const portfolioUrl = isEn ? '/portofolio' : '/id/portofolio';
+const projects = t.worksShowcase.projects;
+---
+
+<section
+  id="works-showcase"
+  aria-label={isEn ? "Featured Client Works & IT Solutions" : "Karya Klien Unggulan & Solusi IT"}
+  class="py-12 sm:py-20 px-5 sm:px-8 max-w-7xl mx-auto"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+    
+    <!-- LEFT: Balanced 16:9 Landscape Slider (6 cols on desktop, max-w-[560px]) -->
+    <div class="lg:col-span-6 w-full max-w-[560px] mx-auto lg:mx-0">
+      <div class="relative w-full" id="works-slider-container">
+        
+        <!-- Strictly Locked 16:9 Aspect Ratio Window with Premium Shadow -->
+        <div class="relative w-full aspect-video overflow-hidden rounded-2xl sm:rounded-3xl border border-stone-200/90 bg-stone-100 shadow-md hover:shadow-xl transition-shadow duration-300 group select-none">
+          <!-- Slides Track -->
+          <div
+            id="works-track"
+            class="flex h-full w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-grab active:cursor-grabbing"
+            style="transform: translateX(0%);"
+          >
+            {projects.map((project, idx) => (
+              <div
+                class="min-w-full w-full h-full flex-shrink-0 relative overflow-hidden bg-stone-100"
+                data-index={idx}
+                data-title={project.title}
+              >
+                <img
+                  src={project.image}
+                  alt={`${project.title} - ${project.category}`}
+                  class="w-full h-full object-cover object-top block pointer-events-none"
+                  loading={idx === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                  width="560"
+                  height="315"
+                />
+              </div>
+            ))}
+          </div>
+
+          <!-- Minimal Floating Navigation Arrows (hover/focus only) -->
+          <button
+            id="slider-prev-btn"
+            type="button"
+            aria-label={isEn ? "Previous project" : "Proyek sebelumnya"}
+            class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-md border border-stone-200/80 backdrop-blur-sm flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 cursor-pointer"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            id="slider-next-btn"
+            type="button"
+            aria-label={isEn ? "Next project" : "Proyek berikutnya"}
+            class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-md border border-stone-200/80 backdrop-blur-sm flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 cursor-pointer"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Minimal Dots Below Slider -->
+        <div class="mt-3.5 flex items-center gap-1.5 px-1" id="slider-dots" role="tablist">
+          {projects.map((_, idx) => (
+            <button
+              type="button"
+              role="tab"
+              data-slide-to={idx}
+              aria-label={`${isEn ? 'Slide' : 'Slide'} ${idx + 1}`}
+              aria-selected={idx === 0 ? "true" : "false"}
+              class:list={[
+                "h-1.5 rounded-full transition-all duration-300 cursor-pointer focus-visible:outline-none",
+                idx === 0 ? "w-6 bg-violet-600" : "w-1.5 bg-slate-300 hover:bg-slate-400"
+              ]}
+            />
+          ))}
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: Simple, Clear Content & CTA (6 cols on desktop) -->
+    <div class="lg:col-span-6 flex flex-col justify-center">
+      <h2 class="text-3xl sm:text-4xl lg:text-[40px] font-bold text-slate-950 tracking-[-0.025em] leading-[1.18] font-sans">
+        {t.worksShowcase.headlinePart1} <br class="hidden sm:inline" />
+        {t.worksShowcase.headlinePart2}
+      </h2>
+
+      <p class="mt-4 sm:mt-5 text-base sm:text-lg text-slate-600 leading-relaxed max-w-lg font-sans">
+        {t.worksShowcase.description}
+      </p>
+
+      <div class="mt-7 sm:mt-8">
+        <a
+          href={portfolioUrl}
+          class="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-slate-950 hover:bg-violet-600 text-white text-sm sm:text-base font-semibold transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-violet-600/25 hover:-translate-y-0.5 cursor-pointer font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+        >
+          <span>{t.worksShowcase.ctaButton}</span>
+          <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Client-side Slider Script: Touch swipe, drag, autoplay, dots, and button handlers -->
+<script>
+  function setupWorksSlider() {
+    const track = document.getElementById('works-track');
+    const prevBtn = document.getElementById('slider-prev-btn');
+    const nextBtn = document.getElementById('slider-next-btn');
+    const dotsContainer = document.getElementById('slider-dots');
+    const container = document.getElementById('works-slider-container');
+
+    if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
+
+    const slides = track.querySelectorAll('[data-index]');
+    const totalSlides = slides.length;
+    if (totalSlides === 0) return;
+
+    let currentIndex = 0;
+    let autoplayTimer: ReturnType<typeof setInterval> | null = null;
+    let isDragging = false;
+    let startX = 0;
+
+    function updateSlider(index: number) {
+      if (index < 0) {
+        currentIndex = totalSlides - 1;
+      } else if (index >= totalSlides) {
+        currentIndex = 0;
+      } else {
+        currentIndex = index;
+      }
+
+      // Update track position
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      // Update dots
+      const dots = dotsContainer.querySelectorAll('[data-slide-to]');
+      dots.forEach((dot, idx) => {
+        if (idx === currentIndex) {
+          dot.classList.remove('w-1.5', 'bg-slate-300');
+          dot.classList.add('w-5', 'bg-violet-600');
+          dot.setAttribute('aria-selected', 'true');
+        } else {
+          dot.classList.remove('w-5', 'bg-violet-600');
+          dot.classList.add('w-1.5', 'bg-slate-300');
+          dot.setAttribute('aria-selected', 'false');
+        }
+      });
+    }
+
+    // Button event listeners
+    prevBtn.addEventListener('click', () => {
+      resetAutoplay();
+      updateSlider(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      resetAutoplay();
+      updateSlider(currentIndex + 1);
+    });
+
+    // Dot click listeners
+    dotsContainer.addEventListener('click', (e) => {
+      const target = (e.target as HTMLElement).closest('[data-slide-to]');
+      if (!target) return;
+      const targetIndex = parseInt(target.getAttribute('data-slide-to') || '0', 10);
+      resetAutoplay();
+      updateSlider(targetIndex);
+    });
+
+    // Touch Swipe Support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].clientX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const diff = touchStartX - touchEndX;
+      const threshold = 35; // minimum px for swipe
+      if (Math.abs(diff) > threshold) {
+        resetAutoplay();
+        if (diff > 0) {
+          updateSlider(currentIndex + 1);
+        } else {
+          updateSlider(currentIndex - 1);
+        }
+      }
+    }
+
+    // Mouse Drag Support
+    track.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      track.classList.remove('transition-transform');
+    });
+
+    window.addEventListener('mouseup', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      track.classList.add('transition-transform');
+      const diff = startX - e.clientX;
+      if (Math.abs(diff) > 40) {
+        resetAutoplay();
+        if (diff > 0) {
+          updateSlider(currentIndex + 1);
+        } else {
+          updateSlider(currentIndex - 1);
+        }
+      } else {
+        updateSlider(currentIndex);
+      }
+    });
+
+    // Keyboard navigation when slider is focused
+    container?.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        resetAutoplay();
+        updateSlider(currentIndex - 1);
+      } else if (e.key === 'ArrowRight') {
+        resetAutoplay();
+        updateSlider(currentIndex + 1);
+      }
+    });
+
+    // Subtle Autoplay with pause on hover
+    function startAutoplay() {
+      if (autoplayTimer) clearInterval(autoplayTimer);
+      autoplayTimer = setInterval(() => {
+        updateSlider(currentIndex + 1);
+      }, 5000);
+    }
+
+    function resetAutoplay() {
+      if (autoplayTimer) {
+        clearInterval(autoplayTimer);
+        startAutoplay();
+      }
+    }
+
+    container?.addEventListener('mouseenter', () => {
+      if (autoplayTimer) clearInterval(autoplayTimer);
+    });
+
+    container?.addEventListener('mouseleave', () => {
+      startAutoplay();
+    });
+
+    startAutoplay();
+  }
+
+  // Initialize on load and on Astro page transitions
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupWorksSlider);
+  } else {
+    setupWorksSlider();
+  }
+  document.addEventListener('astro:page-load', setupWorksSlider);
+</script>

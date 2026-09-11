@@ -1,0 +1,1170 @@
+---
+// TopBar.astro - Edge-to-Edge Fixed Enterprise Header with Dynamic Scroll Transition
+import { getTranslations, type Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const currentPath = Astro.url.pathname;
+const isIdPath = currentPath === '/id' || currentPath.startsWith('/id/');
+const currentLang: Locale = Astro.props.lang || (isIdPath ? 'id' : 'en');
+const t = getTranslations(currentLang);
+
+const isHome = currentPath === '/' || currentPath === '' || currentPath === '/id' || currentPath === '/id/';
+const isPorto = currentPath.includes('/portofolio') || currentPath.includes('/portfolio');
+const isLayanan = currentPath.includes('/layanan') || currentPath.includes('/services');
+const isAbout = currentPath.includes('/about') || currentPath.includes('/tentang-kami');
+
+// URLs for current language
+const homeUrl = currentLang === 'id' ? '/id' : '/';
+const portoUrl = currentLang === 'id' ? '/id/portofolio' : '/portofolio';
+const layananUrl = currentLang === 'id' ? '/id/layanan' : '/layanan';
+const aboutUrl = currentLang === 'id' ? '/id/tentang-kami' : '/about';
+const industriesSectionUrl = isHome ? '#industries' : `${homeUrl}#industries`;
+
+const resolveHref = (href: string) => {
+  if (href.startsWith('#')) {
+    return isHome ? href : `${homeUrl}${href}`;
+  }
+  return href;
+};
+
+// Alternate language target URLs
+let idUrl = '/id';
+let enUrl = '/';
+if (isPorto) {
+  idUrl = '/id/portofolio';
+  enUrl = '/portofolio';
+} else if (isLayanan) {
+  idUrl = '/id/layanan';
+  enUrl = '/layanan';
+} else if (isAbout) {
+  idUrl = '/id/tentang-kami';
+  enUrl = '/about';
+} else {
+  idUrl = '/id';
+  enUrl = '/';
+}
+
+const isCurrentId = currentLang === 'id';
+const toggleUrl = isCurrentId ? enUrl : idUrl;
+const toggleTitle = isCurrentId
+  ? "Bahasa Indonesia (Klik untuk switch ke English)"
+  : "English (Click to switch to Bahasa Indonesia)";
+const toggleAriaLabel = isCurrentId
+  ? "Beralih ke Bahasa Inggris"
+  : "Switch to Indonesian";
+---
+
+<header
+  id="main-topbar-header"
+  data-is-home={isHome ? "true" : "false"}
+  class:list={[
+    "fixed top-0 inset-x-0 w-full z-50 transition-all duration-300",
+    !isHome && "scrolled"
+  ]}
+>
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 h-16 sm:h-20 flex items-center justify-between">
+    <!-- Left: Brand Logo -->
+    <div class="flex items-center shrink-0">
+      <a
+        href={homeUrl}
+        class="group inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded-md py-1"
+        aria-label="PT Teknalogi Transformasi Digital Beranda"
+      >
+        <div class="grid items-center h-7 sm:h-8">
+          <!-- Logo Hero: White for dark Hero -->
+          <img
+            id="brand-logo-hero"
+            src="/logo_hero.png"
+            alt="Logo PT Teknalogi Transformasi Digital"
+            class="[grid-area:1/1] h-7 sm:h-8 w-auto object-contain transition-opacity duration-300 pointer-events-auto"
+            loading="eager"
+          />
+
+          <!-- Logo Scrolled / Subpage: Official Dark/Purple Logo -->
+          <img
+            id="brand-logo-scrolled"
+            src="/logo.png"
+            alt="Logo PT Teknalogi Transformasi Digital"
+            class="[grid-area:1/1] h-7 sm:h-8 w-auto object-contain transition-opacity duration-300 pointer-events-none opacity-0"
+            loading="eager"
+          />
+        </div>
+      </a>
+    </div>
+
+    <!-- Center: Desktop Navigation Routes (Centered on Desktop) -->
+    <nav
+      class="hidden lg:flex items-center gap-3 xl:gap-6 absolute left-1/2 -translate-x-1/2 h-full"
+      aria-label="Navigasi Utama"
+    >
+      <!-- 1. Tentang Kami -->
+      <a
+        href={aboutUrl}
+        class:list={[
+          "desktop-nav-link text-xs lg:text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded px-2 py-1.5 whitespace-nowrap cursor-pointer",
+          isAbout && "font-semibold active-nav-link"
+        ]}
+      >
+        {t.nav.about}
+      </a>
+
+      <!-- 2. Industri ▾ (Mega Menu Dropdown) -->
+      <div class="static group dropdown-container h-full flex items-center">
+        <button
+          type="button"
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="desktop-nav-link text-xs lg:text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded px-2 py-1.5 inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer select-none"
+        >
+          <span>{t.nav.industries}</span>
+          <svg class="w-3.5 h-3.5 transition-transform duration-200 dropdown-chevron shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <!-- Industri Mega Menu Panel -->
+        <div class="dropdown-menu absolute top-full left-1/2 pt-2.5 w-[calc(100vw-2rem)] sm:w-[calc(100vw-2.5rem)] max-w-7xl xl:max-w-[1300px] before:content-[''] before:absolute before:-top-6 before:inset-x-0 before:h-6 z-50">
+          <div class="bg-white/98 backdrop-blur-2xl border border-slate-200/90 shadow-2xl rounded-3xl p-4 sm:p-5 xl:p-6 text-slate-900 flex items-stretch gap-4 xl:gap-6">
+            
+            <!-- Left Card: Industri Overview -->
+            <div class="w-[220px] xl:w-[260px] shrink-0 bg-gradient-to-b from-[#f8fafc] to-[#f1f5f9] rounded-2xl p-4.5 xl:p-5.5 border border-slate-200/70 flex flex-col justify-between shadow-2xs">
+              <div>
+                <h3 class="text-xl xl:text-2xl font-bold text-slate-900 tracking-tight font-sans">
+                  {t.nav.industriesMega.title}
+                </h3>
+                <p class="text-xs xl:text-[13px] text-slate-500 leading-relaxed mt-2 font-normal font-sans">
+                  {t.nav.industriesMega.subtitle}
+                </p>
+              </div>
+              <div class="pt-4 mt-auto">
+                <a
+                  href={industriesSectionUrl}
+                  class="w-full inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-all duration-200 shadow-2xs group/all"
+                >
+                  <span>{currentLang === 'id' ? 'Lihat Semua Industri' : 'Explore All Industries'}</span>
+                  <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/all:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Middle Card: Dynamic Image Preview (Changes smoothly on list hover) -->
+            <div class="w-[280px] xl:w-[360px] shrink-0 rounded-2xl overflow-hidden relative shadow-sm border border-slate-200/80 bg-slate-900 self-stretch min-h-[250px] xl:min-h-[270px]">
+              {t.nav.industriesMega.items.map((item, idx) => (
+                <div
+                  data-industry-preview={item.id}
+                  class={`industry-preview-slide absolute inset-0 transition-all duration-300 ${
+                    idx === 0
+                      ? 'opacity-100 scale-100 z-10 pointer-events-auto'
+                      : 'opacity-0 scale-95 z-0 pointer-events-none'
+                  }`}
+                >
+                  <picture class="absolute inset-0 w-full h-full block">
+                    <source srcset={item.image} type="image/webp" />
+                    <img
+                      src={item.fallback}
+                      alt={item.title}
+                      class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      loading="lazy"
+                    />
+                  </picture>
+                  <!-- Gradient overlay at bottom with title & arrow -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent flex items-end p-4 xl:p-5">
+                    <a
+                      href={resolveHref(item.href)}
+                      class="text-white text-sm xl:text-base font-bold flex items-center justify-between w-full hover:text-indigo-200 transition-colors group/label"
+                    >
+                      <span>{item.title}</span>
+                      <span class="w-6 h-6 xl:w-7 xl:h-7 rounded-full bg-white/20 backdrop-blur-xs flex items-center justify-center text-white group-hover/label:bg-white group-hover/label:text-slate-900 transition-all">
+                        <svg class="w-3 h-3 xl:w-3.5 xl:h-3.5 transition-transform duration-200 group-hover/label:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <!-- Right Column: Interactive List of All 9 Industries across 2 Columns -->
+            <div class="flex-1 grid grid-cols-2 gap-x-3.5 xl:gap-x-5 gap-y-1.5 xl:gap-y-2 content-center border-l border-slate-200/60 pl-4 xl:pl-6">
+              {t.nav.industriesMega.items.map((item, idx) => (
+                <a
+                  href={resolveHref(item.href)}
+                  data-industry-trigger={item.id}
+                  class={`industry-item-link group/ind flex items-center justify-between py-1.5 xl:py-2 px-2.5 xl:px-3 rounded-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 cursor-pointer ${
+                    idx === 0
+                      ? 'bg-slate-100/90 text-indigo-600 font-semibold is-active shadow-2xs'
+                      : 'text-slate-800 hover:text-indigo-600 hover:bg-slate-50 font-medium'
+                  }`}
+                >
+                  <span class="text-xs xl:text-[13px] leading-snug transition-colors">
+                    {item.title}
+                  </span>
+                  <svg
+                    class={`w-3.5 h-3.5 xl:w-4 xl:h-4 transition-all text-indigo-600 shrink-0 ${
+                      idx === 0
+                        ? 'opacity-100 translate-x-0'
+                        : 'opacity-0 -translate-x-1 group-hover/ind:opacity-100 group-hover/ind:translate-x-0'
+                    }`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Layanan ▾ (Mega Menu Dropdown) -->
+      <div class="static group dropdown-container h-full flex items-center">
+        <button
+          type="button"
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="desktop-nav-link text-xs lg:text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded px-2 py-1.5 inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer select-none"
+        >
+          <span>{t.nav.services}</span>
+          <svg class="w-3.5 h-3.5 transition-transform duration-200 dropdown-chevron shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <!-- Layanan Mega Menu Panel -->
+        <div class="dropdown-menu absolute top-full left-1/2 pt-2.5 w-[calc(100vw-2rem)] sm:w-[calc(100vw-2.5rem)] max-w-7xl xl:max-w-[1300px] before:content-[''] before:absolute before:-top-6 before:inset-x-0 before:h-6 z-50">
+          <div class="bg-white/98 backdrop-blur-2xl border border-slate-200/90 shadow-2xl rounded-3xl p-5 sm:p-6 xl:p-7 text-slate-900 flex items-stretch gap-5 xl:gap-7">
+            
+            <!-- Left Card: Layanan & Solusi Overview -->
+            <div class="w-[230px] xl:w-[270px] shrink-0 bg-gradient-to-b from-[#f8fafc] to-[#f1f5f9] rounded-2xl p-5 xl:p-6 border border-slate-200/70 flex flex-col justify-between shadow-2xs">
+              <div>
+                <h3 class="text-xl xl:text-2xl font-bold text-slate-900 tracking-tight font-sans">
+                  {t.nav.servicesMega.title}
+                </h3>
+                <p class="text-xs xl:text-[13px] text-slate-500 leading-relaxed mt-2.5 font-normal font-sans">
+                  {t.nav.servicesMega.subtitle}
+                </p>
+              </div>
+
+              <div class="pt-5 mt-auto">
+                <a
+                  href={resolveHref(t.nav.servicesMega.ctaHref)}
+                  class="w-full inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-all duration-200 shadow-2xs group/btn"
+                >
+                  <span>{t.nav.servicesMega.ctaLabel}</span>
+                  <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Middle Section: 8 Services in 2 Columns of 4 -->
+            <div class="flex-1 grid grid-cols-2 gap-x-4 xl:gap-x-7 items-stretch">
+              <!-- Column 1: Website, Software, Mobile, Automation -->
+              <div class="flex flex-col justify-between space-y-1">
+                {t.nav.servicesMega.items.slice(0, 4).map((item) => (
+                  <a
+                    href={resolveHref(item.href)}
+                    class="group/item flex items-start gap-2.5 xl:gap-3.5 p-2 xl:p-2.5 rounded-xl hover:bg-slate-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+                  >
+                    <span class="w-8 h-8 xl:w-9 xl:h-9 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center text-slate-700 group-hover/item:text-indigo-600 group-hover/item:border-indigo-200 group-hover/item:bg-indigo-50/50 transition-colors shrink-0 mt-0.5">
+                      {item.icon === 'globe' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3.6 9h16.8M3.6 15h16.8" />
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M11.5 3a17 17 0 000 18M12.5 3a17 17 0 010 18" />
+                        </svg>
+                      )}
+                      {item.icon === 'code' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <rect x="2.5" y="4" width="19" height="13" rx="2" stroke-width="1.8" />
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8.5 8.5L6.5 10.5L8.5 12.5M15.5 8.5L17.5 10.5L15.5 12.5M9 20h6M12 17v3" />
+                        </svg>
+                      )}
+                      {item.icon === 'mobile' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                      )}
+                      {item.icon === 'workflow' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <rect x="3.5" y="3.5" width="4.5" height="4.5" rx="1" stroke-width="1.8" />
+                          <rect x="16" y="3.5" width="4.5" height="4.5" rx="1" stroke-width="1.8" />
+                          <rect x="3.5" y="16" width="4.5" height="4.5" rx="1" stroke-width="1.8" />
+                          <rect x="16" y="16" width="4.5" height="4.5" rx="1" stroke-width="1.8" />
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5.75 8v8M18.25 8v8M8 5.75h8M8 18.25h8" />
+                        </svg>
+                      )}
+                    </span>
+                    <div>
+                      <h4 class="text-xs xl:text-[13.5px] font-bold text-slate-900 group-hover/item:text-indigo-600 transition-colors leading-snug">
+                        {item.title}
+                      </h4>
+                      <p class="text-[11px] xl:text-xs text-slate-500 leading-relaxed mt-0.5 line-clamp-2">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+
+              <!-- Column 2: SEO, AI Search, Audit, Maintenance -->
+              <div class="flex flex-col justify-between space-y-1">
+                {t.nav.servicesMega.items.slice(4, 8).map((item) => (
+                  <a
+                    href={resolveHref(item.href)}
+                    class="group/item flex items-start gap-2.5 xl:gap-3.5 p-2 xl:p-2.5 rounded-xl hover:bg-slate-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+                  >
+                    <span class="w-8 h-8 xl:w-9 xl:h-9 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center text-slate-700 group-hover/item:text-indigo-600 group-hover/item:border-indigo-200 group-hover/item:bg-indigo-50/50 transition-colors shrink-0 mt-0.5">
+                      {item.icon === 'search' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 9h18M14 14l3.5 3.5M16 13a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                        </svg>
+                      )}
+                      {item.icon === 'ai-search' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <circle cx="10.5" cy="10.5" r="7.5" stroke-width="1.8" />
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 16l4.5 4.5M12 10.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm0 0v1a1.2 1.2 0 002.4 0v-1a2.4 2.4 0 00-4.8 0" />
+                        </svg>
+                      )}
+                      {item.icon === 'audit' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 3H5a2 2 0 00-2 2v14a2 2 0 002 2h9m-5-18a2 2 0 012-2h2a2 2 0 012 2m-6 0h6m-6 5h5m-5 4h3" />
+                          <circle cx="16.5" cy="16.5" r="3.5" stroke-width="1.8" />
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 19l2.5 2.5" />
+                        </svg>
+                      )}
+                      {item.icon === 'maintenance' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 9h18M11.5 13.5l2-2a1.414 1.414 0 012 2l-2 2m-2-2l-1.5 1.5" />
+                        </svg>
+                      )}
+                    </span>
+                    <div>
+                      <h4 class="text-xs xl:text-[13.5px] font-bold text-slate-900 group-hover/item:text-indigo-600 transition-colors leading-snug">
+                        {item.title}
+                      </h4>
+                      <p class="text-[11px] xl:text-xs text-slate-500 leading-relaxed mt-0.5 line-clamp-2">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <!-- Right Column: Solusi Unggulan -->
+            <div class="w-[220px] xl:w-[260px] shrink-0 border-l border-slate-200/80 pl-4 xl:pl-6 flex flex-col justify-between">
+              <div>
+                <h4 class="text-xs xl:text-sm font-bold text-slate-900 tracking-tight font-sans">
+                  {t.nav.servicesMega.featuredSolutions.title}
+                </h4>
+                <p class="text-[11px] xl:text-xs text-slate-500 leading-relaxed mt-1 mb-3">
+                  {t.nav.servicesMega.featuredSolutions.desc}
+                </p>
+                <div class="space-y-1">
+                  {t.nav.servicesMega.featuredSolutions.solutions.map((sol) => (
+                    <a
+                      href={resolveHref(sol.href)}
+                      class="group/sol block text-xs text-slate-800 hover:text-indigo-600 font-medium transition-colors py-1 px-2 -mx-2 rounded-lg hover:bg-slate-50 flex items-center justify-between"
+                    >
+                      <span>{sol.label}</span>
+                      <svg class="w-3 h-3 text-slate-400 opacity-0 -translate-x-1 group-hover/sol:opacity-100 group-hover/sol:translate-x-0 group-hover/sol:text-indigo-600 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <!-- CTA Button -->
+              <div class="pt-5 mt-auto">
+                <a
+                  href={resolveHref(t.nav.servicesMega.featuredSolutions.ctaHref)}
+                  class="w-full inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-all duration-200 shadow-2xs group/btn"
+                >
+                  <span>{t.nav.servicesMega.featuredSolutions.ctaLabel}</span>
+                  <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Resources ▾ (Mega Menu Dropdown) -->
+      <div class="static group dropdown-container h-full flex items-center">
+        <button
+          type="button"
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="desktop-nav-link text-xs lg:text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded px-2 py-1.5 inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer select-none"
+        >
+          <span>{t.nav.resources}</span>
+          <svg class="w-3.5 h-3.5 transition-transform duration-200 dropdown-chevron shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <!-- Resources Mega Menu Panel -->
+        <div class="dropdown-menu absolute top-full left-1/2 pt-2.5 w-[calc(100vw-2rem)] sm:w-[calc(100vw-2.5rem)] max-w-7xl xl:max-w-[1300px] before:content-[''] before:absolute before:-top-6 before:inset-x-0 before:h-6 z-50">
+          <div class="bg-white/98 backdrop-blur-2xl border border-slate-200/90 shadow-2xl rounded-3xl p-4 sm:p-5 xl:p-6 text-slate-900 flex items-stretch gap-4 xl:gap-6">
+            
+            <!-- Left Card: Resources Overview & Quick Links -->
+            <div class="w-[240px] xl:w-[280px] shrink-0 bg-gradient-to-b from-[#f8fafc] to-[#f1f5f9] rounded-2xl p-4.5 xl:p-5.5 border border-slate-200/70 flex flex-col justify-between shadow-2xs">
+              <div>
+                <h3 class="text-xl xl:text-2xl font-bold text-slate-900 tracking-tight font-sans">
+                  {t.nav.resourcesMega.title}
+                </h3>
+                <p class="text-xs xl:text-[13px] text-slate-500 leading-relaxed mt-2 font-normal font-sans">
+                  {t.nav.resourcesMega.subtitle}
+                </p>
+
+              </div>
+              <div class="mt-auto pt-4 border-t border-slate-200/60">
+                <a
+                  href={resolveHref('/layanan')}
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-900 hover:text-indigo-600 transition-colors"
+                >
+                  <span>{currentLang === 'id' ? 'Jelajahi Ekosistem' : 'Explore Ecosystem'}</span>
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Middle Section: 2 Featured Framework Cards -->
+            <div class="flex-1 grid grid-cols-2 gap-4 xl:gap-5 items-stretch">
+              {t.nav.resourcesMega.featured.map((card) => (
+                <a
+                  href={resolveHref(card.href)}
+                  class="group/card flex flex-col justify-between p-3 xl:p-3.5 rounded-2xl hover:bg-slate-50/90 border border-slate-100/90 hover:border-slate-200/90 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 shadow-2xs hover:shadow-xs"
+                >
+                  <div>
+                    <div class="overflow-hidden rounded-xl border border-slate-200/80 bg-slate-100 aspect-[16/10] relative shadow-2xs">
+                      <img
+                        src={card.image}
+                        alt={`${card.brand} ${card.name}`}
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="mt-3 text-xs sm:text-sm xl:text-base font-medium text-slate-900 group-hover/card:text-indigo-600 transition-colors flex items-center justify-between">
+                      <div>
+                        <span>{card.brand} </span>
+                        <span class="font-bold">{card.name}</span>
+                      </div>
+                      <span class="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-600 group-hover/card:bg-indigo-50 group-hover/card:text-indigo-600 transition-colors">
+                        {card.brand === 'Teknalogi' ? 'SaaS' : 'Platform'}
+                      </span>
+                    </div>
+                    <p class="text-[11px] xl:text-xs text-slate-500 leading-relaxed mt-1 line-clamp-3">
+                      {card.desc}
+                    </p>
+                  </div>
+                  <div class="mt-3.5 pt-2.5 border-t border-slate-100/90 flex items-center justify-between text-xs font-semibold text-slate-800 group-hover/card:text-indigo-600 transition-colors">
+                    <span>{currentLang === 'id' ? 'Pelajari Produk' : 'Explore Product'}</span>
+                    <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/card:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            <!-- Right Column: Knowledge Hub -->
+            <div class="w-[220px] xl:w-[250px] shrink-0 border-l border-slate-200/80 pl-4 xl:pl-6 flex flex-col justify-between">
+              <div>
+                <h4 class="text-xs xl:text-sm font-bold text-slate-900 tracking-tight font-sans">
+                  {t.nav.resourcesMega.knowledgeHub.title}
+                </h4>
+                <p class="text-[11px] xl:text-xs text-slate-500 leading-relaxed mt-1 mb-3">
+                  {t.nav.resourcesMega.knowledgeHub.desc}
+                </p>
+                <div class="space-y-1">
+                  {t.nav.resourcesMega.knowledgeHub.topics.map((topic) => (
+                    <a
+                      href={resolveHref(topic.href)}
+                      class="group/topic block text-xs text-slate-800 hover:text-indigo-600 font-medium transition-colors py-1 px-2 -mx-2 rounded-lg hover:bg-slate-50 flex items-center justify-between"
+                    >
+                      <span>{topic.label}</span>
+                      <svg class="w-3 h-3 text-slate-400 opacity-0 -translate-x-1 group-hover/topic:opacity-100 group-hover/topic:translate-x-0 group-hover/topic:text-indigo-600 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <!-- CTA Button -->
+              <div class="pt-4 mt-auto">
+                <a
+                  href={resolveHref(t.nav.resourcesMega.knowledgeHub.ctaHref)}
+                  class="w-full inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-all duration-200 shadow-2xs group/btn"
+                >
+                  <span>{t.nav.resourcesMega.knowledgeHub.ctaLabel}</span>
+                  <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Case Study (points to portfolio / portofolio) -->
+      <a
+        href={portoUrl}
+        class:list={[
+          "desktop-nav-link text-xs lg:text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded px-2 py-1.5 whitespace-nowrap cursor-pointer",
+          isPorto && "font-semibold active-nav-link"
+        ]}
+      >
+        {t.nav.caseStudy}
+      </a>
+    </nav>
+
+    <!-- Right: Action Controls (Contact CTA + Circular Flag on Desktop) -->
+    <div class="hidden lg:flex items-center gap-3 shrink-0">
+      <!-- Contact CTA Button -->
+      <button
+        type="button"
+        id="btn-open-contact-header"
+        class="header-contact-btn inline-flex items-center justify-center px-4.5 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 active:scale-95 cursor-pointer shadow-sm border whitespace-nowrap"
+      >
+        {t.nav.contact}
+      </button>
+
+      <!-- Circular Flag Language Switcher -->
+      <a
+        href={toggleUrl}
+        id="lang-flag-toggle"
+        class="lang-flag-btn relative flex items-center justify-center w-8.5 h-8.5 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 shadow-sm shrink-0 border"
+        title={toggleTitle}
+        aria-label={toggleAriaLabel}
+      >
+        {isCurrentId ? (
+          <!-- Indonesian Flag (Merah Putih) -->
+          <svg class="w-full h-full object-cover" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="32" height="16" fill="#CE1126" />
+            <rect y="16" width="32" height="16" fill="#FFFFFF" />
+            <circle cx="16" cy="16" r="15.25" stroke="rgba(0,0,0,0.12)" stroke-width="1.5" fill="none" />
+          </svg>
+        ) : (
+          <!-- UK / English Flag (Union Jack) -->
+          <svg class="w-full h-full object-cover" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="32" height="32" fill="#012169" />
+            <path d="M0 0L32 32M32 0L0 32" stroke="#FFFFFF" stroke-width="4.5" />
+            <path d="M0 0L32 32M32 0L0 32" stroke="#C8102E" stroke-width="2.2" />
+            <path d="M16 0V32M0 16H32" stroke="#FFFFFF" stroke-width="6.5" />
+            <path d="M16 0V32M0 16H32" stroke="#C8102E" stroke-width="3.8" />
+            <circle cx="16" cy="16" r="15.25" stroke="rgba(0,0,0,0.15)" stroke-width="1.5" fill="none" />
+          </svg>
+        )}
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button & Quick Flag Switcher -->
+    <div class="flex items-center gap-2.5 lg:hidden">
+      <!-- 1-Tap Flag Switcher on Mobile/Tablet TopBar -->
+      <a
+        href={toggleUrl}
+        id="lang-flag-toggle-mobile"
+        class="lang-flag-btn relative flex items-center justify-center w-8 h-8 rounded-full overflow-hidden transition-all duration-200 active:scale-95 border"
+        title={toggleTitle}
+        aria-label={toggleAriaLabel}
+      >
+        {isCurrentId ? (
+          <svg class="w-full h-full object-cover" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="32" height="16" fill="#CE1126" />
+            <rect y="16" width="32" height="16" fill="#FFFFFF" />
+            <circle cx="16" cy="16" r="15.25" stroke="rgba(0,0,0,0.12)" stroke-width="1.5" fill="none" />
+          </svg>
+        ) : (
+          <svg class="w-full h-full object-cover" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="32" height="32" fill="#012169" />
+            <path d="M0 0L32 32M32 0L0 32" stroke="#FFFFFF" stroke-width="4.5" />
+            <path d="M0 0L32 32M32 0L0 32" stroke="#C8102E" stroke-width="2.2" />
+            <path d="M16 0V32M0 16H32" stroke="#FFFFFF" stroke-width="6.5" />
+            <path d="M16 0V32M0 16H32" stroke="#C8102E" stroke-width="3.8" />
+            <circle cx="16" cy="16" r="15.25" stroke="rgba(0,0,0,0.15)" stroke-width="1.5" fill="none" />
+          </svg>
+        )}
+      </a>
+
+      <button
+        type="button"
+        id="btn-mobile-menu-toggle"
+        aria-expanded="false"
+        aria-controls="mobile-menu-drawer"
+        class="mobile-toggle-btn p-2 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
+        aria-label="Buka Menu Navigasi"
+      >
+        <svg id="icon-menu-open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="icon-menu-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu (Edge-to-Edge Below Header) -->
+  <div
+    id="mobile-menu-drawer"
+    class="hidden border-t border-slate-200/80 bg-[#fbfbfc]/98 backdrop-blur-xl px-4 sm:px-6 py-5 space-y-2.5 shadow-2xl lg:hidden max-h-[82vh] overflow-y-auto"
+  >
+    <!-- 1. Tentang Kami -->
+    <a
+      href={aboutUrl}
+      class:list={[
+        "mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm transition-colors min-h-[44px]",
+        isAbout
+          ? "font-semibold text-indigo-600 bg-indigo-50/80 border border-indigo-200/60"
+          : "font-semibold text-slate-800 hover:text-slate-950 hover:bg-slate-100"
+      ]}
+    >
+      <span>{t.nav.about}</span>
+      <svg class:list={["w-4 h-4", isAbout ? "text-indigo-600" : "text-slate-400"]} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+
+    <!-- 2. Industri (Accordion) -->
+    <details class="group/acc rounded-xl overflow-hidden">
+      <summary class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-800 hover:text-slate-950 hover:bg-slate-100 cursor-pointer list-none select-none min-h-[44px]">
+        <span>{t.nav.industries}</span>
+        <svg class="w-4 h-4 transition-transform duration-200 group-open/acc:rotate-180 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </summary>
+      <div class="pl-3 pr-2 py-2 space-y-1 bg-slate-100/60 border-l-2 border-indigo-500/50 ml-3 my-1.5 rounded-r-xl">
+        {t.nav.industriesMega.items.map((item) => (
+          <a
+            href={resolveHref(item.href)}
+            class="mobile-nav-link flex items-center justify-between px-3 py-2 text-[13px] font-medium text-slate-700 hover:text-indigo-600 hover:bg-white rounded-lg transition-colors min-h-[40px]"
+          >
+            <span>{item.title}</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        ))}
+      </div>
+    </details>
+
+    <!-- 3. Layanan (Accordion) -->
+    <details class="group/acc rounded-xl overflow-hidden">
+      <summary class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-800 hover:text-slate-950 hover:bg-slate-100 cursor-pointer list-none select-none min-h-[44px]">
+        <span>{t.nav.services}</span>
+        <svg class="w-4 h-4 transition-transform duration-200 group-open/acc:rotate-180 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </summary>
+      <div class="pl-3 pr-2 py-2.5 space-y-3 bg-slate-100/60 border-l-2 border-indigo-500/50 ml-3 my-1.5 rounded-r-xl">
+        <!-- Core Services -->
+        <div class="space-y-1">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-3 pt-1 font-mono">
+            {currentLang === 'id' ? 'Layanan Utama' : 'Core Services'}
+          </div>
+          {t.nav.servicesMega.items.map((item) => (
+            <a
+              href={resolveHref(item.href)}
+              class="mobile-nav-link flex items-center justify-between px-3 py-2 text-[13px] font-medium text-slate-700 hover:text-indigo-600 hover:bg-white rounded-lg transition-colors min-h-[40px]"
+            >
+              <span>{item.title}</span>
+              <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          ))}
+        </div>
+
+        <!-- Featured Solutions -->
+        <div class="space-y-1 pt-2 border-t border-slate-200/70">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-3 pt-1 font-mono">
+            {t.nav.servicesMega.featuredSolutions.title}
+          </div>
+          {t.nav.servicesMega.featuredSolutions.solutions.map((sol) => (
+            <a
+              href={resolveHref(sol.href)}
+              class="mobile-nav-link flex items-center justify-between px-3 py-2 text-[13px] font-medium text-slate-600 hover:text-indigo-600 hover:bg-white rounded-lg transition-colors min-h-[40px]"
+            >
+              <span>{sol.label}</span>
+              <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          ))}
+          <div class="pt-2 px-1">
+            <a
+              href={resolveHref(t.nav.servicesMega.ctaHref)}
+              class="mobile-nav-link flex items-center justify-center gap-1.5 w-full py-2.5 px-4 bg-slate-950 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl text-center shadow-xs transition-all min-h-[42px]"
+            >
+              <span>{t.nav.servicesMega.ctaLabel}</span>
+              <svg class="w-3.5 h-3.5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 4. Resources (Accordion) -->
+    <details class="group/acc rounded-xl overflow-hidden">
+      <summary class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-800 hover:text-slate-950 hover:bg-slate-100 cursor-pointer list-none select-none min-h-[44px]">
+        <span>{t.nav.resources}</span>
+        <svg class="w-4 h-4 transition-transform duration-200 group-open/acc:rotate-180 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </summary>
+      <div class="pl-3 pr-2 py-2.5 space-y-3 bg-slate-100/60 border-l-2 border-indigo-500/50 ml-3 my-1.5 rounded-r-xl">
+
+        <!-- Frameworks -->
+        <div class="space-y-1 pt-2 border-t border-slate-200/70">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-3 pt-1 font-mono">Frameworks</div>
+          {t.nav.resourcesMega.featured.map((card) => (
+            <a
+              href={resolveHref(card.href)}
+              class="mobile-nav-link flex items-center justify-between px-3 py-2 text-[13px] font-semibold text-slate-800 hover:text-indigo-600 hover:bg-white rounded-lg transition-colors min-h-[40px]"
+            >
+              <span>{card.brand} {card.name}</span>
+              <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          ))}
+        </div>
+
+        <!-- Knowledge Hub -->
+        <div class="space-y-1 pt-2 border-t border-slate-200/70">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-3 pt-1 font-mono">{t.nav.resourcesMega.knowledgeHub.title}</div>
+          {t.nav.resourcesMega.knowledgeHub.topics.map((topic) => (
+            <a
+              href={resolveHref(topic.href)}
+              class="mobile-nav-link flex items-center justify-between px-3 py-2 text-[13px] font-medium text-slate-600 hover:text-indigo-600 hover:bg-white rounded-lg transition-colors min-h-[40px]"
+            >
+              <span>{topic.label}</span>
+              <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          ))}
+          <div class="pt-2 px-1">
+            <a
+              href={resolveHref(t.nav.resourcesMega.knowledgeHub.ctaHref)}
+              class="mobile-nav-link flex items-center justify-center gap-1.5 w-full py-2.5 px-4 bg-slate-950 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl text-center shadow-xs transition-all min-h-[42px]"
+            >
+              <span>{t.nav.resourcesMega.knowledgeHub.ctaLabel}</span>
+              <svg class="w-3.5 h-3.5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 5. Case Study (points to portfolio / portofolio) -->
+    <a
+      href={portoUrl}
+      class:list={[
+        "mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-colors min-h-[44px]",
+        isPorto ? "text-slate-950 bg-slate-200/70" : "text-slate-800 hover:text-slate-950 hover:bg-slate-100"
+      ]}
+    >
+      <span>{t.nav.caseStudy}</span>
+      <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+
+    <!-- Mobile Language Switcher Row with Circular Flag -->
+    <div class="flex items-center justify-between px-3.5 py-3 rounded-xl bg-slate-100/90 border border-slate-200/80 min-h-[48px]">
+      <span class="text-xs text-slate-700 font-sans font-medium">Bahasa / Language</span>
+      <a
+        href={toggleUrl}
+        class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white border border-slate-200/90 shadow-2xs hover:bg-slate-50 transition-colors text-xs font-semibold text-slate-800 min-h-[38px]"
+        title={toggleTitle}
+      >
+        <span class="w-5 h-5 rounded-full overflow-hidden inline-flex items-center justify-center shrink-0 border border-slate-200">
+          {isCurrentId ? (
+            <svg class="w-full h-full object-cover" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="16" fill="#CE1126" />
+              <rect y="16" width="32" height="16" fill="#FFFFFF" />
+            </svg>
+          ) : (
+            <svg class="w-full h-full object-cover" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" fill="#012169" />
+              <path d="M0 0L32 32M32 0L0 32" stroke="#FFFFFF" stroke-width="4.5" />
+              <path d="M0 0L32 32M32 0L0 32" stroke="#C8102E" stroke-width="2.2" />
+              <path d="M16 0V32M0 16H32" stroke="#FFFFFF" stroke-width="6.5" />
+              <path d="M16 0V32M0 16H32" stroke="#C8102E" stroke-width="3.8" />
+            </svg>
+          )}
+        </span>
+        <span>{isCurrentId ? "Bahasa Indonesia" : "English"}</span>
+      </a>
+    </div>
+
+    <div class="pt-2">
+      <button
+        type="button"
+        id="btn-open-contact-mobile"
+        class="w-full text-center px-4 py-3 rounded-full bg-slate-950 hover:bg-slate-800 active:scale-98 text-white text-sm font-semibold transition-all cursor-pointer min-h-[48px] flex items-center justify-center shadow-sm"
+      >
+        {t.nav.contact}
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* 1. DEFAULT HERO STATE: Transparent, NO border line, crisp white text */
+  #main-topbar-header {
+    background-color: transparent !important;
+    border-bottom: 1px solid transparent !important;
+  }
+  #main-topbar-header .desktop-nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    background: transparent !important;
+    border: none !important;
+  }
+  #main-topbar-header .desktop-nav-link:hover {
+    color: #ffffff !important;
+  }
+  #main-topbar-header .dropdown-menu {
+    color: #0f172a !important;
+  }
+  #main-topbar-header .header-contact-btn {
+    background-color: #ffffff !important;
+    color: #020617 !important;
+    border-color: #ffffff !important;
+  }
+  #main-topbar-header .header-contact-btn:hover {
+    background-color: #f1f5f9 !important;
+  }
+  #main-topbar-header .mobile-toggle-btn {
+    color: #ffffff !important;
+  }
+  #main-topbar-header .lang-flag-btn {
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25) !important;
+  }
+  #main-topbar-header #brand-logo-hero {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  #main-topbar-header #brand-logo-scrolled {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* 2. SCROLLED STATE (Below Hero & Subpages): Frosted white background, DARK text */
+  #main-topbar-header.scrolled {
+    background-color: rgba(251, 251, 252, 0.96) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.9) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  }
+  #main-topbar-header.scrolled .desktop-nav-link {
+    color: #334155 !important; /* slate-700 DARK text on white */
+  }
+  #main-topbar-header.scrolled .desktop-nav-link.active-nav-link {
+    color: #4f46e5 !important; /* indigo-600 active link */
+  }
+  #main-topbar-header.scrolled .desktop-nav-link:hover {
+    color: #020617 !important; /* slate-950 JET BLACK on hover */
+  }
+  #main-topbar-header.scrolled .header-contact-btn {
+    background-color: #020617 !important;
+    color: #ffffff !important;
+    border-color: #020617 !important;
+  }
+  #main-topbar-header.scrolled .header-contact-btn:hover {
+    background-color: #1e293b !important;
+  }
+  #main-topbar-header.scrolled .mobile-toggle-btn {
+    color: #0f172a !important;
+  }
+  #main-topbar-header.scrolled .lang-flag-btn {
+    border-color: rgba(203, 213, 225, 0.9) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+  }
+  #main-topbar-header.scrolled #brand-logo-hero {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  #main-topbar-header.scrolled #brand-logo-scrolled {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* 3. MOBILE MENU OPEN STATE: Frosted white background so logo & close button are crystal clear */
+  #main-topbar-header.menu-open {
+    background-color: rgba(251, 251, 252, 0.98) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.9) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  }
+  #main-topbar-header.menu-open #brand-logo-hero {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  #main-topbar-header.menu-open #brand-logo-scrolled {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  #main-topbar-header.menu-open .mobile-toggle-btn {
+    color: #0f172a !important;
+  }
+  #main-topbar-header.menu-open .lang-flag-btn {
+    border-color: rgba(203, 213, 225, 0.9) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* Dropdown animations, transitions & states */
+  .dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    translate: none !important;
+    transform: translate(-50%, -6px) !important;
+    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
+  }
+
+  .dropdown-container.is-open .dropdown-menu,
+  .dropdown-container:not(.just-closed):hover .dropdown-menu,
+  .dropdown-container:not(.just-closed):focus-within .dropdown-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    translate: none !important;
+    transform: translate(-50%, 0) !important;
+  }
+
+  .dropdown-container.is-open .dropdown-chevron,
+  .dropdown-container:not(.just-closed):hover .dropdown-chevron,
+  .dropdown-container:not(.just-closed):focus-within .dropdown-chevron {
+    transform: rotate(180deg) !important;
+  }
+</style>
+
+<script>
+  // Mobile menu toggle logic
+  const headerEl = document.getElementById('main-topbar-header');
+  const toggleBtn = document.getElementById('btn-mobile-menu-toggle');
+  const mobileDrawer = document.getElementById('mobile-menu-drawer');
+  const iconOpen = document.getElementById('icon-menu-open');
+  const iconClose = document.getElementById('icon-menu-close');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+  if (toggleBtn && mobileDrawer && iconOpen && iconClose) {
+    const toggleMenu = () => {
+      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      const willExpand = !isExpanded;
+      toggleBtn.setAttribute('aria-expanded', String(willExpand));
+      mobileDrawer.classList.toggle('hidden', !willExpand);
+      iconOpen.classList.toggle('hidden', willExpand);
+      iconClose.classList.toggle('hidden', !willExpand);
+      headerEl?.classList.toggle('menu-open', willExpand);
+      document.body.classList.toggle('overflow-hidden', willExpand);
+    };
+
+    toggleBtn.addEventListener('click', toggleMenu);
+
+    mobileLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (!mobileDrawer.classList.contains('hidden')) {
+          toggleMenu();
+        }
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1024 && !mobileDrawer.classList.contains('hidden')) {
+        toggleMenu();
+      }
+    });
+  }
+
+  // Desktop Dropdown Controller (Hover, 180ms grace window, Click-to-toggle, Outside-click, Escape)
+  const dropdownContainers = document.querySelectorAll('.dropdown-container');
+  let activeContainer: HTMLElement | null = null;
+  let closeTimer: ReturnType<typeof setTimeout> | null = null;
+
+  const openDropdown = (container: HTMLElement) => {
+    if (closeTimer) {
+      clearTimeout(closeTimer);
+      closeTimer = null;
+    }
+    // Close other active dropdowns immediately
+    dropdownContainers.forEach((c) => {
+      const el = c as HTMLElement;
+      if (el !== container && el.classList.contains('is-open')) {
+        el.classList.remove('is-open');
+        el.querySelector('button')?.setAttribute('aria-expanded', 'false');
+      }
+    });
+    activeContainer = container;
+    container.classList.remove('just-closed');
+    container.classList.add('is-open');
+    container.querySelector('button')?.setAttribute('aria-expanded', 'true');
+  };
+
+  const closeDropdown = (container: HTMLElement, immediate = false) => {
+    const doClose = () => {
+      container.classList.remove('is-open');
+      container.querySelector('button')?.setAttribute('aria-expanded', 'false');
+      if (activeContainer === container) {
+        activeContainer = null;
+      }
+    };
+
+    if (closeTimer) {
+      clearTimeout(closeTimer);
+      closeTimer = null;
+    }
+
+    if (immediate) {
+      doClose();
+    } else {
+      closeTimer = setTimeout(doClose, 180);
+    }
+  };
+
+  dropdownContainers.forEach((c) => {
+    const container = c as HTMLElement;
+    const btn = container.querySelector('button');
+    const menu = container.querySelector('.dropdown-menu');
+    if (!btn || !menu) return;
+
+    // Hover Enter container (button or menu)
+    container.addEventListener('mouseenter', () => {
+      openDropdown(container);
+    });
+
+    // Hover Leave container
+    container.addEventListener('mouseleave', () => {
+      closeDropdown(container, false);
+    });
+
+    // Toggle on button click
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = container.classList.contains('is-open');
+      if (isOpen) {
+        closeDropdown(container, true);
+      } else {
+        openDropdown(container);
+      }
+    });
+
+    // Close immediately on link click inside dropdown and prevent stuck hover
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        container.classList.add('just-closed');
+        closeDropdown(container, true);
+        setTimeout(() => {
+          container.classList.remove('just-closed');
+        }, 350);
+      });
+    });
+  });
+
+  // Close when clicking outside of any dropdown
+  document.addEventListener('click', (e) => {
+    if (activeContainer && !activeContainer.contains(e.target as Node)) {
+      closeDropdown(activeContainer, true);
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && activeContainer) {
+      closeDropdown(activeContainer, true);
+    }
+  });
+
+  // Adaptive scroll styling for edge-to-edge TopBar (active on Home page)
+  const topbarHeader = document.getElementById('main-topbar-header');
+  const isHome = topbarHeader?.getAttribute('data-is-home') === 'true';
+
+  if (isHome && topbarHeader) {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      // Only transition to white when scrolling towards the bottom of the hero
+      const heroThreshold = Math.max(window.innerHeight * 0.72, 450);
+      const isPastHero = scrollY > heroThreshold;
+
+      topbarHeader.classList.toggle('scrolled', isPastHero);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+  }
+
+  // Interactive Industry Dynamic Image Preview on Hover
+  const industryTriggers = document.querySelectorAll('[data-industry-trigger]');
+  const industrySlides = document.querySelectorAll('[data-industry-preview]');
+
+  industryTriggers.forEach((trigger) => {
+    trigger.addEventListener('mouseenter', () => {
+      const targetId = trigger.getAttribute('data-industry-trigger');
+      if (!targetId) return;
+
+      // Toggle preview slides with smooth transition
+      industrySlides.forEach((slide) => {
+        const slideId = slide.getAttribute('data-industry-preview');
+        if (slideId === targetId) {
+          slide.classList.remove('opacity-0', 'scale-95', 'z-0', 'pointer-events-none');
+          slide.classList.add('opacity-100', 'scale-100', 'z-10', 'pointer-events-auto');
+        } else {
+          slide.classList.remove('opacity-100', 'scale-100', 'z-10', 'pointer-events-auto');
+          slide.classList.add('opacity-0', 'scale-95', 'z-0', 'pointer-events-none');
+        }
+      });
+
+      // Toggle trigger active styling
+      industryTriggers.forEach((t) => {
+        const arrow = t.querySelector('svg');
+        if (t === trigger) {
+          t.classList.add('bg-slate-100/90', 'text-indigo-600', 'font-semibold', 'is-active', 'shadow-2xs');
+          t.classList.remove('text-slate-800', 'font-medium');
+          if (arrow) {
+            arrow.classList.remove('opacity-0', '-translate-x-1');
+            arrow.classList.add('opacity-100', 'translate-x-0');
+          }
+        } else {
+          t.classList.remove('bg-slate-100/90', 'text-indigo-600', 'font-semibold', 'is-active', 'shadow-2xs');
+          t.classList.add('text-slate-800', 'font-medium');
+          if (arrow) {
+            arrow.classList.add('opacity-0', '-translate-x-1');
+            arrow.classList.remove('opacity-100', 'translate-x-0');
+          }
+        }
+      });
+    });
+  });
+</script>

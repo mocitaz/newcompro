@@ -1,0 +1,156 @@
+---
+// Partners.astro - Sleek, professional infinite sliding partner marquee
+import type { Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'id' } = Astro.props;
+
+interface Partner {
+  name: string;
+  logo: string;
+  className: string;
+  width: number;
+  height: number;
+}
+
+const basePartners: Partner[] = [
+  {
+    name: "Anytime Fitness",
+    logo: "/partners/anytime.png",
+    className: "h-7 sm:h-8 md:h-9 w-auto",
+    width: 320,
+    height: 87
+  },
+  {
+    name: "KelolaAja",
+    logo: "/partners/kelolaaja.png",
+    className: "h-7 sm:h-8 md:h-9 w-auto",
+    width: 320,
+    height: 85
+  },
+  {
+    name: "PT Nikawa Teknika Indonesia",
+    logo: "/partners/nikawa.png",
+    className: "h-8 sm:h-9 md:h-10 w-auto",
+    width: 191,
+    height: 90
+  },
+  {
+    name: "PT Tiga Inspirasi Bersama",
+    logo: "/partners/ptintibersama.png",
+    className: "h-9 sm:h-10 md:h-11 w-auto",
+    width: 154,
+    height: 90
+  }
+];
+
+// Duplikasi sequence 3x untuk kelancaran loop tanpa celah di layar monitor beresolusi tinggi (4K/ultrawide)
+const partnerSequence = [
+  ...basePartners,
+  ...basePartners,
+  ...basePartners
+];
+---
+
+<section
+  id="partners"
+  aria-label={lang === 'en' ? "Strategic Partners & Clients" : "Mitra Strategis & Klien"}
+  class="relative z-10 bg-[#fbfbfc] py-6 sm:py-9 md:py-11 overflow-hidden select-none w-full max-w-full"
+>
+  <div class="relative w-full overflow-hidden">
+    <!-- Left edge fade mask (feathering halus) -->
+    <div class="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-24 md:w-40 bg-gradient-to-r from-[#fbfbfc] to-transparent z-10"></div>
+
+    <!-- Right edge fade mask (feathering halus) -->
+    <div class="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-24 md:w-40 bg-gradient-to-l from-[#fbfbfc] to-transparent z-10"></div>
+
+    <!-- Infinite Sliding Marquee Track -->
+    <div class="marquee-track flex items-center">
+      <!-- First Group (Original) -->
+      <div class="marquee-group flex items-center gap-8 sm:gap-14 md:gap-20 shrink-0 px-4 sm:px-8">
+        {
+          partnerSequence.map((partner) => (
+            <div
+              class="flex items-center justify-center p-2 sm:p-3"
+              title={partner.name}
+            >
+              <img
+                src={partner.logo}
+                alt={`Logo ${partner.name}`}
+                width={partner.width}
+                height={partner.height}
+                loading="lazy"
+                class:list={[
+                  partner.className,
+                  "object-contain filter grayscale contrast-125 opacity-60"
+                ]}
+              />
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Second Group (Seamless Clone for Infinite Loop) -->
+      <div class="marquee-group flex items-center gap-8 sm:gap-14 md:gap-20 shrink-0 px-4 sm:px-8" aria-hidden="true">
+        {
+          partnerSequence.map((partner) => (
+            <div
+              class="flex items-center justify-center p-2 sm:p-3"
+              title={partner.name}
+            >
+              <img
+                src={partner.logo}
+                alt=""
+                width={partner.width}
+                height={partner.height}
+                loading="lazy"
+                class:list={[
+                  partner.className,
+                  "object-contain filter grayscale contrast-125 opacity-60"
+                ]}
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee-slide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .marquee-group {
+    display: flex;
+    align-items: center;
+    animation: marquee-slide 32s linear infinite;
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-group {
+      animation: none;
+    }
+    .marquee-track {
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>

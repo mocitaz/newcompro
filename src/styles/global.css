@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --font-dm-sans: "DM Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-inter: "DM Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-plus-jakarta: "DM Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-display: "DM Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-jetbrains-mono: "JetBrains Mono", monospace;
+  --color-brand-purple: #8b5cf6;
+  --color-brand-dark: #040812;
+}
+
+@layer utilities {
+  .font-sans,
+  .font-inter,
+  .font-dm-sans {
+    font-family: var(--font-dm-sans);
+  }
+  .font-plus-jakarta,
+  .font-display {
+    font-family: var(--font-dm-sans);
+  }
+  .font-mono {
+    font-family: var(--font-jetbrains-mono);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: #fbfbfc;
+    color: #0f172a;
+    font-family: var(--font-dm-sans);
+    letter-spacing: -0.015em;
+    overflow-x: clip;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+::selection {
+  background-color: rgba(139, 92, 246, 0.35);
+  color: #ffffff;
+}
