@@ -1,0 +1,113 @@
+---
+// BusinessNeedCta.astro - High-Impact Video Banner for Business Requirements Consultation
+import { getTranslations, type Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'id' } = Astro.props;
+const t = getTranslations(lang);
+
+const waMessage = lang === 'en'
+  ? "Hello Teknalogi, I would like to consult about our company's software engineering and enterprise technology requirements."
+  : "Halo Teknalogi, saya ingin berdiskusi mengenai kebutuhan rekayasa software dan teknologi perusahaan kami.";
+
+const waUrl = `https://wa.me/628517442245?text=${encodeURIComponent(waMessage)}`;
+---
+
+<section
+  id="business-needs-cta"
+  aria-label={lang === 'en' ? 'Start From Your Business Requirements' : 'Mari Mulai Dari Kebutuhan Bisnis Anda'}
+  class="relative w-full min-h-[82vh] lg:min-h-[88vh] flex flex-col justify-center overflow-hidden bg-slate-950 text-white select-none"
+>
+  <!-- 1. Background Video Layer (Full-Bleed, Crisp & High Clarity) -->
+  <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+    <video
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="metadata"
+      poster="/newvideo_poster.jpg"
+      class="w-full h-full object-cover object-center scale-[1.01] transform-gpu"
+    >
+      <source src="/newvideo.mp4" type="video/mp4" />
+      Your browser does not support HTML5 video.
+    </video>
+
+    <!-- Balanced Slate Tint -->
+    <div class="absolute inset-0 bg-slate-950/40 pointer-events-none"></div>
+
+    <!-- Soft Horizontal Gradient Mask for High-Contrast Text Legibility on Left -->
+    <div class="absolute inset-y-0 left-0 w-full sm:w-4/5 lg:w-3/5 bg-gradient-to-r from-slate-950/95 via-slate-950/70 to-transparent pointer-events-none"></div>
+
+    <!-- Ultra-Clean, Non-Invasive Feather Transitions (Smoothstep & Low Height, No Muddy Fog) -->
+    <div class="absolute inset-x-0 top-0 h-10 sm:h-12 lg:h-14 pointer-events-none z-10 banner-transition-top"></div>
+    <div class="absolute inset-x-0 bottom-0 h-10 sm:h-12 lg:h-14 pointer-events-none z-10 banner-transition-bottom"></div>
+  </div>
+
+  <!-- 2. Content Container -->
+  <div class="relative z-20 max-w-7xl mx-auto w-full px-5 sm:px-8 py-20 sm:py-28 lg:py-32">
+    <div class="max-w-2xl lg:max-w-3xl">
+      <!-- Eyebrow Tagline -->
+      <p class="text-xs sm:text-sm font-semibold tracking-[0.2em] text-slate-300 uppercase mb-4 sm:mb-5">
+        {t.businessNeed.eyebrow}
+      </p>
+
+      <!-- Main Headline Display (Crisp White Throughout) -->
+      <h2 class="text-3xl sm:text-5xl lg:text-6xl xl:text-[64px] font-extrabold text-white tracking-[-0.035em] leading-[1.12] font-sans drop-shadow-md">
+        {t.businessNeed.headlinePart1}<br />
+        <span class="text-white">{t.businessNeed.headlinePart2}</span>
+      </h2>
+
+      <!-- Sub-narrative / Enterprise Description -->
+      <p class="text-sm sm:text-base lg:text-lg text-slate-200/95 font-normal leading-relaxed max-w-xl mt-4 sm:mt-6 drop-shadow-sm">
+        {t.businessNeed.description}
+      </p>
+
+      <!-- Primary Action & Direct Reassurance -->
+      <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+        <a
+          href={waUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group inline-flex items-center gap-2 text-white hover:text-slate-200 font-semibold text-base sm:text-lg tracking-tight transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 py-2 w-fit"
+        >
+          <span>{t.businessNeed.cta}</span>
+          <span class="inline-block transition-transform duration-200 group-hover:translate-x-1.5" aria-hidden="true">→</span>
+        </a>
+
+        <span class="text-xs sm:text-sm text-slate-300/85 font-normal">
+          {t.businessNeed.note}
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Clean, smooth Hermite/cubic transition feather at top (from #fbfbfc canvas into video) */
+  .banner-transition-top {
+    background: linear-gradient(
+      to bottom,
+      #fbfbfc 0%,
+      rgba(251, 251, 252, 0.75) 20%,
+      rgba(251, 251, 252, 0.38) 50%,
+      rgba(251, 251, 252, 0.10) 76%,
+      rgba(251, 251, 252, 0) 100%
+    );
+  }
+
+  /* Clean, smooth Hermite/cubic transition feather at bottom (from video into #fbfbfc canvas) */
+  .banner-transition-bottom {
+    background: linear-gradient(
+      to bottom,
+      rgba(251, 251, 252, 0) 0%,
+      rgba(251, 251, 252, 0.10) 24%,
+      rgba(251, 251, 252, 0.38) 50%,
+      rgba(251, 251, 252, 0.75) 80%,
+      #fbfbfc 100%
+    );
+  }
+</style>

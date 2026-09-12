@@ -1,0 +1,118 @@
+---
+import type { Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isIndonesian = lang === 'id';
+
+const copy = isIndonesian
+  ? {
+      label: 'TENTANG KAMI',
+      title: 'Membangun Ekosistem Digital untuk Pertumbuhan Bisnis yang Berkelanjutan.',
+      introduction:
+        'PT Teknalogi Transformasi Digital adalah perusahaan rekayasa perangkat lunak enterprise dan integrasi sistem yang berbasis di Jakarta, Indonesia. Kami membantu korporasi dan institusi merancang, membangun, serta mengoperasikan ekosistem digital yang andal, scalable, dan aman.',
+      stats: [
+        ['2+', 'Tahun pengalaman'],
+        ['15+', 'Proyek diselesaikan'],
+        ['JKT', 'Berbasis di Jakarta'],
+      ],
+      visionLabel: 'VISI & MISI',
+      visionTitle: 'Teknologi yang bekerja untuk operasi bisnis.',
+      vision: 'Teknologi terus mengubah cara organisasi beroperasi, bersaing, dan bertumbuh. Kami percaya transformasi yang efektif dimulai dari pemahaman yang kuat terhadap proses bisnis, kebutuhan pengguna, serta fondasi teknis yang akan menopang perubahan.',
+      mission: 'Visi kami adalah menjadi partner engineering yang dapat diandalkan ketika organisasi membangun atau memodernisasi sistem digital. Misi kami adalah menerjemahkan tantangan operasional yang kompleks menjadi arsitektur, produk, dan operasi cloud yang jelas serta siap berkembang.',
+    }
+  : {
+      label: 'ABOUT US',
+      title: 'Building Digital Ecosystems for Sustainable Business Growth.',
+      introduction:
+        'PT Teknalogi Transformasi Digital is an enterprise software engineering and system integration firm based in Jakarta, Indonesia. We help corporations and institutions architect, build, and operate resilient, scalable, and secure digital ecosystems.',
+      stats: [
+        ['2+', 'Years of experience'],
+        ['15+', 'Projects completed'],
+        ['JKT', 'Based in Jakarta'],
+      ],
+      visionLabel: 'VISION & MISSION',
+      visionTitle: 'Technology that works for business operations.',
+      vision: 'Technology changes how organizations operate, compete, and grow. We believe effective transformation begins with a clear understanding of business processes, user needs, and the technical foundation that will carry change forward.',
+      mission: 'Our vision is to be the engineering partner organizations rely on when building or modernizing digital systems. Our mission is to turn complex operational challenges into clear architecture, products, and cloud operations that are ready to grow.',
+    };
+---
+
+<section class="about-intro bg-white pt-28 sm:pt-32 lg:pt-36" aria-labelledby="about-page-title">
+  <div class="home-container">
+    <p class="inline-flex rounded-full border border-slate-300 px-4 py-2 text-xs font-medium text-slate-600">{copy.label}</p>
+
+    <div class="mt-9 grid grid-cols-1 gap-9 lg:grid-cols-12 lg:gap-16 xl:gap-20">
+      <h1 id="about-page-title" class="max-w-3xl text-4xl font-medium tracking-[-0.05em] text-slate-950 sm:text-5xl lg:col-span-7 lg:text-[4rem] lg:leading-[1.06]">
+        {copy.title}
+      </h1>
+      <p class="max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg lg:col-span-5 lg:pt-10">{copy.introduction}</p>
+    </div>
+
+    <div class="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+      <figure class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200">
+        <img
+          src="/about/about-architecture-v1.png"
+          alt={isIndonesian ? 'Komposisi arsitektur modern dengan panel beton geometris' : 'Modern architectural composition with geometric concrete panels'}
+          width="1448"
+          height="1086"
+          class="aspect-[4/3] h-full w-full object-cover grayscale-[0.92] contrast-[0.92]"
+          loading="eager"
+          decoding="async"
+        />
+      </figure>
+
+      <figure class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200">
+        <img
+          src="/about/about-office-v1.png"
+          alt={isIndonesian ? 'Ruang kantor modern dengan siluet kolaborasi tim' : 'Modern office interior with a team collaborating in silhouette'}
+          width="1448"
+          height="1086"
+          class="aspect-[4/3] h-full w-full object-cover grayscale"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+
+      <figure class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200">
+        <img
+          src="/about/about-office-v2.png"
+          alt={isIndonesian ? 'Tim engineering berdiskusi di studio kerja modern' : 'Engineering team in discussion at a modern studio'}
+          width="1448"
+          height="1086"
+          class="aspect-[4/3] h-full w-full object-cover grayscale"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+    </div>
+
+    <dl class="mt-10 grid grid-cols-1 border-t border-slate-300 pt-6 sm:grid-cols-3 sm:gap-8">
+      {copy.stats.map(([value, label]) => (
+        <div class="border-b border-slate-200 py-5 first:pt-0 sm:border-b-0 sm:border-r sm:px-8 sm:py-0 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0">
+          <dt class="about-stat-value text-3xl font-medium tracking-[-0.06em] text-lime-700 sm:text-4xl lg:text-5xl">{value}</dt>
+          <dd class="mt-2 text-xs leading-5 text-slate-600 sm:text-sm">{label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<section id="about-vision" class="about-vision home-section bg-white" aria-labelledby="about-vision-title">
+  <div class="home-container grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16 xl:gap-20">
+    <div class="lg:col-span-5">
+      <p class="inline-flex rounded-full border border-slate-300 px-4 py-2 text-xs font-medium text-slate-600">{copy.visionLabel}</p>
+      <h2 id="about-vision-title" class="mt-7 max-w-md text-3xl font-medium tracking-[-0.045em] text-slate-950 sm:text-4xl lg:text-5xl lg:leading-[1.08]">
+        {copy.visionTitle}
+      </h2>
+    </div>
+
+    <div class="space-y-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:col-span-7 lg:pt-12">
+      <p>{copy.vision}</p>
+      <p>{copy.mission}</p>
+    </div>
+  </div>
+</section>

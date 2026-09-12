@@ -1,5 +1,4 @@
 ---
-// Industries.astro - Melayani Berbagai Sektor & Industri
 import { getTranslations, type Locale } from '../i18n/translations';
 
 interface Props {
@@ -17,139 +16,93 @@ const bottomRowItems = industries.slice(2, 5);
 
 <section
   id="industries"
-  aria-label={lang === 'en' ? "Industries We Serve" : "Sektor dan Industri yang Kami Layani"}
-  class="pt-14 sm:pt-20 pb-16 sm:pb-24 px-5 sm:px-8 max-w-7xl mx-auto scroll-mt-24"
+  aria-label={lang === 'en' ? 'Industries We Serve' : 'Sektor dan Industri yang Kami Layani'}
+  class="home-section home-container scroll-mt-24"
 >
-  <!-- Section Header: Minimalist Split Layout (Title on Left, Description on Right) -->
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-14 items-start mb-8 sm:mb-14">
+  <div class="mb-10 grid grid-cols-1 items-start gap-5 lg:mb-14 lg:grid-cols-12 lg:gap-14">
     <div class="lg:col-span-5">
-      <h2 class="text-2xl sm:text-3xl lg:text-[2.15rem] font-bold text-slate-950 tracking-[-0.02em] leading-tight font-sans">
+      <h2 class="text-2xl font-bold leading-tight tracking-[-0.02em] text-slate-950 sm:text-3xl lg:text-[2.15rem]">
         {t.industries.headline}
       </h2>
     </div>
-    <div class="lg:col-span-7">
-      <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal font-sans">
-        {t.industries.description}
-      </p>
-    </div>
+    <p class="text-sm leading-relaxed text-slate-600 sm:text-base lg:col-span-7">
+      {t.industries.description}
+    </p>
   </div>
 
-  <!-- Cards Grid: More Square Aspect Ratio & Moody Semi-B&W to Full-Color on Hover -->
-  <div class="space-y-4 sm:space-y-6">
-    <!-- Row 1: 2 Compact Cards (Perbankan, Teknologi & SaaS) with Rounded Corners -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-      {
-        topRowItems.map((item) => (
-          <a
-            href={layananUrl}
-            class="group relative flex flex-col justify-end rounded-2xl sm:rounded-3xl overflow-hidden aspect-[16/11] sm:aspect-[16/9] min-h-[220px] bg-slate-950 shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-slate-800/30 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
-          >
-            <!-- Card Background Image with Semi B&W Filter (Transitions to color on hover) -->
-            <picture class="absolute inset-0 w-full h-full block">
+  <div class="space-y-9 sm:space-y-12">
+    <div class="grid grid-cols-1 gap-x-5 gap-y-8 md:grid-cols-2 sm:gap-x-6">
+      {topRowItems.map((item) => (
+        <a href={layananUrl} class="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-4">
+          <figure class="aspect-[4/3] overflow-hidden rounded-[18px] bg-slate-100">
+            <picture class="block h-full w-full">
               <source srcset={item.image} type="image/webp" />
               <img
                 src={item.fallback}
                 alt={item.title}
-                class="industry-card-img w-full h-full object-cover"
+                class="industry-card-img h-full w-full object-cover"
                 loading="lazy"
                 decoding="async"
                 width="1200"
-                height="800"
+                height="900"
               />
             </picture>
-
-            <!-- Vignette Layers for Optimal Contrast -->
-            <div class="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors duration-500 pointer-events-none" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
-
-            <!-- Bottom Content -->
-            <div class="relative z-10 p-5 sm:p-7 flex flex-col items-start gap-2.5 sm:gap-3.5">
-              <h3 class="text-lg sm:text-xl md:text-2xl font-semibold text-white font-sans tracking-tight leading-snug">
-                {item.title}
-              </h3>
-
-              <span
-                class="inline-flex items-center gap-1.5 bg-white text-slate-950 group-hover:bg-slate-100 font-semibold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full shadow-md transition-all duration-200 group-hover:gap-2 active:scale-95 font-sans min-h-[40px]"
-              >
-                <span>{t.industries.exploreLabel}</span>
-                <svg
-                  class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
-            </div>
-          </a>
-        ))
-      }
+          </figure>
+          <span class="mt-4 flex items-center justify-between gap-4 border-b border-slate-200 pb-3 text-slate-950">
+            <span class="text-base font-medium tracking-[-0.02em] sm:text-lg">{item.title}</span>
+            <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 12h14m-6-6 6 6-6 6" />
+            </svg>
+          </span>
+        </a>
+      ))}
     </div>
 
-    <!-- Row 2: 3 Cards (Manufaktur, Kesehatan, Layanan Profesional) with Rounded Corners -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-      {
-        bottomRowItems.map((item) => (
-          <a
-            href={layananUrl}
-            class="group relative flex flex-col justify-end rounded-2xl sm:rounded-3xl overflow-hidden aspect-[4/3] min-h-[210px] bg-slate-950 shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-slate-800/30 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
-          >
-            <!-- Card Background Image with Semi B&W Filter -->
-            <picture class="absolute inset-0 w-full h-full block">
+    <div class="grid grid-cols-1 gap-x-5 gap-y-8 md:grid-cols-3 sm:gap-x-6">
+      {bottomRowItems.map((item) => (
+        <a href={layananUrl} class="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-4">
+          <figure class="aspect-[4/3] overflow-hidden rounded-[18px] bg-slate-100">
+            <picture class="block h-full w-full">
               <source srcset={item.image} type="image/webp" />
               <img
                 src={item.fallback}
                 alt={item.title}
-                class="industry-card-img w-full h-full object-cover"
+                class="industry-card-img h-full w-full object-cover"
                 loading="lazy"
                 decoding="async"
-                width="800"
-                height="800"
+                width="900"
+                height="675"
               />
             </picture>
-
-            <!-- Vignette Layers -->
-            <div class="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors duration-500 pointer-events-none" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
-
-            <!-- Bottom Content -->
-            <div class="relative z-10 p-5 sm:p-7 flex flex-col items-start gap-2.5 sm:gap-3">
-              <h3 class="text-base sm:text-lg md:text-xl font-semibold text-white font-sans tracking-tight leading-snug">
-                {item.title}
-              </h3>
-
-              <span
-                class="inline-flex items-center gap-1.5 bg-white text-slate-950 group-hover:bg-slate-100 font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-md transition-all duration-200 group-hover:gap-2 active:scale-95 font-sans min-h-[40px]"
-              >
-                <span>{t.industries.exploreLabel}</span>
-                <svg
-                  class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
-            </div>
-          </a>
-        ))
-      }
+          </figure>
+          <span class="mt-4 flex items-center justify-between gap-4 border-b border-slate-200 pb-3 text-slate-950">
+            <span class="text-base font-medium tracking-[-0.02em]">{item.title}</span>
+            <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 12h14m-6-6 6 6-6 6" />
+            </svg>
+          </span>
+        </a>
+      ))}
     </div>
   </div>
 </section>
 
 <style>
   .industry-card-img {
-    filter: grayscale(85%) contrast(1.05);
+    filter: grayscale(100%) brightness(1.12) contrast(0.82);
     transform: scale(1);
-    transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
   }
+
   .group:hover .industry-card-img {
-    filter: grayscale(0%) contrast(1);
-    transform: scale(1.05);
+    transform: scale(1.02);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .industry-card-img,
+    .group:hover .industry-card-img {
+      transform: none;
+      transition: none;
+    }
   }
 </style>

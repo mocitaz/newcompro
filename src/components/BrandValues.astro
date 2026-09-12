@@ -1,0 +1,209 @@
+---
+import type { Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isIndonesian = lang === 'id';
+const riseLetters = ['R', 'I', 'S', 'E'];
+
+const copy = isIndonesian
+  ? {
+      label: 'NILAI BRAND',
+      title: 'RISE mengarahkan cara kami bekerja.',
+      description: 'Empat nilai ini menjaga keputusan kami tetap jelas, dari diskusi awal sampai sistem berjalan.',
+      values: [
+        {
+          name: 'Ketangguhan',
+          term: 'Resilient',
+          description: 'Tetap siap menghadapi perubahan kebutuhan, teknologi, dan operasi bisnis.',
+          points: ['Kesiapan operasional', 'Adaptif terhadap perubahan', 'Fondasi jangka panjang'],
+        },
+        {
+          name: 'Inovasi yang terarah',
+          term: 'Innovative',
+          description: 'Menerapkan teknologi ketika ia membantu menyelesaikan kebutuhan yang nyata.',
+          points: ['Eksplorasi yang relevan', 'Solusi sesuai konteks', 'Perbaikan berkelanjutan'],
+        },
+        {
+          name: 'Sinergi ekosistem',
+          term: 'Synergy',
+          description: 'Membangun kerja sama yang memperkuat tim, mitra, dan sistem yang digunakan bersama.',
+          points: ['Kolaborasi terbuka', 'Transfer pengetahuan', 'Kemitraan yang selaras'],
+        },
+        {
+          name: 'Keunggulan sebagai standar',
+          term: 'Excellence',
+          description: 'Menjaga kualitas kerja yang spesifik, transparan, dan dapat dipertanggungjawabkan.',
+          points: ['Standar kerja yang jelas', 'Akuntabilitas end-to-end', 'Kualitas yang terukur'],
+        },
+      ],
+    }
+  : {
+      label: 'BRAND VALUES',
+      title: 'RISE guides how we work.',
+      description: 'These four values keep our decisions clear, from the first conversation through system operations.',
+      values: [
+        {
+          name: 'Resilience',
+          term: 'Resilient',
+          description: 'Stay ready for changing requirements, technologies, and business operations.',
+          points: ['Operational readiness', 'Adaptable delivery', 'Long-term foundations'],
+        },
+        {
+          name: 'Focused innovation',
+          term: 'Innovative',
+          description: 'Apply technology when it helps solve a real need.',
+          points: ['Relevant exploration', 'Context-aware solutions', 'Continuous improvement'],
+        },
+        {
+          name: 'Ecosystem synergy',
+          term: 'Synergy',
+          description: 'Build collaboration that strengthens teams, partners, and shared systems.',
+          points: ['Open collaboration', 'Knowledge transfer', 'Aligned partnerships'],
+        },
+        {
+          name: 'Excellence as standard',
+          term: 'Excellence',
+          description: 'Hold work to a specific, transparent, and accountable standard.',
+          points: ['Clear working standards', 'End-to-end accountability', 'Measurable quality'],
+        },
+      ],
+    };
+---
+
+<section id="brand-values" class="home-section border-y border-slate-200 bg-white" aria-labelledby="brand-values-title">
+  <div class="home-container">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
+      <div class="lg:col-span-7">
+        <p class="font-mono text-[11px] font-semibold tracking-[0.16em] text-slate-500">{copy.label}</p>
+        <h2 id="brand-values-title" class="mt-4 max-w-2xl text-3xl font-medium tracking-[-0.045em] text-slate-950 sm:text-4xl lg:text-5xl">
+          {copy.title}
+        </h2>
+      </div>
+      <p class="max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base lg:col-span-5">{copy.description}</p>
+    </div>
+
+    <ol class="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
+      {copy.values.map((value, index) => (
+        <li class="rise-value-card group relative flex min-h-[19rem] flex-col overflow-hidden rounded-[20px] border border-slate-200/85 bg-white p-6 sm:p-8">
+          <div class="relative z-10 flex items-start justify-between">
+            <span class="rise-value-icon" aria-hidden="true">
+              {index === 0 && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="m6 8 6-3 6 3-6 3-6-3Z" />
+                  <path d="m6 12 6 3 6-3M6 16l6 3 6-3" />
+                  <path d="M6 8v8m6-5v8m6-11v8" />
+                </svg>
+              )}
+              {index === 1 && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="m8 3 4 2.3v4.6L8 12l-4-2.1V5.3L8 3Z" />
+                  <path d="m16 10 4 2.3v4.6L16 19l-4-2.1v-4.6l4-2.3Z" />
+                  <path d="m8 14 4 2.3v4.6L8 23l-4-2.1v-4.6L8 14Z" transform="translate(0 -2)" />
+                </svg>
+              )}
+              {index === 2 && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="6" cy="7" r="2.25" />
+                  <circle cx="18" cy="7" r="2.25" />
+                  <circle cx="12" cy="17" r="2.25" />
+                  <path d="m7.9 8.3 2.8 6.2M16.1 8.3l-2.8 6.2M8.25 7h7.5" />
+                </svg>
+              )}
+              {index === 3 && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="m12 3 2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z" />
+                  <path d="m18.5 16 .8 2 .7.3-.7.3-.8 2-.8-2-.7-.3.7-.3.8-2Z" />
+                </svg>
+              )}
+            </span>
+          </div>
+          <div class="relative z-10 mt-auto">
+            <div class="mb-2 font-mono text-[11px] font-semibold tracking-[0.1em] text-violet-600">
+              {riseLetters[index]} &bull; {value.term.toUpperCase()}
+            </div>
+            <h3 class="text-xl font-medium tracking-[-0.025em] text-slate-950 sm:text-2xl">{value.name}</h3>
+            <p class="mt-3 max-w-md text-sm leading-relaxed text-slate-600">{value.description}</p>
+            <ul class="mt-6 flex flex-wrap gap-x-3 gap-y-2 text-[11px] font-medium text-slate-500 sm:gap-x-4">
+              {value.points.map((point) => <li class="rise-value-point">{point}</li>)}
+            </ul>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .rise-value-card {
+    isolation: isolate;
+    box-shadow: 0 2px 14px -2px rgba(0, 0, 0, 0.03);
+    transition: border-color 300ms cubic-bezier(0.16, 1, 0.3, 1), transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .rise-value-card:hover {
+    border-color: rgba(196, 181, 253, 0.75);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px -8px rgba(109, 40, 217, 0.09);
+  }
+
+  /* Dual-tone Pink & Violet Aurora Mesh Glow matching user's reference */
+  .rise-value-card::before {
+    position: absolute;
+    top: -3.5rem;
+    right: -2.5rem;
+    z-index: 0;
+    width: 22rem;
+    height: 22rem;
+    border-radius: 9999px;
+    background: 
+      radial-gradient(circle at 62% 38%, rgba(244, 114, 182, 0.44) 0%, rgba(251, 207, 232, 0.16) 38%, transparent 68%),
+      radial-gradient(circle at 82% 30%, rgba(192, 132, 252, 0.52) 0%, rgba(168, 85, 247, 0.26) 35%, rgba(233, 213, 255, 0.08) 55%, transparent 74%);
+    content: '';
+    filter: blur(34px);
+    pointer-events: none;
+    transition: transform 400ms ease, opacity 400ms ease;
+  }
+
+  .rise-value-card:hover::before {
+    transform: scale(1.05);
+    opacity: 0.95;
+  }
+
+  .rise-value-point::before {
+    margin-right: 0.45rem;
+    color: rgb(124 58 237);
+    content: '•';
+  }
+
+  .rise-value-icon {
+    display: block;
+    color: rgb(15 23 42);
+  }
+
+  .rise-value-icon svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rise-value-card {
+      transition: none;
+    }
+
+    .rise-value-card:hover {
+      transform: none;
+    }
+
+    .rise-value-card::before {
+      transition: none;
+    }
+
+    .rise-value-card:hover::before {
+      transform: none;
+    }
+  }
+</style>

@@ -228,23 +228,14 @@ export const translations = {
       heading: 'Trusted by Leading Enterprises & Institutions'
     },
     companyOverview: {
+      title: "End-to-end engineering, from architecture to operation.",
       description: "PT Teknalogi Transformasi Digital is an enterprise software engineering and system integration firm based in Jakarta, Indonesia. We help corporations and institutions architect, build, and operate resilient, scalable, and secure digital ecosystems, accelerating AI adoption and modernizing core cloud infrastructure.",
-      card1: {
-        stat: "2+",
-        label: "Years of Experience."
-      },
-      card2: {
-        title: "End to End Solutions",
-        description: "From architectural discovery, frontend and backend development, to cloud maintenance and long-term system scaling. Handled by an integrated engineering team."
-      },
-      card3: {
-        title: "Solutions for Every Business Scale",
-        description: "From tech scaleups and SMEs to state-owned enterprises, government institutions, and multinational corporations."
-      },
-      card4: {
-        stat: "15+",
-        label: "Projects Completed"
-      }
+      stats: [
+        { value: "2+", label: "Years of experience" },
+        { value: "15+", label: "Projects completed" }
+      ],
+      audience: "Built for scaleups, SMEs, enterprises, and public institutions.",
+      imageAlt: "Software engineers collaborating in a modern enterprise engineering workspace in Jakarta"
     },
     aiDisciplines: {
       headline: 'Tailored Engineering, Proven Results.',
@@ -257,32 +248,32 @@ export const translations = {
           id: 'web-dev',
           title: 'Website Development',
           description: 'High-performance websites, scalable web applications, and responsive SaaS frontends tailored to your brand.',
-          image: '/services/web_dev.webp',
-          fallback: '/services/web_dev.jpg',
+          image: '/services/web_dev_v2.webp',
+          fallback: '/services/web_dev_v2.jpg',
           tags: ['Next.js', 'React', 'TypeScript', 'Tailwind']
         },
         {
           id: 'software-app',
           title: 'Software & App Development',
           description: 'Robust iOS and Android applications backed by high-throughput enterprise backends and scalable microservices.',
-          image: '/services/software_app.webp',
-          fallback: '/services/software_app.jpg',
+          image: '/services/software_app_v2.webp',
+          fallback: '/services/software_app_v2.jpg',
           tags: ['iOS & Android', 'Flutter', 'Cloud Architecture', 'APIs']
         },
         {
           id: 'seo-ai',
           title: 'SEO & AI Search Optimization',
           description: 'Accelerate brand visibility across traditional search engines and next-generation AI answer engines.',
-          image: '/services/seo_ai.webp',
-          fallback: '/services/seo_ai.jpg',
+          image: '/services/seo_ai_v2.webp',
+          fallback: '/services/seo_ai_v2.jpg',
           tags: ['Technical SEO', 'GEO & AEO', 'AI Search', 'Audits']
         },
         {
           id: 'maintenance',
           title: 'Maintenance & Enhancement Services',
           description: 'Proactive SLA-backed maintenance, security audits, database tuning, and continuous infrastructure evolution.',
-          image: '/services/maintenance.webp',
-          fallback: '/services/maintenance.jpg',
+          image: '/services/maintenance_v2.webp',
+          fallback: '/services/maintenance_v2.jpg',
           tags: ['SLA Support', 'Security Audits', 'Cloud Ops', 'CI/CD']
         }
       ]
@@ -588,6 +579,14 @@ export const translations = {
       headline: "Let's talk.",
       subtitle: "We're ready to help you deliver high-performing websites, boost your business visibility in search engines, and build digital platforms tailored to your specific needs.",
       cta: "Contact Us"
+    },
+    businessNeed: {
+      eyebrow: "TAKE THE NEXT STEP",
+      headlinePart1: "Let's start from",
+      headlinePart2: "your business requirements.",
+      description: "Discuss your system architecture, platform modernization, or digital integration roadmap with our engineering team. We are ready to help formulate precise technical execution.",
+      cta: "Talk to Teknalogi",
+      note: "Direct consultation via WhatsApp with our solutions team"
     }
   },
   id: {
@@ -814,23 +813,14 @@ export const translations = {
       heading: 'Dipercaya oleh berbagai perusahaan dan institusi terkemuka'
     },
     companyOverview: {
+      title: "Rekayasa menyeluruh, dari arsitektur hingga operasional.",
       description: "PT Teknalogi Transformasi Digital adalah perusahaan penyedia rekayasa perangkat lunak enterprise dan integrasi sistem yang berbasis di Jakarta, Indonesia. Kami membantu perusahaan merancang, membangun, dan mengelola ekosistem digital yang andal, scalable, sekaligus mempercepat adopsi AI dan modernisasi platform cloud.",
-      card1: {
-        stat: "2+",
-        label: "Tahun Pengalaman."
-      },
-      card2: {
-        title: "Solusi End to End",
-        description: "Mulai dari strategi, arsitektur, development, integrasi sistem, hingga maintenance dan pengembangan jangka panjang. Semua ditangani oleh satu tim yang terintegrasi."
-      },
-      card3: {
-        title: "Solusi untuk Semua Skala Bisnis",
-        description: "Mulai dari startup dan UMKM, BUMN, instansi pemerintah, hingga korporasi multinasional."
-      },
-      card4: {
-        stat: "15+",
-        label: "Proyek diselesaikan"
-      }
+      stats: [
+        { value: "2+", label: "Tahun pengalaman" },
+        { value: "15+", label: "Proyek diselesaikan" }
+      ],
+      audience: "Untuk scaleup, UMKM, korporasi, BUMN, dan instansi pemerintah.",
+      imageAlt: "Tim software engineer berkolaborasi di ruang engineering enterprise modern di Jakarta"
     },
     aiDisciplines: {
       headline: 'Solusi Presisi, Hasil Terbukti.',
@@ -843,32 +833,32 @@ export const translations = {
           id: 'web-dev',
           title: 'Website Development',
           description: 'Website korporat berkinerja tinggi, aplikasi web modern, dan frontend responsif yang dirancang untuk performa maksimal.',
-          image: '/services/web_dev.webp',
-          fallback: '/services/web_dev.jpg',
+          image: '/services/web_dev_v2.webp',
+          fallback: '/services/web_dev_v2.jpg',
           tags: ['Next.js', 'React', 'TypeScript', 'Tailwind']
         },
         {
           id: 'software-app',
           title: 'Software & App Development',
           description: 'Aplikasi mobile iOS dan Android yang stabil dan cepat, didukung arsitektur backend andal dan integrasi API yang aman.',
-          image: '/services/software_app.webp',
-          fallback: '/services/software_app.jpg',
+          image: '/services/software_app_v2.webp',
+          fallback: '/services/software_app_v2.jpg',
           tags: ['iOS & Android', 'Flutter', 'Arsitektur Cloud', 'API']
         },
         {
           id: 'seo-ai',
           title: 'SEO & AI Search Optimization',
           description: 'Optimasi visibilitas website di Google Search serta mesin pencari AI generasi baru seperti ChatGPT dan Perplexity.',
-          image: '/services/seo_ai.webp',
-          fallback: '/services/seo_ai.jpg',
+          image: '/services/seo_ai_v2.webp',
+          fallback: '/services/seo_ai_v2.jpg',
           tags: ['Technical SEO', 'GEO & AEO', 'Pencarian AI', 'Audit']
         },
         {
           id: 'maintenance',
           title: 'Maintenance & Enhancement Services',
           description: 'Pemeliharaan sistem bergaransi SLA, audit keamanan berkala, optimasi database, dan penambahan fitur berkelanjutan.',
-          image: '/services/maintenance.webp',
-          fallback: '/services/maintenance.jpg',
+          image: '/services/maintenance_v2.webp',
+          fallback: '/services/maintenance_v2.jpg',
           tags: ['Dukungan SLA', 'Audit Keamanan', 'Cloud Ops', 'CI/CD']
         }
       ]
@@ -1174,6 +1164,14 @@ export const translations = {
       headline: "Mari berdiskusi.",
       subtitle: "Kami siap membantu Anda menghadirkan website berkinerja tinggi, meningkatkan visibilitas bisnis di mesin pencari, dan mengembangkan platform digital yang disesuaikan dengan kebutuhan Anda.",
       cta: "Hubungi Kami"
+    },
+    businessNeed: {
+      eyebrow: "MULAI LANGKAH BERIKUTNYA",
+      headlinePart1: "Mari mulai dari",
+      headlinePart2: "kebutuhan bisnis Anda.",
+      description: "Diskusikan arsitektur sistem, modernisasi platform, atau integrasi solusi digital perusahaan Anda bersama tim rekayasa kami. Kami siap membantu merumuskan arah teknis yang tepat dan terukur.",
+      cta: "Talk to Teknalogi",
+      note: "Konsultasi langsung via WhatsApp bersama tim solusi kami"
     }
   }
 } as const;

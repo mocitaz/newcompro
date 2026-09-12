@@ -1,5 +1,4 @@
 ---
-// AiDisciplines.astro - 4 Core Services: Website Development, Software & App, SEO & AI, Maintenance
 import { getTranslations, type Locale } from '../i18n/translations';
 
 interface Props {
@@ -15,16 +14,31 @@ const layananUrl = lang === 'id' ? '/id/layanan' : '/layanan';
 <section
   id="ai-disciplines"
   aria-label={lang === 'en' ? "Core Engineering & Digital Services" : "Layanan Utama Rekayasa & Platform Digital"}
-  class="pt-14 sm:pt-24 lg:pt-28 pb-12 sm:pb-16 lg:pb-20 px-5 sm:px-8 max-w-7xl mx-auto"
+  class="home-section relative isolate overflow-hidden bg-[#fbfbfc]"
 >
-  <!-- Section Header: Minimalist Split Layout (Title on Left, Description & CTA on Right) -->
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-14 items-start mb-8 sm:mb-14">
-    <div class="lg:col-span-5">
+  <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+    <picture>
+      <source srcset="/ai_disciplines_bg_v3.webp" type="image/webp" />
+      <img
+        src="/ai_disciplines_bg_v3.jpg"
+        alt=""
+        class="tailored-background-image h-full w-full object-cover object-center opacity-50"
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
+    <div class="tailored-background-fade absolute inset-0" />
+  </div>
+
+  <div class="home-container relative z-10">
+    <!-- Keep the title first on mobile while reversing the desktop columns. -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-14 items-start mb-8 sm:mb-14">
+    <div class="lg:order-2 lg:col-span-5">
       <h2 class="text-2xl sm:text-3xl lg:text-[2.15rem] font-bold text-slate-950 tracking-[-0.02em] leading-tight font-sans">
         {t.aiDisciplines.headline}
       </h2>
     </div>
-    <div class="lg:col-span-7 flex flex-col items-start gap-3.5 sm:gap-5">
+    <div class="lg:order-1 lg:col-span-7 flex flex-col items-start gap-3.5 sm:gap-5">
       <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal font-sans">
         {t.aiDisciplines.description}
       </p>
@@ -46,23 +60,21 @@ const layananUrl = lang === 'id' ? '/id/layanan' : '/layanan';
         </a>
       </div>
     </div>
-  </div>
+    </div>
 
-  <!-- 4-Cards Grid: Full-Bleed 3D Visual Cards (Direct text, no white container box) -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
     {
       disciplines.map((item) => (
         <a
           href={layananUrl}
-          class="group relative flex flex-col justify-end rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-slate-300 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer min-h-[320px] sm:min-h-[400px] lg:min-h-[440px] aspect-[4/5] sm:aspect-[3/4.2] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+          class="group block rounded-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-4"
         >
-          <!-- Full-Bleed Image Filling 100% of Card Canvas -->
-          <picture class="absolute inset-0 w-full h-full block">
+          <picture class="block aspect-[4/5] overflow-hidden rounded-[14px] border border-slate-200 bg-slate-100">
             <source srcset={item.image} type="image/webp" />
             <img
               src={item.fallback}
               alt={item.title}
-              class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500 ease-out"
+              class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
               loading="lazy"
               decoding="async"
               width="800"
@@ -70,14 +82,31 @@ const layananUrl = lang === 'id' ? '/id/layanan' : '/layanan';
             />
           </picture>
 
-          <!-- Direct Text at Bottom (Seamless gradient, no white container box) -->
-          <div class="relative z-10 p-5 sm:p-6 pt-14 sm:pt-16 bg-gradient-to-t from-white/95 via-white/40 to-transparent">
-            <h3 class="text-base sm:text-lg font-bold text-slate-950 font-sans tracking-tight leading-snug group-hover:text-slate-700 transition-colors">
+          <div class="px-0.5 pt-4">
+            <h3 class="min-h-[3rem] text-base font-bold leading-snug tracking-tight text-slate-950 transition-colors group-hover:text-slate-600 sm:text-lg">
               {item.title}
             </h3>
           </div>
         </a>
       ))
     }
+    </div>
   </div>
 </section>
+
+<style>
+  .tailored-background-image {
+    -webkit-mask-image: radial-gradient(ellipse 98% 82% at 55% 50%, #000 38%, transparent 100%);
+    mask-image: radial-gradient(ellipse 98% 82% at 55% 50%, #000 38%, transparent 100%);
+  }
+
+  .tailored-background-fade {
+    background: linear-gradient(
+      to bottom,
+      #fbfbfc 0%,
+      rgba(251, 251, 252, 0) 22%,
+      rgba(251, 251, 252, 0) 78%,
+      #fbfbfc 100%
+    );
+  }
+</style>

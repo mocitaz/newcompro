@@ -11,6 +11,21 @@
 }
 
 @layer utilities {
+  .home-section {
+    padding-block: 4rem;
+  }
+
+  .home-section-compact {
+    padding-block: 2rem;
+  }
+
+  .home-container {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
   .font-sans,
   .font-inter,
   .font-dm-sans {
@@ -22,6 +37,30 @@
   }
   .font-mono {
     font-family: var(--font-jetbrains-mono);
+  }
+
+  @media (min-width: 40rem) {
+    .home-section {
+      padding-block: 5rem;
+    }
+
+    .home-section-compact {
+      padding-block: 2.5rem;
+    }
+
+    .home-container {
+      padding-inline: 2rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .home-section {
+      padding-block: 6rem;
+    }
+
+    .home-section-compact {
+      padding-block: 3rem;
+    }
   }
 }
 
