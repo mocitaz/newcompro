@@ -12,6 +12,7 @@ const currentLang: Locale = Astro.props.lang || (isIdPath ? 'id' : 'en');
 const t = getTranslations(currentLang);
 
 const isHome = currentPath === '/' || currentPath === '' || currentPath === '/id' || currentPath === '/id/';
+const isWebDev = currentPath.includes('/website-development');
 const isPorto = currentPath.includes('/portofolio') || currentPath.includes('/portfolio');
 const isLayanan = currentPath.includes('/layanan') || currentPath.includes('/services');
 const isAbout = currentPath.includes('/about') || currentPath.includes('/tentang-kami');
@@ -33,7 +34,10 @@ const resolveHref = (href: string) => {
 // Alternate language target URLs
 let idUrl = '/id';
 let enUrl = '/';
-if (isPorto) {
+if (isWebDev) {
+  idUrl = '/id/layanan/website-development';
+  enUrl = '/services/website-development';
+} else if (isPorto) {
   idUrl = '/id/portofolio';
   enUrl = '/portofolio';
 } else if (isLayanan) {

@@ -1,0 +1,207 @@
+---
+// src/components/services/WebDevFeatures.astro
+import { getTranslations, type Locale } from '../../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = getTranslations(lang);
+const features = t.webDevService.features;
+---
+
+<section
+  id="what-we-deliver"
+  aria-label={features.headline}
+  class="relative isolate bg-white py-16 sm:py-24 lg:py-28"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header Centered -->
+    <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16 lg:mb-20 reveal-init" data-reveal="title">
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-950 tracking-tight font-sans leading-tight">
+        {features.headline}
+      </h2>
+      <p class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed font-normal font-sans max-w-2xl mx-auto">
+        {features.subheadline}
+      </p>
+    </div>
+
+    <!-- 3-Column Compact Editorial Cards Grid (Matching About Us RISE cards) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
+      {features.items.map((item, index) => {
+        const rowIndex = Math.floor(index / 3);
+        return (
+          <div
+            data-reveal="scale"
+            class={`feature-card feature-row-${rowIndex} feature-card-${index} group relative flex min-h-[16rem] sm:min-h-[17.5rem] flex-col justify-between overflow-hidden rounded-[20px] border border-slate-200/85 bg-white p-6 sm:p-7 reveal-scale-init stagger-${(index % 3) + 1}`}
+          >
+            <!-- Top Bar: Icon at Top Left -->
+            <div class="relative z-10 flex items-start justify-between">
+              <span class="w-8 h-8 sm:w-9 sm:h-9 text-slate-900 flex items-center justify-center" aria-hidden="true">
+                {item.icon === 'cube' && (
+                  <svg class="w-7 h-7 sm:w-8 sm:h-8 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="m6 8 6-3 6 3-6 3-6-3Z" />
+                    <path d="m6 12 6 3 6-3M6 16l6 3 6-3" />
+                    <path d="M6 8v8m6-5v8m6-11v8" />
+                  </svg>
+                )}
+                {item.icon === 'search' && (
+                  <svg class="w-7 h-7 sm:w-8 sm:h-8 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="7" />
+                    <path stroke-linecap="round" d="m20 20-4-4" />
+                  </svg>
+                )}
+                {item.icon === 'hierarchy' && (
+                  <svg class="w-7 h-7 sm:w-8 sm:h-8 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="9" y="3" width="6" height="4" rx="1" />
+                    <rect x="3" y="17" width="5" height="4" rx="1" />
+                    <rect x="10" y="17" width="5" height="4" rx="1" />
+                    <rect x="17" y="17" width="5" height="4" rx="1" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5m0 0H5.5v5m6.5-5h6.5v5m-6.5-5v5" />
+                  </svg>
+                )}
+                {item.icon === 'cms' && (
+                  <svg class="w-7 h-7 sm:w-8 sm:h-8 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 9h18M9 21V9" />
+                  </svg>
+                )}
+                {item.icon === 'shield-check' && (
+                  <svg class="w-7 h-7 sm:w-8 sm:h-8 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                )}
+                {item.icon === 'lock' && (
+                  <svg class="w-7 h-7 sm:w-8 sm:h-8 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="5" y="11" width="14" height="10" rx="2" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 11V7a4 4 0 118 0v4m-4 4v2" />
+                  </svg>
+                )}
+                {item.icon === 'speed' && (
+                  <svg class="w-7 h-7 sm:w-8 sm:h-8 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                )}
+                {item.icon === 'training' && (
+                  <svg class="w-7 h-7 sm:w-8 sm:h-8 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                  </svg>
+                )}
+                {item.icon === 'support' && (
+                  <svg class="w-7 h-7 sm:w-8 sm:h-8 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                )}
+                {item.icon === 'devices' && (
+                  <svg class="w-7 h-7 sm:w-8 sm:h-8 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="6" width="13" height="10" rx="1.5" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 10h4a1 1 0 011 1v8a1 1 0 01-1 1h-4a1 1 0 01-1-1v-8a1 1 0 011-1z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2 16h13" />
+                  </svg>
+                )}
+              </span>
+            </div>
+
+            <!-- Bottom Area: Title & Description (Compact & Dense) -->
+            <div class="relative z-10 mt-auto pt-6">
+              <h3 class="text-xl font-medium tracking-[-0.025em] text-slate-950 sm:text-[21px] font-sans">
+                {item.title}
+              </h3>
+              <p class="mt-2.5 text-[13.5px] leading-relaxed text-slate-600 font-sans">
+                {item.desc}
+              </p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .feature-card {
+    isolation: isolate;
+    box-shadow: 0 2px 14px -2px rgba(0, 0, 0, 0.03);
+    transition: border-color 300ms cubic-bezier(0.16, 1, 0.3, 1), transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .feature-card:hover {
+    border-color: rgba(203, 213, 225, 0.9);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.07);
+  }
+
+  /* Multi-spectrum Aurora Ambient Glow matching About Us RISE cards */
+  .feature-card::before {
+    position: absolute;
+    top: -2.5rem;
+    right: -2rem;
+    z-index: 0;
+    width: 14.5rem;
+    height: 14.5rem;
+    border-radius: 9999px;
+    content: '';
+    filter: blur(28px);
+    pointer-events: none;
+    transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease;
+  }
+
+  .feature-card:hover::before {
+    transform: scale(1.08);
+    opacity: 0.95;
+  }
+
+  /* Exactly 3 Harmonious Colors: 1 Color Theme per Row */
+
+  /* Row 1 (Cards 0, 1, 2): Color 1 - Sky Blue & Indigo */
+  .feature-row-0::before,
+  .feature-card-0::before,
+  .feature-card-1::before,
+  .feature-card-2::before {
+    background: 
+      radial-gradient(circle at 62% 35%, rgba(56, 189, 248, 0.50) 0%, rgba(186, 230, 253, 0.20) 38%, transparent 68%),
+      radial-gradient(circle at 82% 28%, rgba(129, 140, 248, 0.55) 0%, rgba(168, 85, 247, 0.28) 35%, transparent 72%);
+  }
+
+  /* Row 2 (Cards 3, 4, 5): Color 2 - Teknalogi Signature Violet & Fuchsia */
+  .feature-row-1::before,
+  .feature-card-3::before,
+  .feature-card-4::before,
+  .feature-card-5::before {
+    background: 
+      radial-gradient(circle at 62% 35%, rgba(192, 132, 252, 0.58) 0%, rgba(233, 213, 255, 0.20) 38%, transparent 68%),
+      radial-gradient(circle at 82% 28%, rgba(244, 114, 182, 0.52) 0%, rgba(217, 70, 239, 0.28) 35%, transparent 72%);
+  }
+
+  /* Row 3 (Cards 6, 7, 8): Color 3 - Cyan & Vibrant Sky Blue */
+  .feature-row-2::before,
+  .feature-card-6::before,
+  .feature-card-7::before,
+  .feature-card-8::before {
+    background: 
+      radial-gradient(circle at 62% 35%, rgba(34, 211, 238, 0.48) 0%, rgba(165, 243, 252, 0.20) 38%, transparent 68%),
+      radial-gradient(circle at 82% 28%, rgba(56, 189, 248, 0.55) 0%, rgba(14, 165, 233, 0.25) 35%, transparent 72%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .feature-card {
+      transition: none;
+    }
+
+    .feature-card:hover {
+      transform: none;
+    }
+
+    .feature-card::before {
+      transition: none;
+    }
+
+    .feature-card:hover::before {
+      transform: none;
+    }
+  }
+</style>

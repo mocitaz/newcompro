@@ -18,26 +18,22 @@ const copy = isIndonesian
         {
           name: 'Ketangguhan',
           term: 'Resilient',
-          description: 'Tetap siap menghadapi perubahan kebutuhan, teknologi, dan operasi bisnis.',
-          points: ['Kesiapan operasional', 'Adaptif terhadap perubahan', 'Fondasi jangka panjang'],
+          description: 'Tetap siap menghadapi perubahan kebutuhan, teknologi, dan operasi bisnis dengan fondasi yang adaptif.',
         },
         {
-          name: 'Inovasi yang terarah',
+          name: 'Inovasi terarah',
           term: 'Innovative',
-          description: 'Menerapkan teknologi ketika ia membantu menyelesaikan kebutuhan yang nyata.',
-          points: ['Eksplorasi yang relevan', 'Solusi sesuai konteks', 'Perbaikan berkelanjutan'],
+          description: 'Menerapkan teknologi tepat guna untuk menyelesaikan kebutuhan nyata secara terukur dan kontekstual.',
         },
         {
           name: 'Sinergi ekosistem',
           term: 'Synergy',
-          description: 'Membangun kerja sama yang memperkuat tim, mitra, dan sistem yang digunakan bersama.',
-          points: ['Kolaborasi terbuka', 'Transfer pengetahuan', 'Kemitraan yang selaras'],
+          description: 'Membangun kerja sama terbuka yang memperkuat tim, mitra industri, dan infrastruktur bersama.',
         },
         {
-          name: 'Keunggulan sebagai standar',
+          name: 'Standar keunggulan',
           term: 'Excellence',
-          description: 'Menjaga kualitas kerja yang spesifik, transparan, dan dapat dipertanggungjawabkan.',
-          points: ['Standar kerja yang jelas', 'Akuntabilitas end-to-end', 'Kualitas yang terukur'],
+          description: 'Menjaga standar kualitas rekayasa perangkat lunak yang spesifik, transparan, dan akuntabel.',
         },
       ],
     }
@@ -49,26 +45,22 @@ const copy = isIndonesian
         {
           name: 'Resilience',
           term: 'Resilient',
-          description: 'Stay ready for changing requirements, technologies, and business operations.',
-          points: ['Operational readiness', 'Adaptable delivery', 'Long-term foundations'],
+          description: 'Stay ready for changing requirements, technologies, and business operations with resilient digital architecture.',
         },
         {
           name: 'Focused innovation',
           term: 'Innovative',
-          description: 'Apply technology when it helps solve a real need.',
-          points: ['Relevant exploration', 'Context-aware solutions', 'Continuous improvement'],
+          description: 'Apply technology when it solves a real need, delivering measurable and context-aware solutions.',
         },
         {
           name: 'Ecosystem synergy',
           term: 'Synergy',
-          description: 'Build collaboration that strengthens teams, partners, and shared systems.',
-          points: ['Open collaboration', 'Knowledge transfer', 'Aligned partnerships'],
+          description: 'Build collaborative systems that strengthen teams, enterprise partners, and shared infrastructure.',
         },
         {
           name: 'Excellence as standard',
           term: 'Excellence',
-          description: 'Hold work to a specific, transparent, and accountable standard.',
-          points: ['Clear working standards', 'End-to-end accountability', 'Measurable quality'],
+          description: 'Hold every deliverable to a specific, transparent, and verifiable engineering standard.',
         },
       ],
     };
@@ -78,17 +70,17 @@ const copy = isIndonesian
   <div class="home-container">
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
       <div class="lg:col-span-7">
-        <p class="font-mono text-[11px] font-semibold tracking-[0.16em] text-slate-500">{copy.label}</p>
-        <h2 id="brand-values-title" class="mt-4 max-w-2xl text-3xl font-medium tracking-[-0.045em] text-slate-950 sm:text-4xl lg:text-5xl">
+        <p data-reveal="title" class="font-mono text-[11px] font-semibold tracking-[0.16em] text-slate-500 reveal-title-init">{copy.label}</p>
+        <h2 id="brand-values-title" data-reveal="title" class="mt-4 max-w-2xl text-3xl font-medium tracking-[-0.045em] text-slate-950 sm:text-4xl lg:text-5xl reveal-title-init stagger-1">
           {copy.title}
         </h2>
       </div>
-      <p class="max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base lg:col-span-5">{copy.description}</p>
+      <p data-reveal class="max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base lg:col-span-5 reveal-init stagger-2">{copy.description}</p>
     </div>
 
-    <ol class="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
+    <ol class="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 md:gap-5">
       {copy.values.map((value, index) => (
-        <li class="rise-value-card group relative flex min-h-[19rem] flex-col overflow-hidden rounded-[20px] border border-slate-200/85 bg-white p-6 sm:p-8">
+        <li data-reveal="scale" class={`rise-value-card rise-card-${index} group relative flex min-h-[19rem] sm:min-h-[20.5rem] flex-col justify-between overflow-hidden rounded-[20px] border border-slate-200/85 bg-white p-6 sm:p-7 reveal-scale-init stagger-${index + 1}`}>
           <div class="relative z-10 flex items-start justify-between">
             <span class="rise-value-icon" aria-hidden="true">
               {index === 0 && (
@@ -121,15 +113,9 @@ const copy = isIndonesian
               )}
             </span>
           </div>
-          <div class="relative z-10 mt-auto">
-            <div class="mb-2 font-mono text-[11px] font-semibold tracking-[0.1em] text-violet-600">
-              {riseLetters[index]} &bull; {value.term.toUpperCase()}
-            </div>
-            <h3 class="text-xl font-medium tracking-[-0.025em] text-slate-950 sm:text-2xl">{value.name}</h3>
-            <p class="mt-3 max-w-md text-sm leading-relaxed text-slate-600">{value.description}</p>
-            <ul class="mt-6 flex flex-wrap gap-x-3 gap-y-2 text-[11px] font-medium text-slate-500 sm:gap-x-4">
-              {value.points.map((point) => <li class="rise-value-point">{point}</li>)}
-            </ul>
+          <div class="relative z-10 mt-auto pt-6">
+            <h3 class="text-xl font-medium tracking-[-0.025em] text-slate-950 sm:text-[21px]">{value.name}</h3>
+            <p class="mt-2.5 text-[13.5px] leading-relaxed text-slate-600">{value.description}</p>
           </div>
         </li>
       ))}
@@ -145,38 +131,57 @@ const copy = isIndonesian
   }
 
   .rise-value-card:hover {
-    border-color: rgba(196, 181, 253, 0.75);
+    border-color: rgba(203, 213, 225, 0.9);
     transform: translateY(-3px);
-    box-shadow: 0 16px 36px -8px rgba(109, 40, 217, 0.09);
+    box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.07);
   }
 
-  /* Dual-tone Pink & Violet Aurora Mesh Glow matching user's reference */
+  /* Multi-spectrum Aurora Ambient Glow matching user's reference cards */
   .rise-value-card::before {
     position: absolute;
-    top: -3.5rem;
-    right: -2.5rem;
+    top: -2.5rem;
+    right: -2rem;
     z-index: 0;
-    width: 22rem;
-    height: 22rem;
+    width: 14.5rem;
+    height: 14.5rem;
     border-radius: 9999px;
-    background: 
-      radial-gradient(circle at 62% 38%, rgba(244, 114, 182, 0.44) 0%, rgba(251, 207, 232, 0.16) 38%, transparent 68%),
-      radial-gradient(circle at 82% 30%, rgba(192, 132, 252, 0.52) 0%, rgba(168, 85, 247, 0.26) 35%, rgba(233, 213, 255, 0.08) 55%, transparent 74%);
     content: '';
-    filter: blur(34px);
+    filter: blur(28px);
     pointer-events: none;
-    transition: transform 400ms ease, opacity 400ms ease;
+    transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease;
+  }
+
+  /* Card 1: Pink & Violet (Reference Card 1 - "People First") */
+  .rise-card-0::before {
+    background: 
+      radial-gradient(circle at 62% 35%, rgba(244, 114, 182, 0.55) 0%, rgba(251, 207, 232, 0.20) 38%, transparent 68%),
+      radial-gradient(circle at 82% 28%, rgba(192, 132, 252, 0.60) 0%, rgba(168, 85, 247, 0.28) 35%, transparent 72%);
+  }
+
+  /* Card 2: Sky Blue & Violet (Reference Card 2 - "Integrity & Trust") */
+  .rise-card-1::before {
+    background: 
+      radial-gradient(circle at 62% 35%, rgba(56, 189, 248, 0.50) 0%, rgba(186, 230, 253, 0.20) 38%, transparent 68%),
+      radial-gradient(circle at 82% 28%, rgba(129, 140, 248, 0.55) 0%, rgba(168, 85, 247, 0.28) 35%, transparent 72%);
+  }
+
+  /* Card 3: Cyan & Sky Blue (Reference Card 3 - "Business Focus") */
+  .rise-card-2::before {
+    background: 
+      radial-gradient(circle at 62% 35%, rgba(34, 211, 238, 0.48) 0%, rgba(165, 243, 252, 0.20) 38%, transparent 68%),
+      radial-gradient(circle at 82% 28%, rgba(56, 189, 248, 0.55) 0%, rgba(14, 165, 233, 0.25) 35%, transparent 72%);
+  }
+
+  /* Card 4: Rich Violet & Fuchsia */
+  .rise-card-3::before {
+    background: 
+      radial-gradient(circle at 62% 35%, rgba(192, 132, 252, 0.58) 0%, rgba(233, 213, 255, 0.20) 38%, transparent 68%),
+      radial-gradient(circle at 82% 28%, rgba(244, 114, 182, 0.52) 0%, rgba(217, 70, 239, 0.28) 35%, transparent 72%);
   }
 
   .rise-value-card:hover::before {
-    transform: scale(1.05);
+    transform: scale(1.08);
     opacity: 0.95;
-  }
-
-  .rise-value-point::before {
-    margin-right: 0.45rem;
-    color: rgb(124 58 237);
-    content: '•';
   }
 
   .rise-value-icon {

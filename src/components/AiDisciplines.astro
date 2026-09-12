@@ -32,7 +32,7 @@ const layananUrl = lang === 'id' ? '/id/layanan' : '/layanan';
 
   <div class="home-container relative z-10">
     <!-- Keep the title first on mobile while reversing the desktop columns. -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-14 items-start mb-8 sm:mb-14">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-14 items-start mb-8 sm:mb-14 reveal-init" data-reveal="title">
     <div class="lg:order-2 lg:col-span-5">
       <h2 class="text-2xl sm:text-3xl lg:text-[2.15rem] font-bold text-slate-950 tracking-[-0.02em] leading-tight font-sans">
         {t.aiDisciplines.headline}
@@ -64,17 +64,18 @@ const layananUrl = lang === 'id' ? '/id/layanan' : '/layanan';
 
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
     {
-      disciplines.map((item) => (
+      disciplines.map((item, index) => (
         <a
           href={layananUrl}
-          class="group block rounded-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-4"
+          data-reveal="scale"
+          class={`group block rounded-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-4 reveal-scale-init stagger-${(index % 4) + 1}`}
         >
           <picture class="block aspect-[4/5] overflow-hidden rounded-[14px] border border-slate-200 bg-slate-100">
             <source srcset={item.image} type="image/webp" />
             <img
               src={item.fallback}
               alt={item.title}
-              class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+              class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100 reveal-img-breathe"
               loading="lazy"
               decoding="async"
               width="800"

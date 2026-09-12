@@ -47,5 +47,75 @@ const {
       <slot />
     </div>
     <Footer lang={lang} />
+
+    <!-- Global Scroll Reveal & Motion Engine -->
+    <script is:inline>
+      (function () {
+        if (typeof window === 'undefined') return;
+
+        function setupReveals() {
+          var isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          var targets = document.querySelectorAll('[data-reveal]');
+
+          if (isReduced) {
+            targets.forEach(function (el) {
+              el.classList.add('reveal-active', 'reveal-scale-active', 'reveal-title-active');
+            });
+            return;
+          }
+
+          var observer = new IntersectionObserver(
+            function (entries, obs) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  var el = entry.target;
+                  var mode = el.getAttribute('data-reveal');
+
+                  if (mode === 'scale') {
+                    el.classList.add('reveal-scale-active');
+                  } else if (mode === 'title') {
+                    el.classList.add('reveal-title-active');
+                  } else {
+                    el.classList.add('reveal-active');
+                  }
+
+                  obs.unobserve(el);
+                }
+              });
+            },
+            {
+              root: null,
+              rootMargin: '0px 0px -40px 0px',
+              threshold: 0.08
+            }
+          );
+
+          targets.forEach(function (el) {
+            var rect = el.getBoundingClientRect();
+            // Reveal immediately if already inside viewport on initial load
+            if (rect.top < window.innerHeight - 20 && rect.bottom > 0) {
+              var mode = el.getAttribute('data-reveal');
+              if (mode === 'scale') {
+                el.classList.add('reveal-scale-active');
+              } else if (mode === 'title') {
+                el.classList.add('reveal-title-active');
+              } else {
+                el.classList.add('reveal-active');
+              }
+            } else {
+              observer.observe(el);
+            }
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', setupReveals);
+        } else {
+          setupReveals();
+        }
+
+        document.addEventListener('astro:page-load', setupReveals);
+      })();
+    </script>
   </body>
 </html>

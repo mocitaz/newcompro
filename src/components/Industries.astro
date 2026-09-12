@@ -20,20 +20,24 @@ const bottomRowItems = industries.slice(2, 5);
   class="home-section home-container scroll-mt-24"
 >
   <div class="mb-10 grid grid-cols-1 items-start gap-5 lg:mb-14 lg:grid-cols-12 lg:gap-14">
-    <div class="lg:col-span-5">
-      <h2 class="text-2xl font-bold leading-tight tracking-[-0.02em] text-slate-950 sm:text-3xl lg:text-[2.15rem]">
+    <div data-reveal="title" class="reveal-title-init lg:col-span-5">
+      <span class="font-mono text-[11px] font-semibold tracking-[0.16em] text-slate-500">{t.industries.label}</span>
+      <h2
+        id="industries-heading"
+        class="mt-4 text-3xl font-medium tracking-[-0.045em] text-slate-950 sm:text-4xl lg:text-5xl"
+      >
         {t.industries.headline}
       </h2>
     </div>
-    <p class="text-sm leading-relaxed text-slate-600 sm:text-base lg:col-span-7">
+    <p data-reveal class="text-sm leading-relaxed text-slate-600 sm:text-base lg:col-span-7 reveal-init stagger-2">
       {t.industries.description}
     </p>
   </div>
 
   <div class="space-y-9 sm:space-y-12">
     <div class="grid grid-cols-1 gap-x-5 gap-y-8 md:grid-cols-2 sm:gap-x-6">
-      {topRowItems.map((item) => (
-        <a href={layananUrl} class="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-4">
+      {topRowItems.map((item, idx) => (
+        <a data-reveal="scale" href={layananUrl} class={`group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-4 reveal-scale-init stagger-${idx + 1}`}>
           <figure class="aspect-[4/3] overflow-hidden rounded-[18px] bg-slate-100">
             <picture class="block h-full w-full">
               <source srcset={item.image} type="image/webp" />
@@ -59,8 +63,8 @@ const bottomRowItems = industries.slice(2, 5);
     </div>
 
     <div class="grid grid-cols-1 gap-x-5 gap-y-8 md:grid-cols-3 sm:gap-x-6">
-      {bottomRowItems.map((item) => (
-        <a href={layananUrl} class="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-4">
+      {bottomRowItems.map((item, idx) => (
+        <a data-reveal="scale" href={layananUrl} class={`group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-4 reveal-scale-init stagger-${idx + 1}`}>
           <figure class="aspect-[4/3] overflow-hidden rounded-[18px] bg-slate-100">
             <picture class="block h-full w-full">
               <source srcset={item.image} type="image/webp" />

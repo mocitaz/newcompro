@@ -1,16 +1,17 @@
 ---
-// Faq.astro - Enterprise FAQ Section in Refined Light Mode for PT Teknalogi Transformasi Digital
-// Adapted from the Binari two-column layout reference, polished to our signature clean enterprise aesthetic
-import { getTranslations, type Locale } from '../i18n/translations';
+// src/components/services/WebDevFaq.astro
+// Web Development FAQ Section styled identically to homepage Faq.astro (two-column layout with sticky left column, partner trust badges, and interactive radial-gradient accordion)
+import { getTranslations, type Locale } from '../../i18n/translations';
 
 interface Props {
   lang?: Locale;
 }
 
-const { lang = 'id' } = Astro.props;
+const { lang = 'en' } = Astro.props;
 const t = getTranslations(lang);
+const faq = t.webDevService.faq;
 
-// Partner logos for trust badges
+// Partner logos for trust badges matching Faq.astro
 const partnerLogos = [
   {
     name: 'Anytime Fitness',
@@ -33,27 +34,27 @@ const partnerLogos = [
 
 <section
   id="faq"
-  class="home-section relative bg-[#fbfbfc] text-slate-900"
+  class="relative bg-[#fbfbfc] text-slate-900 py-16 sm:py-24 lg:py-32 border-t border-slate-200/80"
   aria-labelledby="faq-heading"
 >
-  <div class="home-container relative z-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
       
       <!-- SISI KIRI: Headline, Subtitle, Trust Badges, & Pill Button (Sticky saat sisi kanan di-scroll) -->
-      <div data-reveal="title" class="lg:col-span-5 lg:sticky lg:top-28 space-y-6 sm:space-y-7 self-start reveal-title-init">
+      <div data-reveal="title" class="lg:col-span-5 lg:sticky lg:top-28 space-y-6 sm:space-y-7 self-start reveal-init">
         <div>
           <h2
             id="faq-heading"
             class="text-3xl sm:text-4xl lg:text-[44px] font-bold text-slate-950 tracking-[-0.035em] leading-[1.18] font-sans"
           >
-            {t.faq.title}
+            {faq.headline}
           </h2>
           <p class="mt-3.5 sm:mt-4 text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-md font-sans">
-            {t.faq.subtitle}
+            {faq.subheadline}
           </p>
         </div>
 
-        <!-- Trust Badges Block (Rapi dengan logo partner asli & tanpa 100+) -->
+        <!-- Trust Badges Block (Matching homepage Faq.astro) -->
         <div class="flex items-center gap-3.5 pt-1">
           <!-- Overlapping Circular Badges with partner logos -->
           <div class="flex -space-x-3 items-center shrink-0">
@@ -72,11 +73,11 @@ const partnerLogos = [
 
           <!-- Trust Label & Subtitle -->
           <div class="flex flex-col justify-center text-left leading-tight pl-1">
-            <span class="text-xs sm:text-[13px] font-bold text-slate-900 tracking-tight">
-              {t.faq.trustedLabel}
+            <span class="text-xs sm:text-[13px] font-bold text-slate-900 tracking-tight font-sans">
+              {faq.trustedLabel}
             </span>
-            <span class="text-[11px] sm:text-xs text-slate-500 font-normal mt-0.5">
-              {t.faq.trustedSub}
+            <span class="text-[11px] sm:text-xs text-slate-500 font-normal mt-0.5 font-sans">
+              {faq.trustedSub}
             </span>
           </div>
         </div>
@@ -87,9 +88,9 @@ const partnerLogos = [
             href="https://wa.me/628517442245"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white hover:bg-slate-50 text-slate-900 font-semibold text-xs sm:text-sm border border-slate-200/90 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 min-h-[44px] group"
+            class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white hover:bg-slate-50 text-slate-900 font-semibold text-xs sm:text-sm border border-slate-200/90 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 min-h-[44px] group"
           >
-            <span class="tracking-tight">{t.faq.askButton}</span>
+            <span class="tracking-tight font-sans">{faq.askButton}</span>
             <svg
               class="w-3.5 h-3.5 text-slate-500 group-hover:text-slate-900 group-hover:translate-x-0.5 transition-transform duration-200"
               fill="none"
@@ -104,73 +105,70 @@ const partnerLogos = [
         </div>
       </div>
 
-      <!-- SISI KANAN: Accordion List -->
-      <!-- SISI KANAN: Accordion List (Tutup Default, Garis Kotak Hitam, Background Ungu saat Aktif) -->
-      <div class="lg:col-span-7 space-y-3 sm:space-y-3.5" id="faq-accordion">
-        {t.faq.items.map((item, index) => {
-          return (
-            <div
-              data-reveal
-              class={`faq-item group rounded-2xl border border-slate-900/80 bg-white hover:border-slate-950 transition-all duration-300 overflow-hidden shadow-[0_2px_6px_-2px_rgba(15,23,42,0.03)] hover:shadow-sm reveal-init stagger-${Math.min((index % 4) + 1, 4)}`}
-            >
-              <h3>
-                <button
-                  type="button"
-                  class="faq-trigger w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left min-h-[56px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 rounded-2xl cursor-pointer"
-                  aria-expanded="false"
-                  aria-controls={`faq-answer-${index}`}
-                  id={`faq-btn-${index}`}
-                >
-                  <span class="text-sm sm:text-base lg:text-[16.5px] font-medium text-slate-900 tracking-[-0.01em] leading-snug group-hover:text-slate-950 transition-colors">
-                    {item.question}
-                  </span>
-
-                  <!-- Toggle Icon: Circle with Plus/Minus -->
-                  <span
-                    class="faq-icon-wrapper shrink-0 w-8 h-8 rounded-full border border-slate-900/30 bg-slate-50 text-slate-700 group-hover:text-slate-950 group-hover:border-slate-900 flex items-center justify-center transition-all duration-200"
-                    aria-hidden="true"
-                  >
-                    <!-- Minus Icon (terbuka) -->
-                    <svg
-                      class="faq-icon-minus w-4 h-4 transition-transform duration-200 hidden"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
-                    </svg>
-
-                    <!-- Plus Icon (tertutup) -->
-                    <svg
-                      class="faq-icon-plus w-4 h-4 transition-transform duration-200 block"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-                    </svg>
-                  </span>
-                </button>
-              </h3>
-
-              <!-- Collapsible Answer Panel -->
-              <div
-                id={`faq-answer-${index}`}
-                role="region"
-                aria-labelledby={`faq-btn-${index}`}
-                class="faq-collapse transition-all duration-300 ease-out grid grid-rows-[0fr] opacity-0"
+      <!-- SISI KANAN: Accordion List (Tutup Default, Garis Border Slate, Radial Gradient saat Aktif) -->
+      <div class="lg:col-span-7 space-y-3 sm:space-y-3.5" id="webdev-faq-accordion">
+        {faq.items.map((item, index) => (
+          <div
+            data-reveal
+            class={`faq-item group rounded-2xl border border-slate-900/80 bg-white hover:border-slate-950 transition-all duration-300 overflow-hidden shadow-[0_2px_6px_-2px_rgba(15,23,42,0.03)] hover:shadow-sm reveal-init stagger-${Math.min((index % 4) + 1, 4)}`}
+          >
+            <h3>
+              <button
+                type="button"
+                class="faq-trigger w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left min-h-[56px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 rounded-2xl cursor-pointer"
+                aria-expanded="false"
+                aria-controls={`webdev-faq-answer-${index}`}
+                id={`webdev-faq-btn-${index}`}
               >
-                <div class="overflow-hidden">
-                  <p class="px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-[14px] text-slate-600 leading-relaxed font-normal">
-                    {item.answer}
-                  </p>
-                </div>
+                <span class="text-sm sm:text-base lg:text-[16.5px] font-medium text-slate-900 tracking-[-0.01em] leading-snug group-hover:text-slate-950 transition-colors font-sans">
+                  {item.question}
+                </span>
+
+                <!-- Toggle Icon: Circle with Plus/Minus -->
+                <span
+                  class="faq-icon-wrapper shrink-0 w-8 h-8 rounded-full border border-slate-900/30 bg-slate-50 text-slate-700 group-hover:text-slate-950 group-hover:border-slate-900 flex items-center justify-center transition-all duration-200"
+                  aria-hidden="true"
+                >
+                  <!-- Minus Icon (terbuka) -->
+                  <svg
+                    class="faq-icon-minus w-4 h-4 transition-transform duration-200 hidden"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
+                  </svg>
+
+                  <!-- Plus Icon (tertutup) -->
+                  <svg
+                    class="faq-icon-plus w-4 h-4 transition-transform duration-200 block"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                  </svg>
+                </span>
+              </button>
+            </h3>
+
+            <!-- Collapsible Answer Panel with Smooth Grid Transition -->
+            <div
+              id={`webdev-faq-answer-${index}`}
+              role="region"
+              aria-labelledby={`webdev-faq-btn-${index}`}
+              class="faq-collapse transition-all duration-300 ease-out grid grid-rows-[0fr] opacity-0"
+            >
+              <div class="overflow-hidden">
+                <p class="px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-[14.5px] text-slate-600 leading-relaxed font-normal font-sans">
+                  {item.answer}
+                </p>
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
 
     </div>
@@ -178,8 +176,8 @@ const partnerLogos = [
 </section>
 
 <script>
-  function setupFaqAccordion() {
-    const accordion = document.getElementById('faq-accordion');
+  function setupWebDevFaqAccordion() {
+    const accordion = document.getElementById('webdev-faq-accordion');
     if (!accordion) return;
 
     const items = accordion.querySelectorAll<HTMLElement>('.faq-item');
@@ -283,6 +281,6 @@ const partnerLogos = [
     }
   }
 
-  setupFaqAccordion();
-  document.addEventListener('astro:page-load', setupFaqAccordion);
+  setupWebDevFaqAccordion();
+  document.addEventListener('astro:page-load', setupWebDevFaqAccordion);
 </script>

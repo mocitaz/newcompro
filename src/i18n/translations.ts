@@ -114,7 +114,7 @@ export const translations = {
             title: 'Website Development',
             desc: 'Custom websites and web applications tailored to your business needs.',
             icon: 'globe',
-            href: '/layanan'
+            href: '/services/website-development'
           },
           {
             title: 'Software Development',
@@ -587,6 +587,258 @@ export const translations = {
       description: "Discuss your system architecture, platform modernization, or digital integration roadmap with our engineering team. We are ready to help formulate precise technical execution.",
       cta: "Talk to Teknalogi",
       note: "Direct consultation via WhatsApp with our solutions team"
+    },
+    webDevService: {
+      meta: {
+        title: "Website Development | PT Teknalogi Transformasi Digital",
+        description: "Custom websites and web applications tailored to your business needs. High performance, responsive, and enterprise-grade.",
+      },
+      breadcrumbs: {
+        home: "Home",
+        homeHref: "/",
+        services: "Services",
+        servicesHref: "/layanan",
+        current: "Web Development",
+      },
+      trustBadge: {
+        label: "Trusted by",
+        sublabel: "Corporations and growing enterprises across Indonesia",
+      },
+      hero: {
+        headline: "Custom Websites and Web Applications Tailored to Your Business Needs",
+        description: "Teknalogi delivers enterprise-grade web development tailored for corporate growth, institutional scalability, and digital transformation in Indonesia. Every website and web application is engineered with an SEO-first approach, mobile-first responsive design, structured information architecture, and custom CMS workflows, backed by high performance, stringent security, and dependable long-term support.",
+        primaryCta: "Consult Web Development Needs",
+        primaryCtaHref: "/contact",
+        secondaryCta: "Learn More",
+        secondaryCtaHref: "#what-we-deliver",
+      },
+      quickLinks: {
+        title: "Quick Navigation",
+        links: [
+          { label: "What We Deliver?", href: "#what-we-deliver" },
+          { label: "About This Service", href: "#about-service" },
+          { label: "FAQ", href: "#faq" },
+        ],
+      },
+      features: {
+        headline: "Core Features of Teknalogi Web Development Services",
+        subheadline: "Every aspect of our web development services is engineered to support real business outcomes, from bespoke architecture to long-term reliability and support.",
+        items: [
+          {
+            id: "custom-design",
+            title: "Custom Design & Features",
+            desc: "Every website is engineered with tailored UI/UX and features designed around your unique operational workflows, ensuring distinct competitive differentiation in your digital market.",
+            icon: "cube",
+            glowColor: "from-blue-100/60",
+          },
+          {
+            id: "seo-first",
+            title: "SEO-First Engineering",
+            desc: "Technical markup, semantic metadata, and information hierarchy are architected from day one for search engine discovery, establishing a dependable foundation for long-term organic reach.",
+            icon: "search",
+            glowColor: "from-sky-100/60",
+          },
+          {
+            id: "info-architecture",
+            title: "Structured Information Architecture",
+            desc: "An organized content hierarchy streamlines visitor navigation and enables search engines to crawl and index your corporate pages with maximum clarity.",
+            icon: "hierarchy",
+            glowColor: "from-indigo-100/60",
+          },
+          {
+            id: "custom-cms",
+            title: "Intuitive Custom CMS",
+            desc: "A tailored content management system engineered around your editorial workflows, empowering internal teams to update pages and media independently without engineering dependencies.",
+            icon: "cms",
+            glowColor: "from-amber-100/60",
+          },
+          {
+            id: "functional-warranty",
+            title: "Functional Warranty & Assurance",
+            desc: "Every deployment undergoes comprehensive quality assurance and is backed by a post-launch functional warranty, eliminating operational risks and ensuring flawless execution.",
+            icon: "shield-check",
+            glowColor: "from-emerald-100/60",
+          },
+          {
+            id: "website-security",
+            title: "Enterprise Website Security",
+            desc: "Rigorous security practices, encrypted data transmission, and vulnerability hardening protect corporate integrity, user trust, and business continuity.",
+            icon: "lock",
+            glowColor: "from-violet-100/60",
+          },
+          {
+            id: "high-performance",
+            title: "High Performance & Responsiveness",
+            desc: "Lightning-fast load times and seamless cross-device adaptability deliver superior user experiences and strengthen Core Web Vitals search rankings.",
+            icon: "speed",
+            glowColor: "from-cyan-100/60",
+          },
+          {
+            id: "internal-training",
+            title: "Internal Team Training",
+            desc: "Dedicated hands-on onboarding sessions covering every system capability, equipping your staff to manage content, media, and inbound inquiries with complete confidence.",
+            icon: "training",
+            glowColor: "from-blue-100/60",
+          },
+          {
+            id: "maintenance-support",
+            title: "Continuous Maintenance & Support",
+            desc: "Proactive system monitoring, regular dependency updates, and responsive technical assistance ensure your web assets remain secure, performant, and aligned with company growth.",
+            icon: "support",
+            glowColor: "from-purple-100/60",
+          },
+        ],
+      },
+      aboutService: {
+        id: "about-service",
+        title: "About Teknalogi Web Development Services",
+        tocTitle: "TABLE OF CONTENTS",
+        sections: [
+          {
+            id: "definisi-web-development",
+            tocLabel: "Web Development Definition",
+            title: "What Is Web Development and Its Strategic Business Value",
+            paragraphs: [
+              "Web development is the systematic engineering, design, and lifecycle maintenance of digital platforms, encompassing technical infrastructure and visual interfaces to ensure peak online performance. For modern organizations, an enterprise website is far more than a simple brand presence. It serves as a foundational strategic asset that accelerates market expansion, strengthens institutional credibility, and builds immediate trust with potential clients.",
+              "An effective web platform must execute core business logic flawlessly, remain straightforward for non-technical teams to manage, provide rigorous cybersecurity safeguards, and load with instantaneous responsiveness to retain prospective customers. Verified functionality, operational flexibility, and high performance form the bedrock of every web solution engineered by Teknalogi."
+            ],
+          },
+          {
+            id: "desain-fitur-custom",
+            tocLabel: "Custom Design & Features",
+            title: "The Strategic Advantage of Custom Design and Tailored Features",
+            paragraphs: [
+              "No two commercial enterprises operate with identical workflows, customer segments, or business models. Generic off-the-shelf templates frequently introduce plugin bloat, maintenance fragility, and rigid limitations that fail to accurately represent your brand's unique market advantage. Teknalogi architects each web platform around bespoke technical blueprints, pairing distinctive corporate visual identity with tailored operational capabilities.",
+            ],
+            bullets: [
+              {
+                label: "Design reflecting corporate identity",
+                text: "a cohesive visual aesthetic meticulously aligned with your organizational values and design standards.",
+              },
+              {
+                label: "Features mapped directly to workflows",
+                text: "practical functional capabilities engineered for real operations, avoiding extraneous template bloat.",
+              },
+              {
+                label: "Optimal user experiences",
+                text: "intuitive information pathways and accessible interfaces that help visitors effortlessly complete their objectives.",
+              },
+            ],
+            closingParagraph: "This tailored approach ensures that your corporate web platform looks thoroughly distinguished while operating reliably as an indispensable business asset.",
+          },
+          {
+            id: "seo-mobile-first",
+            tocLabel: "SEO & Mobile-First",
+            title: "SEO-First and Mobile-First Principles for Long-Term Digital Visibility",
+            paragraphs: [
+              "Even the most visually sophisticated web platform yields little value if decision-makers cannot find it through search engines. At Teknalogi, search engine optimization is an architectural priority embedded from day one into semantic HTML markup, metadata schemas, URL routing, and content structuring, rather than an afterthought applied at launch. This technical foundation ensures sustainable organic search presence over years of operational growth.",
+              "Given that the vast majority of web traffic across Southeast Asia and global markets originates on smartphones, our mobile-first engineering guarantees seamless ergonomics across every form factor. Layouts, typography, and interactive components scale smoothly, delivering immediate responsiveness from handheld devices to high-resolution desktop displays.",
+            ],
+          },
+          {
+            id: "arsitektur-cms",
+            tocLabel: "Architecture & CMS",
+            title: "Structured Information Architecture and Custom CMS for Scalable Governance",
+            paragraphs: [
+              "Deliberate information architecture dictates how intuitively visitors explore, evaluate, and digest corporate information. We design transparent navigation structures that reduce user cognitive load while enabling search engine crawlers to parse institutional content hierarchies efficiently.",
+            ],
+            bullets: [
+              {
+                label: "Transparent navigation structures",
+                text: "clear, frictionless pathways guiding prospective clients to essential services and case studies.",
+              },
+              {
+                label: "Organized content hierarchies",
+                text: "structured layouts that elevate readability and maximize search engine relevance.",
+              },
+              {
+                label: "Intuitive custom CMS interfaces",
+                text: "purpose-built administration consoles tailored to your editorial team without dependency on fragile third-party plugins.",
+              },
+            ],
+            closingParagraph: "Our proprietary CMS configurations empower marketing and communications staff to publish content, update media assets, and introduce new corporate offerings independently, eliminating ongoing reliance on external engineering support.",
+          },
+          {
+            id: "garansi-keamanan",
+            tocLabel: "Assurance & Security",
+            title: "Functional Warranty, Stringent Security, and High Performance Benchmarks",
+            paragraphs: [
+              "Every enterprise deployment delivered by Teknalogi undergoes exhaustive multi-browser testing, automated regression suites, and manual quality assurance. We accompany each project with an enforceable functional warranty verifying that all capabilities operate precisely according to agreed technical specifications.",
+              "Cybersecurity remains a non-negotiable imperative, especially for enterprises handling sensitive corporate transactions, customer records, or internal system integrations. We implement multi-layer defenses, SSL/TLS encryption, OWASP mitigation, and strict input sanitization to safeguard your data assets and maintain continuous business operations.",
+              "Performance engineering is prioritized from initial scaffolding. Through code minification, image asset compression, and responsive edge caching, every page achieves rapid load speeds that comfortably surpass Core Web Vitals thresholds and keep potential clients engaged.",
+            ],
+          },
+          {
+            id: "training-maintenance",
+            tocLabel: "Training & Maintenance",
+            title: "Comprehensive Team Training and Dependable Long-Term Maintenance",
+            paragraphs: [
+              "A production launch represents the beginning of your digital platform's operational lifecycle, not its conclusion. Teknalogi provides structured onboarding sessions and comprehensive administrative documentation, empowering your team to govern every administrative workflow with complete autonomy.",
+              "Our dedicated maintenance SLA packages safeguard ongoing platform stability through proactive security patches, continuous dependency management, automated backup routines, and rapid-response technical assistance. With sustained engineering stewardship, organizational leadership can focus entirely on core business expansion.",
+            ],
+          },
+        ],
+      },
+      faq: {
+        badge: "FAQ",
+        headline: "FAQ About Web Development",
+        subheadline: "Clear answers to essential questions regarding web engineering, modern architecture, and Teknalogi services.",
+        trustedLabel: "Trusted by",
+        trustedSub: "Corporations and growing enterprises across Indonesia",
+        askButton: "Consult Web Development Needs",
+        items: [
+          {
+            id: "faq-ui-ux-vs-dev",
+            question: "What is the difference between UI/UX design and web development?",
+            answer: "UI/UX design focuses on user research, interface prototyping, visual hierarchy, and intuitive interaction flows before any code is written. Web development is the technical engineering process that transforms those designs into functional digital platforms, encompassing frontend interface coding, backend database architecture, system integrations, and server deployment.",
+          },
+          {
+            id: "faq-learning-curve",
+            question: "Is web development difficult to learn?",
+            answer: "The learning curve depends on technical depth. Foundational technologies like semantic HTML, CSS, and basic JavaScript can be grasped relatively quickly. However, architecting enterprise systems, managing data security compliance, integrating external APIs, and achieving Core Web Vitals benchmarks demand rigorous software engineering principles and extensive production experience.",
+          },
+          {
+            id: "faq-relevance-2026",
+            question: "Is web development still relevant in 2026?",
+            answer: "It is more vital than ever. In 2026, an enterprise website is not just an online brochure: it serves as the core operational foundation, AI integration hub, encrypted commerce channel, and proprietary data gateway that protects organizations from shifting third-party social media algorithms.",
+          },
+          {
+            id: "faq-cpp-usage",
+            question: "Is C++ used in web development?",
+            answer: "C++ is rarely used for routine website layout or application scripting, where TypeScript, JavaScript, Python, Go, and PHP predominate. However, C++ powers critical low-level web infrastructure, including high-performance web servers, browser rendering engines, and WebAssembly (Wasm) modules executed directly inside modern client browsers.",
+          },
+          {
+            id: "faq-mobile-first",
+            question: "Why is mobile-first design essential in web development?",
+            answer: "The clear majority of global and Indonesian web traffic originates on mobile devices. A mobile-first methodology prioritizes essential content hierarchy, touch-friendly navigation, and rapid bandwidth efficiency on small screens first, before scaling smoothly up to desktop monitors. It is also a decisive criterion in Google mobile-first search indexing.",
+          },
+          {
+            id: "faq-custom-cms",
+            question: "What are the advantages of a custom CMS over standard CMS platforms?",
+            answer: "Standard CMS platforms frequently rely on numerous third-party plugins that introduce security vulnerabilities, code bloat, and recurring plugin conflicts. A custom CMS is engineered precisely around your internal editorial workflows, offering lightweight execution, strict role-based access control (RBAC), and near-zero dependency debt.",
+          },
+          {
+            id: "faq-security-assurance",
+            question: "How does Teknalogi ensure the security of developed websites?",
+            answer: "Teknalogi applies zero-trust security practices from initial scaffolding. Every platform includes enforced TLS/SSL encryption, comprehensive protection against OWASP Top 10 vulnerabilities (including SQL injection and cross-site scripting), strict data sanitization, brute-force mitigation, and hardened HTTP headers.",
+          },
+          {
+            id: "faq-maintenance-services",
+            question: "What maintenance services are provided after launch?",
+            answer: "Our continuous maintenance coverage includes proactive uptime monitoring, regular security and dependency patch updates, automated off-site encrypted database backups, bug resolution, Core Web Vitals optimization, and priority technical support through dedicated communication channels.",
+          },
+          {
+            id: "faq-consultation-process",
+            question: "How does the project consultation process work at Teknalogi?",
+            answer: "You can initiate contact through our WhatsApp channel or consultation form. Our solution architects will arrange an initial technical discovery session to evaluate your organizational objectives, required system integrations, and project scope, delivering a transparent roadmap before engineering begins.",
+          },
+          {
+            id: "faq-internal-training",
+            question: "Is team training provided for client internal staff?",
+            answer: "Yes, every enterprise deployment includes hands-on onboarding sessions tailored for your internal operations and marketing staff. We guide your team through content publishing, media management, user permission administration, and workflow governance, accompanied by comprehensive written documentation.",
+          },
+        ],
+      },
     }
   },
   id: {
@@ -699,7 +951,7 @@ export const translations = {
             title: 'Website Development',
             desc: 'Website dan aplikasi web custom yang disesuaikan dengan kebutuhan bisnis Anda.',
             icon: 'globe',
-            href: '/id/layanan'
+            href: '/id/layanan/website-development'
           },
           {
             title: 'Software Development',
@@ -1172,6 +1424,258 @@ export const translations = {
       description: "Diskusikan arsitektur sistem, modernisasi platform, atau integrasi solusi digital perusahaan Anda bersama tim rekayasa kami. Kami siap membantu merumuskan arah teknis yang tepat dan terukur.",
       cta: "Talk to Teknalogi",
       note: "Konsultasi langsung via WhatsApp bersama tim solusi kami"
+    },
+    webDevService: {
+      meta: {
+        title: "Website Development | PT Teknalogi Transformasi Digital",
+        description: "Jasa web development custom untuk pertumbuhan bisnis. Website korporat dan aplikasi web kustom yang dirancang sesuai kebutuhan spesifik Anda.",
+      },
+      breadcrumbs: {
+        home: "Beranda",
+        homeHref: "/id",
+        services: "Layanan",
+        servicesHref: "/id/layanan",
+        current: "Web Development",
+      },
+      trustBadge: {
+        label: "Trusted by",
+        sublabel: "Corporations and growing enterprises across Indonesia",
+      },
+      hero: {
+        headline: "Jasa Web Development Custom untuk Pertumbuhan Bisnis",
+        description: "Teknalogi menghadirkan layanan web development yang dirancang sesuai kebutuhan bisnis korporat, enterprise, dan UKM di Indonesia. Setiap website dibangun dengan pendekatan SEO-first, desain mobile-first, arsitektur informasi yang terstruktur, dan CMS custom, dilengkapi garansi fungsional, keamanan, performa tinggi, serta dukungan training dan maintenance.",
+        primaryCta: "Konsultasi Kebutuhan Web Development",
+        primaryCtaHref: "/id/contact",
+        secondaryCta: "Pelajari Selengkapnya",
+        secondaryCtaHref: "#what-we-deliver",
+      },
+      quickLinks: {
+        title: "Navigasi Cepat",
+        links: [
+          { label: "What We Deliver?", href: "#what-we-deliver" },
+          { label: "About This Service", href: "#about-service" },
+          { label: "FAQ", href: "#faq" },
+        ],
+      },
+      features: {
+        headline: "Fitur Utama Layanan Web Development Teknalogi",
+        subheadline: "Setiap aspek layanan web development kami dirancang untuk mendukung kebutuhan bisnis yang nyata, dari desain hingga keamanan dan dukungan pasca peluncuran.",
+        items: [
+          {
+            id: "custom-design",
+            title: "Desain dan Fitur Custom",
+            desc: "Setiap website dikembangkan dengan desain dan fitur yang disesuaikan secara spesifik dengan kebutuhan bisnis klien, memastikan relevansi dan diferensiasi yang nyata di pasar digital.",
+            icon: "cube",
+            glowColor: "from-blue-100/60",
+          },
+          {
+            id: "seo-first",
+            title: "Pengembangan SEO-First",
+            desc: "Struktur teknis dan konten website dirancang sejak awal dengan mempertimbangkan optimasi mesin pencari, memberikan fondasi yang kuat untuk visibilitas organik jangka panjang.",
+            icon: "search",
+            glowColor: "from-sky-100/60",
+          },
+          {
+            id: "info-architecture",
+            title: "Arsitektur Informasi yang Terstruktur",
+            desc: "Struktur informasi yang terorganisir memudahkan navigasi pengunjung dan membantu mesin pencari memahami hierarki konten website secara efisien.",
+            icon: "hierarchy",
+            glowColor: "from-indigo-100/60",
+          },
+          {
+            id: "custom-cms",
+            title: "CMS Custom yang Mudah Digunakan",
+            desc: "Sistem pengelolaan konten yang dirancang khusus sesuai kebutuhan bisnis klien, memungkinkan tim internal memperbarui dan mengelola konten secara mandiri tanpa ketergantungan teknis berlebihan.",
+            icon: "cms",
+            glowColor: "from-amber-100/60",
+          },
+          {
+            id: "functional-warranty",
+            title: "Garansi Fungsionalitas",
+            desc: "Setiap website yang diserahkan telah melalui pengujian menyeluruh dan dijamin berfungsi sesuai spesifikasi yang telah disepakati, mengurangi risiko kegagalan fungsi yang dapat merugikan bisnis.",
+            icon: "shield-check",
+            glowColor: "from-emerald-100/60",
+          },
+          {
+            id: "website-security",
+            title: "Keamanan Website Terjamin",
+            desc: "Perlindungan terhadap ancaman keamanan diterapkan untuk menjaga integritas data, kepercayaan pengguna, dan keberlangsungan operasional bisnis online.",
+            icon: "lock",
+            glowColor: "from-violet-100/60",
+          },
+          {
+            id: "high-performance",
+            title: "Performa Tinggi dan Responsif",
+            desc: "Website yang cepat dan responsif di berbagai kondisi jaringan mendukung pengalaman pengguna yang positif dan berkontribusi pada peringkat yang lebih baik di mesin pencari.",
+            icon: "speed",
+            glowColor: "from-cyan-100/60",
+          },
+          {
+            id: "internal-training",
+            title: "Layanan Training untuk Tim Internal",
+            desc: "Pelatihan yang disesuaikan dengan sistem dan fitur website yang dikembangkan, membekali tim internal klien dengan kemampuan untuk mengelola website secara mandiri dan efisien.",
+            icon: "training",
+            glowColor: "from-blue-100/60",
+          },
+          {
+            id: "maintenance-support",
+            title: "Layanan Maintenance dan Support",
+            desc: "Pemeliharaan rutin dan dukungan teknis berkelanjutan untuk memastikan website tetap aman, berkinerja tinggi, dan relevan seiring perkembangan bisnis klien.",
+            icon: "support",
+            glowColor: "from-purple-100/60",
+          },
+        ],
+      },
+      aboutService: {
+        id: "about-service",
+        title: "Tentang Layanan Web Development Teknalogi",
+        tocTitle: "TABLE OF CONTENTS",
+        sections: [
+          {
+            id: "definisi-web-development",
+            tocLabel: "Definisi Web Development",
+            title: "Apa Itu Web Development dan Manfaatnya untuk Bisnis",
+            paragraphs: [
+              "Web development adalah proses perancangan, pembangunan, dan pengelolaan website yang mencakup seluruh aspek teknis dan visual agar sebuah situs dapat berfungsi secara optimal di internet. Bagi bisnis modern, website bukan sekadar kehadiran digital. Website adalah aset strategis yang mendukung pertumbuhan, memperluas jangkauan pasar, dan membangun kepercayaan calon pelanggan.",
+              "Website yang efektif harus mampu menjalankan fungsinya dengan baik, mudah dikelola oleh tim internal, aman dari ancaman siber, dan cukup cepat untuk mempertahankan perhatian pengunjung. Fungsionalitas, kemudahan pengelolaan, dan performa menjadi fondasi dari setiap proyek web development yang Teknalogi kerjakan.",
+            ],
+          },
+          {
+            id: "desain-fitur-custom",
+            tocLabel: "Desain dan Fitur Custom",
+            title: "Keunggulan Desain dan Fitur Custom dalam Pengembangan Website",
+            paragraphs: [
+              "Tidak ada dua bisnis yang memiliki kebutuhan yang persis sama, dan pendekatan template generik sering kali tidak cukup untuk mewakili identitas serta tujuan bisnis secara akurat. Teknalogi mengembangkan setiap website dengan desain dan fitur yang disesuaikan secara spesifik dengan kebutuhan klien, mulai dari tampilan visual yang mencerminkan identitas merek hingga fitur fungsional yang mendukung proses operasional.",
+            ],
+            bullets: [
+              {
+                label: "Desain yang mencerminkan identitas bisnis",
+                text: "tampilan yang konsisten dengan nilai dan karakter merek klien.",
+              },
+              {
+                label: "Fitur yang relevan dengan alur kerja bisnis",
+                text: "solusi yang benar-benar dibutuhkan, bukan fitur standar yang dipaksakan.",
+              },
+              {
+                label: "Pengalaman pengguna yang optimal",
+                text: "navigasi yang intuitif dan antarmuka yang memudahkan pengunjung mencapai tujuan mereka.",
+              },
+            ],
+            closingParagraph: "Pendekatan custom ini memastikan bahwa website tidak hanya terlihat profesional, tetapi juga bekerja secara efektif sebagai alat bisnis.",
+          },
+          {
+            id: "seo-mobile-first",
+            tocLabel: "SEO dan Mobile-First",
+            title: "Pendekatan SEO-First dan Mobile-First untuk Visibilitas dan Aksesibilitas",
+            paragraphs: [
+              "Sebuah website yang tidak mudah ditemukan di mesin pencari akan kehilangan sebagian besar potensinya. Teknalogi menerapkan pendekatan SEO-first sejak tahap perencanaan dan pengembangan, bukan sebagai tambahan di akhir proyek. Struktur halaman, hierarki konten, kecepatan muat, dan aspek teknis lainnya dirancang agar website memiliki fondasi yang kuat untuk visibilitas organik jangka panjang.",
+              "Mayoritas pengguna internet di Indonesia mengakses web melalui perangkat mobile. Desain mobile-first yang kami terapkan memastikan pengalaman pengguna tetap optimal di berbagai ukuran layar, dari smartphone hingga desktop. Kombinasi SEO-first dan mobile-first adalah investasi dalam keterjangkauan dan relevansi bisnis di pasar digital.",
+            ],
+          },
+          {
+            id: "arsitektur-cms",
+            tocLabel: "Arsitektur dan CMS",
+            title: "Arsitektur Informasi dan CMS Custom untuk Kemudahan Pengelolaan dan Skalabilitas",
+            paragraphs: [
+              "Arsitektur informasi yang baik menentukan bagaimana konten diorganisir, ditemukan, dan dipahami oleh pengunjung. Teknalogi merancang struktur informasi yang logis sehingga pengunjung dapat menavigasi website dengan mudah, sementara mesin pencari dapat memahami hierarki konten secara efisien.",
+            ],
+            bullets: [
+              {
+                label: "Struktur navigasi yang jelas",
+                text: "memudahkan pengunjung menemukan informasi yang mereka butuhkan tanpa kebingungan.",
+              },
+              {
+                label: "Hierarki konten yang terencana",
+                text: "mendukung keterbacaan dan relevansi di mesin pencari.",
+              },
+              {
+                label: "CMS custom yang intuitif",
+                text: "sistem pengelolaan konten yang dirancang sesuai kebutuhan bisnis, bukan solusi generik yang memerlukan adaptasi berlebihan.",
+              },
+            ],
+            closingParagraph: "CMS custom yang kami kembangkan memungkinkan tim internal klien untuk memperbarui konten, menambahkan halaman baru, atau mengelola informasi produk tanpa harus bergantung pada bantuan teknis eksternal setiap saat. Ini penting bagi bisnis yang terus berkembang dan membutuhkan fleksibilitas dalam pengelolaan konten.",
+          },
+          {
+            id: "garansi-keamanan",
+            tocLabel: "Garansi dan Keamanan",
+            title: "Garansi Fungsional, Keamanan, dan Performa Tinggi untuk Keandalan Website",
+            paragraphs: [
+              "Setiap proyek web development yang Teknalogi selesaikan dilengkapi dengan garansi fungsionalitas. Website yang diserahkan kepada klien telah melalui pengujian menyeluruh dan berfungsi sesuai spesifikasi yang telah disepakati. Ini adalah komitmen terhadap kualitas yang dapat dipegang oleh klien.",
+              "Keamanan website menjadi prioritas yang tidak dapat dikompromikan, terutama bagi bisnis yang mengelola data pelanggan atau transaksi online. Kami memastikan setiap website yang dikembangkan memiliki lapisan perlindungan yang memadai untuk menjaga integritas data dan keberlangsungan operasional bisnis.",
+              "Website yang lambat tidak hanya membuat pengunjung frustrasi, tetapi juga berdampak negatif pada peringkat di mesin pencari. Standar performa tinggi kami pastikan sejak awal pengembangan, sehingga setiap website memuat dengan cepat dan responsif di berbagai kondisi jaringan.",
+            ],
+          },
+          {
+            id: "training-maintenance",
+            tocLabel: "Training dan Maintenance",
+            title: "Layanan Training dan Maintenance untuk Dukungan Berkelanjutan",
+            paragraphs: [
+              "Peluncuran website adalah awal dari perjalanan digital bisnis, bukan akhirnya. Teknalogi menyediakan layanan training bagi tim internal klien agar mereka dapat mengelola website secara mandiri setelah proyek selesai. Pelatihan ini disesuaikan dengan sistem dan fitur yang telah dikembangkan sehingga langsung dapat diterapkan.",
+              "Layanan maintenance yang kami tawarkan memastikan website tetap berjalan optimal seiring berjalannya waktu. Pembaruan keamanan, penyesuaian performa, dan dukungan teknis tersedia untuk menjaga website tetap andal dan relevan. Dengan dukungan berkelanjutan ini, klien dapat fokus pada pertumbuhan bisnis tanpa perlu khawatir tentang kondisi teknis website mereka.",
+            ],
+          },
+        ],
+      },
+      faq: {
+        badge: "FAQ",
+        headline: "FAQ tentang Web Development",
+        subheadline: "Jawaban terperinci seputar metodologi rekayasa web, teknologi modern, dan keunggulan layanan Teknalogi.",
+        trustedLabel: "Trusted by",
+        trustedSub: "Corporations and growing enterprises across Indonesia",
+        askButton: "Tanyakan Kebutuhan Web Anda",
+        items: [
+          {
+            id: "faq-ui-ux-vs-dev",
+            question: "Apa perbedaan antara UI/UX dan web development?",
+            answer: "UI/UX design berfokus pada riset pengguna, perancangan tata letak visual, wireframe, serta kenyamanan alur interaksi pengguna sebelum kode ditulis. Sementara itu, web development adalah proses rekayasa teknis yang menerjemahkan rancangan tersebut menjadi aplikasi web nyata yang berfungsi, mencakup pengkodean antarmuka (frontend), arsitektur database, integrasi logika bisnis (backend), serta konfigurasi server.",
+          },
+          {
+            id: "faq-learning-curve",
+            question: "Apakah web development sulit dipelajari?",
+            answer: "Tingkat kesulitan bergantung pada kedalaman teknis yang ingin dicapai. Fondasi dasar seperti HTML, CSS, dan JavaScript dasar relatif mudah dipelajari oleh pemula. Namun, membangun arsitektur web enterprise yang skalabel, mengamankan data pengguna, mengintegrasikan sistem kompleks, serta mengoptimalkan Core Web Vitals membutuhkan pemahaman rekayasa perangkat lunak yang komprehensif dan jam terbang tinggi.",
+          },
+          {
+            id: "faq-relevance-2026",
+            question: "Apakah web development masih relevan di tahun 2026?",
+            answer: "Sangat relevan dan semakin esensial. Di tahun 2026, website bukan sekadar brosur online, melainkan fondasi ekosistem bisnis digital, pusat kendali data mandiri, gerbang transaksi terenkripsi, serta integrasi layanan cerdas yang menjaga kedaulatan bisnis Anda tanpa ketergantungan sepihak pada algoritma platform pihak ketiga.",
+          },
+          {
+            id: "faq-cpp-usage",
+            question: "Apakah C++ digunakan untuk web development?",
+            answer: "Secara umum, C++ bukan bahasa utama untuk pembuatan halaman web sehari-hari karena ekosistem aplikasi web modern didominasi oleh TypeScript, JavaScript, Python, Go, dan PHP. Meski demikian, C++ memegang peranan krusial pada infrastruktur web berkinerja tinggi, seperti mesin peramban web (browser engine), web server ultra cepat, serta modul WebAssembly (Wasm) untuk komputasi berat di sisi klien.",
+          },
+          {
+            id: "faq-mobile-first",
+            question: "Mengapa penting menggunakan desain mobile-first dalam web development?",
+            answer: "Mayoritas trafik internet di Indonesia dan dunia saat ini diakses melalui perangkat seluler. Pendekatan mobile-first memastikan struktur halaman, rasio tipografi, dan navigasi dirancang secara efisien untuk layar smartphone terlebih dahulu sebelum diskalakan ke layar desktop. Pendekatan ini juga merupakan parameter mutlak dalam algoritma pengindeksan Google (Mobile-First Indexing).",
+          },
+          {
+            id: "faq-custom-cms",
+            question: "Apa keuntungan menggunakan CMS custom dibanding CMS standar?",
+            answer: "CMS standar kerap dibebani plugin pihak ketiga yang berlebihan, rentan terhadap celah keamanan, dan memperlambat waktu muat situs. Sebaliknya, CMS custom dirancang khusus mengikuti alur kerja editorial tim internal Anda, sangat ringan, memiliki kontrol akses berbasis peran (RBAC) yang ketat, dan meminimalkan biaya pemeliharaan teknis jangka panjang.",
+          },
+          {
+            id: "faq-security-assurance",
+            question: "Bagaimana Teknalogi menjamin keamanan website yang dikembangkan?",
+            answer: "Teknalogi menerapkan prinsip zero-trust security sejak baris kode pertama. Kami melengkapi setiap website dengan sertifikat SSL/TLS, mitigasi menyeluruh terhadap kerentanan OWASP Top 10 (seperti SQL Injection dan XSS), sanitasi input yang ketat, pencegahan serangan brute-force, serta konfigurasi server dengan header keamanan standar enterprise.",
+          },
+          {
+            id: "faq-maintenance-services",
+            question: "Apa saja layanan maintenance yang disediakan setelah website diluncurkan?",
+            answer: "Layanan pemeliharaan berkala kami mencakup pemantauan waktu aktif (uptime) server, pembaruan keamanan sistem dan dependensi, pencadangan (backup) database otomatis terenkripsi, penanganan kendala teknis (bug fix), optimasi performa berkelanjutan, serta dukungan teknis responsif melalui saluran komunikasi langsung.",
+          },
+          {
+            id: "faq-consultation-process",
+            question: "Bagaimana proses konsultasi kebutuhan web development di Teknalogi?",
+            answer: "Anda dapat menghubungi tim solusi kami melalui tombol konsultasi WhatsApp atau formulir kontak. Kami akan mengagendakan sesi technical discovery untuk mengkaji kebutuhan bisnis, arsitektur sistem, dan ruang lingkup proyek, kemudian menyusun rencana kerja teknis yang transparan sebelum proyek dimulai.",
+          },
+          {
+            id: "faq-internal-training",
+            question: "Apakah layanan training disediakan untuk tim internal klien?",
+            answer: "Ya, setiap proyek web development yang diserahkan selalu dilengkapi sesi pelatihan langsung bagi tim internal Anda. Kami membekali staf Anda dengan pemahaman operasional CMS, pengelolaan konten artikel dan media, administrasi hak akses, serta panduan dokumentasi tertulis yang mudah dipahami.",
+          },
+        ],
+      },
     }
   }
 } as const;

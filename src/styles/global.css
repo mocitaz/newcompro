@@ -97,3 +97,84 @@
   background-color: rgba(139, 92, 246, 0.35);
   color: #ffffff;
 }
+
+/* ==========================================================================
+   Modern Scroll Reveal & Motion Engine (Compositor Only)
+   ========================================================================== */
+
+/* Standard Reveal: smooth upward fade */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-active {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Scale & Glide Reveal (for Cards, Gallery Frames, Visual Showcases) */
+.reveal-scale-init {
+  opacity: 0;
+  transform: scale(0.96) translateY(24px);
+  transition: opacity 850ms cubic-bezier(0.16, 1, 0.3, 1), transform 850ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-scale-active {
+  opacity: 1 !important;
+  transform: scale(1) translateY(0) !important;
+}
+
+/* Image Inner Breathe (for gallery photos) */
+.reveal-img-breathe {
+  transform: scale(1.06);
+  transition: transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.reveal-active .reveal-img-breathe,
+.reveal-scale-active .reveal-img-breathe {
+  transform: scale(1);
+}
+
+/* Editorial Headline Mask Reveal */
+.reveal-title-init {
+  opacity: 0;
+  transform: translateY(32px);
+  filter: blur(4px);
+  transition: opacity 900ms cubic-bezier(0.16, 1, 0.3, 1), transform 900ms cubic-bezier(0.16, 1, 0.3, 1), filter 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+.reveal-title-active {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  filter: blur(0) !important;
+}
+
+/* Stagger Delays for Cascade Waves */
+.stagger-1 { transition-delay: 60ms; }
+.stagger-2 { transition-delay: 130ms; }
+.stagger-3 { transition-delay: 200ms; }
+.stagger-4 { transition-delay: 270ms; }
+.stagger-5 { transition-delay: 340ms; }
+.stagger-6 { transition-delay: 410ms; }
+
+/* Accessibility: Full Respect for Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-init,
+  .reveal-scale-init,
+  .reveal-title-init {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  .reveal-img-breathe {
+    transform: none !important;
+    transition: none !important;
+  }
+}

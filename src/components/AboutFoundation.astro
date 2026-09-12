@@ -43,47 +43,47 @@ const copy = isIndonesian
 
 <section class="about-intro bg-white pt-28 sm:pt-32 lg:pt-36" aria-labelledby="about-page-title">
   <div class="home-container">
-    <p class="inline-flex rounded-full border border-slate-300 px-4 py-2 text-xs font-medium text-slate-600">{copy.label}</p>
+    <p data-reveal="title" class="inline-flex rounded-full border border-slate-300 px-4 py-2 text-xs font-medium text-slate-600 reveal-title-init">{copy.label}</p>
 
     <div class="mt-9 grid grid-cols-1 gap-9 lg:grid-cols-12 lg:gap-16 xl:gap-20">
-      <h1 id="about-page-title" class="max-w-3xl text-4xl font-medium tracking-[-0.05em] text-slate-950 sm:text-5xl lg:col-span-7 lg:text-[4rem] lg:leading-[1.06]">
+      <h1 id="about-page-title" data-reveal="title" class="max-w-3xl text-4xl font-medium tracking-[-0.05em] text-slate-950 sm:text-5xl lg:col-span-7 lg:text-[4rem] lg:leading-[1.06] reveal-title-init">
         {copy.title}
       </h1>
-      <p class="max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg lg:col-span-5 lg:pt-10">{copy.introduction}</p>
+      <p data-reveal class="max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg lg:col-span-5 lg:pt-10 reveal-init stagger-2">{copy.introduction}</p>
     </div>
 
     <div class="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
-      <figure class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200">
+      <figure data-reveal="scale" class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200 reveal-scale-init stagger-1">
         <img
           src="/about/about-architecture-v1.png"
           alt={isIndonesian ? 'Komposisi arsitektur modern dengan panel beton geometris' : 'Modern architectural composition with geometric concrete panels'}
           width="1448"
           height="1086"
-          class="aspect-[4/3] h-full w-full object-cover grayscale-[0.92] contrast-[0.92]"
+          class="aspect-[4/3] h-full w-full object-cover grayscale-[0.92] contrast-[0.92] reveal-img-breathe"
           loading="eager"
           decoding="async"
         />
       </figure>
 
-      <figure class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200">
+      <figure data-reveal="scale" class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200 reveal-scale-init stagger-2">
         <img
           src="/about/about-office-v1.png"
           alt={isIndonesian ? 'Ruang kantor modern dengan siluet kolaborasi tim' : 'Modern office interior with a team collaborating in silhouette'}
           width="1448"
           height="1086"
-          class="aspect-[4/3] h-full w-full object-cover grayscale"
+          class="aspect-[4/3] h-full w-full object-cover grayscale reveal-img-breathe"
           loading="lazy"
           decoding="async"
         />
       </figure>
 
-      <figure class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200">
+      <figure data-reveal="scale" class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200 reveal-scale-init stagger-3">
         <img
           src="/about/about-office-v2.png"
           alt={isIndonesian ? 'Tim engineering berdiskusi di studio kerja modern' : 'Engineering team in discussion at a modern studio'}
           width="1448"
           height="1086"
-          class="aspect-[4/3] h-full w-full object-cover grayscale"
+          class="aspect-[4/3] h-full w-full object-cover grayscale reveal-img-breathe"
           loading="lazy"
           decoding="async"
         />
@@ -91,8 +91,8 @@ const copy = isIndonesian
     </div>
 
     <dl class="mt-10 grid grid-cols-1 border-t border-slate-300 pt-6 sm:grid-cols-3 sm:gap-8">
-      {copy.stats.map(([value, label]) => (
-        <div class="border-b border-slate-200 py-5 first:pt-0 sm:border-b-0 sm:border-r sm:px-8 sm:py-0 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0">
+      {copy.stats.map(([value, label], idx) => (
+        <div data-reveal class={`border-b border-slate-200 py-5 first:pt-0 sm:border-b-0 sm:border-r sm:px-8 sm:py-0 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0 reveal-init stagger-${idx + 1}`}>
           <dt class="about-stat-value text-3xl font-medium tracking-[-0.06em] text-lime-700 sm:text-4xl lg:text-5xl">{value}</dt>
           <dd class="mt-2 text-xs leading-5 text-slate-600 sm:text-sm">{label}</dd>
         </div>
@@ -104,13 +104,13 @@ const copy = isIndonesian
 <section id="about-vision" class="about-vision home-section bg-white" aria-labelledby="about-vision-title">
   <div class="home-container grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16 xl:gap-20">
     <div class="lg:col-span-5">
-      <p class="inline-flex rounded-full border border-slate-300 px-4 py-2 text-xs font-medium text-slate-600">{copy.visionLabel}</p>
-      <h2 id="about-vision-title" class="mt-7 max-w-md text-3xl font-medium tracking-[-0.045em] text-slate-950 sm:text-4xl lg:text-5xl lg:leading-[1.08]">
+      <p data-reveal="title" class="inline-flex rounded-full border border-slate-300 px-4 py-2 text-xs font-medium text-slate-600 reveal-title-init">{copy.visionLabel}</p>
+      <h2 id="about-vision-title" data-reveal="title" class="mt-7 max-w-md text-3xl font-medium tracking-[-0.045em] text-slate-950 sm:text-4xl lg:text-5xl lg:leading-[1.08] reveal-title-init stagger-1">
         {copy.visionTitle}
       </h2>
     </div>
 
-    <div class="space-y-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:col-span-7 lg:pt-12">
+    <div data-reveal class="space-y-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:col-span-7 lg:pt-12 reveal-init stagger-2">
       <p>{copy.vision}</p>
       <p>{copy.mission}</p>
     </div>
