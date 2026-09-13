@@ -1,0 +1,43 @@
+---
+// src/pages/services/software-development.astro
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import SoftwareDevHero from "../../components/services/SoftwareDevHero.astro";
+import SoftwareDevFeatures from "../../components/services/SoftwareDevFeatures.astro";
+import SoftwareDevAboutService from "../../components/services/SoftwareDevAboutService.astro";
+import SoftwareDevFaq from "../../components/services/SoftwareDevFaq.astro";
+import LetsTalk from "../../components/LetsTalk.astro";
+import BackToTop from "../../components/BackToTop.astro";
+import { getTranslations } from "../../i18n/translations";
+
+const lang = "en";
+const t = getTranslations(lang);
+const meta = t.softwareDevService.meta;
+---
+
+<Layout
+  lang={lang}
+  title={meta.title}
+  description={meta.description}
+>
+  <TopBar lang={lang} />
+  
+  <main id="main-content" class="min-h-screen bg-[#fbfbfc]">
+    <!-- Hero Section with Frosted Card & 3D Medallion -->
+    <SoftwareDevHero lang={lang} />
+
+    <!-- Core Features Section -->
+    <SoftwareDevFeatures lang={lang} />
+
+    <!-- Editorial Article with Sticky Table of Contents -->
+    <SoftwareDevAboutService lang={lang} />
+
+    <!-- Service Specific FAQ Accordion -->
+    <SoftwareDevFaq lang={lang} />
+
+    <!-- Contact CTA Banner -->
+    <LetsTalk lang={lang} />
+  </main>
+
+  <BackToTop label="Back to top" />
+</Layout>

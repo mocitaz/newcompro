@@ -1,0 +1,43 @@
+---
+// src/pages/services/workflow-automation.astro
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import WorkflowAutoHero from "../../components/services/WorkflowAutoHero.astro";
+import WorkflowAutoFeatures from "../../components/services/WorkflowAutoFeatures.astro";
+import WorkflowAutoAboutService from "../../components/services/WorkflowAutoAboutService.astro";
+import WorkflowAutoFaq from "../../components/services/WorkflowAutoFaq.astro";
+import LetsTalk from "../../components/LetsTalk.astro";
+import BackToTop from "../../components/BackToTop.astro";
+import { getTranslations } from "../../i18n/translations";
+
+const lang = "en";
+const t = getTranslations(lang);
+const meta = t.workflowAutoService.meta;
+---
+
+<Layout
+  lang={lang}
+  title={meta.title}
+  description={meta.description}
+>
+  <TopBar lang={lang} />
+  
+  <main id="main-content" class="min-h-screen bg-[#fbfbfc]">
+    <!-- Hero Section with Frosted Card & 3D Architectural Medallion -->
+    <WorkflowAutoHero lang={lang} />
+
+    <!-- Core Capabilities Features Section -->
+    <WorkflowAutoFeatures lang={lang} />
+
+    <!-- Editorial Article with Sticky & Mobile Table of Contents -->
+    <WorkflowAutoAboutService lang={lang} />
+
+    <!-- Service Specific FAQ Accordion -->
+    <WorkflowAutoFaq lang={lang} />
+
+    <!-- Contact CTA Banner -->
+    <LetsTalk lang={lang} />
+  </main>
+
+  <BackToTop label="Back to top" />
+</Layout>

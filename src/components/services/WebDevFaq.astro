@@ -34,18 +34,18 @@ const partnerLogos = [
 
 <section
   id="faq"
-  class="relative bg-[#fbfbfc] text-slate-900 py-16 sm:py-24 lg:py-32 border-t border-slate-200/80"
+  class="relative bg-[#fbfbfc] text-slate-900 py-12 sm:py-20 lg:py-32 border-t border-slate-200/80"
   aria-labelledby="faq-heading"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
       
       <!-- SISI KIRI: Headline, Subtitle, Trust Badges, & Pill Button (Sticky saat sisi kanan di-scroll) -->
-      <div data-reveal="title" class="lg:col-span-5 lg:sticky lg:top-28 space-y-6 sm:space-y-7 self-start reveal-init">
+      <div data-reveal="title" class="lg:col-span-5 lg:sticky lg:top-28 space-y-5 sm:space-y-7 self-start reveal-init">
         <div>
           <h2
             id="faq-heading"
-            class="text-3xl sm:text-4xl lg:text-[44px] font-bold text-slate-950 tracking-[-0.035em] leading-[1.18] font-sans"
+            class="text-2xl sm:text-4xl lg:text-[44px] font-bold text-slate-950 tracking-[-0.035em] leading-[1.18] font-sans"
           >
             {faq.headline}
           </h2>
@@ -115,12 +115,12 @@ const partnerLogos = [
             <h3>
               <button
                 type="button"
-                class="faq-trigger w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left min-h-[56px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 rounded-2xl cursor-pointer"
+                class="faq-trigger w-full flex items-center justify-between gap-3.5 sm:gap-4 p-4.5 sm:p-6 text-left min-h-[52px] sm:min-h-[56px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 rounded-2xl cursor-pointer"
                 aria-expanded="false"
                 aria-controls={`webdev-faq-answer-${index}`}
                 id={`webdev-faq-btn-${index}`}
               >
-                <span class="text-sm sm:text-base lg:text-[16.5px] font-medium text-slate-900 tracking-[-0.01em] leading-snug group-hover:text-slate-950 transition-colors font-sans">
+                <span class="text-[14.5px] sm:text-base lg:text-[16.5px] font-medium text-slate-900 tracking-[-0.01em] leading-snug group-hover:text-slate-950 transition-colors font-sans">
                   {item.question}
                 </span>
 
@@ -216,8 +216,8 @@ const partnerLogos = [
       item.classList.add(
         'faq-open',
         'border-slate-950',
-        'bg-[radial-gradient(ellipse_at_top_left,rgba(168,85,247,0.12)_0%,rgba(255,255,255,1)_65%)]',
-        'shadow-[0_8px_25px_-5px_rgba(168,85,247,0.18)]'
+        'bg-[radial-gradient(ellipse_at_top_left,rgba(37,99,235,0.18)_0%,rgba(191,219,254,0.30)_40%,rgba(255,255,255,1)_70%)]',
+        'shadow-[0_10px_30px_-5px_rgba(37,99,235,0.22)]'
       );
       item.classList.remove(
         'border-slate-900/80',
@@ -238,7 +238,7 @@ const partnerLogos = [
         iconMinus.classList.add('block');
         iconPlus.classList.remove('block');
         iconPlus.classList.add('hidden');
-        iconWrapper.classList.add('border-slate-950', 'bg-violet-100', 'text-violet-800');
+        iconWrapper.classList.add('border-slate-950', 'bg-blue-100', 'text-blue-800');
         iconWrapper.classList.remove('border-slate-900/30', 'bg-slate-50', 'text-slate-700');
       }
     }
@@ -253,8 +253,8 @@ const partnerLogos = [
       item.classList.remove(
         'faq-open',
         'border-slate-950',
-        'bg-[radial-gradient(ellipse_at_top_left,rgba(168,85,247,0.12)_0%,rgba(255,255,255,1)_65%)]',
-        'shadow-[0_8px_25px_-5px_rgba(168,85,247,0.18)]'
+        'bg-[radial-gradient(ellipse_at_top_left,rgba(37,99,235,0.18)_0%,rgba(191,219,254,0.30)_40%,rgba(255,255,255,1)_70%)]',
+        'shadow-[0_10px_30px_-5px_rgba(37,99,235,0.22)]'
       );
       item.classList.add(
         'border-slate-900/80',
@@ -275,7 +275,7 @@ const partnerLogos = [
         iconMinus.classList.add('hidden');
         iconPlus.classList.remove('hidden');
         iconPlus.classList.add('block');
-        iconWrapper.classList.remove('border-slate-950', 'bg-violet-100', 'text-violet-800');
+        iconWrapper.classList.remove('border-slate-950', 'bg-blue-100', 'text-blue-800');
         iconWrapper.classList.add('border-slate-900/30', 'bg-slate-50', 'text-slate-700');
       }
     }

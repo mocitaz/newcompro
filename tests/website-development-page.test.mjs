@@ -126,9 +126,9 @@ test('webdev faq component matches homepage faq layout with radial gradient acco
   // Trust badges with partner logos
   assert.match(faqComponent, /partnerLogos\.map/);
 
-  // Accordion with radial-gradient active state matching homepage
+  // Accordion with blue radial-gradient active state
   assert.match(faqComponent, /faq-accordion/);
-  assert.match(faqComponent, /radial-gradient\(ellipse_at_top_left,rgba\(168,85,247/);
+  assert.match(faqComponent, /radial-gradient\(ellipse_at_top_left,rgba\(37,99,235/);
   assert.match(faqComponent, /faq-icon-minus/);
   assert.match(faqComponent, /faq-icon-plus/);
 });

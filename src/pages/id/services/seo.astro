@@ -1,0 +1,43 @@
+---
+// src/pages/id/services/seo.astro
+import Layout from "../../../layouts/Layout.astro";
+import TopBar from "../../../components/TopBar.astro";
+import SeoHero from "../../../components/services/SeoHero.astro";
+import SeoFeatures from "../../../components/services/SeoFeatures.astro";
+import SeoAboutService from "../../../components/services/SeoAboutService.astro";
+import SeoFaq from "../../../components/services/SeoFaq.astro";
+import LetsTalk from "../../../components/LetsTalk.astro";
+import BackToTop from "../../../components/BackToTop.astro";
+import { getTranslations } from "../../../i18n/translations";
+
+const lang = "id";
+const t = getTranslations(lang);
+const meta = t.seoService.meta;
+---
+
+<Layout
+  lang={lang}
+  title={meta.title}
+  description={meta.description}
+>
+  <TopBar lang={lang} />
+  
+  <main id="main-content" class="min-h-screen bg-[#fbfbfc]">
+    <!-- Hero Section with Frosted Card & 3D Medallion -->
+    <SeoHero lang={lang} />
+
+    <!-- Core Capabilities Features Section -->
+    <SeoFeatures lang={lang} />
+
+    <!-- Editorial Article with Sticky & Mobile Table of Contents -->
+    <SeoAboutService lang={lang} />
+
+    <!-- Service Specific FAQ Accordion -->
+    <SeoFaq lang={lang} />
+
+    <!-- Contact CTA Banner -->
+    <LetsTalk lang={lang} />
+  </main>
+
+  <BackToTop label="Kembali ke atas" />
+</Layout>

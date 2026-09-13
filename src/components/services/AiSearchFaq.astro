@@ -1,0 +1,286 @@
+---
+// src/components/services/AiSearchFaq.astro
+// AI Search FAQ Section styled identically to enterprise standard Faq.astro and WebDevFaq.astro
+import { getTranslations, type Locale } from '../../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = getTranslations(lang);
+const faq = t.aiSearchService.faq;
+
+// Partner logos for trust badges matching site-wide enterprise standard
+const partnerLogos = [
+  {
+    name: 'Anytime Fitness',
+    logo: '/partners/anytime.png',
+  },
+  {
+    name: 'KelolaAja',
+    logo: '/partners/kelolaaja.png',
+  },
+  {
+    name: 'Nikawa Teknika',
+    logo: '/partners/nikawa.png',
+  },
+  {
+    name: 'PT Inti Bersama',
+    logo: '/partners/ptintibersama.png',
+  },
+];
+---
+
+<section
+  id="faq"
+  class="relative bg-[#fbfbfc] text-slate-900 py-12 sm:py-20 lg:py-32 border-t border-slate-200/80"
+  aria-labelledby="faq-heading"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      
+      <!-- SISI KIRI: Headline, Subtitle, Trust Badges, & Pill Button (Sticky saat sisi kanan di-scroll) -->
+      <div data-reveal="title" class="lg:col-span-5 lg:sticky lg:top-28 space-y-5 sm:space-y-7 self-start reveal-init">
+        <div>
+          <h2
+            id="faq-heading"
+            class="text-2xl sm:text-4xl lg:text-[44px] font-bold text-slate-950 tracking-[-0.035em] leading-[1.18] font-sans"
+          >
+            {faq.headline}
+          </h2>
+          <p class="mt-3.5 sm:mt-4 text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-md font-sans">
+            {faq.subheadline}
+          </p>
+        </div>
+
+        <!-- Trust Badges Block -->
+        <div class="flex items-center gap-3.5 pt-1">
+          <!-- Overlapping Circular Badges with partner logos -->
+          <div class="flex -space-x-3 items-center shrink-0">
+            {partnerLogos.map((partner) => (
+              <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border-2 border-slate-100 flex items-center justify-center overflow-hidden shadow-sm">
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  class="w-5 h-5 sm:w-6 sm:h-6 object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
+
+          <!-- Trust Label & Subtitle -->
+          <div class="flex flex-col justify-center text-left leading-tight pl-1">
+            <span class="text-xs sm:text-[13px] font-bold text-slate-900 tracking-tight font-sans">
+              {faq.trustedLabel}
+            </span>
+            <span class="text-[11px] sm:text-xs text-slate-500 font-normal mt-0.5 font-sans">
+              {faq.trustedSub}
+            </span>
+          </div>
+        </div>
+
+        <!-- Pill Action Button (Direct to WhatsApp) -->
+        <div class="pt-1">
+          <a
+            href="https://wa.me/628517442245"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white hover:bg-slate-50 text-slate-900 font-semibold text-xs sm:text-sm border border-slate-200/90 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 min-h-[44px] group"
+          >
+            <span class="tracking-tight font-sans">{faq.askButton}</span>
+            <svg
+              class="w-3.5 h-3.5 text-slate-500 group-hover:text-slate-900 group-hover:translate-x-0.5 transition-transform duration-200"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2.5"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- SISI KANAN: Accordion List -->
+      <div class="lg:col-span-7 space-y-3 sm:space-y-3.5" id="aisearch-faq-accordion">
+        {faq.items.map((item, index) => (
+          <div
+            data-reveal
+            class={`faq-item group rounded-2xl border border-slate-900/80 bg-white hover:border-slate-950 transition-all duration-300 overflow-hidden shadow-[0_2px_6px_-2px_rgba(15,23,42,0.03)] hover:shadow-sm reveal-init stagger-${Math.min((index % 4) + 1, 4)}`}
+          >
+            <h3>
+              <button
+                type="button"
+                class="faq-trigger w-full flex items-center justify-between gap-3.5 sm:gap-4 p-4.5 sm:p-6 text-left min-h-[52px] sm:min-h-[56px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 rounded-2xl cursor-pointer"
+                aria-expanded="false"
+                aria-controls={`aisearch-faq-answer-${index}`}
+                id={`aisearch-faq-btn-${index}`}
+              >
+                <span class="text-[14.5px] sm:text-base lg:text-[16.5px] font-medium text-slate-900 tracking-[-0.01em] leading-snug group-hover:text-slate-950 transition-colors font-sans">
+                  {item.question}
+                </span>
+
+                <!-- Toggle Icon: Circle with Plus/Minus -->
+                <span
+                  class="faq-icon-wrapper shrink-0 w-8 h-8 rounded-full border border-slate-900/30 bg-slate-50 text-slate-700 group-hover:text-slate-950 group-hover:border-slate-900 flex items-center justify-center transition-all duration-200"
+                  aria-hidden="true"
+                >
+                  <!-- Minus Icon (open state) -->
+                  <svg
+                    class="faq-icon-minus w-4 h-4 transition-transform duration-200 hidden"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
+                  </svg>
+
+                  <!-- Plus Icon (closed state) -->
+                  <svg
+                    class="faq-icon-plus w-4 h-4 transition-transform duration-200 block"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                  </svg>
+                </span>
+              </button>
+            </h3>
+
+            <!-- Collapsible Answer Panel with Smooth Grid Transition -->
+            <div
+              id={`aisearch-faq-answer-${index}`}
+              role="region"
+              aria-labelledby={`aisearch-faq-btn-${index}`}
+              class="faq-collapse transition-all duration-300 ease-out grid grid-rows-[0fr] opacity-0"
+            >
+              <div class="overflow-hidden">
+                <p class="px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-[14.5px] text-slate-600 leading-relaxed font-normal font-sans">
+                  {item.answer}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupAiSearchFaqAccordion() {
+    const accordion = document.getElementById('aisearch-faq-accordion');
+    if (!accordion) return;
+
+    const items = accordion.querySelectorAll<HTMLElement>('.faq-item');
+
+    items.forEach((item) => {
+      const trigger = item.querySelector<HTMLButtonElement>('.faq-trigger');
+      const collapse = item.querySelector<HTMLElement>('.faq-collapse');
+
+      if (!trigger || !collapse) return;
+
+      trigger.addEventListener('click', () => {
+        const isCurrentlyOpen = item.classList.contains('faq-open');
+
+        // Single open mode: close other items smoothly
+        items.forEach((otherItem) => {
+          if (otherItem !== item && otherItem.classList.contains('faq-open')) {
+            closeFaqItem(otherItem);
+          }
+        });
+
+        if (isCurrentlyOpen) {
+          closeFaqItem(item);
+        } else {
+          openFaqItem(item);
+        }
+      });
+    });
+
+    function openFaqItem(item: HTMLElement) {
+      const trigger = item.querySelector<HTMLButtonElement>('.faq-trigger');
+      const collapse = item.querySelector<HTMLElement>('.faq-collapse');
+      const iconMinus = item.querySelector<HTMLElement>('.faq-icon-minus');
+      const iconPlus = item.querySelector<HTMLElement>('.faq-icon-plus');
+      const iconWrapper = item.querySelector<HTMLElement>('.faq-icon-wrapper');
+
+      item.classList.add(
+        'faq-open',
+        'border-slate-950',
+        'bg-[radial-gradient(ellipse_at_top_left,rgba(37,99,235,0.18)_0%,rgba(191,219,254,0.30)_40%,rgba(255,255,255,1)_70%)]',
+        'shadow-[0_10px_30px_-5px_rgba(37,99,235,0.22)]'
+      );
+      item.classList.remove(
+        'border-slate-900/80',
+        'bg-white',
+        'shadow-[0_2px_6px_-2px_rgba(15,23,42,0.03)]',
+        'hover:border-slate-950'
+      );
+
+      trigger?.setAttribute('aria-expanded', 'true');
+
+      if (collapse) {
+        collapse.classList.remove('grid-rows-[0fr]', 'opacity-0');
+        collapse.classList.add('grid-rows-[1fr]', 'opacity-100');
+      }
+
+      if (iconMinus && iconPlus && iconWrapper) {
+        iconMinus.classList.remove('hidden');
+        iconMinus.classList.add('block');
+        iconPlus.classList.remove('block');
+        iconPlus.classList.add('hidden');
+        iconWrapper.classList.add('border-slate-950', 'bg-blue-100', 'text-blue-800');
+        iconWrapper.classList.remove('border-slate-900/30', 'bg-slate-50', 'text-slate-700');
+      }
+    }
+
+    function closeFaqItem(item: HTMLElement) {
+      const trigger = item.querySelector<HTMLButtonElement>('.faq-trigger');
+      const collapse = item.querySelector<HTMLElement>('.faq-collapse');
+      const iconMinus = item.querySelector<HTMLElement>('.faq-icon-minus');
+      const iconPlus = item.querySelector<HTMLElement>('.faq-icon-plus');
+      const iconWrapper = item.querySelector<HTMLElement>('.faq-icon-wrapper');
+
+      item.classList.remove(
+        'faq-open',
+        'border-slate-950',
+        'bg-[radial-gradient(ellipse_at_top_left,rgba(37,99,235,0.18)_0%,rgba(191,219,254,0.30)_40%,rgba(255,255,255,1)_70%)]',
+        'shadow-[0_10px_30px_-5px_rgba(37,99,235,0.22)]'
+      );
+      item.classList.add(
+        'border-slate-900/80',
+        'bg-white',
+        'shadow-[0_2px_6px_-2px_rgba(15,23,42,0.03)]',
+        'hover:border-slate-950'
+      );
+
+      trigger?.setAttribute('aria-expanded', 'false');
+
+      if (collapse) {
+        collapse.classList.remove('grid-rows-[1fr]', 'opacity-100');
+        collapse.classList.add('grid-rows-[0fr]', 'opacity-0');
+      }
+
+      if (iconMinus && iconPlus && iconWrapper) {
+        iconMinus.classList.remove('block');
+        iconMinus.classList.add('hidden');
+        iconPlus.classList.remove('hidden');
+        iconPlus.classList.add('block');
+        iconWrapper.classList.remove('border-slate-950', 'bg-blue-100', 'text-blue-800');
+        iconWrapper.classList.add('border-slate-900/30', 'bg-slate-50', 'text-slate-700');
+      }
+    }
+  }
+
+  setupAiSearchFaqAccordion();
+  document.addEventListener('astro:page-load', setupAiSearchFaqAccordion);
+</script>

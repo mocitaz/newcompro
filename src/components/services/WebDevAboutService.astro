@@ -14,10 +14,10 @@ const { aboutService } = t.webDevService;
 <section
   id="about-service"
   aria-label={aboutService.title}
-  class="relative isolate bg-white py-16 sm:py-24 lg:py-32 border-t border-slate-200/80"
+  class="relative isolate bg-white py-12 sm:py-20 lg:py-32 border-t border-slate-200/80"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
       
       <!-- Left Column: Main Editorial Article -->
       <div class="lg:col-span-8">
@@ -25,15 +25,15 @@ const { aboutService } = t.webDevService;
         <!-- Main Section Title -->
         <h2
           data-reveal="title"
-          class="reveal-init text-3xl sm:text-4xl lg:text-[42px] font-bold tracking-[-0.03em] text-slate-950 leading-[1.18] mb-10 sm:mb-14 font-sans"
+          class="reveal-init text-2xl sm:text-4xl lg:text-[42px] font-bold tracking-[-0.03em] text-slate-950 leading-[1.2] mb-7 sm:mb-14 font-sans"
         >
           {aboutService.title}
         </h2>
 
         <!-- Mobile Table of Contents (collapsible / quick anchor drawer on small screens) -->
-        <div class="lg:hidden mb-10 rounded-2xl border border-slate-200/90 bg-slate-50/70 p-5">
+        <div class="lg:hidden mb-8 rounded-2xl border border-slate-200/90 bg-slate-50/80 p-4 sm:p-5">
           <details class="group">
-            <summary class="flex items-center justify-between cursor-pointer list-none font-mono text-xs font-bold uppercase tracking-wider text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded">
+            <summary class="flex items-center justify-between cursor-pointer list-none font-mono text-xs font-bold uppercase tracking-wider text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded min-h-[44px]">
               <span>{aboutService.tocTitle}</span>
               <svg
                 class="w-4 h-4 text-slate-500 transition-transform duration-200 group-open:rotate-180"
@@ -45,11 +45,11 @@ const { aboutService } = t.webDevService;
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </summary>
-            <nav class="mt-4 flex flex-col space-y-2 border-t border-slate-200/80 pt-3">
+            <nav class="mt-3 flex flex-col space-y-1.5 border-t border-slate-200/80 pt-3">
               {aboutService.sections.map((section) => (
                 <a
                   href={`#${section.id}`}
-                  class="text-xs sm:text-sm text-slate-600 hover:text-slate-950 transition-colors py-1 pl-2 border-l border-slate-300 hover:border-slate-900 font-sans"
+                  class="text-xs sm:text-sm text-slate-600 hover:text-slate-950 transition-colors py-1.5 pl-2.5 border-l-2 border-slate-300 hover:border-slate-900 font-sans min-h-[36px] flex items-center"
                 >
                   {section.tocLabel}
                 </a>
@@ -59,25 +59,25 @@ const { aboutService } = t.webDevService;
         </div>
 
         <!-- Editorial Sections -->
-        <div class="flex flex-col space-y-12 sm:space-y-16">
+        <div class="flex flex-col space-y-10 sm:space-y-16">
           {aboutService.sections.map((section) => (
             <article
               id={section.id}
-              class="editorial-section scroll-mt-28 reveal-init"
+              class="editorial-section scroll-mt-20 sm:scroll-mt-28 reveal-init pb-8 sm:pb-12 border-b border-slate-100 last:border-b-0"
               data-reveal="text"
             >
-              <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-950 mb-4 font-sans leading-snug">
+              <h3 class="text-lg sm:text-2xl font-bold tracking-tight text-slate-950 mb-3 sm:mb-4 font-sans leading-snug">
                 {section.title}
               </h3>
 
               {section.paragraphs.map((p) => (
-                <p class="text-[15px] sm:text-[16px] leading-[1.75] text-slate-600 font-sans mb-4">
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mb-3 sm:mb-4">
                   {p}
                 </p>
               ))}
 
               {section.bullets && (
-                <ul class="my-5 space-y-3 pl-5 list-disc marker:text-slate-400 text-[15px] sm:text-[16px] leading-relaxed text-slate-600 font-sans">
+                <ul class="my-4 sm:my-5 space-y-2.5 sm:space-y-3 pl-4 sm:pl-5 list-disc marker:text-slate-400 text-sm sm:text-[16px] leading-relaxed text-slate-600 font-sans">
                   {section.bullets.map((b) => (
                     <li>
                       <strong class="font-semibold text-slate-900">{b.label}:</strong> {b.text}
@@ -87,7 +87,7 @@ const { aboutService } = t.webDevService;
               )}
 
               {section.closingParagraph && (
-                <p class="text-[15px] sm:text-[16px] leading-[1.75] text-slate-600 font-sans mt-4">
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mt-3 sm:mt-4">
                   {section.closingParagraph}
                 </p>
               )}

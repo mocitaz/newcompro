@@ -1,0 +1,43 @@
+---
+// src/pages/services/web-maintenance.astro
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import WebMaintenanceHero from "../../components/services/WebMaintenanceHero.astro";
+import WebMaintenanceFeatures from "../../components/services/WebMaintenanceFeatures.astro";
+import WebMaintenanceAboutService from "../../components/services/WebMaintenanceAboutService.astro";
+import WebMaintenanceFaq from "../../components/services/WebMaintenanceFaq.astro";
+import LetsTalk from "../../components/LetsTalk.astro";
+import BackToTop from "../../components/BackToTop.astro";
+import { getTranslations } from "../../i18n/translations";
+
+const lang = "en";
+const t = getTranslations(lang);
+const meta = t.webMaintenanceService.meta;
+---
+
+<Layout
+  lang={lang}
+  title={meta.title}
+  description={meta.description}
+>
+  <TopBar lang={lang} />
+  
+  <main id="main-content" class="min-h-screen bg-[#fbfbfc]">
+    <!-- Hero Section with Frosted Card & 3D Medallion -->
+    <WebMaintenanceHero lang={lang} />
+
+    <!-- Core Capabilities Features Section -->
+    <WebMaintenanceFeatures lang={lang} />
+
+    <!-- Editorial Article with Sticky & Mobile Table of Contents -->
+    <WebMaintenanceAboutService lang={lang} />
+
+    <!-- Service Specific FAQ Accordion -->
+    <WebMaintenanceFaq lang={lang} />
+
+    <!-- Contact CTA Banner -->
+    <LetsTalk lang={lang} />
+  </main>
+
+  <BackToTop label="Back to top" />
+</Layout>

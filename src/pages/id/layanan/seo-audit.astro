@@ -1,0 +1,43 @@
+---
+// src/pages/id/layanan/seo-audit.astro
+import Layout from "../../../layouts/Layout.astro";
+import TopBar from "../../../components/TopBar.astro";
+import SeoAuditHero from "../../../components/services/SeoAuditHero.astro";
+import SeoAuditFeatures from "../../../components/services/SeoAuditFeatures.astro";
+import SeoAuditAboutService from "../../../components/services/SeoAuditAboutService.astro";
+import SeoAuditFaq from "../../../components/services/SeoAuditFaq.astro";
+import LetsTalk from "../../../components/LetsTalk.astro";
+import BackToTop from "../../../components/BackToTop.astro";
+import { getTranslations } from "../../../i18n/translations";
+
+const lang = "id";
+const t = getTranslations(lang);
+const meta = t.seoAuditService.meta;
+---
+
+<Layout
+  lang={lang}
+  title={meta.title}
+  description={meta.description}
+>
+  <TopBar lang={lang} />
+  
+  <main id="main-content" class="min-h-screen bg-[#fbfbfc]">
+    <!-- Hero Section with Frosted Card & 3D Medallion -->
+    <SeoAuditHero lang={lang} />
+
+    <!-- Core Capabilities Features Section -->
+    <SeoAuditFeatures lang={lang} />
+
+    <!-- Editorial Article with Sticky & Mobile Table of Contents -->
+    <SeoAuditAboutService lang={lang} />
+
+    <!-- Service Specific FAQ Accordion -->
+    <SeoAuditFaq lang={lang} />
+
+    <!-- Contact CTA Banner -->
+    <LetsTalk lang={lang} />
+  </main>
+
+  <BackToTop label="Kembali ke atas" />
+</Layout>
