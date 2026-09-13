@@ -103,8 +103,8 @@ const getTocLabel = (section: any) => {
       </div>
 
       <!-- Right Column: Sticky Table of Contents -->
-      <aside class="hidden lg:block lg:col-span-4">
-        <div class="sticky top-28 xl:top-32 max-h-[calc(100vh-8rem)] overflow-y-auto pl-8 border-l border-slate-200/90 py-1">
+      <aside class="hidden lg:block lg:col-span-4 sticky top-28 xl:top-32 self-start">
+        <div class="max-h-[calc(100vh-9rem)] overflow-y-auto pl-8 border-l border-slate-200/90 py-1">
           <h3 class="text-[11.5px] font-bold tracking-[0.14em] text-slate-900 uppercase font-mono mb-4 select-none">
             {aboutService.tocTitle}
           </h3>
@@ -146,10 +146,10 @@ const getTocLabel = (section: any) => {
           tocLinks.forEach((link) => {
             const href = link.getAttribute('href');
             if (href === `#${id}`) {
-              link.classList.add('text-slate-950', 'font-semibold', 'border-slate-900');
+              link.classList.add('text-slate-950', 'border-slate-900');
               link.classList.remove('text-slate-500', 'border-transparent');
             } else {
-              link.classList.remove('text-slate-950', 'font-semibold', 'border-slate-900');
+              link.classList.remove('text-slate-950', 'border-slate-900');
               link.classList.add('text-slate-500', 'border-transparent');
             }
           });
