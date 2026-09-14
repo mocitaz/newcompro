@@ -47,15 +47,18 @@ const overview = t.companyOverview;
     </div>
 
     <figure class="aspect-[5/4] overflow-hidden rounded-[18px] bg-slate-100 lg:col-span-5 lg:aspect-auto lg:h-[23rem] lg:self-start reveal-scale-init stagger-2" data-reveal="scale">
-      <img
-        src="/company-overview-office-v1.png"
-        alt={lang === 'id' ? 'Ruang kantor modern dengan pemandangan gedung Jakarta' : 'Modern office interior overlooking Jakarta'}
-        width="1122"
-        height="1402"
-        class="aspect-[4/5] h-full w-full object-cover reveal-img-breathe"
-        loading="eager"
-        decoding="async"
-      />
+      <picture>
+        <source srcset="/company-overview-office-v1.webp" type="image/webp" />
+        <img
+          src="/company-overview-office-v1.png"
+          alt={lang === 'id' ? 'Ruang kantor modern dengan pemandangan gedung Jakarta' : 'Modern office interior overlooking Jakarta'}
+          width="1122"
+          height="1402"
+          class="aspect-[4/5] h-full w-full object-cover reveal-img-breathe"
+          loading="eager"
+          decoding="async"
+        />
+      </picture>
     </figure>
   </div>
 </section>

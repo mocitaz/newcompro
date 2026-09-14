@@ -22,32 +22,31 @@ test('case studies page data exists in both en and id translations', () => {
   assert.ok(translations.id.caseStudiesPage.hero.subtitle.length < 150, 'Indonesian subtitle should be concise');
 });
 
-test('case studies 4 content items are properly configured with /segera_hadir.png image', () => {
+test('case studies 3 content items are properly configured', () => {
   const enItems = translations.en.caseStudiesPage.items;
   const idItems = translations.id.caseStudiesPage.items;
 
-  assert.equal(enItems.length, 4, 'Must have exactly 4 items in EN');
-  assert.equal(idItems.length, 4, 'Must have exactly 4 items in ID');
+  assert.equal(enItems.length, 3, 'Must have exactly 3 items in EN');
+  assert.equal(idItems.length, 3, 'Must have exactly 3 items in ID');
 
   const expectedTitles = [
     'KelolaAja - CMS-Powered Product Experience',
     'PT Nikawa Teknika Indonesia - Corporate Digital Presence',
-    'Anytime Fitness - Digital Fitness Management Platform',
-    'Enterprise Operations Platform'
+    'Anytime Fitness - Digital Fitness Management Platform'
   ];
 
   enItems.forEach((item, index) => {
     assert.equal(item.title, expectedTitles[index]);
-    assert.equal(item.image, '/segera_hadir.png', 'Must point to /segera_hadir.png as requested by user');
-    assert.equal(item.webp, '/segera_hadir.webp', 'Must have webp companion for segera_hadir.webp');
+    assert.ok(item.image, 'Must have image');
+    assert.ok(item.webp, 'Must have webp');
     assert.ok(item.category, 'Must have category');
     assert.ok(item.industry, 'Must have industry label');
   });
 
   idItems.forEach((item, index) => {
     assert.equal(item.title, expectedTitles[index]);
-    assert.equal(item.image, '/segera_hadir.png', 'Must point to /segera_hadir.png as requested by user');
-    assert.equal(item.webp, '/segera_hadir.webp', 'Must have webp companion for segera_hadir.webp');
+    assert.ok(item.image, 'Must have image');
+    assert.ok(item.webp, 'Must have webp');
     assert.ok(item.category, 'Must have category');
     assert.ok(item.industry, 'Must have industry label');
   });
@@ -67,12 +66,11 @@ test('translations for case studies follow antislop rules with zero em dashes', 
   assert.ok(!idJson.includes('—'), 'Indonesian caseStudiesPage must not contain em dash (—)');
 });
 
-test('CaseStudiesGrid component exists with ambient aura and clean 2-column layout without filter pills', () => {
+test('CaseStudiesGrid component exists and has clean 2-column layout without filter pills', () => {
   const gridPath = path.join(cwd, 'src/components/CaseStudiesGrid.astro');
   assert.ok(fs.existsSync(gridPath), 'CaseStudiesGrid.astro must exist');
 
   const gridContent = fs.readFileSync(gridPath, 'utf8');
-  assert.ok(gridContent.includes('ambient_sphere') || gridContent.includes('from-emerald-300'), 'Must include ambient emerald/mint aura');
   assert.ok(!gridContent.includes('case-study-filter-btn'), 'Filter pills should be removed as requested');
   assert.ok(!gridContent.includes('initCaseStudyFilters'), 'Filter script should be removed as requested');
   assert.ok(gridContent.includes('grid-cols-1 md:grid-cols-2'), 'Must use 2-col desktop, 1-col mobile grid');

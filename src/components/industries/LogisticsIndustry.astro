@@ -112,17 +112,20 @@ const partnerLogos = [
 
 <!-- Hero Section with Background Image and Gradient Overlay -->
 <section class="relative isolate min-h-[38rem] overflow-hidden bg-white py-28 sm:min-h-[42rem] sm:py-32 lg:min-h-[46rem] lg:py-40" aria-labelledby="logistics-title">
-  <img src="/industry/herologistic.png" alt="" width="1536" height="1024" class="absolute inset-0 -z-20 h-full w-full object-cover object-[64%_center]" loading="eager" decoding="async" />
+  <picture>
+    <source srcset="/industry/herologistic.webp" type="image/webp" />
+    <img src="/industry/herologistic.png" alt="" width="1536" height="1024" class="absolute inset-0 -z-20 h-full w-full object-cover object-[64%_center]" loading="eager" decoding="async" />
+  </picture>
   <div class="absolute inset-0 -z-10 bg-white/84 sm:bg-gradient-to-r sm:from-white sm:from-[7%] sm:via-white/86 sm:via-[46%] sm:to-white/0 sm:to-[80%]"></div>
   <div class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-white"></div>
   <div class="home-container flex min-h-[calc(38rem-7rem)] items-end sm:min-h-[calc(42rem-8rem)] lg:min-h-[calc(46rem-10rem)]">
     <div class="max-w-3xl pb-2 lg:pb-5">
-      <p class="text-[11px] font-semibold tracking-[0.14em] text-slate-600">{copy.eyebrow}</p>
-      <h1 id="logistics-title" class="mt-4 max-w-3xl text-4xl font-medium leading-[1.06] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-[4.5rem]">
+      <p data-reveal="title" class="text-[11px] font-semibold tracking-[0.14em] text-slate-600">{copy.eyebrow}</p>
+      <h1 id="logistics-title" data-reveal="title" class="stagger-1 mt-4 max-w-3xl text-4xl font-medium leading-[1.06] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-[4.5rem]">
         {copy.title}
       </h1>
-      <p class="mt-6 max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">{copy.lead}</p>
-      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-[#f5a623] px-6 text-sm font-semibold text-slate-950 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e69818] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2">
+      <p data-reveal="text" class="stagger-2 mt-6 max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">{copy.lead}</p>
+      <a data-reveal="scale" href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="stagger-3 mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-[#f5a623] px-6 text-sm font-semibold text-slate-950 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e69818] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2">
         {copy.primaryCta}
       </a>
     </div>
@@ -132,8 +135,11 @@ const partnerLogos = [
 <!-- Challenges Section with Sticky Secondary Photo and Numbered Grid -->
 <section class="home-section bg-white" aria-labelledby="logistics-challenges-title">
   <div class="home-container grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-12">
-    <div class="group relative overflow-hidden rounded-[24px] lg:sticky lg:top-28 lg:self-start">
-      <img src="/industry/secondarylogistic.png" alt="Logistics operations and modern supply chain infrastructure" width="1448" height="1086" class="h-[21rem] w-full object-cover sm:h-[28rem] lg:h-[38rem]" loading="lazy" decoding="async" />
+    <div data-reveal="scale" class="group relative overflow-hidden rounded-[24px] lg:sticky lg:top-28 lg:self-start">
+      <picture>
+        <source srcset="/industry/secondarylogistic.webp" type="image/webp" />
+        <img src="/industry/secondarylogistic.png" alt="Logistics operations and modern supply chain infrastructure" width="1448" height="1086" class="h-[21rem] w-full object-cover sm:h-[28rem] lg:h-[38rem]" loading="lazy" decoding="async" />
+      </picture>
       <div class="absolute inset-0 bg-slate-950/30 transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
       <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-950/65 to-transparent"></div>
       <div class="absolute inset-x-0 bottom-0 p-6 sm:p-7">
@@ -141,11 +147,11 @@ const partnerLogos = [
       </div>
     </div>
     <div class="flex flex-col">
-      <h2 id="logistics-challenges-title" class="max-w-xl text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.challengesTitle}</h2>
-      <p class="mt-5 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.challengesLead}</p>
+      <h2 id="logistics-challenges-title" data-reveal="title" class="max-w-xl text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.challengesTitle}</h2>
+      <p data-reveal="text" class="stagger-1 mt-5 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.challengesLead}</p>
       <ol class="mt-10 grid flex-1 grid-cols-1 gap-x-8 sm:mt-12 sm:grid-cols-2">
         {copy.challenges.map(([title, description], index) => (
-          <li class="group border-t border-slate-200 py-6 sm:py-7">
+          <li data-reveal="scale" class={`group border-t border-slate-200 py-6 sm:py-7 stagger-${index + 1}`}>
             <div class="flex items-baseline justify-between gap-5">
               <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
               <span class="h-px flex-1 bg-slate-100 transition-colors duration-300 group-hover:bg-violet-200"></span>
@@ -162,14 +168,14 @@ const partnerLogos = [
 <!-- Solutions Grid Section (6 Cards with Hover Gradient Glow & Custom Icons) -->
 <section id="logistics-solutions" class="home-section bg-white scroll-mt-20" aria-labelledby="logistics-solutions-title">
   <div class="home-container">
-    <div class="mx-auto max-w-3xl text-center">
+    <div data-reveal="title" class="mx-auto max-w-3xl text-center">
       <h2 id="logistics-solutions-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.solutionsTitle}</h2>
-      <p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.solutionsLead}</p>
+      <p class="stagger-1 mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.solutionsLead}</p>
     </div>
 
     <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
-      {copy.solutions.map(([title, description, icon]) => (
-        <article class="logistics-solution-card group relative isolate flex min-h-[17rem] overflow-hidden rounded-[20px] border border-slate-200/90 bg-white p-6 sm:min-h-[18rem] sm:p-7">
+      {copy.solutions.map(([title, description, icon], index) => (
+        <article data-reveal="scale" class={`logistics-solution-card group relative isolate flex min-h-[17rem] overflow-hidden rounded-[20px] border border-slate-200/90 bg-white p-6 sm:min-h-[18rem] sm:p-7 stagger-${index + 1}`}>
           <div class="relative z-10 flex w-full flex-col justify-between">
             <span class="logistics-solution-icon flex h-10 w-10 items-center justify-center text-slate-950" aria-hidden="true">
               {icon === 'tms' && (
@@ -236,12 +242,12 @@ const partnerLogos = [
 <!-- Approach Section (3 Domain Cards with Bespoke Logistics Schematics) -->
 <section class="home-section bg-white" aria-labelledby="logistics-approach-title">
   <div class="home-container">
-    <div class="mx-auto max-w-4xl text-center">
+    <div data-reveal="title" class="mx-auto max-w-4xl text-center">
       <h2 id="logistics-approach-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.approachTitle}</h2>
     </div>
     <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 lg:grid-cols-3 lg:gap-5">
       {copy.domains.map(([title, description, key], index) => (
-        <article class={`logistics-domain-card logistics-domain-${key} flex min-h-[18rem] flex-col rounded-[20px] border border-slate-200 bg-white p-6 sm:p-7`}>
+        <article data-reveal="scale" class={`logistics-domain-card logistics-domain-${key} flex min-h-[18rem] flex-col rounded-[20px] border border-slate-200 bg-white p-6 sm:p-7 stagger-${index + 1}`}>
           <div class="flex items-start justify-between gap-5">
             <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
             <span class="text-[11px] font-medium tracking-[0.08em] text-slate-400">
@@ -307,9 +313,9 @@ const partnerLogos = [
 <LogisticsAboutIndustry lang={lang} />
 
 <!-- FAQ Section with Accordion and Partner Trust Bar -->
-<section class="home-section bg-white" aria-labelledby="logistics-faq-title">
+<section class="home-section relative bg-[#fbfbfc] text-slate-900 border-t border-slate-200/80" aria-labelledby="logistics-faq-title">
   <div class="home-container grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-16">
-    <div class="space-y-6 lg:sticky lg:top-28 lg:col-span-5">
+    <div data-reveal="title" class="space-y-6 lg:sticky lg:top-28 lg:col-span-5">
       <div>
         <h2 id="logistics-faq-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-[44px]">{copy.faqTitle}</h2>
         <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-600 sm:text-base">{copy.faqLead}</p>
@@ -333,7 +339,7 @@ const partnerLogos = [
     </div>
     <div class="space-y-3 lg:col-span-7">
       {copy.faqs.map(([question, answer], index) => (
-        <details class="logistics-faq-item group overflow-hidden rounded-2xl border border-slate-900/80 bg-white transition-colors hover:border-slate-950">
+        <details data-reveal class={`logistics-faq-item group overflow-hidden rounded-2xl border border-slate-900/80 bg-white transition-colors hover:border-slate-950 stagger-${(index % 4) + 1}`}>
           <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 rounded-2xl p-5 text-base font-medium leading-snug text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-slate-900 sm:p-6">
             <span>{question}</span>
             <span class="logistics-faq-icon relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-900/30 bg-slate-50 text-slate-700 transition-colors" aria-hidden="true">

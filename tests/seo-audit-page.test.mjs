@@ -153,7 +153,7 @@ test('seo-audit faq component matches homepage faq layout with radial gradient a
   assert.match(faqComponent, /seo-audit-faq-accordion/);
   assert.match(faqComponent, /faq-icon-minus/);
   assert.match(faqComponent, /faq-icon-plus/);
-  assert.match(faqComponent, /bg-\[radial-gradient\(ellipse_at_top_left/);
+  assert.match(faqComponent, /bg-\[#fbfbfc\]/);
 });
 
 test('topbar includes seo-audit in language toggle routes and mega menu', () => {

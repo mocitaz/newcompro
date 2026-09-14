@@ -30,7 +30,7 @@ test('desktop layout balances the overview with an editorial office visual', () 
 test('company overview typography matches the tailored engineering header', () => {
   assert.match(
     component,
-    /text-2xl sm:text-3xl lg:text-\[2\.15rem\] font-bold text-slate-950 tracking-\[-0\.02em\] leading-tight font-sans/,
+    /text-2xl sm:text-3xl lg:text-\[2\.15rem\] font-medium text-slate-950 tracking-\[-0\.03em\] leading-tight font-sans/,
   );
   assert.match(
     component,

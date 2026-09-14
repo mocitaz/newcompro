@@ -52,39 +52,48 @@ const copy = isIndonesian
 
     <div class="mt-10 sm:mt-14 grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-3 md:gap-6">
       <figure data-reveal="scale" class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200 reveal-scale-init stagger-1">
-        <img
-          src="/about/about-architecture-v1.png"
-          alt={isIndonesian ? 'Komposisi arsitektur modern dengan panel beton geometris' : 'Modern architectural composition with geometric concrete panels'}
-          width="1448"
-          height="1086"
-          class="aspect-[4/3] h-full w-full object-cover grayscale-[0.92] contrast-[0.92] reveal-img-breathe"
-          loading="eager"
-          decoding="async"
-        />
+        <picture>
+          <source srcset="/about/about-architecture-v1.webp" type="image/webp" />
+          <img
+            src="/about/about-architecture-v1.png"
+            alt={isIndonesian ? 'Komposisi arsitektur modern dengan panel beton geometris' : 'Modern architectural composition with geometric concrete panels'}
+            width="1448"
+            height="1086"
+            class="aspect-[4/3] h-full w-full object-cover grayscale-[0.92] contrast-[0.92] reveal-img-breathe"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
       </figure>
 
       <figure data-reveal="scale" class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200 reveal-scale-init stagger-2">
-        <img
-          src="/about/about-office-v1.png"
-          alt={isIndonesian ? 'Ruang kantor modern dengan siluet kolaborasi tim' : 'Modern office interior with a team collaborating in silhouette'}
-          width="1448"
-          height="1086"
-          class="aspect-[4/3] h-full w-full object-cover grayscale reveal-img-breathe"
-          loading="lazy"
-          decoding="async"
-        />
+        <picture>
+          <source srcset="/about/about-office-v1.webp" type="image/webp" />
+          <img
+            src="/about/about-office-v1.png"
+            alt={isIndonesian ? 'Ruang kantor modern dengan siluet kolaborasi tim' : 'Modern office interior with a team collaborating in silhouette'}
+            width="1448"
+            height="1086"
+            class="aspect-[4/3] h-full w-full object-cover grayscale reveal-img-breathe"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
       </figure>
 
       <figure data-reveal="scale" class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200 reveal-scale-init stagger-3">
-        <img
-          src="/about/about-office-v2.png"
-          alt={isIndonesian ? 'Tim engineering berdiskusi di studio kerja modern' : 'Engineering team in discussion at a modern studio'}
-          width="1448"
-          height="1086"
-          class="aspect-[4/3] h-full w-full object-cover grayscale reveal-img-breathe"
-          loading="lazy"
-          decoding="async"
-        />
+        <picture>
+          <source srcset="/about/about-office-v2.webp" type="image/webp" />
+          <img
+            src="/about/about-office-v2.png"
+            alt={isIndonesian ? 'Tim engineering berdiskusi di studio kerja modern' : 'Engineering team in discussion at a modern studio'}
+            width="1448"
+            height="1086"
+            class="aspect-[4/3] h-full w-full object-cover grayscale reveal-img-breathe"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
       </figure>
     </div>
 

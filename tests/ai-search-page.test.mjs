@@ -153,7 +153,7 @@ test('ai search faq component matches homepage faq layout with radial gradient a
   assert.match(faqComponent, /aisearch-faq-accordion/);
   assert.match(faqComponent, /faq-icon-minus/);
   assert.match(faqComponent, /faq-icon-plus/);
-  assert.match(faqComponent, /bg-\[radial-gradient\(ellipse_at_top_left/);
+  assert.match(faqComponent, /bg-\[#fbfbfc\]/);
 });
 
 test('topbar includes ai-search in language toggle routes and mega menu', () => {

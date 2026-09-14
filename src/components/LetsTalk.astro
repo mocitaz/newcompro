@@ -4,25 +4,15 @@ import { getTranslations, type Locale } from '../i18n/translations';
 
 interface Props {
   lang?: Locale;
-  bgWhite?: boolean;
 }
 
-const { lang = 'en', bgWhite = false } = Astro.props;
+const { lang = 'en' } = Astro.props;
 const t = getTranslations(lang);
-
-const bgClass = bgWhite ? 'bg-white' : 'bg-[#fbfbfc]';
-const gradientY = bgWhite
-  ? 'from-white via-transparent to-white'
-  : 'from-[#fbfbfc] via-transparent to-[#fbfbfc]';
-const gradientX = bgWhite
-  ? 'from-white/80 via-transparent to-white/80'
-  : 'from-[#fbfbfc]/80 via-transparent to-[#fbfbfc]/80';
 ---
 
 <section
   id="lets-talk-cta"
-  class="home-section relative overflow-hidden text-center"
-  class:list={[bgClass]}
+  class="home-section relative overflow-hidden text-center bg-[#fbfbfc]"
   aria-labelledby="lets-talk-heading"
 >
   <!-- Realistic Celestial Moon Horizon Background spanning full width -->
@@ -39,8 +29,8 @@ const gradientX = bgWhite
     </picture>
     
     <!-- Seamless edge gradient masks blending into surrounding canvas -->
-    <div class:list={['absolute inset-0 bg-gradient-to-b pointer-events-none', gradientY]}></div>
-    <div class:list={['absolute inset-0 bg-gradient-to-r pointer-events-none', gradientX]}></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#fbfbfc] via-transparent to-[#fbfbfc] pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#fbfbfc]/80 via-transparent to-[#fbfbfc]/80 pointer-events-none"></div>
   </div>
 
   <!-- Content Container: Pushed lower into the moon dome with sleek, compact proportions -->

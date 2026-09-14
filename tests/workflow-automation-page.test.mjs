@@ -153,7 +153,7 @@ test('workflow auto faq component matches homepage faq layout with radial gradie
   assert.match(faqComponent, /workflowauto-faq-accordion/);
   assert.match(faqComponent, /faq-icon-minus/);
   assert.match(faqComponent, /faq-icon-plus/);
-  assert.match(faqComponent, /bg-\[radial-gradient\(ellipse_at_top_left/);
+  assert.match(faqComponent, /bg-\[#fbfbfc\]/);
 });
 
 test('topbar includes workflow-automation in language toggle routes and mega menu', () => {

@@ -1,124 +1,186 @@
 ---
-import type { Locale } from '../i18n/translations';
+import type { Locale } from "../i18n/translations";
 
 interface Props {
   lang?: Locale;
 }
 
-const { lang = 'en' } = Astro.props;
-const isIndonesian = lang === 'id';
-const riseLetters = ['R', 'I', 'S', 'E'];
+const { lang = "en" } = Astro.props;
+const isIndonesian = lang === "id";
+const riseLetters = ["R", "I", "S", "E"];
 
 const copy = isIndonesian
   ? {
-      label: 'NILAI BRAND',
-      title: 'RISE mengarahkan cara kami bekerja.',
-      description: 'Empat nilai ini menjaga keputusan kami tetap jelas, dari diskusi awal sampai sistem berjalan.',
+      label: "NILAI BRAND",
+      title: "RISE mengarahkan cara kami bekerja.",
+      description:
+        "Empat nilai ini menjaga keputusan kami tetap jelas, dari diskusi awal sampai sistem berjalan.",
       values: [
         {
-          name: 'Ketangguhan',
-          term: 'Resilient',
-          description: 'Tetap siap menghadapi perubahan kebutuhan, teknologi, dan operasi bisnis dengan fondasi yang adaptif.',
+          name: "Ketangguhan",
+          term: "Resilient",
+          description:
+            "Tetap siap menghadapi perubahan kebutuhan, teknologi, dan operasi bisnis dengan fondasi yang adaptif.",
         },
         {
-          name: 'Inovasi terarah',
-          term: 'Innovative',
-          description: 'Menerapkan teknologi tepat guna untuk menyelesaikan kebutuhan nyata secara terukur dan kontekstual.',
+          name: "Inovasi terarah",
+          term: "Innovative",
+          description:
+            "Menerapkan teknologi tepat guna untuk menyelesaikan kebutuhan nyata secara terukur dan kontekstual.",
         },
         {
-          name: 'Sinergi ekosistem',
-          term: 'Synergy',
-          description: 'Membangun kerja sama terbuka yang memperkuat tim, mitra industri, dan infrastruktur bersama.',
+          name: "Sinergi ekosistem",
+          term: "Synergy",
+          description:
+            "Membangun kerja sama terbuka yang memperkuat tim, mitra industri, dan infrastruktur bersama.",
         },
         {
-          name: 'Standar keunggulan',
-          term: 'Excellence',
-          description: 'Menjaga standar kualitas rekayasa perangkat lunak yang spesifik, transparan, dan akuntabel.',
+          name: "Standar keunggulan",
+          term: "Excellence",
+          description:
+            "Menjaga standar kualitas rekayasa perangkat lunak yang spesifik, transparan, dan akuntabel.",
         },
       ],
     }
   : {
-      label: 'BRAND VALUES',
-      title: 'RISE guides how we work.',
-      description: 'These four values keep our decisions clear, from the first conversation through system operations.',
+      label: "BRAND VALUES",
+      title: "RISE guides how we work.",
+      description:
+        "These four values keep our decisions clear, from the first conversation through system operations.",
       values: [
         {
-          name: 'Resilience',
-          term: 'Resilient',
-          description: 'Stay ready for changing requirements, technologies, and business operations with resilient digital architecture.',
+          name: "Resilience",
+          term: "Resilient",
+          description:
+            "Stay ready for changing requirements, technologies, and business operations with resilient digital architecture.",
         },
         {
-          name: 'Focused innovation',
-          term: 'Innovative',
-          description: 'Apply technology when it solves a real need, delivering measurable and context-aware solutions.',
+          name: "Innovation",
+          term: "Innovative",
+          description:
+            "Apply technology when it solves a real need, delivering measurable and context-aware solutions.",
         },
         {
-          name: 'Ecosystem synergy',
-          term: 'Synergy',
-          description: 'Build collaborative systems that strengthen teams, enterprise partners, and shared infrastructure.',
+          name: "Ecosystem synergy",
+          term: "Synergy",
+          description:
+            "Build collaborative systems that strengthen teams, enterprise partners, and shared infrastructure.",
         },
         {
-          name: 'Excellence as standard',
-          term: 'Excellence',
-          description: 'Hold every deliverable to a specific, transparent, and verifiable engineering standard.',
+          name: "Excellence as standard",
+          term: "Excellence",
+          description:
+            "Hold every deliverable to a specific, transparent, and verifiable engineering standard.",
         },
       ],
     };
 ---
 
-<section id="brand-values" class="home-section border-y border-slate-200 bg-white" aria-labelledby="brand-values-title">
+<section
+  id="brand-values"
+  class="home-section border-y border-slate-200 bg-white"
+  aria-labelledby="brand-values-title"
+>
   <div class="home-container">
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
       <div class="lg:col-span-7">
-        <p data-reveal="title" class="font-mono text-[11px] font-semibold tracking-[0.16em] text-slate-500 reveal-title-init">{copy.label}</p>
-        <h2 id="brand-values-title" data-reveal="title" class="mt-4 max-w-2xl text-3xl font-medium tracking-[-0.045em] text-slate-950 sm:text-4xl lg:text-5xl reveal-title-init stagger-1">
+        <p
+          data-reveal="title"
+          class="font-mono text-[11px] font-semibold tracking-[0.16em] text-slate-500 reveal-title-init"
+        >
+          {copy.label}
+        </p>
+        <h2
+          id="brand-values-title"
+          data-reveal="title"
+          class="mt-4 max-w-2xl text-3xl font-medium tracking-[-0.045em] text-slate-950 sm:text-4xl lg:text-5xl reveal-title-init stagger-1"
+        >
           {copy.title}
         </h2>
       </div>
-      <p data-reveal="text" class="max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base lg:col-span-5 reveal-text-init stagger-2">{copy.description}</p>
+      <p
+        data-reveal="text"
+        class="max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base lg:col-span-5 reveal-text-init stagger-2"
+      >
+        {copy.description}
+      </p>
     </div>
 
-    <ol class="mt-8 sm:mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 md:gap-5">
-      {copy.values.map((value, index) => (
-        <li data-reveal="scale" class={`rise-value-card rise-card-${index} group relative flex min-h-0 md:min-h-[19rem] sm:min-h-[20.5rem] flex-col justify-between overflow-hidden rounded-[20px] border border-slate-200/85 bg-white p-5 sm:p-7 reveal-scale-init stagger-${index + 1}`}>
-          <div class="relative z-10 flex items-start justify-between">
-            <span class="rise-value-icon" aria-hidden="true">
-              {index === 0 && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="m6 8 6-3 6 3-6 3-6-3Z" />
-                  <path d="m6 12 6 3 6-3M6 16l6 3 6-3" />
-                  <path d="M6 8v8m6-5v8m6-11v8" />
-                </svg>
-              )}
-              {index === 1 && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="m8 3 4 2.3v4.6L8 12l-4-2.1V5.3L8 3Z" />
-                  <path d="m16 10 4 2.3v4.6L16 19l-4-2.1v-4.6l4-2.3Z" />
-                  <path d="m8 14 4 2.3v4.6L8 23l-4-2.1v-4.6L8 14Z" transform="translate(0 -2)" />
-                </svg>
-              )}
-              {index === 2 && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <circle cx="6" cy="7" r="2.25" />
-                  <circle cx="18" cy="7" r="2.25" />
-                  <circle cx="12" cy="17" r="2.25" />
-                  <path d="m7.9 8.3 2.8 6.2M16.1 8.3l-2.8 6.2M8.25 7h7.5" />
-                </svg>
-              )}
-              {index === 3 && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="m12 3 2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z" />
-                  <path d="m18.5 16 .8 2 .7.3-.7.3-.8 2-.8-2-.7-.3.7-.3.8-2Z" />
-                </svg>
-              )}
-            </span>
-          </div>
-          <div class="relative z-10 mt-auto pt-4 sm:pt-6">
-            <h3 class="text-lg sm:text-[21px] font-medium tracking-[-0.025em] text-slate-950">{value.name}</h3>
-            <p class="mt-2 text-[13px] sm:text-[13.5px] leading-relaxed text-slate-600">{value.description}</p>
-          </div>
-        </li>
-      ))}
+    <ol
+      class="mt-8 sm:mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 md:gap-5"
+    >
+      {
+        copy.values.map((value, index) => (
+          <li
+            data-reveal="scale"
+            class={`rise-value-card rise-card-${index} group relative flex min-h-0 md:min-h-[19rem] sm:min-h-[20.5rem] flex-col justify-between overflow-hidden rounded-[20px] border border-slate-200/85 bg-white p-5 sm:p-7 reveal-scale-init stagger-${index + 1}`}
+          >
+            <div class="relative z-10 flex items-start justify-between">
+              <span class="rise-value-icon" aria-hidden="true">
+                {index === 0 && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path d="m6 8 6-3 6 3-6 3-6-3Z" />
+                    <path d="m6 12 6 3 6-3M6 16l6 3 6-3" />
+                    <path d="M6 8v8m6-5v8m6-11v8" />
+                  </svg>
+                )}
+                {index === 1 && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path d="m8 3 4 2.3v4.6L8 12l-4-2.1V5.3L8 3Z" />
+                    <path d="m16 10 4 2.3v4.6L16 19l-4-2.1v-4.6l4-2.3Z" />
+                    <path
+                      d="m8 14 4 2.3v4.6L8 23l-4-2.1v-4.6L8 14Z"
+                      transform="translate(0 -2)"
+                    />
+                  </svg>
+                )}
+                {index === 2 && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <circle cx="6" cy="7" r="2.25" />
+                    <circle cx="18" cy="7" r="2.25" />
+                    <circle cx="12" cy="17" r="2.25" />
+                    <path d="m7.9 8.3 2.8 6.2M16.1 8.3l-2.8 6.2M8.25 7h7.5" />
+                  </svg>
+                )}
+                {index === 3 && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path d="m12 3 2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z" />
+                    <path d="m18.5 16 .8 2 .7.3-.7.3-.8 2-.8-2-.7-.3.7-.3.8-2Z" />
+                  </svg>
+                )}
+              </span>
+            </div>
+            <div class="relative z-10 mt-auto pt-4 sm:pt-6">
+              <h3 class="text-lg sm:text-[21px] font-medium tracking-[-0.025em] text-slate-950">
+                {value.name}
+              </h3>
+              <p class="mt-2 text-[13px] sm:text-[13.5px] leading-relaxed text-slate-600">
+                {value.description}
+              </p>
+            </div>
+          </li>
+        ))
+      }
     </ol>
   </div>
 </section>
@@ -127,7 +189,10 @@ const copy = isIndonesian
   .rise-value-card {
     isolation: isolate;
     box-shadow: 0 2px 14px -2px rgba(0, 0, 0, 0.03);
-    transition: border-color 300ms cubic-bezier(0.16, 1, 0.3, 1), transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      border-color 300ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .rise-value-card:hover {
@@ -145,38 +210,80 @@ const copy = isIndonesian
     width: 14.5rem;
     height: 14.5rem;
     border-radius: 9999px;
-    content: '';
+    content: "";
     filter: blur(28px);
     pointer-events: none;
-    transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease;
+    transition:
+      transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 400ms ease;
   }
 
   /* Card 1: Pink & Violet (Reference Card 1 - "People First") */
   .rise-card-0::before {
-    background: 
-      radial-gradient(circle at 62% 35%, rgba(244, 114, 182, 0.55) 0%, rgba(251, 207, 232, 0.20) 38%, transparent 68%),
-      radial-gradient(circle at 82% 28%, rgba(192, 132, 252, 0.60) 0%, rgba(168, 85, 247, 0.28) 35%, transparent 72%);
+    background:
+      radial-gradient(
+        circle at 62% 35%,
+        rgba(244, 114, 182, 0.55) 0%,
+        rgba(251, 207, 232, 0.2) 38%,
+        transparent 68%
+      ),
+      radial-gradient(
+        circle at 82% 28%,
+        rgba(192, 132, 252, 0.6) 0%,
+        rgba(168, 85, 247, 0.28) 35%,
+        transparent 72%
+      );
   }
 
   /* Card 2: Sky Blue & Violet (Reference Card 2 - "Integrity & Trust") */
   .rise-card-1::before {
-    background: 
-      radial-gradient(circle at 62% 35%, rgba(56, 189, 248, 0.50) 0%, rgba(186, 230, 253, 0.20) 38%, transparent 68%),
-      radial-gradient(circle at 82% 28%, rgba(129, 140, 248, 0.55) 0%, rgba(168, 85, 247, 0.28) 35%, transparent 72%);
+    background:
+      radial-gradient(
+        circle at 62% 35%,
+        rgba(56, 189, 248, 0.5) 0%,
+        rgba(186, 230, 253, 0.2) 38%,
+        transparent 68%
+      ),
+      radial-gradient(
+        circle at 82% 28%,
+        rgba(129, 140, 248, 0.55) 0%,
+        rgba(168, 85, 247, 0.28) 35%,
+        transparent 72%
+      );
   }
 
   /* Card 3: Cyan & Sky Blue (Reference Card 3 - "Business Focus") */
   .rise-card-2::before {
-    background: 
-      radial-gradient(circle at 62% 35%, rgba(34, 211, 238, 0.48) 0%, rgba(165, 243, 252, 0.20) 38%, transparent 68%),
-      radial-gradient(circle at 82% 28%, rgba(56, 189, 248, 0.55) 0%, rgba(14, 165, 233, 0.25) 35%, transparent 72%);
+    background:
+      radial-gradient(
+        circle at 62% 35%,
+        rgba(34, 211, 238, 0.48) 0%,
+        rgba(165, 243, 252, 0.2) 38%,
+        transparent 68%
+      ),
+      radial-gradient(
+        circle at 82% 28%,
+        rgba(56, 189, 248, 0.55) 0%,
+        rgba(14, 165, 233, 0.25) 35%,
+        transparent 72%
+      );
   }
 
   /* Card 4: Rich Violet & Fuchsia */
   .rise-card-3::before {
-    background: 
-      radial-gradient(circle at 62% 35%, rgba(192, 132, 252, 0.58) 0%, rgba(233, 213, 255, 0.20) 38%, transparent 68%),
-      radial-gradient(circle at 82% 28%, rgba(244, 114, 182, 0.52) 0%, rgba(217, 70, 239, 0.28) 35%, transparent 72%);
+    background:
+      radial-gradient(
+        circle at 62% 35%,
+        rgba(192, 132, 252, 0.58) 0%,
+        rgba(233, 213, 255, 0.2) 38%,
+        transparent 68%
+      ),
+      radial-gradient(
+        circle at 82% 28%,
+        rgba(244, 114, 182, 0.52) 0%,
+        rgba(217, 70, 239, 0.28) 35%,
+        transparent 72%
+      );
   }
 
   .rise-value-card:hover::before {
