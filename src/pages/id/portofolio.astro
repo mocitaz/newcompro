@@ -1,55 +1,25 @@
 ---
-// src/pages/id/portofolio.astro - Menampilkan gambar EA.png
+// src/pages/id/portofolio.astro - Portofolio Proyek & Case Studies Enterprise (ID)
 import Layout from "../../layouts/Layout.astro";
 import TopBar from "../../components/TopBar.astro";
+import CaseStudiesGrid from "../../components/CaseStudiesGrid.astro";
+import LetsTalk from "../../components/LetsTalk.astro";
+import BackToTop from "../../components/BackToTop.astro";
+import { getTranslations } from "../../i18n/translations";
+
+const t = getTranslations("id");
+const meta = t.caseStudiesPage.meta;
 ---
 
 <Layout
   lang="id"
-  title="Portofolio Proyek | PT Teknalogi Transformasi Digital"
-  description="Rekam jejak implementasi rekayasa software enterprise, portofolio solusi, dan cetak biru arsitektur."
+  title={meta.title}
+  description={meta.description}
 >
   <TopBar lang="id" />
-  <main class="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-8 max-w-7xl mx-auto flex flex-col items-center min-h-[75vh]">
-    <!-- Page Header Title & Context -->
-    <div class="w-full max-w-4xl text-center mb-8 sm:mb-12">
-      <span class="inline-block text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-50 border border-indigo-200/60 px-3.5 py-1 rounded-full mb-3 font-mono">
-        Rekam Jejak Implementasi
-      </span>
-      <h1 class="text-2xl sm:text-4xl lg:text-[42px] font-bold text-slate-950 tracking-[-0.025em] leading-[1.2] font-sans">
-        Portofolio Proyek & Arsitektur Solusi
-      </h1>
-      <p class="text-slate-600 text-xs sm:text-base leading-relaxed mt-2.5 sm:mt-3.5 font-sans max-w-2xl mx-auto">
-        Rekam jejak implementasi rekayasa perangkat lunak skala enterprise dan integrasi sistem di berbagai sektor industri.
-      </p>
-
-      <!-- Mobile Touch Hint (Visible only on small viewports) -->
-      <div class="mt-4 sm:hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-600 text-[11px] font-medium">
-        <svg class="w-3.5 h-3.5 text-indigo-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-        </svg>
-        <span>Geser ke samping untuk melihat detail diagram</span>
-      </div>
-    </div>
-
-    <!-- Responsive High-Resolution Diagram Frame -->
-    <div class="w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-xl bg-white">
-      <div class="overflow-x-auto overscroll-x-contain scrollbar-thin">
-        <div class="min-w-[720px] sm:min-w-0">
-          <picture>
-            <source srcset="/EA.webp" type="image/webp" />
-            <img
-              src="/EA.png"
-              alt="Portofolio Proyek - PT Teknalogi Transformasi Digital"
-              class="w-full h-auto block select-none"
-              loading="eager"
-              decoding="async"
-              width="1884"
-              height="1080"
-            />
-          </picture>
-        </div>
-      </div>
-    </div>
+  <main class="min-h-screen bg-white">
+    <CaseStudiesGrid lang="id" />
+    <LetsTalk lang="id" bgWhite={true} />
   </main>
+  <BackToTop label="Kembali ke atas" />
 </Layout>

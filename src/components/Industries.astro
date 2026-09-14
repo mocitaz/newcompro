@@ -10,6 +10,11 @@ const t = getTranslations(lang);
 const industries = t.industries.items;
 const layananUrl = lang === 'id' ? '/id/layanan' : '/layanan';
 
+const getIndustryUrl = (id: string) => {
+  const slug = id === 'health' ? 'healthcare' : id;
+  return lang === 'id' ? `/id/industri/${slug}` : `/industries/${slug}`;
+};
+
 const topRowItems = industries.slice(0, 2);
 const bottomRowItems = industries.slice(2, 5);
 ---
@@ -37,14 +42,14 @@ const bottomRowItems = industries.slice(2, 5);
   <div class="space-y-9 sm:space-y-12">
     <div class="grid grid-cols-1 gap-x-5 gap-y-8 md:grid-cols-2 sm:gap-x-6">
       {topRowItems.map((item, idx) => (
-        <a data-reveal="scale" href={layananUrl} class={`group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-4 reveal-scale-init stagger-${idx + 1}`}>
+        <a data-reveal="scale" href={getIndustryUrl(item.id)} class={`group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-4 reveal-scale-init stagger-${idx + 1}`}>
           <figure class="aspect-[4/3] overflow-hidden rounded-[18px] bg-slate-100">
             <picture class="block h-full w-full">
               <source srcset={item.image} type="image/webp" />
               <img
                 src={item.fallback}
                 alt={item.title}
-                class="industry-card-img h-full w-full object-cover"
+                class="industry-card-img h-full w-full object-cover reveal-img-breathe"
                 loading="lazy"
                 decoding="async"
                 width="1200"
@@ -64,14 +69,14 @@ const bottomRowItems = industries.slice(2, 5);
 
     <div class="grid grid-cols-1 gap-x-5 gap-y-8 md:grid-cols-3 sm:gap-x-6">
       {bottomRowItems.map((item, idx) => (
-        <a data-reveal="scale" href={layananUrl} class={`group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-4 reveal-scale-init stagger-${idx + 1}`}>
+        <a data-reveal="scale" href={getIndustryUrl(item.id)} class={`group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-4 reveal-scale-init stagger-${idx + 1}`}>
           <figure class="aspect-[4/3] overflow-hidden rounded-[18px] bg-slate-100">
             <picture class="block h-full w-full">
               <source srcset={item.image} type="image/webp" />
               <img
                 src={item.fallback}
                 alt={item.title}
-                class="industry-card-img h-full w-full object-cover"
+                class="industry-card-img h-full w-full object-cover reveal-img-breathe"
                 loading="lazy"
                 decoding="async"
                 width="900"
@@ -93,12 +98,13 @@ const bottomRowItems = industries.slice(2, 5);
 
 <style>
   .industry-card-img {
-    filter: grayscale(100%) brightness(1.12) contrast(0.82);
+    filter: brightness(0.65) contrast(1.04);
     transform: scale(1);
-    transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1), filter 520ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .group:hover .industry-card-img {
+    filter: brightness(1) contrast(1);
     transform: scale(1.02);
   }
 

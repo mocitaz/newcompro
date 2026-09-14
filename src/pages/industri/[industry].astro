@@ -1,0 +1,8 @@
+---
+// src/pages/industri/[industry].astro - Alias for /industries/[industry]
+import IndustryPage, { getStaticPaths as paths } from "../industries/[industry].astro";
+
+export const getStaticPaths = paths;
+---
+
+<IndustryPage />

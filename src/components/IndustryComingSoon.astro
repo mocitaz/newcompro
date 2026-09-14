@@ -1,0 +1,83 @@
+---
+// src/components/IndustryComingSoon.astro
+// Clean, minimal & modern presentation: Raw illustration without container, text-only Segera Hadir with PT Teknalogi Transformasi Digital.
+import type { Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+  industry?: {
+    id: string;
+    title: string;
+    desc?: string;
+  };
+  title?: string;
+  subtitle?: string;
+}
+
+const { lang = 'id', industry, title: propTitle, subtitle: propSubtitle } = Astro.props;
+const isId = lang === 'id';
+const defaultTitle = isId ? 'Segera Hadir' : 'Coming Soon';
+const defaultSubtitle = isId
+  ? (industry?.title 
+      ? `Halaman solusi dan arsitektur digital ${industry.title} sedang kami persiapkan.` 
+      : 'Halaman solusi dan arsitektur digital ini sedang kami persiapkan.')
+  : (industry?.title 
+      ? `Dedicated digital architecture and enterprise solutions for ${industry.title} are currently in preparation.`
+      : 'Dedicated digital architecture and enterprise solutions are currently in preparation.');
+
+const title = propTitle || defaultTitle;
+const subtitle = propSubtitle || defaultSubtitle;
+---
+
+<section class="relative w-full bg-white overflow-hidden py-20 sm:py-28 md:py-32 lg:py-36 min-h-[50vh] flex items-center">
+  <!-- Subtle Atmospheric Ambient Glow -->
+  <div
+    class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-radial from-slate-100/80 via-indigo-50/20 to-transparent blur-3xl -z-0"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 w-full flex flex-col md:flex-row items-center justify-center gap-8 sm:gap-12 md:gap-14 lg:gap-16">
+    <!-- Left: Foto Animasi Tanpa Box Container (dengan subtle bottom fade) -->
+    <div class="shrink-0 relative flex items-center justify-center">
+      <div class="pointer-events-none absolute inset-0 -m-6 rounded-full bg-radial from-slate-200/40 via-slate-100/20 to-transparent blur-2xl -z-10" aria-hidden="true"></div>
+      
+      <picture class="block">
+        <source srcset="/animasi_segera_hadir.webp" type="image/webp" />
+        <img
+          src="/animasi_segera hadir.png"
+          alt={title}
+          class="character-cutout w-auto h-auto max-h-[290px] sm:max-h-[340px] md:max-h-[380px] lg:max-h-[420px] max-w-[260px] sm:max-w-[310px] md:max-w-[350px] object-contain block select-none pointer-events-none drop-shadow-[0_12px_24px_rgba(15,23,42,0.06)]"
+          loading="eager"
+          decoding="async"
+          width="1254"
+          height="1254"
+        />
+      </picture>
+    </div>
+
+    <!-- Right: Text Only Segera Hadir & PT Teknalogi Transformasi Digital -->
+    <div class="text-center md:text-left flex flex-col items-center md:items-start max-w-md">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-950 font-sans leading-[1.1]">
+        {title}
+      </h1>
+
+      <p class="mt-3.5 text-sm sm:text-base text-slate-500 font-normal leading-relaxed max-w-sm">
+        {subtitle}
+      </p>
+
+      <!-- PT Teknalogi Transformasi Digital -->
+      <div class="mt-6 inline-flex items-center gap-2 text-xs sm:text-[13px] font-mono font-medium text-slate-400">
+        <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+        <span>PT Teknalogi Transformasi Digital</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Smoothly blend the bottom torso edge so it doesn't look cut off harshly */
+  .character-cutout {
+    mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+  }
+</style>

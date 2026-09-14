@@ -1,0 +1,25 @@
+---
+// src/pages/knowledge-hub.astro - Knowledge Hub Page (EN)
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import IndustryComingSoon from "../components/IndustryComingSoon.astro";
+import LetsTalk from "../components/LetsTalk.astro";
+import BackToTop from "../components/BackToTop.astro";
+---
+
+<Layout
+  lang="en"
+  title="Knowledge Hub | PT Teknalogi Transformasi Digital"
+  description="Engineering articles, modern web fundamentals, AI search integration, and tech insights by Teknalogi."
+>
+  <TopBar lang="en" />
+  <main class="min-h-screen bg-white">
+    <IndustryComingSoon
+      lang="en"
+      title="Coming Soon"
+      subtitle="In-depth engineering guides, SEO & AI search architecture playbooks, and tech fundamentals are currently in preparation."
+    />
+    <LetsTalk lang="en" bgWhite={true} />
+  </main>
+  <BackToTop label="Back to top" />
+</Layout>

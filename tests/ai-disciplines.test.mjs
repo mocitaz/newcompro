@@ -37,3 +37,7 @@ test('tailored engineering has its own compact modular background', () => {
   assert.match(component, /class="home-container relative z-10"/);
   assert.doesNotMatch(component, /tech_stack_bg/);
 });
+
+test('service cards link to their dedicated routes', () => {
+  assert.match(component, /href=\{item\.href \|\| layananUrl\}/);
+});

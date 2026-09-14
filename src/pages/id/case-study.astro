@@ -1,0 +1,25 @@
+---
+// src/pages/id/case-study.astro - Halaman Case Studies Enterprise (ID)
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import CaseStudiesGrid from "../../components/CaseStudiesGrid.astro";
+import LetsTalk from "../../components/LetsTalk.astro";
+import BackToTop from "../../components/BackToTop.astro";
+import { getTranslations } from "../../i18n/translations";
+
+const t = getTranslations("id");
+const meta = t.caseStudiesPage.meta;
+---
+
+<Layout
+  lang="id"
+  title={meta.title}
+  description={meta.description}
+>
+  <TopBar lang="id" />
+  <main class="min-h-screen bg-white">
+    <CaseStudiesGrid lang="id" />
+    <LetsTalk lang="id" bgWhite={true} />
+  </main>
+  <BackToTop label="Kembali ke atas" />
+</Layout>

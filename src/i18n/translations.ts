@@ -36,73 +36,90 @@ export const translations = {
           {
             id: 'banking',
             title: 'Banking & Financial Services',
+            desc: 'Secure fintech architectures, payment gateways, and regulatory compliance.',
             image: '/industry/perbankan.webp',
             fallback: '/industry/perbankan.png',
-            href: '/layanan'
+            href: '/industries/banking'
           },
           {
             id: 'tech-saas',
             title: 'Technology & SaaS',
+            desc: 'High-throughput microservices, multi-tenant cloud platforms, and APIs.',
             image: '/industry/teknologi_and_saas.webp',
             fallback: '/industry/teknologi_and_saas.png',
-            href: '/layanan'
+            href: '/industries/tech-saas'
           },
           {
             id: 'manufacturing',
             title: 'Manufacturing & Industry',
+            desc: 'Real-time IoT telemetry, production monitoring, and supply chain automation.',
             image: '/industry/manufaktur.webp',
             fallback: '/industry/manufaktur.png',
-            href: '/layanan'
+            href: '/industries/manufacturing'
           },
           {
             id: 'healthcare',
             title: 'Healthcare & Life Sciences',
+            desc: 'Encrypted clinical records, telemedicine systems, and patient data portals.',
             image: '/industry/kesehatan.webp',
             fallback: '/industry/kesehatan.png',
-            href: '/layanan'
+            href: '/industries/healthcare'
           },
           {
             id: 'business-services',
             title: 'Professional & Business Services',
+            desc: 'Corporate workflow engines, enterprise ERP, and business management portals.',
             image: '/industry/layananprofesional.webp',
             fallback: '/industry/layananprofesional.png',
-            href: '/layanan'
+            href: '/industries/business-services'
           },
           {
             id: 'insurance',
             title: 'Insurance',
+            desc: 'Digital underwriting, policy administration, and automated claims engines.',
             image: '/industry/asuransi.jpg',
             fallback: '/industry/asuransi.jpg',
-            href: '/layanan'
+            href: '/industries/insurance'
           },
           {
             id: 'education',
             title: 'Education',
+            desc: 'Scalable e-learning platforms, student management, and academic portals.',
             image: '/industry/pendidikan.jpg',
             fallback: '/industry/pendidikan.jpg',
-            href: '/layanan'
+            href: '/industries/education'
           },
           {
             id: 'telecom',
             title: 'Telecommunications',
+            desc: 'Network telemetry dashboards, customer portals, and telecom OSS/BSS tools.',
             image: '/industry/telekomunikasi.jpg',
             fallback: '/industry/telekomunikasi.jpg',
-            href: '/layanan'
+            href: '/industries/telecom'
           },
           {
             id: 'retail',
             title: 'Retail & E-Commerce',
+            desc: 'Omnichannel commerce platforms, inventory sync, and POS integrations.',
             image: '/industry/retail.jpg',
             fallback: '/industry/retail.jpg',
-            href: '/layanan'
+            href: '/industries/retail'
+          },
+          {
+            id: 'logistics',
+            title: 'Logistics & Supply Chain',
+            desc: 'Automated warehouse tracking, fleet telemetry, and freight routing systems.',
+            image: '/industry/logistik.jpg',
+            fallback: '/industry/logistik.jpg',
+            href: '/industries/logistics'
           }
         ]
       },
       servicesDropdown: [
-        { title: 'Website Development', desc: 'High-performance web applications and responsive corporate portals.', href: '/layanan' },
-        { title: 'Software & App Development', desc: 'Mission-critical iOS, Android, and distributed backend systems.', href: '/layanan' },
-        { title: 'SEO & AI Search Optimization', desc: 'Advanced search engine optimization, GEO, and AI answer discovery.', href: '/layanan' },
-        { title: 'System Maintenance & SLA', desc: '24/7 reliability engineering, security audits, and system uptime.', href: '/layanan' },
+        { title: 'Website Development', desc: 'High-performance web applications and responsive corporate portals.', href: '/services/website-development' },
+        { title: 'Software & App Development', desc: 'Mission-critical iOS, Android, and distributed backend systems.', href: '/services/software-development' },
+        { title: 'SEO & AI Search Optimization', desc: 'Advanced search engine optimization, GEO, and AI answer discovery.', href: '/services/seo' },
+        { title: 'System Maintenance & SLA', desc: '24/7 reliability engineering, security audits, and system uptime.', href: '/services/web-maintenance' },
       ],
       servicesMega: {
         title: 'Services & Capabilities',
@@ -192,30 +209,61 @@ export const translations = {
         featured: [
           {
             brand: 'Tekna',
-            name: 'PixelPlay!',
-            desc: 'Interactive digital experiences, creative web applications, and gamified enterprise portals.',
-            image: '/resource_pixelplay.png',
-            href: '/layanan'
+            name: 'Workspace',
+            tag: 'Workspace',
+            desc: 'Collaborative enterprise digital workspace and integrated productivity platform.',
+            image: '/resource_workspace.png',
+            webp: '/resource_workspace.webp',
+            href: '/resources/workspace'
+          },
+          {
+            brand: 'Tekna',
+            name: 'Ticketing',
+            tag: 'Helpdesk',
+            desc: 'Enterprise service desk, IT ticketing management, and incident resolution workflows.',
+            image: '/resource_ticketing.png',
+            webp: '/resource_ticketing.webp',
+            href: '/resources/ticketing'
+          },
+          {
+            brand: 'Tekna',
+            name: 'LIMS',
+            tag: 'Enterprise',
+            desc: 'Laboratory Information Management System for automated testing and compliance data tracking.',
+            image: '/resource_LIMS.png',
+            webp: '/resource_LIMS.webp',
+            href: '/resources/lims'
           },
           {
             brand: 'Tekna',
             name: 'TraKerja',
+            tag: 'HR Tech',
             desc: 'Integrated workforce tracking platform, operational productivity, and enterprise talent solutions.',
             image: '/resource_trakerja.png',
-            href: '/layanan'
+            webp: '/resource_trakerja.webp',
+            href: '/resources/trakerja'
+          },
+          {
+            brand: 'Tekna',
+            name: 'PixelPlay!',
+            tag: 'Creative',
+            desc: 'Interactive digital experiences, creative web applications, and gamified enterprise portals.',
+            image: '/resource_pixelplay.png',
+            webp: '/resource_pixelplay.webp',
+            href: '/resources/pixelplay'
           }
         ],
         knowledgeHub: {
           title: 'Knowledge Hub',
           desc: 'Learn the fundamentals behind modern websites, software, search visibility, and digital growth.',
           topics: [
-            { label: 'Website Development', href: '/layanan#web-dev' },
-            { label: 'Fundamental SEO', href: '/layanan#seo-ai' },
-            { label: 'AI Search, GEO, AEO', href: '/layanan#seo-ai' },
-            { label: 'AI & Implementation', href: '/layanan#software-app' }
+            { label: 'Website Development', href: '/services/website-development' },
+            { label: 'Fundamental SEO', href: '/services/seo' },
+            { label: 'AI Search, GEO, AEO', href: '/services/ai-search' },
+            { label: 'AI & Implementation', href: '/services/software-development' }
           ],
           ctaLabel: 'Explore Knowledge Hub',
-          ctaHref: '/layanan'
+          ctaHref: '/knowledge-hub'
         }
       }
     },
@@ -250,7 +298,8 @@ export const translations = {
           description: 'High-performance websites, scalable web applications, and responsive SaaS frontends tailored to your brand.',
           image: '/services/web_dev_v2.webp',
           fallback: '/services/web_dev_v2.jpg',
-          tags: ['Next.js', 'React', 'TypeScript', 'Tailwind']
+          tags: ['Next.js', 'React', 'TypeScript', 'Tailwind'],
+          href: '/services/website-development'
         },
         {
           id: 'software-app',
@@ -258,7 +307,8 @@ export const translations = {
           description: 'Robust iOS and Android applications backed by high-throughput enterprise backends and scalable microservices.',
           image: '/services/software_app_v2.webp',
           fallback: '/services/software_app_v2.jpg',
-          tags: ['iOS & Android', 'Flutter', 'Cloud Architecture', 'APIs']
+          tags: ['iOS & Android', 'Flutter', 'Cloud Architecture', 'APIs'],
+          href: '/services/software-development'
         },
         {
           id: 'seo-ai',
@@ -266,7 +316,8 @@ export const translations = {
           description: 'Accelerate brand visibility across traditional search engines and next-generation AI answer engines.',
           image: '/services/seo_ai_v2.webp',
           fallback: '/services/seo_ai_v2.jpg',
-          tags: ['Technical SEO', 'GEO & AEO', 'AI Search', 'Audits']
+          tags: ['Technical SEO', 'GEO & AEO', 'AI Search', 'Audits'],
+          href: '/services/seo'
         },
         {
           id: 'maintenance',
@@ -274,7 +325,8 @@ export const translations = {
           description: 'Proactive SLA-backed maintenance, security audits, database tuning, and continuous infrastructure evolution.',
           image: '/services/maintenance_v2.webp',
           fallback: '/services/maintenance_v2.jpg',
-          tags: ['SLA Support', 'Security Audits', 'Cloud Ops', 'CI/CD']
+          tags: ['SLA Support', 'Security Audits', 'Cloud Ops', 'CI/CD'],
+          href: '/services/web-maintenance'
         }
       ]
     },
@@ -2482,6 +2534,72 @@ export const translations = {
         ],
       },
     },
+    caseStudiesPage: {
+      meta: {
+        title: 'Case Studies | Real Results and Real Transformation | PT Teknalogi Transformasi Digital',
+        description: 'Explore our track record of enterprise digital solutions, cloud workflows, monitoring systems, and government digital platforms.',
+      },
+      hero: {
+        title: 'Real results. Real transformation.',
+        subtitle: 'See how forward-thinking organizations collaborate with Teknalogi to solve business challenges through web development, software engineering, SEO, and digital transformation.',
+        industryLabel: 'Industry',
+      },
+      filters: [
+        { id: 'all', label: 'All' },
+        { id: 'enterprise', label: 'Enterprise' },
+        { id: 'government', label: 'Government' },
+        { id: 'operations', label: 'Operations' },
+        { id: 'community', label: 'Community' },
+      ],
+      items: [
+        {
+          id: 'kelolaaja',
+          title: 'KelolaAja - CMS-Powered Product Experience',
+          subtitle: 'Product Landing Page & Content Management Platform',
+          category: 'enterprise',
+          industry: 'SaaS & Product',
+          image: '/segera_hadir.png',
+          webp: '/segera_hadir.webp',
+          alt: 'KelolaAja - CMS-Powered Product Experience',
+        },
+        {
+          id: 'nikawa-teknika-indonesia',
+          title: 'PT Nikawa Teknika Indonesia - Corporate Digital Presence',
+          subtitle: 'Corporate Website & Company Profile Experience',
+          category: 'enterprise',
+          industry: 'Manufacturing',
+          image: '/segera_hadir.png',
+          webp: '/segera_hadir.webp',
+          alt: 'PT Nikawa Teknika Indonesia - Corporate Digital Presence',
+        },
+        {
+          id: 'anytime-fitness',
+          title: 'Anytime Fitness - Digital Fitness Management Platform',
+          subtitle: 'Website & Flutter-Based Member Management Application',
+          category: 'community',
+          industry: 'Fitness & Health',
+          image: '/segera_hadir.png',
+          webp: '/segera_hadir.webp',
+          alt: 'Anytime Fitness - Digital Fitness Management Platform',
+        },
+        {
+          id: 'enterprise-operations-platform',
+          title: 'Enterprise Operations Platform',
+          subtitle: 'Custom Business Management System & Workflow Automation',
+          category: 'operations',
+          industry: 'Operations',
+          image: '/segera_hadir.png',
+          webp: '/segera_hadir.webp',
+          alt: 'Enterprise Operations Platform - Custom Business Management System & Workflow Automation',
+        },
+      ],
+      blueprint: {
+        badge: 'Implementation Track Record',
+        title: 'Enterprise Engineering Portfolio & System Blueprint',
+        subtitle: 'Architectural track record and production implementations deployed across enterprise institutions and high-demand digital platforms.',
+        mobileHint: 'Swipe horizontally to inspect diagram details',
+      },
+    },
   },
   id: {
     meta: {
@@ -2515,73 +2633,90 @@ export const translations = {
           {
             id: 'banking',
             title: 'Perbankan & Jasa Keuangan',
+            desc: 'Arsitektur fintech aman, gateway pembayaran, dan kepatuhan regulasi.',
             image: '/industry/perbankan.webp',
             fallback: '/industry/perbankan.png',
-            href: '/id/layanan'
+            href: '/id/industri/banking'
           },
           {
             id: 'tech-saas',
             title: 'Teknologi & SaaS',
+            desc: 'Sistem microservices konkurensi tinggi, cloud multi-tenant, dan API.',
             image: '/industry/teknologi_and_saas.webp',
             fallback: '/industry/teknologi_and_saas.png',
-            href: '/id/layanan'
+            href: '/id/industri/tech-saas'
           },
           {
             id: 'manufacturing',
             title: 'Manufaktur & Industri',
+            desc: 'Telemetri IoT real-time, monitoring mesin pabrik, dan otomasi rantai pasok.',
             image: '/industry/manufaktur.webp',
             fallback: '/industry/manufaktur.png',
-            href: '/id/layanan'
+            href: '/id/industri/manufacturing'
           },
           {
             id: 'healthcare',
             title: 'Kesehatan & Life Sciences',
+            desc: 'Platform rekam medis terenkripsi, telemedicine, dan sistem data klinis.',
             image: '/industry/kesehatan.webp',
             fallback: '/industry/kesehatan.png',
-            href: '/id/layanan'
+            href: '/id/industri/healthcare'
           },
           {
             id: 'business-services',
             title: 'Layanan Profesional & Bisnis',
+            desc: 'Otomasi alur kerja korporat, ERP terintegrasi, dan portal manajemen bisnis.',
             image: '/industry/layananprofesional.webp',
             fallback: '/industry/layananprofesional.png',
-            href: '/id/layanan'
+            href: '/id/industri/business-services'
           },
           {
             id: 'insurance',
             title: 'Asuransi',
+            desc: 'Administrasi polis digital, otomasi klaim asuransi, dan manajemen risiko.',
             image: '/industry/asuransi.jpg',
             fallback: '/industry/asuransi.jpg',
-            href: '/id/layanan'
+            href: '/id/industri/insurance'
           },
           {
             id: 'education',
             title: 'Pendidikan',
+            desc: 'Platform pembelajaran digital berskala besar, portal akademik, dan LMS.',
             image: '/industry/pendidikan.jpg',
             fallback: '/industry/pendidikan.jpg',
-            href: '/id/layanan'
+            href: '/id/industri/education'
           },
           {
             id: 'telecom',
             title: 'Telekomunikasi',
+            desc: 'Dashboard telemetri jaringan, portal pelanggan, dan infrastruktur OSS/BSS.',
             image: '/industry/telekomunikasi.jpg',
             fallback: '/industry/telekomunikasi.jpg',
-            href: '/id/layanan'
+            href: '/id/industri/telecom'
           },
           {
             id: 'retail',
             title: 'Retail & E-Commerce',
+            desc: 'Ekosistem e-commerce omnichannel, sinkronisasi inventaris, dan integrasi POS.',
             image: '/industry/retail.jpg',
             fallback: '/industry/retail.jpg',
-            href: '/id/layanan'
+            href: '/id/industri/retail'
+          },
+          {
+            id: 'logistics',
+            title: 'Logistik & Rantai Pasok',
+            desc: 'Pelacakan armada logistik real-time, otomasi gudang, dan rute kargo.',
+            image: '/industry/logistik.jpg',
+            fallback: '/industry/logistik.jpg',
+            href: '/id/industri/logistics'
           }
         ]
       },
       servicesDropdown: [
-        { title: 'Pengembangan Web Modern', desc: 'Website performa tinggi, aplikasi web dinamis, dan portal SaaS.', href: '/id/layanan' },
-        { title: 'Software Enterprise & Aplikasi Mobile', desc: 'Aplikasi mobile iOS/Android dan backend microservices tangguh.', href: '/id/layanan' },
-        { title: 'Integrasi AI & Optimasi Pencarian', desc: 'Optimasi mesin pencari tradisional, GEO, dan integrasi AI discovery.', href: '/id/layanan' },
-        { title: 'Pemeliharaan Sistem & SLA', desc: 'Dukungan sistem 24/7, audit keamanan berkala, dan jaminan uptime.', href: '/id/layanan' },
+        { title: 'Pengembangan Web Modern', desc: 'Website performa tinggi, aplikasi web dinamis, dan portal SaaS.', href: '/id/services/website-development' },
+        { title: 'Software Enterprise & Aplikasi Mobile', desc: 'Aplikasi mobile iOS/Android dan backend microservices tangguh.', href: '/id/services/software-development' },
+        { title: 'Integrasi AI & Optimasi Pencarian', desc: 'Optimasi mesin pencari tradisional, GEO, dan integrasi AI discovery.', href: '/id/services/seo' },
+        { title: 'Pemeliharaan Sistem & SLA', desc: 'Dukungan sistem 24/7, audit keamanan berkala, dan jaminan uptime.', href: '/id/services/web-maintenance' },
       ],
       servicesMega: {
         title: 'Layanan & Kapabilitas',
@@ -2671,30 +2806,61 @@ export const translations = {
         featured: [
           {
             brand: 'Tekna',
-            name: 'PixelPlay!',
-            desc: 'Eksplorasi pengalaman digital interaktif, visual web kreatif, dan modul gamifikasi enterprise.',
-            image: '/resource_pixelplay.png',
-            href: '/id/layanan'
+            name: 'Workspace',
+            tag: 'Workspace',
+            desc: 'Ruang kerja digital kolaboratif dan platform produktivitas enterprise terpadu.',
+            image: '/resource_workspace.png',
+            webp: '/resource_workspace.webp',
+            href: '/id/resources/workspace'
+          },
+          {
+            brand: 'Tekna',
+            name: 'Ticketing',
+            tag: 'Helpdesk',
+            desc: 'Sistem manajemen tiket layanan, helpdesk, dan alur kerja insiden korporat.',
+            image: '/resource_ticketing.png',
+            webp: '/resource_ticketing.webp',
+            href: '/id/resources/ticketing'
+          },
+          {
+            brand: 'Tekna',
+            name: 'LIMS',
+            tag: 'Enterprise',
+            desc: 'Sistem informasi manajemen laboratorium untuk otomatisasi pengujian dan pelacakan data.',
+            image: '/resource_LIMS.png',
+            webp: '/resource_LIMS.webp',
+            href: '/id/resources/lims'
           },
           {
             brand: 'Tekna',
             name: 'TraKerja',
+            tag: 'HR Tech',
             desc: 'Platform terintegrasi manajemen tenaga kerja, pelacakan produktivitas, dan operasional enterprise.',
             image: '/resource_trakerja.png',
-            href: '/id/layanan'
+            webp: '/resource_trakerja.webp',
+            href: '/id/resources/trakerja'
+          },
+          {
+            brand: 'Tekna',
+            name: 'PixelPlay!',
+            tag: 'Creative',
+            desc: 'Eksplorasi pengalaman digital interaktif, visual web kreatif, dan modul gamifikasi enterprise.',
+            image: '/resource_pixelplay.png',
+            webp: '/resource_pixelplay.webp',
+            href: '/id/resources/pixelplay'
           }
         ],
         knowledgeHub: {
           title: 'Knowledge Hub',
           desc: 'Pelajari dasar-dasar di balik website modern, software, visibilitas pencarian, dan pertumbuhan digital.',
           topics: [
-            { label: 'Pengembangan Website', href: '/id/layanan#web-dev' },
-            { label: 'Fundamental SEO', href: '/id/layanan#seo-ai' },
-            { label: 'AI Search, GEO, AEO', href: '/id/layanan#seo-ai' },
-            { label: 'AI & Implementasinya', href: '/id/layanan#software-app' }
+            { label: 'Pengembangan Website', href: '/id/layanan/website-development' },
+            { label: 'Fundamental SEO', href: '/id/layanan/seo' },
+            { label: 'AI Search, GEO, AEO', href: '/id/layanan/ai-search' },
+            { label: 'AI & Implementasinya', href: '/id/layanan/software-development' }
           ],
           ctaLabel: 'Jelajahi Knowledge Hub',
-          ctaHref: '/id/layanan'
+          ctaHref: '/id/knowledge-hub'
         }
       }
     },
@@ -2729,7 +2895,8 @@ export const translations = {
           description: 'Website korporat berkinerja tinggi, aplikasi web modern, dan frontend responsif yang dirancang untuk performa maksimal.',
           image: '/services/web_dev_v2.webp',
           fallback: '/services/web_dev_v2.jpg',
-          tags: ['Next.js', 'React', 'TypeScript', 'Tailwind']
+          tags: ['Next.js', 'React', 'TypeScript', 'Tailwind'],
+          href: '/id/services/website-development'
         },
         {
           id: 'software-app',
@@ -2737,7 +2904,8 @@ export const translations = {
           description: 'Aplikasi mobile iOS dan Android yang stabil dan cepat, didukung arsitektur backend andal dan integrasi API yang aman.',
           image: '/services/software_app_v2.webp',
           fallback: '/services/software_app_v2.jpg',
-          tags: ['iOS & Android', 'Flutter', 'Arsitektur Cloud', 'API']
+          tags: ['iOS & Android', 'Flutter', 'Arsitektur Cloud', 'API'],
+          href: '/id/services/software-development'
         },
         {
           id: 'seo-ai',
@@ -2745,7 +2913,8 @@ export const translations = {
           description: 'Optimasi visibilitas website di Google Search serta mesin pencari AI generasi baru seperti ChatGPT dan Perplexity.',
           image: '/services/seo_ai_v2.webp',
           fallback: '/services/seo_ai_v2.jpg',
-          tags: ['Technical SEO', 'GEO & AEO', 'Pencarian AI', 'Audit']
+          tags: ['Technical SEO', 'GEO & AEO', 'Pencarian AI', 'Audit'],
+          href: '/id/services/seo'
         },
         {
           id: 'maintenance',
@@ -2753,7 +2922,8 @@ export const translations = {
           description: 'Pemeliharaan sistem bergaransi SLA, audit keamanan berkala, optimasi database, dan penambahan fitur berkelanjutan.',
           image: '/services/maintenance_v2.webp',
           fallback: '/services/maintenance_v2.jpg',
-          tags: ['Dukungan SLA', 'Audit Keamanan', 'Cloud Ops', 'CI/CD']
+          tags: ['Dukungan SLA', 'Audit Keamanan', 'Cloud Ops', 'CI/CD'],
+          href: '/id/services/web-maintenance'
         }
       ]
     },
@@ -4962,6 +5132,72 @@ export const translations = {
             answer: 'Anda dapat memulai dengan menghubungi tim kami melalui tombol WhatsApp atau formulir kontak di situs ini. Kami akan melakukan audit awal kondisi situs Anda secara gratis dan merekomendasikan cakupan pemeliharaan yang paling sesuai dengan kebutuhan bisnis Anda.',
           },
         ],
+      },
+    },
+    caseStudiesPage: {
+      meta: {
+        title: 'Case Studies | Hasil Nyata & Transformasi Nyata | PT Teknalogi Transformasi Digital',
+        description: 'Lihat rekam jejak solusi digital enterprise, alur kerja cloud, sistem monitoring, dan platform digital pemerintahan dari Teknalogi.',
+      },
+      hero: {
+        title: 'Hasil nyata. Transformasi nyata.',
+        subtitle: 'Lihat kolaborasi strategis bersama Teknalogi dalam menjawab tantangan bisnis lewat software engineering, web, SEO, dan transformasi digital.',
+        industryLabel: 'Industri',
+      },
+      filters: [
+        { id: 'all', label: 'Semua' },
+        { id: 'enterprise', label: 'Enterprise' },
+        { id: 'government', label: 'Pemerintahan' },
+        { id: 'operations', label: 'Operasional' },
+        { id: 'community', label: 'Komunitas' },
+      ],
+      items: [
+        {
+          id: 'kelolaaja',
+          title: 'KelolaAja - CMS-Powered Product Experience',
+          subtitle: 'Product Landing Page & Content Management Platform',
+          category: 'enterprise',
+          industry: 'Produk & SaaS',
+          image: '/segera_hadir.png',
+          webp: '/segera_hadir.webp',
+          alt: 'KelolaAja - CMS-Powered Product Experience',
+        },
+        {
+          id: 'nikawa-teknika-indonesia',
+          title: 'PT Nikawa Teknika Indonesia - Corporate Digital Presence',
+          subtitle: 'Corporate Website & Company Profile Experience',
+          category: 'enterprise',
+          industry: 'Manufaktur',
+          image: '/segera_hadir.png',
+          webp: '/segera_hadir.webp',
+          alt: 'PT Nikawa Teknika Indonesia - Corporate Digital Presence',
+        },
+        {
+          id: 'anytime-fitness',
+          title: 'Anytime Fitness - Digital Fitness Management Platform',
+          subtitle: 'Website & Flutter-Based Member Management Application',
+          category: 'community',
+          industry: 'Kebugaran',
+          image: '/segera_hadir.png',
+          webp: '/segera_hadir.webp',
+          alt: 'Anytime Fitness - Digital Fitness Management Platform',
+        },
+        {
+          id: 'enterprise-operations-platform',
+          title: 'Enterprise Operations Platform',
+          subtitle: 'Custom Business Management System & Workflow Automation',
+          category: 'operations',
+          industry: 'Operasional',
+          image: '/segera_hadir.png',
+          webp: '/segera_hadir.webp',
+          alt: 'Enterprise Operations Platform - Custom Business Management System & Workflow Automation',
+        },
+      ],
+      blueprint: {
+        badge: 'Rekam Jejak Implementasi',
+        title: 'Portofolio Proyek & Arsitektur Solusi',
+        subtitle: 'Rekam jejak implementasi rekayasa perangkat lunak skala enterprise dan integrasi sistem di berbagai sektor industri.',
+        mobileHint: 'Geser ke samping untuk melihat detail diagram',
       },
     },
   },

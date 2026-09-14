@@ -20,9 +20,14 @@ const isAiSearch = currentPath.includes('/ai-search') || currentPath.includes('/
 const isSeoAudit = currentPath.includes('/seo-audit');
 const isSeo = currentPath.endsWith('/seo') || currentPath.includes('/seo/');
 const isWebMaintenance = currentPath.includes('/web-maintenance') || currentPath.includes('/website-maintenance');
-const isPorto = currentPath.includes('/portofolio') || currentPath.includes('/portfolio');
-const isLayanan = currentPath.includes('/layanan') || currentPath.includes('/services');
+const isPorto = currentPath.includes('/portofolio') || currentPath.includes('/portfolio') || currentPath.includes('/case-study') || currentPath.includes('/case-studies');
+const isLayanan = currentPath === '/layanan' || currentPath === '/layanan/' || currentPath === '/services' || currentPath === '/services/' || currentPath === '/id/layanan' || currentPath === '/id/layanan/' || currentPath === '/id/services' || currentPath === '/id/services/';
 const isAbout = currentPath.includes('/about') || currentPath.includes('/tentang-kami');
+const isIndustriesHub = currentPath === '/industries' || currentPath === '/industries/' || currentPath === '/industri' || currentPath === '/industri/' || currentPath === '/id/industries' || currentPath === '/id/industries/' || currentPath === '/id/industri' || currentPath === '/id/industri/';
+const isIndustry = !isIndustriesHub && (currentPath.includes('/industri') || currentPath.includes('/industries'));
+const isResource = currentPath.includes('/resources/') || currentPath.includes('/products/');
+const isEcosystem = currentPath.includes('/ecosystem') || currentPath.includes('/ekosistem');
+const isKnowledgeHub = currentPath.includes('/knowledge-hub');
 
 // URLs for current language
 const homeUrl = currentLang === 'id' ? '/id' : '/';
@@ -30,6 +35,9 @@ const portoUrl = currentLang === 'id' ? '/id/portofolio' : '/portofolio';
 const layananUrl = currentLang === 'id' ? '/id/layanan' : '/layanan';
 const aboutUrl = currentLang === 'id' ? '/id/tentang-kami' : '/about';
 const industriesSectionUrl = isHome ? '#industries' : `${homeUrl}#industries`;
+const industriesHubUrl = currentLang === 'id' ? '/id/industri' : '/industries';
+const ecosystemUrl = currentLang === 'id' ? '/id/ekosistem' : '/ecosystem';
+const knowledgeHubUrl = currentLang === 'id' ? '/id/knowledge-hub' : '/knowledge-hub';
 
 const resolveHref = (href: string) => {
   if (href.startsWith('#')) {
@@ -65,9 +73,33 @@ if (isWebDev) {
 } else if (isWebMaintenance) {
   idUrl = '/id/layanan/web-maintenance';
   enUrl = '/services/web-maintenance';
+} else if (isResource) {
+  const parts = currentPath.split('/').filter(Boolean);
+  const slug = parts[parts.length - 1];
+  idUrl = `/id/resources/${slug}`;
+  enUrl = `/resources/${slug}`;
+} else if (isEcosystem) {
+  idUrl = '/id/ekosistem';
+  enUrl = '/ecosystem';
+} else if (isKnowledgeHub) {
+  idUrl = '/id/knowledge-hub';
+  enUrl = '/knowledge-hub';
+} else if (isIndustriesHub) {
+  idUrl = '/id/industri';
+  enUrl = '/industries';
+} else if (isIndustry) {
+  const parts = currentPath.split('/').filter(Boolean);
+  const slug = parts[parts.length - 1];
+  idUrl = `/id/industri/${slug}`;
+  enUrl = `/industries/${slug}`;
 } else if (isPorto) {
-  idUrl = '/id/portofolio';
-  enUrl = '/portofolio';
+  if (currentPath.includes('/case-study') || currentPath.includes('/case-studies')) {
+    idUrl = '/id/case-study';
+    enUrl = '/case-study';
+  } else {
+    idUrl = '/id/portofolio';
+    enUrl = '/portofolio';
+  }
 } else if (isLayanan) {
   idUrl = '/id/layanan';
   enUrl = '/layanan';
@@ -162,7 +194,7 @@ const toggleAriaLabel = isCurrentId
           <div class="mega-panel bg-[#fbfbfc]/98 backdrop-blur-xl border-x border-b border-slate-200/90 shadow-[0_20px_38px_-30px_rgba(15,23,42,0.38)] rounded-b-2xl p-4 sm:p-5 xl:p-6 text-slate-900 flex items-stretch gap-4 xl:gap-6 transition-[background-color,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
             
             <!-- Left Card: Industri Overview -->
-            <div class="mega-overview w-[220px] xl:w-[260px] shrink-0 bg-gradient-to-b from-[#f8fafc] to-[#f1f5f9] rounded-2xl p-4.5 xl:p-5.5 border border-slate-200/70 flex flex-col justify-between shadow-2xs transition-[background-color,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            <div class="mega-overview w-[220px] xl:w-[250px] shrink-0 bg-gradient-to-b from-[#f8fafc] to-[#f1f5f9] rounded-2xl p-4.5 xl:p-5.5 border border-slate-200/70 flex flex-col justify-between shadow-2xs transition-[background-color,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
               <div>
                 <h3 class="text-xl xl:text-2xl font-bold text-slate-900 tracking-tight font-sans">
                   {t.nav.industriesMega.title}
@@ -173,7 +205,7 @@ const toggleAriaLabel = isCurrentId
               </div>
               <div class="mt-auto border-t border-slate-200/60 pt-4">
                 <a
-                  href={industriesSectionUrl}
+                  href={industriesHubUrl}
                   class="group/all inline-flex items-center gap-1.5 text-xs font-semibold text-slate-900 transition-colors hover:text-slate-950"
                 >
                   <span>{currentLang === 'id' ? 'Lihat Semua Industri' : 'Explore All Industries'}</span>
@@ -184,73 +216,187 @@ const toggleAriaLabel = isCurrentId
               </div>
             </div>
 
-            <!-- Middle Card: Dynamic Image Preview (Changes smoothly on list hover) -->
-            <div class="w-[280px] xl:w-[360px] shrink-0 rounded-2xl overflow-hidden relative shadow-sm border border-slate-200/80 bg-slate-900 self-stretch min-h-[250px] xl:min-h-[270px]">
-              <div
-                data-industry-preview-empty
-                class="industry-empty-preview absolute inset-0 z-20 flex flex-col justify-end bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200 p-5 xl:p-6 transition-[opacity,background-color] duration-200"
-              >
-                <span class="mb-auto text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">{currentLang === 'id' ? 'Sektor industri' : 'Industry sectors'}</span>
-                <h3 class="max-w-[12rem] text-lg xl:text-xl font-bold tracking-tight text-slate-950">
-                  {currentLang === 'id' ? 'Pilih sektor untuk melihat fokus kami.' : 'Select a sector to explore our focus.'}
-                </h3>
-                <p class="mt-2 max-w-[15rem] text-xs leading-relaxed text-slate-600">
-                  {currentLang === 'id' ? 'Setiap sektor memiliki kebutuhan teknologi yang berbeda.' : 'Each sector has a distinct technology and delivery context.'}
-                </p>
-              </div>
-              {t.nav.industriesMega.items.map((item, idx) => (
-                <div
-                  data-industry-preview={item.id}
-                  class="industry-preview-slide absolute inset-0 opacity-0 scale-95 z-0 pointer-events-none transition-all duration-300"
-                >
-                  <picture class="absolute inset-0 w-full h-full block">
-                    <source srcset={item.image} type="image/webp" />
-                    <img
-                      src={item.fallback}
-                      alt={item.title}
-                      class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                      loading="lazy"
-                    />
-                  </picture>
-                  <!-- Gradient overlay at bottom with title & arrow -->
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent flex items-end p-4 xl:p-5">
-                    <a
-                      href={resolveHref(item.href)}
-                      class="text-white text-sm xl:text-base font-bold flex items-center justify-between w-full hover:text-slate-200 transition-colors group/label"
-                    >
-                      <span>{item.title}</span>
-                      <span class="w-6 h-6 xl:w-7 xl:h-7 rounded-full bg-white/20 backdrop-blur-xs flex items-center justify-center text-white group-hover/label:bg-white group-hover/label:text-slate-900 transition-all">
-                        <svg class="w-3 h-3 xl:w-3.5 xl:h-3.5 transition-transform duration-200 group-hover/label:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+            <!-- Middle Section: 10 Industries in 2 Columns of 5 -->
+            <div class="flex-1 grid grid-cols-2 gap-x-4 xl:gap-x-7 items-stretch">
+              <!-- Column 1: Banking, Tech & SaaS, Manufacturing, Healthcare, Business Services -->
+              <div class="flex flex-col justify-between space-y-1">
+                {t.nav.industriesMega.items.slice(0, 5).map((item) => (
+                  <a
+                    href={resolveHref(item.href)}
+                    class="group/item flex items-start gap-2.5 xl:gap-3.5 p-2 xl:p-2.5 rounded-xl hover:bg-slate-100/80 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+                  >
+                    <span class="w-8 h-8 xl:w-9 xl:h-9 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center text-slate-700 group-hover/item:text-slate-950 group-hover/item:border-slate-300 group-hover/item:bg-slate-100 transition-colors shrink-0 mt-0.5">
+                      {item.id === 'banking' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 21h18M3 10h18M12 3l9 4.5V10H3V7.5L12 3zM6 10v8m4-8v8m4-8v8m4-8v8" />
                         </svg>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              ))}
+                      )}
+                      {item.id === 'tech-saas' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                      )}
+                      {item.id === 'manufacturing' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                      )}
+                      {item.id === 'healthcare' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                      )}
+                      {item.id === 'business-services' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                      )}
+                      {item.id === 'insurance' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                      )}
+                      {item.id === 'education' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5" />
+                        </svg>
+                      )}
+                      {item.id === 'telecom' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+                        </svg>
+                      )}
+                      {item.id === 'retail' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                      )}
+                      {item.id === 'logistics' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                        </svg>
+                      )}
+                    </span>
+                    <div>
+                      <h4 class="text-xs xl:text-[13.5px] font-bold text-slate-900 group-hover/item:text-slate-950 transition-colors leading-snug">
+                        {item.title}
+                      </h4>
+                      <p class="text-[11px] xl:text-xs text-slate-500 leading-relaxed mt-0.5 line-clamp-2">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+
+              <!-- Column 2: Insurance, Education, Telecom, Retail, Logistics -->
+              <div class="flex flex-col justify-between space-y-1">
+                {t.nav.industriesMega.items.slice(5, 10).map((item) => (
+                  <a
+                    href={resolveHref(item.href)}
+                    class="group/item flex items-start gap-2.5 xl:gap-3.5 p-2 xl:p-2.5 rounded-xl hover:bg-slate-100/80 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+                  >
+                    <span class="w-8 h-8 xl:w-9 xl:h-9 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center text-slate-700 group-hover/item:text-slate-950 group-hover/item:border-slate-300 group-hover/item:bg-slate-100 transition-colors shrink-0 mt-0.5">
+                      {item.id === 'banking' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 21h18M3 10h18M12 3l9 4.5V10H3V7.5L12 3zM6 10v8m4-8v8m4-8v8m4-8v8" />
+                        </svg>
+                      )}
+                      {item.id === 'tech-saas' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                      )}
+                      {item.id === 'manufacturing' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                      )}
+                      {item.id === 'healthcare' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                      )}
+                      {item.id === 'business-services' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                      )}
+                      {item.id === 'insurance' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                      )}
+                      {item.id === 'education' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5" />
+                        </svg>
+                      )}
+                      {item.id === 'telecom' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+                        </svg>
+                      )}
+                      {item.id === 'retail' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                      )}
+                      {item.id === 'logistics' && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                        </svg>
+                      )}
+                    </span>
+                    <div>
+                      <h4 class="text-xs xl:text-[13.5px] font-bold text-slate-900 group-hover/item:text-slate-950 transition-colors leading-snug">
+                        {item.title}
+                      </h4>
+                      <p class="text-[11px] xl:text-xs text-slate-500 leading-relaxed mt-0.5 line-clamp-2">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </a>
+                ))}
+              </div>
             </div>
 
-            <!-- Right Column: Interactive List of All 9 Industries across 2 Columns -->
-            <div class="flex-1 grid grid-cols-2 gap-x-3.5 xl:gap-x-5 gap-y-1.5 xl:gap-y-2 content-center border-l border-slate-200/60 pl-4 xl:pl-6">
-              {t.nav.industriesMega.items.map((item, idx) => (
+            <!-- Right Column: Knowledge Hub -->
+            <div class="w-[220px] xl:w-[250px] shrink-0 border-l border-slate-200/80 pl-4 xl:pl-6 flex flex-col justify-between">
+              <div>
+                <h4 class="text-xs xl:text-sm font-bold text-slate-900 tracking-tight font-sans">
+                  {t.nav.resourcesMega.knowledgeHub.title}
+                </h4>
+                <p class="text-[11px] xl:text-xs text-slate-500 leading-relaxed mt-1 mb-3">
+                  {t.nav.resourcesMega.knowledgeHub.desc}
+                </p>
+                <div class="space-y-1">
+                  {t.nav.resourcesMega.knowledgeHub.topics.map((topic) => (
+                    <a
+                      href={resolveHref(topic.href)}
+                      class="group/topic block text-xs text-slate-800 hover:text-slate-950 font-medium transition-colors py-1.5 px-2 -mx-2 rounded-lg hover:bg-slate-100 flex items-center justify-between"
+                    >
+                      <span>{topic.label}</span>
+                      <svg class="w-3 h-3 text-slate-400 opacity-0 -translate-x-1 group-hover/topic:opacity-100 group-hover/topic:translate-x-0 group-hover/topic:text-slate-950 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <!-- CTA Button -->
+              <div class="pt-4 mt-auto">
                 <a
-                  href={resolveHref(item.href)}
-                  data-industry-trigger={item.id}
-                  class="industry-item-link group/ind flex items-center justify-between py-1.5 xl:py-2 px-2.5 xl:px-3 rounded-xl text-slate-800 hover:bg-slate-100 hover:text-slate-950 font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 cursor-pointer"
+                  href={resolveHref(t.nav.resourcesMega.knowledgeHub.ctaHref)}
+                  class="w-full inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-all duration-200 shadow-2xs group/btn"
                 >
-                  <span class="text-xs xl:text-[13px] leading-snug transition-colors">
-                    {item.title}
-                  </span>
-                  <svg
-                    class="w-3.5 h-3.5 xl:w-4 xl:h-4 transition-all text-slate-950 shrink-0 opacity-0 -translate-x-1 group-hover/ind:opacity-100 group-hover/ind:translate-x-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  <span>{t.nav.resourcesMega.knowledgeHub.ctaLabel}</span>
+                  <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
                   </svg>
                 </a>
-              ))}
+              </div>
             </div>
 
           </div>
@@ -276,12 +422,12 @@ const toggleAriaLabel = isCurrentId
           <div class="mega-panel bg-[#fbfbfc]/98 backdrop-blur-xl border-x border-b border-slate-200/90 shadow-[0_20px_38px_-30px_rgba(15,23,42,0.38)] rounded-b-2xl p-5 sm:p-6 xl:p-7 text-slate-900 flex items-stretch gap-5 xl:gap-7 transition-[background-color,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
             
             <!-- Left Card: Layanan & Solusi Overview -->
-            <div class="mega-overview w-[230px] xl:w-[270px] shrink-0 bg-gradient-to-b from-[#f8fafc] to-[#f1f5f9] rounded-2xl p-5 xl:p-6 border border-slate-200/70 flex flex-col justify-between shadow-2xs transition-[background-color,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            <div class="mega-overview w-[220px] xl:w-[250px] shrink-0 bg-gradient-to-b from-[#f8fafc] to-[#f1f5f9] rounded-2xl p-4.5 xl:p-5.5 border border-slate-200/70 flex flex-col justify-between shadow-2xs transition-[background-color,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
               <div>
                 <h3 class="text-xl xl:text-2xl font-bold text-slate-900 tracking-tight font-sans">
                   {t.nav.servicesMega.title}
                 </h3>
-                <p class="text-xs xl:text-[13px] text-slate-500 leading-relaxed mt-2.5 font-normal font-sans">
+                <p class="text-xs xl:text-[13px] text-slate-500 leading-relaxed mt-2 font-normal font-sans">
                   {t.nav.servicesMega.subtitle}
                 </p>
               </div>
@@ -306,7 +452,7 @@ const toggleAriaLabel = isCurrentId
                 {t.nav.servicesMega.items.slice(0, 4).map((item) => (
                   <a
                     href={resolveHref(item.href)}
-                    class="group/item flex items-start gap-2.5 xl:gap-3.5 p-2 xl:p-2.5 rounded-xl hover:bg-slate-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+                    class="group/item flex items-start gap-2.5 xl:gap-3.5 p-2 xl:p-2.5 rounded-xl hover:bg-slate-100/80 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
                   >
                     <span class="w-8 h-8 xl:w-9 xl:h-9 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center text-slate-700 group-hover/item:text-slate-950 group-hover/item:border-slate-300 group-hover/item:bg-slate-100 transition-colors shrink-0 mt-0.5">
                       {item.icon === 'globe' && (
@@ -350,11 +496,11 @@ const toggleAriaLabel = isCurrentId
               </div>
 
               <!-- Column 2: SEO, AI Search, Audit, Maintenance -->
-              <div class="flex flex-col justify-between space-y-1 border-l border-slate-200/60 pl-4 xl:pl-7">
+              <div class="flex flex-col justify-between space-y-1">
                 {t.nav.servicesMega.items.slice(4, 8).map((item) => (
                   <a
                     href={resolveHref(item.href)}
-                    class="group/item flex items-start gap-2.5 xl:gap-3.5 p-2 xl:p-2.5 rounded-xl hover:bg-slate-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+                    class="group/item flex items-start gap-2.5 xl:gap-3.5 p-2 xl:p-2.5 rounded-xl hover:bg-slate-100/80 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
                   >
                     <span class="w-8 h-8 xl:w-9 xl:h-9 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center text-slate-700 group-hover/item:text-slate-950 group-hover/item:border-slate-300 group-hover/item:bg-slate-100 transition-colors shrink-0 mt-0.5">
                       {item.icon === 'search' && (
@@ -396,6 +542,46 @@ const toggleAriaLabel = isCurrentId
               </div>
             </div>
 
+            <!-- Right Column: Industry Sectors -->
+            <div class="w-[220px] xl:w-[250px] shrink-0 border-l border-slate-200/80 pl-4 xl:pl-6 flex flex-col justify-between">
+              <div>
+                <h4 class="text-xs xl:text-sm font-bold text-slate-900 tracking-tight font-sans">
+                  {t.nav.industriesMega.title}
+                </h4>
+                <p class="text-[11px] xl:text-xs text-slate-500 leading-relaxed mt-1 mb-3">
+                  {currentLang === 'id'
+                    ? 'Solusi software rekayasa yang disesuaikan dengan kebutuhan domain industri Anda.'
+                    : 'Engineered software solutions tailored to your industry domain.'}
+                </p>
+                <div class="space-y-1">
+                  {t.nav.industriesMega.items.slice(0, 5).map((item) => (
+                    <a
+                      href={resolveHref(item.href)}
+                      class="group/ind block text-xs text-slate-800 hover:text-slate-950 font-medium transition-colors py-1.5 px-2 -mx-2 rounded-lg hover:bg-slate-100 flex items-center justify-between"
+                    >
+                      <span>{item.title}</span>
+                      <svg class="w-3 h-3 text-slate-400 opacity-0 -translate-x-1 group-hover/ind:opacity-100 group-hover/ind:translate-x-0 group-hover/ind:text-slate-950 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <!-- CTA Button -->
+              <div class="pt-4 mt-auto">
+                <a
+                  href={industriesHubUrl}
+                  class="w-full inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-all duration-200 shadow-2xs group/btn"
+                >
+                  <span>{currentLang === 'id' ? 'Lihat Semua Industri' : 'Explore All Industries'}</span>
+                  <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -419,7 +605,7 @@ const toggleAriaLabel = isCurrentId
           <div class="mega-panel bg-[#fbfbfc]/98 backdrop-blur-xl border-x border-b border-slate-200/90 shadow-[0_20px_38px_-30px_rgba(15,23,42,0.38)] rounded-b-2xl p-4 sm:p-5 xl:p-6 text-slate-900 flex items-stretch gap-4 xl:gap-6 transition-[background-color,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
             
             <!-- Left Card: Resources Overview & Quick Links -->
-            <div class="mega-overview w-[240px] xl:w-[280px] shrink-0 bg-gradient-to-b from-[#f8fafc] to-[#f1f5f9] rounded-2xl p-4.5 xl:p-5.5 border border-slate-200/70 flex flex-col justify-between shadow-2xs transition-[background-color,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            <div class="mega-overview w-[200px] xl:w-[230px] shrink-0 bg-gradient-to-b from-[#f8fafc] to-[#f1f5f9] rounded-2xl p-4 xl:p-5 border border-slate-200/70 flex flex-col justify-between shadow-2xs transition-[background-color,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
               <div>
                 <h3 class="text-xl xl:text-2xl font-bold text-slate-900 tracking-tight font-sans">
                   {t.nav.resourcesMega.title}
@@ -427,53 +613,58 @@ const toggleAriaLabel = isCurrentId
                 <p class="text-xs xl:text-[13px] text-slate-500 leading-relaxed mt-2 font-normal font-sans">
                   {t.nav.resourcesMega.subtitle}
                 </p>
-
               </div>
               <div class="mt-auto pt-4 border-t border-slate-200/60">
                 <a
-                  href={resolveHref('/layanan')}
-                  class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-900 hover:text-slate-950 transition-colors"
+                  href={ecosystemUrl}
+                  class="group/eco inline-flex items-center gap-1.5 text-xs font-semibold text-slate-900 hover:text-slate-950 transition-colors"
                 >
                   <span>{currentLang === 'id' ? 'Jelajahi Ekosistem' : 'Explore Ecosystem'}</span>
-                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/eco:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                   </svg>
                 </a>
               </div>
             </div>
 
-            <!-- Middle Section: 2 Featured Framework Cards -->
-            <div class="flex-1 grid grid-cols-2 gap-4 xl:gap-5 items-stretch">
-              {t.nav.resourcesMega.featured.map((card) => (
+            <!-- Middle Section: 5 Featured Platform / Solution Cards in 2 Rows (3 on top, 2 on bottom) -->
+            <div class="flex-1 grid grid-cols-6 gap-2.5 xl:gap-3 items-stretch min-w-0">
+              {t.nav.resourcesMega.featured.map((card, idx) => (
                 <a
                   href={resolveHref(card.href)}
-                  class="group/card flex flex-col justify-between p-3 xl:p-3.5 rounded-2xl hover:bg-slate-50/90 border border-slate-100/90 hover:border-slate-200/90 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 shadow-2xs hover:shadow-xs"
+                  class:list={[
+                    "group/card flex flex-col justify-between p-2 sm:p-2.5 xl:p-3 rounded-xl bg-white/70 hover:bg-white border border-slate-200/70 hover:border-slate-300 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 shadow-2xs hover:shadow-xs",
+                    idx < 3 ? "col-span-2" : "col-span-3"
+                  ]}
                 >
                   <div>
-                    <div class="overflow-hidden rounded-xl border border-slate-200/80 bg-slate-100 aspect-[16/10] relative shadow-2xs">
-                      <img
-                        src={card.image}
-                        alt={`${card.brand} ${card.name}`}
-                        class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105"
-                        loading="lazy"
-                      />
+                    <div class="overflow-hidden rounded-lg border border-slate-200/80 bg-slate-100 h-20 sm:h-22 xl:h-24 relative shadow-2xs">
+                      <picture>
+                        {'webp' in card && card.webp && <source srcset={card.webp} type="image/webp" />}
+                        <img
+                          src={card.image}
+                          alt={`${card.brand} ${card.name}`}
+                          class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105"
+                          loading="lazy"
+                        />
+                      </picture>
                     </div>
-                    <div class="mt-3 text-xs sm:text-sm xl:text-base font-medium text-slate-900 group-hover/card:text-slate-950 transition-colors flex items-center justify-between">
-                      <div>
+                    <div class="mt-2 text-xs xl:text-[13px] font-medium text-slate-900 group-hover/card:text-slate-950 transition-colors flex items-center justify-between gap-1">
+                      <div class="truncate">
                         <span>{card.brand} </span>
                         <span class="font-bold">{card.name}</span>
                       </div>
-                      <span class="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-600 group-hover/card:bg-slate-200 group-hover/card:text-slate-950 transition-colors">
-                        {card.brand === 'Teknalogi' ? 'SaaS' : 'Platform'}
+                      <span class="text-[9px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-600 group-hover/card:bg-slate-200 group-hover/card:text-slate-950 transition-colors shrink-0">
+                        {'tag' in card ? card.tag : (card.brand === 'Teknalogi' ? 'SaaS' : 'Platform')}
                       </span>
                     </div>
-                    <p class="text-[11px] xl:text-xs text-slate-500 leading-relaxed mt-1 line-clamp-3">
+                    <p class="text-[10.5px] xl:text-[11px] text-slate-500 leading-snug mt-1 line-clamp-2 font-normal">
                       {card.desc}
                     </p>
                   </div>
-                  <div class="mt-3.5 pt-2.5 border-t border-slate-100/90 flex items-center justify-between text-xs font-semibold text-slate-800 group-hover/card:text-slate-950 transition-colors">
-                    <span>{currentLang === 'id' ? 'Pelajari Produk' : 'Explore Product'}</span>
-                    <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/card:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[10.5px] xl:text-[11px] font-semibold text-slate-800 group-hover/card:text-slate-950 transition-colors">
+                    <span>{currentLang === 'id' ? 'Pelajari' : 'Explore'}</span>
+                    <svg class="w-3 h-3 transition-transform duration-200 group-hover/card:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
@@ -482,7 +673,7 @@ const toggleAriaLabel = isCurrentId
             </div>
 
             <!-- Right Column: Knowledge Hub -->
-            <div class="w-[220px] xl:w-[250px] shrink-0 border-l border-slate-200/80 pl-4 xl:pl-6 flex flex-col justify-between">
+            <div class="w-[200px] xl:w-[230px] shrink-0 border-l border-slate-200/80 pl-3.5 xl:pl-5 flex flex-col justify-between">
               <div>
                 <h4 class="text-xs xl:text-sm font-bold text-slate-900 tracking-tight font-sans">
                   {t.nav.resourcesMega.knowledgeHub.title}
@@ -494,7 +685,7 @@ const toggleAriaLabel = isCurrentId
                   {t.nav.resourcesMega.knowledgeHub.topics.map((topic) => (
                     <a
                       href={resolveHref(topic.href)}
-                      class="group/topic block text-xs text-slate-800 hover:text-slate-950 font-medium transition-colors py-1 px-2 -mx-2 rounded-lg hover:bg-slate-100 flex items-center justify-between"
+                      class="group/topic block text-xs text-slate-800 hover:text-slate-950 font-medium transition-colors py-1.5 px-2 -mx-2 rounded-lg hover:bg-slate-100 flex items-center justify-between"
                     >
                       <span>{topic.label}</span>
                       <svg class="w-3 h-3 text-slate-400 opacity-0 -translate-x-1 group-hover/topic:opacity-100 group-hover/topic:translate-x-0 group-hover/topic:text-slate-950 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -664,6 +855,17 @@ const toggleAriaLabel = isCurrentId
             </svg>
           </a>
         ))}
+        <div class="pt-2 px-1">
+          <a
+            href={industriesHubUrl}
+            class="mobile-nav-link flex items-center justify-center gap-1.5 w-full py-2.5 px-4 bg-slate-950 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl text-center shadow-xs transition-all min-h-[42px]"
+          >
+            <span>{currentLang === 'id' ? 'Lihat Semua Industri' : 'Explore All Industries'}</span>
+            <svg class="w-3.5 h-3.5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
       </div>
     </details>
 
@@ -719,7 +921,7 @@ const toggleAriaLabel = isCurrentId
 
         <!-- Frameworks -->
         <div class="space-y-1 pt-2 border-t border-slate-200/70">
-          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-3 pt-1 font-mono">Frameworks</div>
+          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-3 pt-1 font-mono">{currentLang === 'id' ? 'Produk & Ekosistem' : 'Products & Ecosystem'}</div>
           {t.nav.resourcesMega.featured.map((card) => (
             <a
               href={resolveHref(card.href)}
@@ -731,6 +933,17 @@ const toggleAriaLabel = isCurrentId
               </svg>
             </a>
           ))}
+          <div class="pt-2 px-1">
+            <a
+              href={ecosystemUrl}
+              class="mobile-nav-link flex items-center justify-center gap-1.5 w-full py-2.5 px-4 bg-slate-100 hover:bg-slate-200 border border-slate-300/80 text-slate-900 text-xs font-semibold rounded-xl text-center transition-all min-h-[42px]"
+            >
+              <span>{currentLang === 'id' ? 'Jelajahi Ekosistem' : 'Explore Ecosystem'}</span>
+              <svg class="w-3.5 h-3.5 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
         </div>
 
         <!-- Knowledge Hub -->
@@ -1134,73 +1347,4 @@ const toggleAriaLabel = isCurrentId
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
   }
-
-  // Interactive Industry Dynamic Image Preview on Hover
-  const industryTriggers = document.querySelectorAll('[data-industry-trigger]');
-  const industrySlides = document.querySelectorAll('[data-industry-preview]');
-  const industryEmptyPreview = document.querySelector<HTMLElement>('[data-industry-preview-empty]');
-  const industryDropdown = industryEmptyPreview?.closest<HTMLElement>('.dropdown-container');
-
-  const resetIndustryPreview = () => {
-    industryEmptyPreview?.classList.remove('opacity-0', 'pointer-events-none');
-
-    industrySlides.forEach((slide) => {
-      slide.classList.remove('opacity-100', 'scale-100', 'z-10', 'pointer-events-auto');
-      slide.classList.add('opacity-0', 'scale-95', 'z-0', 'pointer-events-none');
-    });
-
-    industryTriggers.forEach((trigger) => {
-      trigger.classList.remove('bg-slate-200/80', 'text-slate-950', 'font-semibold', 'is-active', 'shadow-2xs');
-      trigger.classList.add('text-slate-800', 'font-medium');
-      const arrow = trigger.querySelector('svg');
-      if (arrow) {
-        arrow.classList.add('opacity-0', '-translate-x-1');
-        arrow.classList.remove('opacity-100', 'translate-x-0');
-      }
-    });
-  };
-
-  const activateIndustryPreview = (trigger: Element) => {
-    const targetId = trigger.getAttribute('data-industry-trigger');
-    if (!targetId) return;
-
-    industryEmptyPreview?.classList.add('opacity-0', 'pointer-events-none');
-
-    industrySlides.forEach((slide) => {
-      const slideId = slide.getAttribute('data-industry-preview');
-      if (slideId === targetId) {
-        slide.classList.remove('opacity-0', 'scale-95', 'z-0', 'pointer-events-none');
-        slide.classList.add('opacity-100', 'scale-100', 'z-10', 'pointer-events-auto');
-      } else {
-        slide.classList.remove('opacity-100', 'scale-100', 'z-10', 'pointer-events-auto');
-        slide.classList.add('opacity-0', 'scale-95', 'z-0', 'pointer-events-none');
-      }
-    });
-
-    industryTriggers.forEach((item) => {
-      const arrow = item.querySelector('svg');
-      if (item === trigger) {
-        item.classList.add('bg-slate-200/80', 'text-slate-950', 'font-semibold', 'is-active', 'shadow-2xs');
-        item.classList.remove('text-slate-800', 'font-medium');
-        if (arrow) {
-          arrow.classList.remove('opacity-0', '-translate-x-1');
-          arrow.classList.add('opacity-100', 'translate-x-0');
-        }
-      } else {
-        item.classList.remove('bg-slate-200/80', 'text-slate-950', 'font-semibold', 'is-active', 'shadow-2xs');
-        item.classList.add('text-slate-800', 'font-medium');
-        if (arrow) {
-          arrow.classList.add('opacity-0', '-translate-x-1');
-          arrow.classList.remove('opacity-100', 'translate-x-0');
-        }
-      }
-    });
-  };
-
-  industryTriggers.forEach((trigger) => {
-    trigger.addEventListener('mouseenter', () => activateIndustryPreview(trigger));
-    trigger.addEventListener('focus', () => activateIndustryPreview(trigger));
-  });
-
-  industryDropdown?.addEventListener('mouseleave', resetIndustryPreview);
 </script>

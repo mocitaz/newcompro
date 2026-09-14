@@ -1,0 +1,25 @@
+---
+// src/pages/id/industri/index.astro - Hub Sektor Industri (ID)
+import Layout from "../../../layouts/Layout.astro";
+import TopBar from "../../../components/TopBar.astro";
+import IndustryComingSoon from "../../../components/IndustryComingSoon.astro";
+import LetsTalk from "../../../components/LetsTalk.astro";
+import BackToTop from "../../../components/BackToTop.astro";
+---
+
+<Layout
+  lang="id"
+  title="Sektor Industri | PT Teknalogi Transformasi Digital"
+  description="Solusi transformasi digital spesifik sektor, rekayasa sistem terdistribusi, dan arsitektur enterprise untuk berbagai bidang industri."
+>
+  <TopBar lang="id" />
+  <main class="min-h-screen bg-white">
+    <IndustryComingSoon
+      lang="id"
+      title="Segera Hadir"
+      subtitle="Dokumentasi komprehensif solusi lintas industri, studi kasus sektor, dan cetak biru teknologi kami sedang dipersiapkan."
+    />
+    <LetsTalk lang="id" bgWhite={true} />
+  </main>
+  <BackToTop label="Kembali ke atas" />
+</Layout>

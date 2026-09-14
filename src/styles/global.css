@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
+  --font-inter: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-plus-jakarta: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
   --font-dm-sans: "DM Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
-  --font-inter: "DM Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
-  --font-plus-jakarta: "DM Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
-  --font-display: "DM Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-jetbrains-mono: "JetBrains Mono", monospace;
   --color-brand-purple: #8b5cf6;
   --color-brand-dark: #040812;
@@ -26,14 +26,18 @@
     padding-inline: 1.25rem;
   }
 
+  .font-inter {
+    font-family: var(--font-inter);
+  }
   .font-sans,
-  .font-inter,
   .font-dm-sans {
     font-family: var(--font-dm-sans);
   }
-  .font-plus-jakarta,
+  .font-plus-jakarta {
+    font-family: var(--font-plus-jakarta);
+  }
   .font-display {
-    font-family: var(--font-dm-sans);
+    font-family: var(--font-display);
   }
   .font-mono {
     font-family: var(--font-jetbrains-mono);
@@ -67,6 +71,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
     overflow-x: clip;
   }
   body {
@@ -106,8 +111,8 @@
 /* Standard Reveal: smooth upward fade */
 .reveal-init {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px);
+  transition: opacity 750ms cubic-bezier(0.16, 1, 0.3, 1), transform 750ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -119,8 +124,8 @@
 /* Scale & Glide Reveal (for Cards, Gallery Frames, Visual Showcases) */
 .reveal-scale-init {
   opacity: 0;
-  transform: scale(0.96) translateY(24px);
-  transition: opacity 850ms cubic-bezier(0.16, 1, 0.3, 1), transform 850ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(0.97) translateY(20px);
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -129,9 +134,22 @@
   transform: scale(1) translateY(0) !important;
 }
 
-/* Image Inner Breathe (for gallery photos) */
+/* Editorial Text / Article Section Reveal */
+.reveal-text-init {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-text-active {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Image Inner Breathe (for gallery photos & 3D assets) */
 .reveal-img-breathe {
-  transform: scale(1.06);
+  transform: scale(1.05);
   transition: transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
@@ -141,12 +159,12 @@
   transform: scale(1);
 }
 
-/* Editorial Headline Mask Reveal */
+/* Editorial Headline Blur & Elevation Reveal */
 .reveal-title-init {
   opacity: 0;
-  transform: translateY(32px);
-  filter: blur(4px);
-  transition: opacity 900ms cubic-bezier(0.16, 1, 0.3, 1), transform 900ms cubic-bezier(0.16, 1, 0.3, 1), filter 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(28px);
+  filter: blur(3px);
+  transition: opacity 850ms cubic-bezier(0.16, 1, 0.3, 1), transform 850ms cubic-bezier(0.16, 1, 0.3, 1), filter 850ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, filter;
 }
 
@@ -156,25 +174,52 @@
   filter: blur(0) !important;
 }
 
+/* 3D Ambient Idle Floating Effect (Slow & Calming) */
+@keyframes hero3dFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.6deg);
+  }
+}
+
+.hero-3d-float {
+  animation: hero3dFloat 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Parallax Container Helper */
+.hero-parallax-element {
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
 /* Stagger Delays for Cascade Waves */
-.stagger-1 { transition-delay: 60ms; }
-.stagger-2 { transition-delay: 130ms; }
-.stagger-3 { transition-delay: 200ms; }
-.stagger-4 { transition-delay: 270ms; }
-.stagger-5 { transition-delay: 340ms; }
-.stagger-6 { transition-delay: 410ms; }
+.stagger-1 { transition-delay: 50ms; }
+.stagger-2 { transition-delay: 110ms; }
+.stagger-3 { transition-delay: 170ms; }
+.stagger-4 { transition-delay: 230ms; }
+.stagger-5 { transition-delay: 290ms; }
+.stagger-6 { transition-delay: 350ms; }
+.stagger-7 { transition-delay: 410ms; }
+.stagger-8 { transition-delay: 470ms; }
 
 /* Accessibility: Full Respect for Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .reveal-init,
   .reveal-scale-init,
+  .reveal-text-init,
   .reveal-title-init {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;
     transition: none !important;
   }
-  .reveal-img-breathe {
+  .reveal-img-breathe,
+  .hero-3d-float,
+  .hero-parallax-element {
+    animation: none !important;
     transform: none !important;
     transition: none !important;
   }

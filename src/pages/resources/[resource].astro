@@ -1,0 +1,45 @@
+---
+// src/pages/resources/[resource].astro - Product / Resource Pages (EN)
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import IndustryComingSoon from "../../components/IndustryComingSoon.astro";
+import LetsTalk from "../../components/LetsTalk.astro";
+import BackToTop from "../../components/BackToTop.astro";
+import { getTranslations } from "../../i18n/translations";
+
+export function getStaticPaths() {
+  const resources = [
+    'workspace',
+    'ticketing',
+    'lims',
+    'trakerja',
+    'pixelplay'
+  ];
+
+  return resources.map((resource) => ({
+    params: { resource }
+  }));
+}
+
+const { resource: resourceSlug } = Astro.params;
+const lang = "en";
+const t = getTranslations(lang);
+const product = t.nav.resourcesMega.featured.find((item) => item.name.toLowerCase().replace(/[^a-z0-9]/g, '') === resourceSlug);
+
+const title = product ? `${product.brand} ${product.name}` : 'Product Solution';
+const pageTitle = `${title} | PT Teknalogi Transformasi Digital`;
+const pageDesc = product ? product.desc : 'Enterprise digital platform and software engineering by Teknalogi.';
+---
+
+<Layout lang={lang} title={pageTitle} description={pageDesc}>
+  <TopBar lang={lang} />
+  <main class="min-h-screen bg-white">
+    <IndustryComingSoon
+      lang={lang}
+      title="Coming Soon"
+      subtitle={`Dedicated documentation, system capabilities, and enterprise roadmap for ${title} are currently in preparation.`}
+    />
+    <LetsTalk lang={lang} bgWhite={true} />
+  </main>
+  <BackToTop label="Back to top" />
+</Layout>

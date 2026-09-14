@@ -1,0 +1,25 @@
+---
+// src/pages/id/knowledge-hub.astro - Pusat Pengetahuan / Knowledge Hub (ID)
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import IndustryComingSoon from "../../components/IndustryComingSoon.astro";
+import LetsTalk from "../../components/LetsTalk.astro";
+import BackToTop from "../../components/BackToTop.astro";
+---
+
+<Layout
+  lang="id"
+  title="Knowledge Hub | PT Teknalogi Transformasi Digital"
+  description="Artikel rekayasa teknologi, fundamental web modern, integrasi pencarian AI, dan wawasan digital dari Teknalogi."
+>
+  <TopBar lang="id" />
+  <main class="min-h-screen bg-white">
+    <IndustryComingSoon
+      lang="id"
+      title="Segera Hadir"
+      subtitle="Panduan rekayasa software mendalam, arsitektur pencarian AI & SEO modern, serta wawasan teknologi kami sedang dipersiapkan."
+    />
+    <LetsTalk lang="id" bgWhite={true} />
+  </main>
+  <BackToTop label="Kembali ke atas" />
+</Layout>

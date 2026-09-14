@@ -68,7 +68,7 @@ const getTocLabel = (section: any) => {
           {aboutService.sections.map((section: any) => (
             <article
               id={section.id}
-              class="editorial-section scroll-mt-20 sm:scroll-mt-28 reveal-init pb-8 sm:pb-12 border-b border-slate-100 last:border-b-0"
+              class="editorial-section scroll-mt-20 sm:scroll-mt-28 reveal-text-init pb-8 sm:pb-12 border-b border-slate-100 last:border-b-0"
               data-reveal="text"
             >
               <h3 class="text-lg sm:text-2xl font-bold tracking-tight text-slate-950 mb-3 sm:mb-4 font-sans leading-snug">
@@ -146,10 +146,10 @@ const getTocLabel = (section: any) => {
           tocLinks.forEach((link) => {
             const href = link.getAttribute('href');
             if (href === `#${id}`) {
-              link.classList.add('text-slate-950', 'border-slate-900');
+              link.classList.add('text-slate-950', 'border-slate-900', 'font-semibold');
               link.classList.remove('text-slate-500', 'border-transparent');
             } else {
-              link.classList.remove('text-slate-950', 'border-slate-900');
+              link.classList.remove('text-slate-950', 'border-slate-900', 'font-semibold');
               link.classList.add('text-slate-500', 'border-transparent');
             }
           });

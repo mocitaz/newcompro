@@ -1,55 +1,25 @@
 ---
-// src/pages/layanan.astro - Displays EA.png image
+// src/pages/layanan.astro - Services Hub (EN)
 import Layout from "../layouts/Layout.astro";
 import TopBar from "../components/TopBar.astro";
+import IndustryComingSoon from "../components/IndustryComingSoon.astro";
+import LetsTalk from "../components/LetsTalk.astro";
+import BackToTop from "../components/BackToTop.astro";
 ---
 
 <Layout
   lang="en"
   title="Enterprise Services | PT Teknalogi Transformasi Digital"
-  description="Enterprise software engineering, system architecture, and technology blueprint."
+  description="Enterprise software engineering, system architecture, and technology solutions by Teknalogi."
 >
   <TopBar lang="en" />
-  <main class="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-8 max-w-7xl mx-auto flex flex-col items-center min-h-[75vh]">
-    <!-- Page Header Title & Context -->
-    <div class="w-full max-w-4xl text-center mb-8 sm:mb-12">
-      <span class="inline-block text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-50 border border-indigo-200/60 px-3.5 py-1 rounded-full mb-3 font-mono">
-        Enterprise Blueprint
-      </span>
-      <h1 class="text-2xl sm:text-4xl lg:text-[42px] font-bold text-slate-950 tracking-[-0.025em] leading-[1.2] font-sans">
-        Enterprise Architecture & Service Blueprint
-      </h1>
-      <p class="text-slate-600 text-xs sm:text-base leading-relaxed mt-2.5 sm:mt-3.5 font-sans max-w-2xl mx-auto">
-        Comprehensive architectural framework powering high-concurrency systems, distributed services, and sovereign cloud infrastructure.
-      </p>
-
-      <!-- Mobile Touch Hint (Visible only on small viewports) -->
-      <div class="mt-4 sm:hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-600 text-[11px] font-medium">
-        <svg class="w-3.5 h-3.5 text-indigo-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-        </svg>
-        <span>Swipe horizontally to inspect diagram details</span>
-      </div>
-    </div>
-
-    <!-- Responsive High-Resolution Diagram Frame -->
-    <div class="w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-xl bg-white">
-      <div class="overflow-x-auto overscroll-x-contain scrollbar-thin">
-        <div class="min-w-[720px] sm:min-w-0">
-          <picture>
-            <source srcset="/EA.webp" type="image/webp" />
-            <img
-              src="/EA.png"
-              alt="Enterprise Architecture - PT Teknalogi Transformasi Digital"
-              class="w-full h-auto block select-none"
-              loading="eager"
-              decoding="async"
-              width="1884"
-              height="1080"
-            />
-          </picture>
-        </div>
-      </div>
-    </div>
+  <main class="min-h-screen bg-white">
+    <IndustryComingSoon
+      lang="en"
+      title="Coming Soon"
+      subtitle="Our comprehensive enterprise services catalog and engineering solutions portfolio are currently in preparation."
+    />
+    <LetsTalk lang="en" bgWhite={true} />
   </main>
+  <BackToTop label="Back to top" />
 </Layout>

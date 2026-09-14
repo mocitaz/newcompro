@@ -34,11 +34,11 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:image" content="/logo.png" />
 
-    <!-- Google Fonts: DM Sans & JetBrains Mono -->
+    <!-- Google Fonts: Inter, Plus Jakarta Sans, DM Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -53,13 +53,25 @@ const {
       (function () {
         if (typeof window === 'undefined') return;
 
+        function applyRevealClass(el, mode) {
+          if (mode === 'scale') {
+            el.classList.add('reveal-scale-active');
+          } else if (mode === 'title') {
+            el.classList.add('reveal-title-active');
+          } else if (mode === 'text') {
+            el.classList.add('reveal-text-active');
+          } else {
+            el.classList.add('reveal-active');
+          }
+        }
+
         function setupReveals() {
           var isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
           var targets = document.querySelectorAll('[data-reveal]');
 
           if (isReduced) {
             targets.forEach(function (el) {
-              el.classList.add('reveal-active', 'reveal-scale-active', 'reveal-title-active');
+              el.classList.add('reveal-active', 'reveal-scale-active', 'reveal-title-active', 'reveal-text-active');
             });
             return;
           }
@@ -70,23 +82,15 @@ const {
                 if (entry.isIntersecting) {
                   var el = entry.target;
                   var mode = el.getAttribute('data-reveal');
-
-                  if (mode === 'scale') {
-                    el.classList.add('reveal-scale-active');
-                  } else if (mode === 'title') {
-                    el.classList.add('reveal-title-active');
-                  } else {
-                    el.classList.add('reveal-active');
-                  }
-
+                  applyRevealClass(el, mode);
                   obs.unobserve(el);
                 }
               });
             },
             {
               root: null,
-              rootMargin: '0px 0px -40px 0px',
-              threshold: 0.08
+              rootMargin: '0px 0px -35px 0px',
+              threshold: 0.06
             }
           );
 
@@ -95,26 +99,65 @@ const {
             // Reveal immediately if already inside viewport on initial load
             if (rect.top < window.innerHeight - 20 && rect.bottom > 0) {
               var mode = el.getAttribute('data-reveal');
-              if (mode === 'scale') {
-                el.classList.add('reveal-scale-active');
-              } else if (mode === 'title') {
-                el.classList.add('reveal-title-active');
-              } else {
-                el.classList.add('reveal-active');
-              }
+              applyRevealClass(el, mode);
             } else {
               observer.observe(el);
             }
           });
         }
 
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', setupReveals);
-        } else {
-          setupReveals();
+        // High-Performance Smooth Scroll Parallax for 3D Hero & Visual Accents
+        function setupScrollParallax() {
+          var isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (isReduced) return;
+
+          var parallaxElements = document.querySelectorAll('[data-hero-parallax]');
+          if (!parallaxElements.length) return;
+
+          var ticking = false;
+
+          function updateParallax() {
+            var scrollY = window.scrollY;
+            // Only calculate within hero viewport range (< 1000px) to save CPU/battery
+            if (scrollY <= 1000) {
+              parallaxElements.forEach(function (el) {
+                var speedAttr = el.getAttribute('data-hero-parallax');
+                var speed = speedAttr ? parseFloat(speedAttr) : 0.15;
+                var maxOffset = 130;
+                var offset = Math.min(scrollY * speed, maxOffset);
+                el.style.transform = 'translate3d(0, ' + offset.toFixed(1) + 'px, 0)';
+              });
+            }
+            ticking = false;
+          }
+
+          window.addEventListener(
+            'scroll',
+            function () {
+              if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+              }
+            },
+            { passive: true }
+          );
+
+          // Initial position sync
+          updateParallax();
         }
 
-        document.addEventListener('astro:page-load', setupReveals);
+        function initMotion() {
+          setupReveals();
+          setupScrollParallax();
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initMotion);
+        } else {
+          initMotion();
+        }
+
+        document.addEventListener('astro:page-load', initMotion);
       })();
     </script>
   </body>

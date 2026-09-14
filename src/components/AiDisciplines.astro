@@ -66,7 +66,7 @@ const layananUrl = lang === 'id' ? '/id/layanan' : '/layanan';
     {
       disciplines.map((item, index) => (
         <a
-          href={layananUrl}
+          href={item.href || layananUrl}
           data-reveal="scale"
           class={`group block rounded-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-4 reveal-scale-init stagger-${(index % 4) + 1}`}
         >

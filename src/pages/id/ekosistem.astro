@@ -1,0 +1,25 @@
+---
+// src/pages/id/ekosistem.astro - Halaman Ekosistem Digital (ID)
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import IndustryComingSoon from "../../components/IndustryComingSoon.astro";
+import LetsTalk from "../../components/LetsTalk.astro";
+import BackToTop from "../../components/BackToTop.astro";
+---
+
+<Layout
+  lang="id"
+  title="Ekosistem Digital | PT Teknalogi Transformasi Digital"
+  description="Jelajahi ekosistem software enterprise dan solusi transformasi digital terintegrasi dari Teknalogi."
+>
+  <TopBar lang="id" />
+  <main class="min-h-screen bg-white">
+    <IndustryComingSoon
+      lang="id"
+      title="Segera Hadir"
+      subtitle="Halaman gambaran ekosistem software enterprise terpadu dan integrasi platform digital kami sedang dipersiapkan."
+    />
+    <LetsTalk lang="id" bgWhite={true} />
+  </main>
+  <BackToTop label="Kembali ke atas" />
+</Layout>

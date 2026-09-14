@@ -18,22 +18,38 @@ test('desktop dropdowns connect directly to the top bar', () => {
 
 test('top bar dropdowns use neutral slate interaction states', () => {
   assert.doesNotMatch(topBar, /indigo|purple/);
-  assert.match(topBar, /item\.classList\.add\('bg-slate-200\/80', 'text-slate-950', 'font-semibold', 'is-active'/);
+  assert.match(topBar, /hover:bg-slate-100/);
   assert.match(topBar, /hover:text-slate-950/);
 });
 
-test('industry menu opens with a neutral preview instead of Banking', () => {
-  assert.match(topBar, /data-industry-preview-empty/);
-  assert.doesNotMatch(topBar, /idx === 0/);
-  assert.match(topBar, /trigger\.addEventListener\('mouseenter', \(\) => activateIndustryPreview\(trigger\)\)/);
-  assert.match(topBar, /trigger\.addEventListener\('focus', \(\) => activateIndustryPreview\(trigger\)\)/);
-  assert.match(topBar, /industryDropdown\?\.addEventListener\('mouseleave', resetIndustryPreview\)/);
+test('industry menu renders clean domain sectors without photo preview', () => {
+  assert.doesNotMatch(topBar, /industry-preview-slide/);
+  assert.match(topBar, /t\.nav\.industriesMega\.items/);
+  assert.match(topBar, /hover:text-slate-950/);
+
+  const expectedIndustryIds = [
+    'banking',
+    'tech-saas',
+    'manufacturing',
+    'healthcare',
+    'business-services',
+    'insurance',
+    'education',
+    'telecom',
+    'retail',
+    'logistics',
+  ];
+
+  for (const id of expectedIndustryIds) {
+    const regex = new RegExp(`item\\.id === '${id}'`);
+    assert.match(topBar, regex, `Expected icon check for industry id: ${id}`);
+  }
 });
 
 test('left-column dropdown CTAs share the simple ecosystem-link treatment', () => {
-  assert.match(topBar, /href=\{industriesSectionUrl\}[\s\S]{0,220}group\/all inline-flex items-center gap-1\.5 text-xs font-semibold text-slate-900/);
+  assert.match(topBar, /href=\{(?:industriesSectionUrl|industriesHubUrl)\}[\s\S]{0,220}group\/all inline-flex items-center gap-1\.5 text-xs font-semibold text-slate-900/);
   assert.match(topBar, /href=\{resolveHref\(t\.nav\.servicesMega\.ctaHref\)\}[\s\S]{0,260}group\/btn inline-flex items-center gap-1\.5 text-xs font-semibold text-slate-900/);
-  assert.match(topBar, /href=\{resolveHref\('\/layanan'\)\}[\s\S]{0,220}text-xs font-semibold text-slate-900/);
+  assert.match(topBar, /href=\{(?:resolveHref\('\/layanan'\)|ecosystemUrl)\}[\s\S]{0,220}text-xs font-semibold text-slate-900/);
 });
 
 test('hero dropdowns transition through a neutral glass treatment', () => {
@@ -44,3 +60,38 @@ test('hero dropdowns transition through a neutral glass treatment', () => {
   assert.match(topBar, /opacity 0\.28s cubic-bezier/);
   assert.match(topBar, /transform 0\.36s cubic-bezier/);
 });
+
+test('resources mega dropdown renders compact 2-row (3, 2) featured products', async () => {
+  assert.match(topBar, /grid grid-cols-6/);
+  assert.match(topBar, /h-20 sm:h-22 xl:h-24/);
+  assert.match(topBar, /idx < 3 \? "col-span-2" : "col-span-3"/);
+  assert.match(topBar, /line-clamp-2/);
+
+  const translationsSource = await readFile(
+    new URL('../src/i18n/translations.ts', import.meta.url),
+    'utf8',
+  );
+
+  for (const name of ['Workspace', 'Ticketing', 'LIMS', 'TraKerja', 'PixelPlay!']) {
+    const nameRegex = new RegExp(`name:\\s*'${name.replace('!', '\\!')}'`);
+    assert.match(translationsSource, nameRegex, `Expected featured product: ${name}`);
+  }
+
+  const expectedAssets = [
+    'public/resource_workspace.png',
+    'public/resource_workspace.webp',
+    'public/resource_ticketing.png',
+    'public/resource_ticketing.webp',
+    'public/resource_LIMS.png',
+    'public/resource_LIMS.webp',
+    'public/resource_trakerja.webp',
+    'public/resource_pixelplay.webp',
+  ];
+
+  for (const asset of expectedAssets) {
+    const assetContent = await readFile(new URL(`../${asset}`, import.meta.url));
+    assert.ok(assetContent.length > 0, `Asset ${asset} must not be empty`);
+  }
+});
+
+

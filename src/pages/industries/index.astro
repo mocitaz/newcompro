@@ -1,0 +1,25 @@
+---
+// src/pages/industries/index.astro - Industry Sectors Hub (EN)
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import IndustryComingSoon from "../../components/IndustryComingSoon.astro";
+import LetsTalk from "../../components/LetsTalk.astro";
+import BackToTop from "../../components/BackToTop.astro";
+---
+
+<Layout
+  lang="en"
+  title="Industry Sectors | PT Teknalogi Transformasi Digital"
+  description="Explore specialized digital transformation, systems engineering, and architectures across 130+ industry sectors."
+>
+  <TopBar lang="en" />
+  <main class="min-h-screen bg-white">
+    <IndustryComingSoon
+      lang="en"
+      title="Coming Soon"
+      subtitle="Comprehensive cross-sector solutions, industry case studies, and engineering blueprints are currently in preparation."
+    />
+    <LetsTalk lang="en" bgWhite={true} />
+  </main>
+  <BackToTop label="Back to top" />
+</Layout>

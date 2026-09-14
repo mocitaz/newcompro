@@ -1,0 +1,49 @@
+---
+// src/pages/id/industri/[industry].astro - Halaman Sektor Industri (ID)
+import Layout from "../../../layouts/Layout.astro";
+import TopBar from "../../../components/TopBar.astro";
+import IndustryComingSoon from "../../../components/IndustryComingSoon.astro";
+import LetsTalk from "../../../components/LetsTalk.astro";
+import BackToTop from "../../../components/BackToTop.astro";
+import { getTranslations } from "../../../i18n/translations";
+
+export function getStaticPaths() {
+  const industries = [
+    'banking',
+    'tech-saas',
+    'manufacturing',
+    'healthcare',
+    'business-services',
+    'insurance',
+    'education',
+    'telecom',
+    'retail',
+    'logistics'
+  ];
+
+  return industries.map((industry) => ({
+    params: { industry }
+  }));
+}
+
+const { industry: industrySlug } = Astro.params;
+const lang = "id";
+const t = getTranslations(lang);
+const industry = t.nav.industriesMega.items.find((item) => item.id === industrySlug);
+
+if (!industry) {
+  return Astro.redirect('/id#industries');
+}
+
+const pageTitle = `${industry.title} | PT Teknalogi Transformasi Digital`;
+const pageDesc = `${industry.desc} Solusi rekayasa perangkat lunak dan arsitektur enterprise oleh Teknalogi.`;
+---
+
+<Layout lang={lang} title={pageTitle} description={pageDesc}>
+  <TopBar lang={lang} />
+  <main class="min-h-screen bg-white">
+    <IndustryComingSoon lang={lang} industry={industry} />
+    <LetsTalk lang={lang} bgWhite={true} />
+  </main>
+  <BackToTop label="Kembali ke atas" />
+</Layout>

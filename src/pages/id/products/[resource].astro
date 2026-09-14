@@ -1,0 +1,8 @@
+---
+// src/pages/id/products/[resource].astro - Alias for /id/resources/[resource]
+import ResourcePageId, { getStaticPaths as paths } from "../resources/[resource].astro";
+
+export const getStaticPaths = paths;
+---
+
+<ResourcePageId />

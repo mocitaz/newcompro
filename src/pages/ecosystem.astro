@@ -1,0 +1,25 @@
+---
+// src/pages/ecosystem.astro - Digital Ecosystem Page (EN)
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import IndustryComingSoon from "../components/IndustryComingSoon.astro";
+import LetsTalk from "../components/LetsTalk.astro";
+import BackToTop from "../components/BackToTop.astro";
+---
+
+<Layout
+  lang="en"
+  title="Digital Ecosystem | PT Teknalogi Transformasi Digital"
+  description="Explore the connected enterprise software ecosystem and digital solutions by Teknalogi."
+>
+  <TopBar lang="en" />
+  <main class="min-h-screen bg-white">
+    <IndustryComingSoon
+      lang="en"
+      title="Coming Soon"
+      subtitle="Our connected enterprise digital ecosystem overview and platform integration blueprints are currently in preparation."
+    />
+    <LetsTalk lang="en" bgWhite={true} />
+  </main>
+  <BackToTop label="Back to top" />
+</Layout>

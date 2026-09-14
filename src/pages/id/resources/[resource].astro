@@ -1,0 +1,45 @@
+---
+// src/pages/id/resources/[resource].astro - Halaman Produk / Resource (ID)
+import Layout from "../../../layouts/Layout.astro";
+import TopBar from "../../../components/TopBar.astro";
+import IndustryComingSoon from "../../../components/IndustryComingSoon.astro";
+import LetsTalk from "../../../components/LetsTalk.astro";
+import BackToTop from "../../../components/BackToTop.astro";
+import { getTranslations } from "../../../i18n/translations";
+
+export function getStaticPaths() {
+  const resources = [
+    'workspace',
+    'ticketing',
+    'lims',
+    'trakerja',
+    'pixelplay'
+  ];
+
+  return resources.map((resource) => ({
+    params: { resource }
+  }));
+}
+
+const { resource: resourceSlug } = Astro.params;
+const lang = "id";
+const t = getTranslations(lang);
+const product = t.nav.resourcesMega.featured.find((item) => item.name.toLowerCase().replace(/[^a-z0-9]/g, '') === resourceSlug);
+
+const title = product ? `${product.brand} ${product.name}` : 'Solusi Produk';
+const pageTitle = `${title} | PT Teknalogi Transformasi Digital`;
+const pageDesc = product ? product.desc : 'Platform digital enterprise dan rekayasa software oleh Teknalogi.';
+---
+
+<Layout lang={lang} title={pageTitle} description={pageDesc}>
+  <TopBar lang={lang} />
+  <main class="min-h-screen bg-white">
+    <IndustryComingSoon
+      lang={lang}
+      title="Segera Hadir"
+      subtitle={`Halaman dokumentasi lengkap, kapabilitas platform, dan implementasi enterprise ${title} sedang kami persiapkan.`}
+    />
+    <LetsTalk lang={lang} bgWhite={true} />
+  </main>
+  <BackToTop label="Kembali ke atas" />
+</Layout>
