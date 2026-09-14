@@ -45,7 +45,7 @@ const partnerLogos = [
         <div>
           <h2
             id="faq-heading"
-            class="text-2xl sm:text-4xl lg:text-[44px] font-bold text-slate-950 tracking-[-0.035em] leading-[1.18] font-sans"
+            class="text-2xl sm:text-4xl lg:text-[44px] font-medium text-slate-950 tracking-[-0.035em] leading-[1.18] font-sans"
           >
             {faq.headline}
           </h2>
@@ -211,35 +211,20 @@ const partnerLogos = [
       const collapse = item.querySelector<HTMLElement>('.faq-collapse');
       const iconMinus = item.querySelector<HTMLElement>('.faq-icon-minus');
       const iconPlus = item.querySelector<HTMLElement>('.faq-icon-plus');
-      const iconWrapper = item.querySelector<HTMLElement>('.faq-icon-wrapper');
 
-      item.classList.add(
-        'faq-open',
-        'border-slate-950',
-        'bg-[radial-gradient(ellipse_at_top_left,rgba(37,99,235,0.18)_0%,rgba(191,219,254,0.30)_40%,rgba(255,255,255,1)_70%)]',
-        'shadow-[0_10px_30px_-5px_rgba(37,99,235,0.22)]'
-      );
-      item.classList.remove(
-        'border-slate-900/80',
-        'bg-white',
-        'shadow-[0_2px_6px_-2px_rgba(15,23,42,0.03)]',
-        'hover:border-slate-950'
-      );
+      if (!trigger || !collapse) return;
 
-      trigger?.setAttribute('aria-expanded', 'true');
+      item.classList.add('faq-open');
+      trigger.setAttribute('aria-expanded', 'true');
 
-      if (collapse) {
-        collapse.classList.remove('grid-rows-[0fr]', 'opacity-0');
-        collapse.classList.add('grid-rows-[1fr]', 'opacity-100');
-      }
+      collapse.classList.remove('grid-rows-[0fr]', 'opacity-0');
+      collapse.classList.add('grid-rows-[1fr]', 'opacity-100');
 
-      if (iconMinus && iconPlus && iconWrapper) {
+      if (iconMinus && iconPlus) {
         iconMinus.classList.remove('hidden');
         iconMinus.classList.add('block');
         iconPlus.classList.remove('block');
         iconPlus.classList.add('hidden');
-        iconWrapper.classList.add('border-slate-950', 'bg-blue-100', 'text-blue-800');
-        iconWrapper.classList.remove('border-slate-900/30', 'bg-slate-50', 'text-slate-700');
       }
     }
 
@@ -248,35 +233,20 @@ const partnerLogos = [
       const collapse = item.querySelector<HTMLElement>('.faq-collapse');
       const iconMinus = item.querySelector<HTMLElement>('.faq-icon-minus');
       const iconPlus = item.querySelector<HTMLElement>('.faq-icon-plus');
-      const iconWrapper = item.querySelector<HTMLElement>('.faq-icon-wrapper');
 
-      item.classList.remove(
-        'faq-open',
-        'border-slate-950',
-        'bg-[radial-gradient(ellipse_at_top_left,rgba(37,99,235,0.18)_0%,rgba(191,219,254,0.30)_40%,rgba(255,255,255,1)_70%)]',
-        'shadow-[0_10px_30px_-5px_rgba(37,99,235,0.22)]'
-      );
-      item.classList.add(
-        'border-slate-900/80',
-        'bg-white',
-        'shadow-[0_2px_6px_-2px_rgba(15,23,42,0.03)]',
-        'hover:border-slate-950'
-      );
+      if (!trigger || !collapse) return;
 
-      trigger?.setAttribute('aria-expanded', 'false');
+      item.classList.remove('faq-open');
+      trigger.setAttribute('aria-expanded', 'false');
 
-      if (collapse) {
-        collapse.classList.remove('grid-rows-[1fr]', 'opacity-100');
-        collapse.classList.add('grid-rows-[0fr]', 'opacity-0');
-      }
+      collapse.classList.remove('grid-rows-[1fr]', 'opacity-100');
+      collapse.classList.add('grid-rows-[0fr]', 'opacity-0');
 
-      if (iconMinus && iconPlus && iconWrapper) {
+      if (iconMinus && iconPlus) {
         iconMinus.classList.remove('block');
         iconMinus.classList.add('hidden');
         iconPlus.classList.remove('hidden');
         iconPlus.classList.add('block');
-        iconWrapper.classList.remove('border-slate-950', 'bg-blue-100', 'text-blue-800');
-        iconWrapper.classList.add('border-slate-900/30', 'bg-slate-50', 'text-slate-700');
       }
     }
   }
@@ -284,3 +254,24 @@ const partnerLogos = [
   setupAiSearchFaqAccordion();
   document.addEventListener('astro:page-load', setupAiSearchFaqAccordion);
 </script>
+
+<style>
+  .faq-item.faq-open {
+    background:
+      radial-gradient(circle at 86% 20%, rgba(196, 181, 253, 0.26), transparent 55%),
+      #ffffff !important;
+    border-color: rgb(15 23 42) !important;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08) !important;
+  }
+
+  .faq-item.faq-open .faq-icon-wrapper {
+    background-color: rgb(15 23 42) !important;
+    color: #ffffff !important;
+    border-color: rgb(15 23 42) !important;
+  }
+
+  .faq-trigger:focus-visible {
+    outline: 2px solid #0f172a;
+    outline-offset: 2px;
+  }
+</style>

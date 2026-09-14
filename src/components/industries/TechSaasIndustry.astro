@@ -1,0 +1,451 @@
+---
+// src/components/industries/TechSaasIndustry.astro
+import type { Locale } from '../../i18n/translations';
+import TechSaasAboutIndustry from './TechSaasAboutIndustry.astro';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      eyebrow: 'TEKNOLOGI & PLATFORM SAAS',
+      title: 'Engineering untuk produk SaaS skala tinggi dan ekosistem developer.',
+      lead: 'Bangun, skalakan, dan modernisasi platform B2B SaaS dengan arsitektur multi-tenant terisolasi, penagihan berbasis penggunaan (usage-based billing), keamanan enterprise SSO/SAML, serta API developer berkecepatan tinggi. Teknalogi menghadirkan rekayasa perangkat lunak cloud-native yang tangguh dan terukur.',
+      primaryCta: 'Diskusikan kebutuhan produk SaaS Anda',
+      challengesTitle: 'Ketika arsitektur SaaS mentok, pertumbuhan produk terhenti.',
+      challengesLead: 'Kecepatan rilis melambat saat beban database bersama, isolasi tenant, dan tuntutan fitur enterprise membebani tim engineering.',
+      challenges: [
+        ['Bottleneck database bersama (noisy neighbor)', 'Kueri satu tenant membebani database dan memperlambat performa akun enterprise lain.'],
+        ['Kebocoran billing berbasis penggunaan', 'Pencatatan jutaan event API yang tidak sinkron memicu selisih penagihan langganan.'],
+        ['Hambatan onboarding klien korporat', 'Ketiadaan fitur enterprise SSO/SAML dan RBAC kustom menunda penutupan kontrak B2B.'],
+        ['Ketidakstabilan webhook & rate limiting', 'Lonjakan request API tanpa sistem antrean adaptif memicu kegagalan berantai pada server.'],
+      ],
+      solutionsTitle: 'Solusi perangkat lunak terintegrasi untuk pendiri startup teknologi, vendor SaaS, dan platform developer.',
+      solutionsLead: 'Ruang lingkup sistem disesuaikan dengan tahap pertumbuhan produk Anda, mulai dari partisi multi-tenant cloud-native, infrastruktur metering kuota real-time, hingga kesiapan compliance enterprise SOC-2.',
+      solutions: [
+        ['Arsitektur Multi-Tenant Cloud-Native', 'Partisi data tenant logis dan fisik dengan provisi otomatis, pooled compute, dan isolasi data total.', 'multitenant'],
+        ['Mesin Billing Berbasis Penggunaan & Langganan', 'Pencatatan konsumsi API real-time, manajemen lisensi seat, dan otomasi perpanjangan langganan kredit/VA.', 'billing'],
+        ['Enterprise SSO, SAML & Sinkronisasi SCIM', 'Integrasi turnkey Okta, Azure AD, dan Google Workspace dengan kontrol akses berbasis peran (RBAC) dan log audit.', 'sso'],
+        ['Infrastruktur API Developer & Webhook Handal', 'Gateway REST/GraphQL cepat, auto-generated SDK, dan pengiriman webhook bergaransi at-least-once dengan retry cerdas.', 'developer'],
+        ['Pipeline Streaming Data & Event Ingestion', 'Aliran event data sub-milidetik berbasis Kafka, ClickHouse, dan Redis untuk telemetri produk dan analitik real-time.', 'streaming'],
+        ['Observabilitas Skala Global & CI/CD Tanpa Downtime', 'Tracing terdistribusi, deployment otomatis canary/blue-green, dan pemantauan latensi target SLO/SLA 99.99%.', 'observability'],
+      ],
+      approachTitle: 'Dirancang untuk skalabilitas multi-tenant dan keandalan developer API.',
+      domains: [
+        ['Isolasi Tenant & Partisi Sharding Database', 'Terapkan routing data berbasis tenant key guna menjamin performa bebas gangguan noisy neighbor dan kedaulatan data.', 'isolation'],
+        ['Mesin Metering Event & Buku Besar Konsumsi', 'Catat miliaran transaksi penggunaan API secara asinkronus tanpa menambah latensi pada response endpoint utama.', 'metering'],
+        ['Antrean Webhook Berketahanan & Backpressure', 'Gunakan antrean pesan terdistribusi dengan circuit breaker adaptif untuk menjamin pengiriman event ke server klien.', 'resilience'],
+      ],
+      faqTitle: 'Hal yang biasanya dibahas sebelum proyek SaaS dimulai.',
+      faqLead: 'Model penetapan harga langganan, beban konkurensi data, dan kebutuhan kepatuhan enterprise setiap produk teknologi berbeda. Discovery teknis kami memetakan arsitektur cloud, skalabilitas database, dan pipeline deployment.',
+      faqTrustTitle: 'Dipercaya oleh',
+      faqTrustText: 'Perusahaan SaaS, startup teknologi, dan platform digital berkembang di Indonesia',
+      faqAction: 'Tanyakan kebutuhan platform SaaS Anda',
+      faqs: [
+        ['Model multi-tenant apa yang direkomendasikan untuk platform SaaS B2B skala besar?', 'Tergantung pada kebutuhan isolasi data dan target biaya cloud. Kami biasanya merekomendasikan pendekatan hybrid: shared compute dengan logical schema isolation untuk tier standar, serta dedicated database shard untuk akun enterprise tier atas.'],
+        ['Bagaimana sistem metering menangani jutaan pemanggilan API tanpa memperlambat aplikasi?', 'Kami menggunakan arsitektur ingestion berbasis event buffer (Redis/Kafka) yang mencatat log pemanggilan secara asinkronus di latar belakang dan diagregasikan ke database time-series tanpa memblokir thread HTTP utama.'],
+        ['Bisakah fitur Enterprise SSO (SAML 2.0 / OIDC) dihubungkan dengan berbagai penyedia IdP?', 'Ya. Modul Enterprise Readiness kami mendukung protokol SAML 2.0 dan OIDC standar industri yang kompatibel langsung dengan Okta, Microsoft Entra ID (Azure AD), Google Workspace, dan OneLogin.'],
+        ['Bagaimana sistem webhook menjamin pengiriman event jika server klien sedang offline?', 'Pipeline webhook kami menerapkan algoritma retry exponential backoff (mencoba ulang hingga 72 jam) dan memindahkan event yang gagal permanen ke Dead-Letter Queue (DLQ) dengan fasilitas manual redelivery via dashboard.'],
+        ['Apakah Teknalogi membantu proses migrasi dari aplikasi monolitik ke microservices cloud-native?', 'Ya. Kami menerapkan pola Strangler Fig untuk memisahkan modul-modul kritis (seperti billing, autentikasi, dan analitik) secara bertahap tanpa menimbulkan downtime bagi pengguna aktif.'],
+        ['Bagaimana cara memastikan deployment fitur baru berjalan tanpa gangguan layanan (zero downtime)?', 'Kami mengonfigurasi pipeline CI/CD berbasis GitOps dengan strategi Blue-Green Deployment atau Canary Release di Kubernetes, di mana versi baru diuji secara otomatis sebelum seluruh trafik dialihkan.'],
+        ['Berapa lama estimasi pembangunan modul enterprise atau refactoring arsitektur SaaS?', 'Implementasi modular umumnya memakan waktu 6 hingga 14 minggu, mencakup perancangan arsitektur data, pengujian beban konkurensi (load testing), dan integrasi gateway pembayaran.'],
+        ['Apakah Teknalogi menyediakan pemantauan keandalan sistem dan target SLA 99.99%?', 'Ya. Kami menyediakan managed cloud reliability services mencakup konfigurasi OpenTelemetry distributed tracing, pemantauan latensi p99, alerting otomatis, dan dukungan tanggap insiden 24/7.'],
+      ],
+    }
+  : {
+      eyebrow: 'TECHNOLOGY & B2B SAAS ENGINEERING',
+      title: 'Engineering for hyper-scale SaaS platforms and developer ecosystems.',
+      lead: 'Build, scale, and modernize resilient multi-tenant SaaS products with usage-based billing, enterprise SSO/SAML security, high-throughput developer APIs, and distributed event-driven microservices. Teknalogi delivers precision cloud software engineering for high-growth tech ventures and enterprise software vendors.',
+      primaryCta: 'Discuss your SaaS platform requirements',
+      challengesTitle: 'When SaaS architectures hit scaling walls, growth stalls.',
+      challengesLead: 'Product velocity drops when database contention, noisy neighbors, and custom enterprise demands overwhelm core engineering.',
+      challenges: [
+        ['Noisy neighbor database bottlenecks', 'Unpartitioned tenant queries degrade performance for high-value enterprise accounts.'],
+        ['Complex usage-based billing leaks', 'Metering millions of asynchronous API events causes billing drift and delayed invoicing.'],
+        ['Enterprise onboarding friction', 'Lack of turnkey SAML/SSO and custom role governance delays enterprise contract closures.'],
+        ['API rate limiting and webhook instability', 'Unmanaged client traffic spikes trigger cascading microservice outages.'],
+      ],
+      solutionsTitle: 'Integrated software solutions engineered for tech founders, SaaS vendors, and developer platforms.',
+      solutionsLead: 'System architectures are custom-tailored to your product scaling stage, spanning cloud-native multi-tenant partitioning, real-time metering telemetry, and enterprise SOC-2 compliance readiness.',
+      solutions: [
+        ['Multi-Tenant Cloud Architecture', 'Logical and physical tenant data partitioning with automated provisioning, pooled compute, and total data isolation.', 'multitenant'],
+        ['Usage-Based & Subscription Billing Engine', 'Event-driven metering engine capturing billable API calls, seat licenses, and automated credit card/VA subscription renewals.', 'billing'],
+        ['Enterprise SSO, SAML & Directory Sync (SCIM)', 'Plug-and-play Okta, Azure AD, and Google Workspace integration with role-based access controls and audit trails.', 'sso'],
+        ['Developer APIs, SDKs & Webhook Infrastructure', 'High-throughput REST/GraphQL gateways, automated SDK generation, and guaranteed at-least-once webhook deliveries with retries.', 'developer'],
+        ['Real-Time Data Streaming & Ingestion Pipelines', 'Sub-millisecond event streaming powered by Kafka, ClickHouse, and Redis for live product analytics and user telemetry.', 'streaming'],
+        ['Global Observability & Zero-Downtime CI/CD', 'Distributed tracing, automated blue-green/canary deployments, and SLO/SLA latency monitoring.', 'observability'],
+      ],
+      approachTitle: 'Designed for multi-tenant scalability and developer API reliability.',
+      domains: [
+        ['Tenant Isolation & Sharded Data Boundary', 'Enforce indexed tenant routing to ensure enterprise SLA isolation, noisy neighbor mitigation, and data sovereignty.', 'isolation'],
+        ['Sub-Millisecond Event Metering & Ledger', 'Ingest billions of billable API usage events asynchronously without adding latency drag to core endpoint responses.', 'metering'],
+        ['Resilient Webhook Dispatch & Backpressure', 'Deploy distributed message queues with adaptive circuit breaking to guarantee webhook event delivery during third-party downtime.', 'resilience'],
+      ],
+      faqTitle: 'What teams usually discuss before a SaaS project starts.',
+      faqLead: 'Monetization structures, concurrency loads, and enterprise compliance requirements vary across tech ventures. Technical discovery maps cloud topologies, database sharding strategies, and deployment pipelines.',
+      faqTrustTitle: 'Trusted by',
+      faqTrustText: 'B2B SaaS companies, tech scale-ups, and digital platforms across Indonesia',
+      faqAction: 'Ask about your SaaS platform requirements',
+      faqs: [
+        ['Which multi-tenant architecture model is recommended for high-scale B2B SaaS?', 'It depends on data isolation mandates and infrastructure cost efficiency. We typically recommend a hybrid approach: pooled compute with logical schema isolation for standard tiers, paired with dedicated database shards for top-tier enterprise accounts.'],
+        ['How does the metering engine ingest millions of API calls without creating latency bottlenecks?', 'We utilize event buffering architectures (Redis/Kafka) that record consumption telemetry asynchronously in the background and aggregate metrics into columnar time-series stores without blocking primary HTTP handler threads.'],
+        ['Can Enterprise SSO (SAML 2.0 / OIDC) connect seamlessly across diverse customer IdPs?', 'Yes. Our Enterprise Readiness module implements industry-standard SAML 2.0 and OIDC protocols offering plug-and-play compatibility with Okta, Microsoft Entra ID (Azure AD), Google Workspace, and OneLogin.'],
+        ['How does the webhook system guarantee delivery when customer endpoints experience downtime?', 'Our webhook pipeline executes automated exponential backoff retries (retrying across up to 72 hours) and routes permanently failing payloads into a Dead-Letter Queue (DLQ) with self-service replay tools.'],
+        ['Does Teknalogi assist with migrating legacy monoliths to cloud-native microservices?', 'Yes. We apply the proven Strangler Fig migration pattern to decouple mission-critical domains (such as billing, authentication, and telemetry) incrementally with zero operational downtime.'],
+        ['How do you achieve zero-downtime releases for rapid feature deployments?', 'We configure GitOps-driven CI/CD pipelines utilizing Blue-Green Deployment or Canary Release patterns on Kubernetes, ensuring new builds pass automated health checks before receiving production traffic.'],
+        ['What is the typical deployment timeline for enterprise modules or SaaS architectural refactoring?', 'Modular architectural implementations typically span 6 to 14 weeks, encompassing data sharding design, high-concurrency load testing, and payment gateway integration.'],
+        ['Does Teknalogi provide ongoing cloud reliability engineering and 99.99% SLA support?', 'Yes. We offer managed cloud reliability services covering OpenTelemetry distributed tracing, p99 latency monitoring, automated alerting, and 24/7 incident response.'],
+      ],
+    };
+
+const partnerLogos = [
+  ['Anytime Fitness', '/partners/anytime.png'],
+  ['KelolaAja', '/partners/kelolaaja.png'],
+  ['Nikawa Teknika', '/partners/nikawa.png'],
+  ['PT Inti Bersama', '/partners/ptintibersama.png'],
+];
+---
+
+<!-- Hero Section with Background Image and Gradient Overlay -->
+<section class="relative isolate min-h-[38rem] overflow-hidden bg-white py-28 sm:min-h-[42rem] sm:py-32 lg:min-h-[46rem] lg:py-40" aria-labelledby="tech-saas-title">
+  <img src="/industry/herosaas.png" alt="" width="1536" height="1024" class="absolute inset-0 -z-20 h-full w-full object-cover object-[64%_center]" loading="eager" decoding="async" />
+  <div class="absolute inset-0 -z-10 bg-white/84 sm:bg-gradient-to-r sm:from-white sm:from-[7%] sm:via-white/86 sm:via-[46%] sm:to-white/0 sm:to-[80%]"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-white"></div>
+  <div class="home-container flex min-h-[calc(38rem-7rem)] items-end sm:min-h-[calc(42rem-8rem)] lg:min-h-[calc(46rem-10rem)]">
+    <div class="max-w-3xl pb-2 lg:pb-5">
+      <p class="text-[11px] font-semibold tracking-[0.14em] text-slate-600">{copy.eyebrow}</p>
+      <h1 id="tech-saas-title" class="mt-4 max-w-3xl text-4xl font-medium leading-[1.06] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-[4.5rem]">
+        {copy.title}
+      </h1>
+      <p class="mt-6 max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">{copy.lead}</p>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-[#f5a623] px-6 text-sm font-semibold text-slate-950 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e69818] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2">
+        {copy.primaryCta}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Challenges Section with Sticky Secondary Photo and Numbered Grid -->
+<section class="home-section bg-white" aria-labelledby="tech-saas-challenges-title">
+  <div class="home-container grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-12">
+    <div class="group relative overflow-hidden rounded-[24px] lg:sticky lg:top-28 lg:self-start">
+      <img src="/industry/secondarysaas.png" alt="Cloud-native engineering and distributed SaaS platform infrastructure" width="1448" height="1086" class="h-[21rem] w-full object-cover sm:h-[28rem] lg:h-[38rem]" loading="lazy" decoding="async" />
+      <div class="absolute inset-0 bg-slate-950/30 transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
+      <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-950/65 to-transparent"></div>
+      <div class="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+        <span class="font-mono text-[10px] font-semibold tracking-[0.18em] text-white/80">HYPER-SCALE SAAS ARCHITECTURE</span>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <h2 id="tech-saas-challenges-title" class="max-w-xl text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.challengesTitle}</h2>
+      <p class="mt-5 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.challengesLead}</p>
+      <ol class="mt-10 grid flex-1 grid-cols-1 gap-x-8 sm:mt-12 sm:grid-cols-2">
+        {copy.challenges.map(([title, description], index) => (
+          <li class="group border-t border-slate-200 py-6 sm:py-7">
+            <div class="flex items-baseline justify-between gap-5">
+              <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+              <span class="h-px flex-1 bg-slate-100 transition-colors duration-300 group-hover:bg-violet-200"></span>
+            </div>
+            <h3 class="mt-7 text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- Solutions Grid Section (6 Cards with Hover Gradient Glow & Custom Icons) -->
+<section id="tech-saas-solutions" class="home-section bg-white scroll-mt-20" aria-labelledby="tech-saas-solutions-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 id="tech-saas-solutions-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.solutionsTitle}</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.solutionsLead}</p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {copy.solutions.map(([title, description, icon]) => (
+        <article class="tech-saas-solution-card group relative isolate flex min-h-[17rem] overflow-hidden rounded-[20px] border border-slate-200/90 bg-white p-6 sm:min-h-[18rem] sm:p-7">
+          <div class="relative z-10 flex w-full flex-col justify-between">
+            <span class="tech-saas-solution-icon flex h-10 w-10 items-center justify-center text-slate-950" aria-hidden="true">
+              {icon === 'multitenant' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4.5" y="5" width="10" height="9" rx="2" />
+                  <rect x="17.5" y="5" width="10" height="9" rx="2" />
+                  <rect x="4.5" y="18" width="10" height="9" rx="2" />
+                  <rect x="17.5" y="18" width="10" height="9" rx="2" />
+                  <circle cx="9.5" cy="9.5" r="1.5" fill="currentColor" />
+                  <circle cx="22.5" cy="9.5" r="1.5" fill="currentColor" />
+                  <circle cx="9.5" cy="22.5" r="1.5" fill="currentColor" />
+                  <circle cx="22.5" cy="22.5" r="1.5" fill="currentColor" />
+                </svg>
+              )}
+              {icon === 'billing' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="16" cy="16" r="11" />
+                  <path d="M16 10v6l4 2.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M12 21h8" stroke-linecap="round" />
+                  <path d="M16 5V3M16 29v-2" stroke-linecap="round" />
+                </svg>
+              )}
+              {icon === 'sso' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M16 3.5 6 7.5v8c0 7 4.5 11.5 10 13 5.5-1.5 10-6 10-13v-8z" stroke-linejoin="round" />
+                  <circle cx="16" cy="14" r="3" />
+                  <path d="M12 21c.8-1.8 2.3-2.5 4-2.5s3.2.7 4 2.5" stroke-linecap="round" />
+                </svg>
+              )}
+              {icon === 'developer' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4.5" y="6" width="23" height="20" rx="3" stroke-linejoin="round" />
+                  <path d="m10 13-3 3 3 3m12-6 3 3-3 3m-4-7-4 8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {icon === 'streaming' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="7" cy="16" r="3" />
+                  <circle cx="25" cy="8" r="3" />
+                  <circle cx="25" cy="24" r="3" />
+                  <path d="M10 16h6m0 0 6-6m-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {icon === 'observability' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="16" cy="16" r="11" />
+                  <path d="M16 8v8l6 3" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M7 7l3.5 3.5m11 0L25 7" stroke-linecap="round" />
+                </svg>
+              )}
+            </span>
+            <div class="mt-12">
+              <h3 class="max-w-sm text-xl font-medium tracking-[-0.025em] text-slate-950 sm:text-[22px]">{title}</h3>
+              <p class="mt-3 max-w-md text-sm leading-relaxed text-slate-600">{description}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Approach Section (3 Domain Cards with Bespoke Tech SaaS Schematics) -->
+<section class="home-section bg-white" aria-labelledby="tech-saas-approach-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 id="tech-saas-approach-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.approachTitle}</h2>
+    </div>
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 lg:grid-cols-3 lg:gap-5">
+      {copy.domains.map(([title, description, key], index) => (
+        <article class={`tech-saas-domain-card tech-saas-domain-${key} flex min-h-[18rem] flex-col rounded-[20px] border border-slate-200 bg-white p-6 sm:p-7`}>
+          <div class="flex items-start justify-between gap-5">
+            <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+            <span class="text-[11px] font-medium tracking-[0.08em] text-slate-400">
+              {key === 'isolation' ? 'ISOLATION' : key === 'metering' ? 'METERING' : 'RESILIENCE'}
+            </span>
+          </div>
+          <div class="tech-saas-domain-visual mt-5 text-slate-900" aria-hidden="true">
+            {key === 'isolation' && (
+              <svg viewBox="0 0 260 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                {/* Sharded tenant database pods with schema-level routing gateway */}
+                <path d="M20 56h40m32 0h38m32 0h38" stroke-linecap="round" />
+                <circle cx="16" cy="56" r="8" fill="white" />
+                <rect x="66" y="34" width="38" height="44" rx="7" fill="white" />
+                <rect x="154" y="34" width="38" height="44" rx="7" fill="white" />
+                <circle cx="224" cy="56" r="8" fill="white" />
+                <path d="M77 48h16M77 56h10M77 64h16m72-16h16m-16 8h10m-10 8h16" stroke-linecap="round" />
+              </svg>
+            )}
+            {key === 'metering' && (
+              <svg viewBox="0 0 320 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                {/* High-throughput event counter pipeline feeding immutable billing ledger */}
+                <path d="M16 56h50m38 0h50m38 0h50" stroke-linecap="round" />
+                <circle cx="16" cy="56" r="8" fill="white" />
+                <rect x="66" y="34" width="38" height="44" rx="7" fill="white" />
+                <rect x="154" y="34" width="38" height="44" rx="7" fill="white" />
+                <path d="M78 48h14M78 56h8M78 64h14m74-16h14m-14 8h8m-8 8h14" stroke-linecap="round" />
+                <circle cx="260" cy="56" r="16" fill="white" />
+                <path d="m254 56 4 4 8-8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+            {key === 'resilience' && (
+              <svg viewBox="0 0 250 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                {/* Exponential retry queue with circuit breaker and dead-letter queue */}
+                <path d="M18 86h214" stroke-linecap="round" />
+                <path d="M25 76c22 0 19-38 43-38s22 27 42 27 22-43 46-43 17 45 40 45 20-21 32-21" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="68" cy="38" r="6" fill="white" />
+                <circle cx="110" cy="65" r="6" fill="white" />
+                <circle cx="156" cy="22" r="6" fill="white" />
+                <circle cx="196" cy="67" r="6" fill="white" />
+                <path d="M220 20v22m-11-11h22" stroke-linecap="round" />
+              </svg>
+            )}
+          </div>
+          <div class="mt-auto pt-6">
+            <h3 class="text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-2.5 max-w-xl text-sm leading-relaxed text-slate-600">{description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Deep-Dive Editorial Section with Sticky Desktop TOC & Mobile Drawer -->
+<TechSaasAboutIndustry lang={lang} />
+
+<!-- FAQ Section with Accordion and Partner Trust Bar -->
+<section class="home-section bg-white" aria-labelledby="tech-saas-faq-title">
+  <div class="home-container grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-16">
+    <div class="space-y-6 lg:sticky lg:top-28 lg:col-span-5">
+      <div>
+        <h2 id="tech-saas-faq-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-[44px]">{copy.faqTitle}</h2>
+        <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-600 sm:text-base">{copy.faqLead}</p>
+      </div>
+      <div class="flex items-center gap-3.5">
+        <div class="flex -space-x-3" aria-label={`${copy.faqTrustTitle}: ${copy.faqTrustText}`}>
+          {partnerLogos.map(([name, logo]) => (
+            <span class="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 border-slate-100 bg-white p-1.5 shadow-sm">
+              <img src={logo} alt={name} class="h-full w-full object-contain" loading="lazy" decoding="async" />
+            </span>
+          ))}
+        </div>
+        <span class="max-w-[18rem] text-xs leading-snug text-slate-600">
+          <strong class="block font-semibold text-slate-950">{copy.faqTrustTitle}</strong>
+          <span class="mt-0.5 block">{copy.faqTrustText}</span>
+        </span>
+      </div>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-800 focus-visible:ring-offset-2">
+        {copy.faqAction}
+      </a>
+    </div>
+    <div class="space-y-3 lg:col-span-7">
+      {copy.faqs.map(([question, answer], index) => (
+        <details class="tech-saas-faq-item group overflow-hidden rounded-2xl border border-slate-900/80 bg-white transition-colors hover:border-slate-950">
+          <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 rounded-2xl p-5 text-base font-medium leading-snug text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-slate-900 sm:p-6">
+            <span>{question}</span>
+            <span class="tech-saas-faq-icon relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-900/30 bg-slate-50 text-slate-700 transition-colors" aria-hidden="true">
+              <span class="absolute h-px w-3.5 bg-current"></span>
+              <span class="absolute h-3.5 w-px bg-current transition-transform group-open:scale-y-0"></span>
+            </span>
+          </summary>
+          <div role="region" aria-label={`${isId ? 'Jawaban' : 'Answer'} ${index + 1}`}>
+            <p class="max-w-2xl px-5 pb-5 pr-14 text-sm leading-relaxed text-slate-600 sm:px-6 sm:pb-6 sm:text-[15px]">{answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .tech-saas-domain-card {
+    box-shadow: 0 1px 10px -7px rgba(15, 23, 42, 0.14);
+  }
+
+  .tech-saas-domain-visual {
+    display: block;
+    width: 100%;
+  }
+
+  .tech-saas-domain-visual svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .tech-saas-domain-metering .tech-saas-domain-visual {
+    margin-inline: auto;
+    max-width: 21rem;
+  }
+
+  .tech-saas-solution-card {
+    box-shadow: 0 2px 14px -4px rgba(15, 23, 42, 0.08);
+    transition:
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 320ms ease,
+      box-shadow 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tech-saas-solution-card::before {
+    position: absolute;
+    top: -5.5rem;
+    right: -4.5rem;
+    width: 17rem;
+    height: 17rem;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(196, 181, 253, 0.52) 0%, rgba(221, 214, 254, 0.22) 42%, transparent 72%);
+    content: '';
+    filter: blur(15px);
+    opacity: 0.72;
+    pointer-events: none;
+    transition:
+      opacity 360ms ease,
+      transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tech-saas-solution-card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(203 213 225);
+    box-shadow: 0 18px 38px -18px rgba(15, 23, 42, 0.28);
+  }
+
+  .tech-saas-solution-card:hover::before {
+    opacity: 0.92;
+    transform: translate(-0.75rem, 0.75rem) scale(1.06);
+  }
+
+  .tech-saas-solution-icon {
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tech-saas-solution-icon svg {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .tech-saas-solution-card:hover .tech-saas-solution-icon {
+    transform: translateY(-2px);
+  }
+
+  .tech-saas-faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .tech-saas-faq-item[open] {
+    border-color: rgb(15 23 42);
+    background:
+      radial-gradient(circle at 86% 20%, rgba(196, 181, 253, 0.26), transparent 55%),
+      #ffffff;
+  }
+
+  .tech-saas-faq-item[open] .tech-saas-faq-icon {
+    border-color: rgb(15 23 42);
+    background: rgb(15 23 42);
+    color: white;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tech-saas-domain-card,
+    .tech-saas-solution-card,
+    .tech-saas-solution-card::before,
+    .tech-saas-solution-icon {
+      transition: none;
+    }
+
+    .tech-saas-solution-card:hover,
+    .tech-saas-solution-card:hover::before,
+    .tech-saas-solution-card:hover .tech-saas-solution-icon {
+      transform: none;
+    }
+
+    .tech-saas-faq-item,
+    .tech-saas-faq-icon,
+    .tech-saas-faq-icon span {
+      transition: none;
+    }
+  }
+</style>

@@ -3,6 +3,16 @@
 import Layout from "../../layouts/Layout.astro";
 import TopBar from "../../components/TopBar.astro";
 import IndustryComingSoon from "../../components/IndustryComingSoon.astro";
+import BankingIndustry from "../../components/industries/BankingIndustry.astro";
+import ManufacturingIndustry from "../../components/industries/ManufacturingIndustry.astro";
+import HealthcareIndustry from "../../components/industries/HealthcareIndustry.astro";
+import RetailIndustry from "../../components/industries/RetailIndustry.astro";
+import TelecomIndustry from "../../components/industries/TelecomIndustry.astro";
+import EducationIndustry from "../../components/industries/EducationIndustry.astro";
+import LogisticsIndustry from "../../components/industries/LogisticsIndustry.astro";
+import BusinessServicesIndustry from "../../components/industries/BusinessServicesIndustry.astro";
+import InsuranceIndustry from "../../components/industries/InsuranceIndustry.astro";
+import TechSaasIndustry from "../../components/industries/TechSaasIndustry.astro";
 import LetsTalk from "../../components/LetsTalk.astro";
 import BackToTop from "../../components/BackToTop.astro";
 import { getTranslations } from "../../i18n/translations";
@@ -36,13 +46,55 @@ if (!industry) {
 }
 
 const pageTitle = `${industry.title} | PT Teknalogi Transformasi Digital`;
-const pageDesc = `${industry.desc} Dedicated enterprise architectures and systems engineering by Teknalogi.`;
+const pageDesc = industrySlug === 'banking'
+  ? 'Explore software engineering approaches for payment integration, financial operations, reconciliation, access control, and system modernization.'
+  : industrySlug === 'manufacturing'
+  ? 'Explore software engineering approaches for industrial IoT telemetry, MES work orders, batch traceability, predictive maintenance, and OT/IT security.'
+  : industrySlug === 'healthcare'
+  ? 'Explore software engineering approaches for EHR interoperability, HL7 FHIR SATUSEHAT integration, PACS/LIS diagnostics, BPJS claims, and health data privacy.'
+  : industrySlug === 'retail'
+  ? 'Explore software engineering approaches for omnichannel inventory sync, smart POS terminals, high-concurrency e-commerce checkout, WMS logistics, and unified loyalty CDP.'
+  : industrySlug === 'telecom'
+  ? 'Explore software engineering approaches for TM Forum OSS/BSS integration, real-time OCS rating engines, network telemetry stream ingestion, and digital eSIM provisioning.'
+  : industrySlug === 'education'
+  ? 'Explore software engineering approaches for cloud-native SIAKAD, lag-free CBT online exams, interactive LMS, automated tuition billing, and PDDikti Feeder integration.'
+  : industrySlug === 'logistics'
+  ? 'Explore software engineering approaches for intelligent TMS freight orchestration, cloud-native WMS slotting, IoT fleet telemetry, last-mile route optimization, and e-POD reconciliation.'
+  : industrySlug === 'business-services'
+  ? 'Explore software engineering approaches for client extranet portals, automated project time and billing, consultant resource allocation, and CLM contract pipelines.'
+  : industrySlug === 'insurance'
+  ? 'Explore software engineering approaches for core Policy Administration Systems (PAS), straight-through claims adjudication, algorithmic actuarial underwriting, and IFRS 17 reporting.'
+  : industrySlug === 'tech-saas'
+  ? 'Explore software engineering approaches for multi-tenant SaaS architectures, usage-based billing metering, enterprise SSO/SAML, developer APIs, and 99.99% SLA reliability.'
+  : `${industry.desc} Dedicated enterprise architectures and systems engineering by Teknalogi.`;
 ---
 
 <Layout lang={lang} title={pageTitle} description={pageDesc}>
   <TopBar lang={lang} />
   <main class="min-h-screen bg-white">
-    <IndustryComingSoon lang={lang} industry={industry} />
+    {industrySlug === 'banking' ? (
+      <BankingIndustry lang={lang} />
+    ) : industrySlug === 'manufacturing' ? (
+      <ManufacturingIndustry lang={lang} />
+    ) : industrySlug === 'healthcare' ? (
+      <HealthcareIndustry lang={lang} />
+    ) : industrySlug === 'retail' ? (
+      <RetailIndustry lang={lang} />
+    ) : industrySlug === 'telecom' ? (
+      <TelecomIndustry lang={lang} />
+    ) : industrySlug === 'education' ? (
+      <EducationIndustry lang={lang} />
+    ) : industrySlug === 'logistics' ? (
+      <LogisticsIndustry lang={lang} />
+    ) : industrySlug === 'business-services' ? (
+      <BusinessServicesIndustry lang={lang} />
+    ) : industrySlug === 'insurance' ? (
+      <InsuranceIndustry lang={lang} />
+    ) : industrySlug === 'tech-saas' ? (
+      <TechSaasIndustry lang={lang} />
+    ) : (
+      <IndustryComingSoon lang={lang} industry={industry} />
+    )}
     <LetsTalk lang={lang} bgWhite={true} />
   </main>
   <BackToTop label="Back to top" />

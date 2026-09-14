@@ -1,0 +1,475 @@
+---
+// src/components/industries/RetailAboutIndustry.astro
+import type { Locale } from '../../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      title: 'Rekayasa Sistem Perdagangan Omnichannel & Operasi Retail',
+      tocTitle: 'Daftar Isi Pembahasan',
+      sections: [
+        {
+          id: 'pos-smart-terminals',
+          tocLabel: 'Point-of-Sale & Terminal Toko',
+          title: 'Sistem Point-of-Sale (POS) & Terminal Toko Cerdas',
+          paragraphs: [
+            'Pengalaman bertransaksi di kasir toko fisik menuntut kecepatan instan dan keandalan penuh, terutama pada jam-jam sibuk. Sistem kasir yang lambat atau terhenti karena gangguan internet langsung menyebabkan antrean panjang dan potensi kehilangan penjualan.',
+            'Teknalogi membangun aplikasi POS modern dengan arsitektur offline-first, antarmuka kasir yang responsif, serta integrasi mulus dengan berbagai perangkat keras kasir seperti barcode scanner, printer thermal, EDC, dan timbangan digital.',
+          ],
+          bullets: [
+            {
+              label: 'Arsitektur Kasir Offline-First',
+              text: 'Terminal kasir tetap dapat memproses transaksi penjualan, cetak struk, dan perhitungan diskon saat koneksi internet toko offline, lalu otomatis tersinkronisasi saat koneksi pulih.',
+            },
+            {
+              label: 'Integrasi Multi-Payment & QRIS Dinamis',
+              text: 'Dukungan pembayaran tunai, kartu debit/kredit via mesin EDC, e-wallet, dan QRIS dinamis langsung di layar kasir dengan konfirmasi pembayaran otomatis.',
+            },
+            {
+              label: 'Penerapan Promosi & Multi-Tier Pricing',
+              text: 'Eksekusi aturan diskon kompleks (BOGO, bundling, voucher member, harga grosir) secara instan tanpa lag perhitungan.',
+            },
+          ],
+          closingParagraph:
+            'Keandalan POS memastikan kelancaran transaksi di setiap gerai fisik tanpa terganggu fluktuasi koneksi internet.',
+        },
+        {
+          id: 'omnichannel-oms',
+          tocLabel: 'Inventori & Order Management',
+          title: 'Orkestrasi Inventori Omnichannel & Manajemen Pesanan (OMS)',
+          paragraphs: [
+            'Menghubungkan stok barang di toko fisik, gudang pusat, dan marketplace e-commerce merupakan tantangan terbesar dalam retail modern. Ketidakcocokan stok sering memicu overselling atau pesanan yang terpaksa dibatalkan.',
+            'Kami mengembangkan Order Management System (OMS) dan inventory engine terpusat yang memperbarui kuota stok di seluruh channel penjualan secara real-time dan mengarahkan rute pengiriman pesanan (order routing) dari lokasi terdekat.',
+          ],
+          bullets: [
+            {
+              label: 'Sinkronisasi Stok Real-Time Terpusat',
+              text: 'Pembaruan kuota inventori otomatis di website toko online, aplikasi mobile, marketplace, dan sistem kasir fisik setiap kali terjadi transaksi.',
+            },
+            {
+              label: 'Penyelesaian Pesanan Lintas Kanal (BOPIS / BORIS)',
+              text: 'Fasilitas beli online ambil di toko (Buy Online Pick-Up In-Store) dan pengembalian barang antar-gerai dengan validasi kode resi digital.',
+            },
+            {
+              label: 'Intelligent Order Routing',
+              text: 'Penerusan otomatis pesanan online ke gerai fisik atau gudang terdekat pelanggan untuk menghemat biaya dan durasi pengiriman.',
+            },
+          ],
+          closingParagraph:
+            'Manajemen inventori omnichannel menghilangkan risiko stok ganda dan mengoptimalkan pemanfaatan stok di seluruh cabang.',
+        },
+        {
+          id: 'high-scale-ecommerce',
+          tocLabel: 'E-Commerce & Flash Sale',
+          title: 'Arsitektur E-Commerce Skala Tinggi & Checkout Kilat',
+          paragraphs: [
+            'Event promosi besar seperti flash sale, tanggal kembar, dan peluncuran produk baru menghasilkan lonjakan pengunjung ribuan kali lipat dalam hitungan detik.',
+            'Teknalogi merancang platform e-commerce dengan arsitektur cloud-native yang elastis, database dengan teknik optimasi locking (concurrency control), serta alur checkout berlatensi rendah untuk mencegah crash server saat traffic puncak.',
+          ],
+          bullets: [
+            {
+              label: 'Infrastruktur Auto-Scaling Elastis',
+              text: 'Kapasitas komputasi yang otomatis bertambah saat lonjakan pengunjung dan menyusut kembali saat traffic normal untuk efisiensi biaya infrastruktur.',
+            },
+            {
+              label: 'Optimistic Locking & Anti-Overselling',
+              text: 'Mekanisme reservasi inventori presisi tinggi yang menjamin alokasi stok flash sale tetap akurat tanpa benturan transaksi bersamaan.',
+            },
+            {
+              label: 'Alur Checkout 1-Klik Berkecepatan Tinggi',
+              text: 'Antarmuka pembayaran ringkas dengan penyimpanan alamat aman dan tokenisasi kartu kredit untuk meningkatkan tingkat konversi.',
+            },
+          ],
+          closingParagraph:
+            'Platform e-commerce yang tangguh menjaga reputasi brand dan memaksimalkan pendapatan selama momentum promo terbesar.',
+        },
+        {
+          id: 'warehouse-fulfillment',
+          tocLabel: 'Gudang & Logistik 3PL',
+          title: 'Otomasi Pergudangan, Fulfillment & Integrasi Logistik 3PL',
+          paragraphs: [
+            'Kecepatan pemrosesan pesanan di gudang menentukan kepuasan pelanggan saat menerima paket belanja. Kesalahan picking dan lambatnya pembuatan resi logistik menghambat throughput harian.',
+            'Kami membangun modul Warehouse Management System (WMS) yang terintegrasi dengan pemindai barcode genggam (handheld scanner) dan API agregator logistik pihak ketiga (3PL) untuk pencetakan label resi otomatis.',
+          ],
+          bullets: [
+            {
+              label: 'Pemanduan Rute Picking & Packing',
+              text: 'Algoritma pengelompokan pesanan (wave/batch picking) yang memandu staf gudang melalui rute rak terpendek untuk efisiensi waktu kerja.',
+            },
+            {
+              label: 'Pembuatan Resi & Label Pengiriman Otomatis',
+              text: 'Integrasi API multi-kurir untuk perbandingan ongkos kirim instan, pembuatan nomor resi, dan pencetakan label termal masal.',
+            },
+            {
+              label: 'Manajemen Penerimaan & Putaway Barang',
+              text: 'Pencatatan barang masuk dari pemasok dengan validasi Purchase Order (PO) dan alokasi lokasi rak secara digital.',
+            },
+          ],
+          closingParagraph:
+            'Otomasi gudang melipatgandakan kapasitas pemrosesan paket harian dan meminimalkan angka kesalahan pengiriman barang.',
+        },
+        {
+          id: 'loyalty-cdp',
+          tocLabel: 'Loyalitas & Customer Data',
+          title: 'Program Loyalitas Terpadu & Customer Data Platform (CDP)',
+          paragraphs: [
+            'Mempertahankan pelanggan setia jauh lebih efisien daripada mengakuisisi pelanggan baru. Namun, data pelanggan yang terpecah antara gerai fisik dan aplikasi online menyulitkan personalisasi penawaran.',
+            'Kami menyatukan identitas pelanggan dari seluruh titik kontak ke dalam satu profil terpadu, memungkinkan program perolehan poin loyalitas, tiering member, dan promosi personal yang relevan.',
+          ],
+          bullets: [
+            {
+              label: 'Poin & Reward Lintas Channel',
+              text: 'Perolehan dan penukaran poin member yang berlaku sama baik saat bertransaksi di kasir toko fisik maupun checkout di aplikasi mobile.',
+            },
+            {
+              label: 'Segmentasi Pelanggan Otomatis',
+              text: 'Pengelompokan pelanggan berdasarkan riwayat frekuensi belanja dan nilai transaksi (RFM analysis) untuk kampanye pemasaran terarah.',
+            },
+            {
+              label: 'Voucher & Cashback Digital',
+              text: 'Penerbitan kupon digital unik yang terikat pada akun member untuk mencegah penyalahgunaan kode promosi.',
+            },
+          ],
+          closingParagraph:
+            'Profil pelanggan terpadu membangun hubungan jangka panjang dan meningkatkan nilai belanja rata-rata (customer lifetime value).',
+        },
+        {
+          id: 'retail-security-pcidss',
+          tocLabel: 'Keamanan & Kepatuhan PCI-DSS',
+          title: 'Keamanan Transaksi Ritel, Fraud Detection & Kepatuhan PCI-DSS',
+          paragraphs: [
+            'Transaksi ritel online dan offline rawan terhadap penipuan kartu kredit, pemalsuan bukti transfer, dan serangan scraping data katalog.',
+            'Kami menerapkan arsitektur keamanan transaksi yang mematuhi standar PCI-DSS Level 1, enkripsi data pembayaran tokenized, dan sistem pendeteksi transaksi anomali.',
+          ],
+          bullets: [
+            {
+              label: 'Tokenisasi Pembayaran & PCI-DSS',
+              text: 'Data sensitif kartu kredit tidak pernah disimpan langsung di server ritel, melainkan digantikan oleh token acak dari payment gateway resmi.',
+            },
+            {
+              label: 'Deteksi Transaksi Mencurigakan (Fraud Prevention)',
+              text: 'Pemeriksaan otomatis terhadap pola checkout mencurigakan, velocity checks, dan verifikasi 3D-Secure untuk memitigasi chargeback.',
+            },
+            {
+              label: 'Audit Trail & Manajemen Akses Kasir',
+              text: 'Pencatatan jejak audit setiap aksi pembatalan transaksi (void), refund, dan pembukaan laci kasir demi integritas kas.',
+            },
+          ],
+          closingParagraph:
+            'Proteksi transaksi yang ketat menjaga kepercayaan konsumen dan melindungi bisnis dari kerugian akibat fraud.',
+        },
+      ],
+    }
+  : {
+      title: 'Omnichannel Commerce Systems Engineering & Retail Operations',
+      tocTitle: 'Table of Contents',
+      sections: [
+        {
+          id: 'pos-smart-terminals',
+          tocLabel: 'Point-of-Sale & Store Terminals',
+          title: 'Point-of-Sale (POS) & Smart Store Terminal Architecture',
+          paragraphs: [
+            'Physical store checkout demands instantaneous speed and complete reliability during peak foot-traffic hours. Sluggish cashier software or network dropouts quickly lead to long queues and lost revenue.',
+            'Teknalogi builds modern retail POS systems featuring offline-first local databases, responsive touch interfaces, and seamless connectivity with barcode scanners, thermal printers, payment terminals, and digital scales.',
+          ],
+          bullets: [
+            {
+              label: 'Offline-First Terminal Resilience',
+              text: 'Store cashiers continue processing sales, applying promotions, and printing receipts even during complete internet outages, synchronizing transparently upon reconnection.',
+            },
+            {
+              label: 'Multi-Payment & Dynamic QRIS Integration',
+              text: 'Unified checkout accepting cash, credit/debit EDC interfaces, digital wallets, and dynamic QRIS with instant settlement callbacks.',
+            },
+            {
+              label: 'Real-Time Promo & Multi-Tier Pricing',
+              text: 'Instant evaluation of complex pricing logic (BOGO, bundle promotions, tier discounts, wholesale rates) with zero calculation delay.',
+            },
+          ],
+          closingParagraph:
+            'Resilient POS architecture guarantees smooth customer checkout regardless of local network stability.',
+        },
+        {
+          id: 'omnichannel-oms',
+          tocLabel: 'Inventory & Order Management',
+          title: 'Omnichannel Inventory Orchestration & Order Management (OMS)',
+          paragraphs: [
+            'Synchronizing inventory across physical retail outlets, regional warehouses, and online marketplaces is the cornerstone of modern retail. Data latency causes overselling and expensive order cancellations.',
+            'We engineer enterprise Order Management Systems (OMS) and centralized inventory engines that broadcast live stock levels across all sales channels and route fulfillment from the optimal fulfillment node.',
+          ],
+          bullets: [
+            {
+              label: 'Real-Time Multi-Channel Stock Sync',
+              text: 'Instantaneous inventory updates across e-commerce storefronts, mobile apps, marketplaces, and in-store POS terminals whenever a sale occurs.',
+            },
+            {
+              label: 'Cross-Channel Fulfillment (BOPIS / BORIS)',
+              text: 'Buy Online Pick-Up In-Store and return-to-store capabilities with digital QR order verification.',
+            },
+            {
+              label: 'Intelligent Order Routing',
+              text: 'Automated fulfillment routing dispatching online orders to the nearest store or warehouse to slash shipping costs and delivery times.',
+            },
+          ],
+          closingParagraph:
+            'Omnichannel inventory orchestration eliminates stock divergence and maximizes sales throughput across branches.',
+        },
+        {
+          id: 'high-scale-ecommerce',
+          tocLabel: 'E-Commerce & Flash Sales',
+          title: 'High-Concurrency E-Commerce Architecture & Rapid Checkout',
+          paragraphs: [
+            'High-profile promotional events, product drops, and flash sales trigger dramatic traffic surges within seconds.',
+            'Teknalogi designs elastic cloud-native storefronts with optimized database concurrency controls and sub-second checkout pipelines that maintain peak performance under extreme load.',
+          ],
+          bullets: [
+            {
+              label: 'Elastic Cloud Auto-Scaling',
+              text: 'Compute clusters that expand dynamically during viral traffic surges and scale down during baseline traffic for optimal infrastructure cost efficiency.',
+            },
+            {
+              label: 'Optimistic Locking & Anti-Overselling Engines',
+              text: 'High-precision inventory reservation mechanisms preventing overselling during flash sale spikes without blocking concurrent shoppers.',
+            },
+            {
+              label: '1-Click Accelerated Checkout',
+              text: 'Streamlined checkout flows featuring saved shipping preferences and tokenized payment credentials to maximize conversion rates.',
+            },
+          ],
+          closingParagraph:
+            'High-concurrency storefronts protect brand reputation and capture maximum revenue during peak shopping events.',
+        },
+        {
+          id: 'warehouse-fulfillment',
+          tocLabel: 'Warehouse & 3PL Logistics',
+          title: 'Warehouse Automation, Fulfillment & 3PL Logistics Integration',
+          paragraphs: [
+            'Warehouse processing velocity directly dictates customer satisfaction. Picking bottlenecks and manual shipping label creation cap daily parcel dispatch volume.',
+            'We engineer Warehouse Management System (WMS) modules integrated with wireless handheld barcode scanners and third-party logistics (3PL) aggregators for automated shipping label generation.',
+          ],
+          bullets: [
+            {
+              label: 'Guided Wave & Batch Picking Paths',
+              text: 'Algorithmic picking optimization guiding warehouse teams along the shortest rack paths to accelerate order assembly.',
+            },
+            {
+              label: 'Automated Shipping Waybill Generation',
+              text: 'Multi-carrier API integration providing real-time rate comparison, automated tracking number generation, and bulk thermal printing.',
+            },
+            {
+              label: 'Inbound Receiving & Putaway Workflows',
+              text: 'Digital purchase order validation upon supplier delivery with automated rack location assignment.',
+            },
+          ],
+          closingParagraph:
+            'Warehouse automation multiplies daily dispatch capacity and minimizes order fulfillment errors.',
+        },
+        {
+          id: 'loyalty-cdp',
+          tocLabel: 'Loyalty & Customer Data',
+          title: 'Unified Loyalty Programs & Customer Data Platforms (CDP)',
+          paragraphs: [
+            'Retaining repeat customers is far more cost-effective than customer acquisition. However, disconnected online and offline customer records hinder personalized marketing.',
+            'We unify customer touchpoints into single customer profiles, enabling seamless omnichannel reward points, membership tiers, and targeted promotional campaigns.',
+          ],
+          bullets: [
+            {
+              label: 'Omnichannel Points & Rewards',
+              text: 'Frictionless point accumulation and redemption valid across both in-store cashier terminals and mobile app checkouts.',
+            },
+            {
+              label: 'Automated Customer RFM Segmentation',
+              text: 'Recency, Frequency, and Monetary clustering delivering data-backed audience targeting for marketing automation.',
+            },
+            {
+              label: 'Dynamic Digital Coupons & Cashback',
+              text: 'Single-use, account-bound promo codes that eliminate discount abuse and drive repeat purchase cycles.',
+            },
+          ],
+          closingParagraph:
+            'Unified customer data deepens brand loyalty and substantially increases customer lifetime value.',
+        },
+        {
+          id: 'retail-security-pcidss',
+          tocLabel: 'Security & PCI-DSS Compliance',
+          title: 'Retail Transaction Security, Fraud Prevention & PCI-DSS Rigor',
+          paragraphs: [
+            'Retail ecosystems face constant threats from fraudulent chargebacks, payment forgery, and inventory scraping attacks.',
+            'We enforce multi-tier transaction security architectures compliant with PCI-DSS Level 1 specifications, tokenized payment storage, and real-time fraud scoring.',
+          ],
+          bullets: [
+            {
+              label: 'Payment Tokenization & PCI-DSS Isolation',
+              text: 'Credit card credentials bypass merchant servers entirely, replaced by secure tokens from certified payment gateways.',
+            },
+            {
+              label: 'Algorithmic Fraud & Velocity Screening',
+              text: 'Real-time velocity checks and automated 3D-Secure enforcement to prevent fraudulent card testing and chargeback liabilities.',
+            },
+            {
+              label: 'Cashier Audit Trails & Permission Boundaries',
+              text: 'Granular logging of all transaction voids, discount overrides, and cash drawer openings for internal fiscal control.',
+            },
+          ],
+          closingParagraph:
+            'Strict transaction security safeguards customer trust and protects retail revenue against fraud losses.',
+        },
+      ],
+    };
+---
+
+<section
+  id="retail-deep-dive"
+  aria-label={copy.title}
+  class="relative isolate bg-white py-12 sm:py-20 lg:py-32 border-t border-slate-200/80"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      
+      <!-- Left Column: Main Editorial Article -->
+      <div class="lg:col-span-8">
+        
+        <!-- Main Section Title -->
+        <h2
+          class="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-[-0.04em] text-slate-950 mb-7 sm:mb-14"
+        >
+          {copy.title}
+        </h2>
+
+        <!-- Mobile Table of Contents (collapsible drawer on small screens) -->
+        <div class="lg:hidden mb-8 rounded-2xl border border-slate-200/90 bg-slate-50/80 p-4 sm:p-5">
+          <details class="group">
+            <summary class="flex items-center justify-between cursor-pointer list-none font-mono text-xs font-bold uppercase tracking-wider text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded min-h-[44px]">
+              <span>{copy.tocTitle}</span>
+              <svg
+                class="w-4 h-4 text-slate-500 transition-transform duration-200 group-open:rotate-180"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <nav class="mt-3 flex flex-col space-y-1.5 border-t border-slate-200/80 pt-3">
+              {copy.sections.map((section) => (
+                <a
+                  href={`#${section.id}`}
+                  class="text-xs sm:text-sm text-slate-600 hover:text-slate-950 transition-colors py-1.5 pl-2.5 border-l-2 border-slate-300 hover:border-slate-900 font-sans min-h-[44px] flex items-center"
+                >
+                  {section.tocLabel}
+                </a>
+              ))}
+            </nav>
+          </details>
+        </div>
+
+        <!-- Editorial Sections -->
+        <div class="flex flex-col space-y-10 sm:space-y-16">
+          {copy.sections.map((section) => (
+            <article
+              id={section.id}
+              class="retail-editorial-section scroll-mt-20 sm:scroll-mt-28 pb-8 sm:pb-12 border-b border-slate-100 last:border-b-0"
+            >
+              <h3 class="text-xl sm:text-2xl font-medium tracking-[-0.03em] text-slate-950 mb-3 sm:mb-4 leading-snug">
+                {section.title}
+              </h3>
+
+              {section.paragraphs.map((p) => (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mb-3 sm:mb-4">
+                  {p}
+                </p>
+              ))}
+
+              {section.bullets && (
+                <ul class="my-4 sm:my-5 space-y-2.5 sm:space-y-3 pl-4 sm:pl-5 list-disc marker:text-slate-400 text-sm sm:text-[16px] leading-relaxed text-slate-600 font-sans">
+                  {section.bullets.map((b) => (
+                    <li>
+                      <strong class="font-semibold text-slate-900">{b.label}:</strong> {b.text}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {section.closingParagraph && (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mt-3 sm:mt-4">
+                  {section.closingParagraph}
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- Right Column: Sticky Table of Contents -->
+      <aside class="hidden lg:block lg:col-span-4 sticky top-28 xl:top-32 self-start">
+        <div class="max-h-[calc(100vh-9rem)] overflow-y-auto pl-8 border-l border-slate-200/90 py-1">
+          <h3 class="text-[11.5px] font-bold tracking-[0.14em] text-slate-900 uppercase font-mono mb-4 select-none">
+            {copy.tocTitle}
+          </h3>
+          <nav aria-label={copy.tocTitle} class="flex flex-col space-y-2.5 text-[13.5px] font-sans">
+            {copy.sections.map((section) => (
+              <a
+                href={`#${section.id}`}
+                data-retail-toc-id={section.id}
+                class="retail-toc-nav-link text-slate-500 hover:text-slate-950 transition-all duration-200 py-1 pl-3 border-l-2 border-transparent hover:border-slate-400 min-h-[32px] flex items-center"
+              >
+                {section.tocLabel}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupRetailTocHighlight() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-10% 0px -70% 0px',
+      threshold: 0,
+    };
+
+    const sections = document.querySelectorAll<HTMLElement>('.retail-editorial-section');
+    const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.retail-toc-nav-link');
+
+    if (!sections.length || !tocLinks.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href === `#${id}`) {
+              link.classList.add('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.remove('text-slate-500', 'border-transparent');
+            } else {
+              link.classList.remove('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.add('text-slate-500', 'border-transparent');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((sec) => observer.observe(sec));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupRetailTocHighlight);
+  } else {
+    setupRetailTocHighlight();
+  }
+  document.addEventListener('astro:page-load', setupRetailTocHighlight);
+</script>

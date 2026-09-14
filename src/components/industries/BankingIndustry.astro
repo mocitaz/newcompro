@@ -1,0 +1,366 @@
+---
+import type { Locale } from '../../i18n/translations';
+import BankingAboutIndustry from './BankingAboutIndustry.astro';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      eyebrow: 'PERBANKAN & JASA KEUANGAN',
+      title: 'Engineering untuk operasi keuangan yang saling terhubung.',
+      lead: 'Bangun dan modernisasi platform keuangan dengan integrasi pembayaran, aliran data yang andal, dan kontrol akses yang jelas. Teknalogi menerjemahkan kebutuhan operasional yang kompleks menjadi sistem yang siap digunakan dan dikembangkan.',
+      primaryCta: 'Diskusikan kebutuhan Anda',
+      challengesTitle: 'Ketika sistem bekerja terpisah, kompleksitas bertambah.',
+      challengesLead: 'Operasi keuangan sulit dikelola ketika sistem nasabah, pembayaran, dan internal berjalan sendiri-sendiri.',
+      challenges: [
+        ['Sistem yang terpisah', 'Informasi nasabah, transaksi, dan pelaporan sulit dijaga tetap konsisten di banyak platform.'],
+        ['Rekonsiliasi manual', 'Tim menghabiskan waktu mencocokkan catatan dan menelusuri transaksi yang tidak lengkap.'],
+        ['Visibilitas terbatas', 'Log yang tersebar dan laporan tertunda memperlambat investigasi gangguan layanan.'],
+        ['Kebutuhan kontrol berubah', 'Produk dan integrasi baru menambah kebutuhan persetujuan, akses data, dan catatan audit.'],
+      ],
+      solutionsTitle: 'Perangkat lunak yang mengikuti operasi keuangan Anda.',
+      solutionsLead: 'Ruang lingkup ditentukan melalui discovery agar arsitektur, integrasi, dan alur kerja sesuai dengan sistem yang sudah berjalan.',
+      solutions: [
+        ['Integrasi pembayaran', 'Hubungkan penyedia pembayaran dan aplikasi internal dengan status transaksi, retry, serta penanganan duplikasi yang jelas.', 'payment'],
+        ['Portal nasabah dan mitra', 'Sediakan layanan akun, pengiriman dokumen, pelacakan pengajuan, dan interaksi mitra berdasarkan hak akses.', 'portal'],
+        ['Rekonsiliasi dan settlement', 'Satukan catatan transaksi, aturan pencocokan, antrean pengecualian, dan pelaporan settlement.', 'reconciliation'],
+        ['Onboarding dan verifikasi', 'Koordinasikan formulir, dokumen, penyedia verifikasi, review internal, dan histori persetujuan.', 'onboarding'],
+        ['Alur kerja internal', 'Bangun persetujuan, case management, laporan operasional, dan administrasi back-office.', 'workflow'],
+        ['Modernisasi dan API', 'Hubungkan sistem lama dengan aplikasi baru melalui interface terdokumentasi dan rilis bertahap.', 'api'],
+      ],
+      approachTitle: 'Dirancang untuk integritas transaksi dan kontrol operasional.',
+      domains: [
+        ['Integritas transaksi', 'Tetapkan status transaksi, validasi, idempotency, dan catatan kejadian yang diperlukan untuk investigasi serta review perubahan.', 'integrity'],
+        ['Akses dan perlindungan data', 'Selaraskan izin dengan peran operasional, lalu rancang pengumpulan, transmisi, penyimpanan, masking, dan penghapusan data sensitif.', 'access'],
+        ['Ketangguhan operasional', 'Uji penanganan kegagalan, pemulihan backup, monitoring, dan prosedur deployment terhadap target layanan yang disepakati.', 'resilience'],
+      ],
+      faqTitle: 'Hal yang biasanya dibahas sebelum proyek dimulai.',
+      faqLead: 'Kebutuhan integrasi dan kontrol setiap organisasi berbeda. Discovery membantu kami menentukan batas sistem, risiko, dan ruang lingkup implementasi.',
+      faqTrustTitle: 'Dipercaya oleh',
+      faqTrustText: 'Korporasi dan perusahaan berkembang di Indonesia',
+      faqAction: 'Tanyakan kebutuhan Anda',
+      faqs: [
+        ['Bisakah Teknalogi terhubung dengan sistem keuangan yang sudah ada?', 'Kelayakan integrasi bergantung pada API, dokumentasi, pembatasan akses, dan dependensi sistem. Hal ini diperiksa saat discovery sebelum pendekatan integrasi ditetapkan.'],
+        ['Bisakah satu sistem memakai beberapa penyedia pembayaran?', 'Bisa dipertimbangkan dalam arsitektur. Ruang lingkup perlu menangani perbedaan autentikasi, status transaksi, callback, refund, dan format rekonsiliasi.'],
+        ['Bagaimana data keuangan sensitif ditangani?', 'Kebutuhan data dan akses ditetapkan bersama tim Anda. Implementasi dapat mencakup enkripsi, izin berbasis peran, pengelolaan secrets, dan masking data pada log.'],
+        ['Apakah sistem dapat dimodernisasi secara bertahap?', 'Pendekatan bertahap dapat digunakan bila dependensi, konsistensi data, dan jendela deployment mendukungnya. Rencana migrasi ditetapkan setelah sistem saat ini dipetakan.'],
+        ['Apakah pengembangan otomatis menghasilkan sertifikasi kepatuhan?', 'Tidak. Kontrol teknis, dokumentasi, dukungan asesmen, dan tanggung jawab kepatuhan harus ditetapkan bersama tim risk dan compliance dalam ruang lingkup proyek.'],
+        ['Apa yang dibahas dalam tahap discovery?', 'Kami memetakan dependensi sistem, alur transaksi, peran operasional, batas akses, dan skenario pengecualian. Hasilnya menjadi dasar arsitektur, ruang lingkup delivery, dan kriteria penerimaan.'],
+        ['Bagaimana kegagalan transaksi dan permintaan duplikat diuji?', 'Skenario pengujian dapat mencakup timeout, callback berulang, proses yang terputus, reversal, dan selisih rekonsiliasi. Kasusnya disesuaikan dengan model transaksi serta perilaku penyedia.'],
+        ['Apakah Teknalogi dapat mendukung platform setelah peluncuran?', 'Dukungan setelah peluncuran dapat mencakup monitoring, investigasi masalah, pemeliharaan, dan pengembangan lanjutan. Jam dukungan, target respons, dan tanggung jawab disepakati secara terpisah.'],
+      ],
+    }
+  : {
+      eyebrow: 'BANKING & FINANCIAL SERVICES',
+      title: 'Engineering for connected financial operations.',
+      lead: 'Build and modernize financial platforms with connected payment systems, reliable data flows, and controlled access. Teknalogi translates complex operational requirements into systems that are ready to operate and evolve.',
+      primaryCta: 'Discuss your requirements',
+      challengesTitle: 'When systems operate separately, complexity grows.',
+      challengesLead: 'Financial operations become difficult to manage when customer, payment, and internal systems operate independently.',
+      challenges: [
+        ['Disconnected systems', 'Customer, transaction, and reporting data becomes difficult to keep consistent across platforms.'],
+        ['Manual reconciliation', 'Teams spend time matching records and investigating incomplete or inconsistent transactions.'],
+        ['Limited visibility', 'Fragmented logs and delayed reporting slow down service issue investigations.'],
+        ['Changing controls', 'New products and integrations add requirements for approvals, data access, and audit records.'],
+      ],
+      solutionsTitle: 'Financial software shaped around your operations.',
+      solutionsLead: 'Discovery defines the scope so architecture, integrations, and workflows fit the systems already in operation.',
+      solutions: [
+        ['Payment integration', 'Connect payment providers and internal applications with clear transaction states, retries, and duplicate handling.', 'payment'],
+        ['Customer and partner portals', 'Support account services, document submission, application tracking, and partner interactions with controlled access.', 'portal'],
+        ['Reconciliation and settlement', 'Bring transaction records, matching rules, exception queues, and settlement reporting into one operational view.', 'reconciliation'],
+        ['Onboarding and verification', 'Coordinate forms, documents, verification providers, internal reviews, and approval history.', 'onboarding'],
+        ['Internal financial workflows', 'Build approvals, case management, operational reporting, and back-office administration.', 'workflow'],
+        ['System modernization and APIs', 'Connect established systems to new applications through documented interfaces and phased releases.', 'api'],
+      ],
+      approachTitle: 'Designed for transaction integrity and operational control.',
+      domains: [
+        ['Transaction integrity', 'Define transaction states, validation, idempotency, and the event records needed for investigation and change review.', 'integrity'],
+        ['Access and data protection', 'Align permissions with operational roles, then plan how sensitive data is collected, transmitted, stored, masked, and removed.', 'access'],
+        ['Operational resilience', 'Test failure handling, backup restoration, monitoring, and deployment procedures against agreed service targets.', 'resilience'],
+      ],
+      faqTitle: 'What teams usually discuss before a project starts.',
+      faqLead: 'Integration and control requirements vary between organizations. Discovery helps define system boundaries, risks, and the implementation scope.',
+      faqTrustTitle: 'Trusted by',
+      faqTrustText: 'Corporations and growing enterprises across Indonesia',
+      faqAction: 'Ask about your requirements',
+      faqs: [
+        ['Can Teknalogi integrate with our existing financial systems?', 'Integration feasibility depends on available APIs, documentation, access restrictions, and system dependencies. We review these during discovery before defining the integration approach.'],
+        ['Can one system connect to multiple payment providers?', 'Multiple providers can be considered in the architecture. The scope needs to handle differences in authentication, transaction states, callbacks, refunds, and reconciliation formats.'],
+        ['How do you approach sensitive financial data?', 'We define data handling and access requirements with your team. Implementation may include encryption, role-based permissions, secrets management, and masking of sensitive information in logs.'],
+        ['Can modernization happen in phases?', 'A phased approach may work when system dependencies, data consistency requirements, and deployment windows support it. The migration plan is defined after the current environment is mapped.'],
+        ['Does software development automatically provide compliance certification?', 'No. Technical controls, documentation, assessment support, and compliance responsibilities must be agreed with your risk and compliance teams as part of the project scope.'],
+        ['What does the discovery phase cover?', 'We map system dependencies, transaction flows, operational roles, access boundaries, and exception scenarios. The output informs the architecture, delivery scope, and acceptance criteria.'],
+        ['How do you test transaction failures and duplicate requests?', 'Test scenarios can cover timeouts, repeated callbacks, interrupted processing, reversals, and reconciliation differences. The exact cases depend on the transaction model and provider behavior.'],
+        ['Can Teknalogi support the platform after launch?', 'Post-launch support can include monitoring, issue investigation, maintenance, and further development. Support hours, response expectations, and responsibilities are agreed separately.'],
+      ],
+    };
+
+const partnerLogos = [
+  ['Anytime Fitness', '/partners/anytime.png'],
+  ['KelolaAja', '/partners/kelolaaja.png'],
+  ['Nikawa Teknika', '/partners/nikawa.png'],
+  ['PT Inti Bersama', '/partners/ptintibersama.png'],
+];
+---
+
+<section class="relative isolate min-h-[38rem] overflow-hidden bg-white py-28 sm:min-h-[42rem] sm:py-32 lg:min-h-[46rem] lg:py-40" aria-labelledby="banking-title">
+  <img src="/industry/heroperbankan.png" alt="" width="1536" height="1024" class="absolute inset-0 -z-20 h-full w-full object-cover object-[64%_center]" loading="eager" decoding="async" />
+  <div class="absolute inset-0 -z-10 bg-white/84 sm:bg-gradient-to-r sm:from-white sm:from-[7%] sm:via-white/86 sm:via-[46%] sm:to-white/0 sm:to-[80%]"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-white"></div>
+  <div class="home-container flex min-h-[calc(38rem-7rem)] items-end sm:min-h-[calc(42rem-8rem)] lg:min-h-[calc(46rem-10rem)]">
+    <div class="max-w-3xl pb-2 lg:pb-5">
+      <p class="text-[11px] font-semibold tracking-[0.14em] text-slate-600">{copy.eyebrow}</p>
+      <h1 id="banking-title" class="mt-4 max-w-3xl text-4xl font-medium leading-[1.06] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-[4.5rem]">
+        {copy.title}
+      </h1>
+      <p class="mt-6 max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">{copy.lead}</p>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-[#f5a623] px-6 text-sm font-semibold text-slate-950 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e69818] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2">
+        {copy.primaryCta}
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="home-section bg-white" aria-labelledby="banking-challenges-title">
+  <div class="home-container grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-12">
+    <div class="group relative overflow-hidden rounded-[24px] lg:sticky lg:top-28 lg:self-start">
+      <img src="/industry/perbankan2.png" alt="Banking district in Jakarta" width="1448" height="1086" class="h-[21rem] w-full object-cover sm:h-[28rem] lg:h-[38rem]" loading="lazy" decoding="async" />
+      <div class="absolute inset-0 bg-slate-950/30 transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
+      <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-950/65 to-transparent"></div>
+      <div class="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+        <span class="font-mono text-[10px] font-semibold tracking-[0.18em] text-white/80">CONNECTED OPERATIONS</span>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <h2 id="banking-challenges-title" class="max-w-xl text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.challengesTitle}</h2>
+      <p class="mt-5 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.challengesLead}</p>
+      <ol class="mt-10 grid flex-1 grid-cols-1 gap-x-8 sm:mt-12 sm:grid-cols-2">
+        {copy.challenges.map(([title, description], index) => (
+          <li class="group border-t border-slate-200 py-6 sm:py-7">
+            <div class="flex items-baseline justify-between gap-5">
+              <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+              <span class="h-px flex-1 bg-slate-100 transition-colors duration-300 group-hover:bg-violet-200"></span>
+            </div>
+            <h3 class="mt-7 text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="financial-solutions" class="home-section bg-white scroll-mt-20" aria-labelledby="banking-solutions-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 id="banking-solutions-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.solutionsTitle}</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.solutionsLead}</p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {copy.solutions.map(([title, description, icon]) => (
+        <article class="banking-solution-card group relative isolate flex min-h-[17rem] overflow-hidden rounded-[20px] border border-slate-200/90 bg-white p-6 sm:min-h-[18rem] sm:p-7">
+          <div class="relative z-10 flex w-full flex-col justify-between">
+            <span class="banking-solution-icon flex h-10 w-10 items-center justify-center text-slate-950" aria-hidden="true">
+              {icon === 'payment' && <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4.5" y="7" width="23" height="18" rx="3"/><path d="M5 12h22M9 19h6M21 18l3 2-3 2" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+              {icon === 'portal' && <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4.5" y="5.5" width="23" height="21" rx="3"/><path d="M5 11h22"/><circle cx="12" cy="17" r="2.5"/><path d="M8.5 23c.7-2 2-3 3.5-3s2.8 1 3.5 3M19 16h5M19 20h5" stroke-linecap="round"/></svg>}
+              {icon === 'reconciliation' && <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24.5 11A10 10 0 0 0 7 9l-2 3m0 0h6m-6 0V6M7.5 21A10 10 0 0 0 25 23l2-3m0 0h-6m6 0v6" stroke-linecap="round" stroke-linejoin="round"/><path d="m12 16 2.7 2.7L20.5 13" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+              {icon === 'onboarding' && <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 4.5h10l5 5v18H9z" stroke-linejoin="round"/><path d="M19 4.5v5h5M13 15h7M13 19h4m1.5 5 2 2 4-5" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+              {icon === 'workflow' && <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="5" width="8" height="6" rx="1.5"/><rect x="20" y="21" width="8" height="6" rx="1.5"/><rect x="4" y="21" width="8" height="6" rx="1.5"/><path d="M12 8h4a4 4 0 0 1 4 4v9M8 11v10" stroke-linecap="round"/><path d="m17 18 3 3 3-3" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+              {icon === 'api' && <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m11 8-7 8 7 8M21 8l7 8-7 8M18.5 5l-5 22" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="16" r="2.5" fill="white"/></svg>}
+            </span>
+            <div class="mt-12">
+              <h3 class="max-w-sm text-xl font-medium tracking-[-0.025em] text-slate-950 sm:text-[22px]">{title}</h3>
+              <p class="mt-3 max-w-md text-sm leading-relaxed text-slate-600">{description}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="home-section bg-white" aria-labelledby="banking-approach-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 id="banking-approach-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.approachTitle}</h2>
+    </div>
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 lg:grid-cols-3 lg:gap-5">
+      {copy.domains.map(([title, description, key], index) => (
+        <article class={`banking-domain-card banking-domain-${key} flex min-h-[18rem] flex-col rounded-[20px] border border-slate-200 bg-white p-6 sm:p-7`}>
+          <div class="flex items-start justify-between gap-5">
+            <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+            <span class="text-[11px] font-medium tracking-[0.08em] text-slate-400">{key === 'integrity' ? 'CONTROL' : key === 'access' ? 'BOUNDARY' : 'READINESS'}</span>
+          </div>
+          <div class="banking-domain-visual mt-5 text-slate-900" aria-hidden="true">
+            {key === 'integrity' && <svg viewBox="0 0 260 112" fill="none" stroke="currentColor" stroke-width="1.45"><path d="M20 56h40m32 0h38m32 0h38" stroke-linecap="round"/><circle cx="16" cy="56" r="8" fill="white"/><circle cx="76" cy="56" r="15" fill="white"/><circle cx="146" cy="56" r="15" fill="white"/><circle cx="216" cy="56" r="8" fill="white"/><path d="m67 56 6 6 12-14m52 8 6 6 12-14" stroke-linecap="round" stroke-linejoin="round"/><path d="M76 22v10m70-10v10" stroke-linecap="round"/></svg>}
+            {key === 'access' && <svg viewBox="0 0 320 112" fill="none" stroke="currentColor" stroke-width="1.45"><path d="M16 56h50m38 0h50m38 0h50" stroke-linecap="round"/><circle cx="16" cy="56" r="8" fill="white"/><rect x="66" y="34" width="38" height="44" rx="7" fill="white"/><rect x="154" y="34" width="38" height="44" rx="7" fill="white"/><path d="M77 34v-9a8 8 0 0 1 16 0v9m72 0v-9a8 8 0 0 1 16 0v9M123 24h16m72 0h16" stroke-linecap="round"/><path d="M230 36 270 50v24c0 15-11 26-20 30-9-4-20-15-20-30V50z" fill="white"/><path d="m241 71 7 7 14-17" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+            {key === 'resilience' && <svg viewBox="0 0 250 112" fill="none" stroke="currentColor" stroke-width="1.45"><path d="M18 86h214" stroke-linecap="round"/><path d="M25 76c22 0 19-38 43-38s22 27 42 27 22-43 46-43 17 45 40 45 20-21 32-21" stroke-linecap="round" stroke-linejoin="round"/><circle cx="68" cy="38" r="6" fill="white"/><circle cx="110" cy="65" r="6" fill="white"/><circle cx="156" cy="22" r="6" fill="white"/><circle cx="196" cy="67" r="6" fill="white"/><path d="M220 20v22m-11-11h22" stroke-linecap="round"/></svg>}
+          </div>
+          <div class="mt-auto pt-6">
+            <h3 class="text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-2.5 max-w-xl text-sm leading-relaxed text-slate-600">{description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<BankingAboutIndustry lang={lang} />
+
+<section class="home-section bg-white" aria-labelledby="banking-faq-title">
+  <div class="home-container grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-16">
+    <div class="space-y-6 lg:sticky lg:top-28 lg:col-span-5">
+      <div>
+        <h2 id="banking-faq-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-[44px]">{copy.faqTitle}</h2>
+        <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-600 sm:text-base">{copy.faqLead}</p>
+      </div>
+      <div class="flex items-center gap-3.5">
+        <div class="flex -space-x-3" aria-label={`${copy.faqTrustTitle}: ${copy.faqTrustText}`}>
+          {partnerLogos.map(([name, logo]) => (
+            <span class="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 border-slate-100 bg-white p-1.5 shadow-sm">
+              <img src={logo} alt={name} class="h-full w-full object-contain" loading="lazy" decoding="async" />
+            </span>
+          ))}
+        </div>
+        <span class="max-w-[18rem] text-xs leading-snug text-slate-600">
+          <strong class="block font-semibold text-slate-950">{copy.faqTrustTitle}</strong>
+          <span class="mt-0.5 block">{copy.faqTrustText}</span>
+        </span>
+      </div>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-800 focus-visible:ring-offset-2">
+        {copy.faqAction}
+      </a>
+    </div>
+    <div class="space-y-3 lg:col-span-7">
+      {copy.faqs.map(([question, answer], index) => (
+        <details class="banking-faq-item group overflow-hidden rounded-2xl border border-slate-900/80 bg-white transition-colors hover:border-slate-950">
+          <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 rounded-2xl p-5 text-base font-medium leading-snug text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-slate-900 sm:p-6">
+            <span>{question}</span>
+            <span class="banking-faq-icon relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-900/30 bg-slate-50 text-slate-700 transition-colors" aria-hidden="true"><span class="absolute h-px w-3.5 bg-current"></span><span class="absolute h-3.5 w-px bg-current transition-transform group-open:scale-y-0"></span></span>
+          </summary>
+          <div role="region" aria-label={`${isId ? 'Jawaban' : 'Answer'} ${index + 1}`}>
+            <p class="max-w-2xl px-5 pb-5 pr-14 text-sm leading-relaxed text-slate-600 sm:px-6 sm:pb-6 sm:text-[15px]">{answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .banking-domain-card {
+    box-shadow: 0 1px 10px -7px rgba(15, 23, 42, 0.14);
+  }
+
+  .banking-domain-visual {
+    display: block;
+    width: 100%;
+  }
+
+  .banking-domain-visual svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .banking-domain-access .banking-domain-visual {
+    margin-inline: auto;
+    max-width: 21rem;
+  }
+
+  .banking-solution-card {
+    box-shadow: 0 2px 14px -4px rgba(15, 23, 42, 0.08);
+    transition:
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 320ms ease,
+      box-shadow 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .banking-solution-card::before {
+    position: absolute;
+    top: -5.5rem;
+    right: -4.5rem;
+    width: 17rem;
+    height: 17rem;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(196, 181, 253, 0.52) 0%, rgba(221, 214, 254, 0.22) 42%, transparent 72%);
+    content: '';
+    filter: blur(15px);
+    opacity: 0.72;
+    pointer-events: none;
+    transition:
+      opacity 360ms ease,
+      transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .banking-solution-card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(203 213 225);
+    box-shadow: 0 18px 38px -18px rgba(15, 23, 42, 0.28);
+  }
+
+  .banking-solution-card:hover::before {
+    opacity: 0.92;
+    transform: translate(-0.75rem, 0.75rem) scale(1.06);
+  }
+
+  .banking-solution-icon {
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .banking-solution-icon svg {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .banking-solution-card:hover .banking-solution-icon {
+    transform: translateY(-2px);
+  }
+
+  .banking-faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .banking-faq-item[open] {
+    border-color: rgb(15 23 42);
+    background:
+      radial-gradient(circle at 86% 20%, rgba(196, 181, 253, 0.26), transparent 55%),
+      #ffffff;
+  }
+
+  .banking-faq-item[open] .banking-faq-icon {
+    border-color: rgb(15 23 42);
+    background: rgb(15 23 42);
+    color: white;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .banking-domain-card,
+    .banking-solution-card,
+    .banking-solution-card::before,
+    .banking-solution-icon {
+      transition: none;
+    }
+
+    .banking-solution-card:hover,
+    .banking-solution-card:hover::before,
+    .banking-solution-card:hover .banking-solution-icon {
+      transform: none;
+    }
+
+    .banking-faq-item,
+    .banking-faq-icon,
+    .banking-faq-icon span {
+      transition: none;
+    }
+  }
+
+</style>

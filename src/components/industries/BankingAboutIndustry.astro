@@ -1,0 +1,475 @@
+---
+// src/components/industries/BankingAboutIndustry.astro
+import type { Locale } from '../../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      title: 'Rekayasa Sistem & Keamanan Perbankan Digital',
+      tocTitle: 'Daftar Isi Pembahasan',
+      sections: [
+        {
+          id: 'core-modernization',
+          tocLabel: 'Modernisasi Core Banking',
+          title: 'Modernisasi Ekosistem & Core Banking',
+          paragraphs: [
+            'Perbankan modern membutuhkan kecepatan rilis fitur dan fleksibilitas integrasi tanpa mengorbankan stabilitas sistem pencatatan inti. Sebagian besar institusi finansial menghadapi kendala ketika arsitektur legacy yang monolitik sulit berkomunikasi dengan kanal digital terbaru.',
+            'Teknalogi merancang arsitektur perantara (integration middleware) dan orkestrasi microservices berbasis event. Pola ini memisahkan beban kueri nasabah yang tinggi dari database transaksi inti, memastikan responsivitas aplikasi tetap prima di jam sibuk.',
+          ],
+          bullets: [
+            {
+              label: 'Pemisahan Beban Transaksional',
+              text: 'Menerapkan database replika dan caching terdistribusi untuk melayani kueri informasi saldo atau mutasi tanpa membebani server core banking.',
+            },
+            {
+              label: 'Standarisasi Open Banking (SNAP / ISO 20022)',
+              text: 'Membangun interface API perbankan terbuka yang aman, tervalidasi, dan terdokumentasi rapi untuk percepatan kemitraan ekosistem fintech.',
+            },
+            {
+              label: 'Migrasi Bertahap (Strangler Fig)',
+              text: 'Merilis pembaruan modul secara berangsur dengan pengalihan rute trafik terkontrol, meminimalkan risiko henti layanan total.',
+            },
+          ],
+          closingParagraph:
+            'Melalui pemisahan dependensi yang cermat, institusi perbankan dapat meluncurkan produk tabungan, pinjaman, dan integrasi mitra dengan siklus pengembangan yang jauh lebih lincah.',
+        },
+        {
+          id: 'payment-settlement',
+          tocLabel: 'Pembayaran & Settlement',
+          title: 'Integrasi Pembayaran & Real-Time Settlement',
+          paragraphs: [
+            'Kelancaran pertukaran dana antarlembaga menuntut kepastian status transaksi yang deterministik serta ketahanan terhadap gangguan jaringan pihak ketiga.',
+            'Kami membangun pipeline pemrosesan pembayaran yang menerapkan prinsip idempotency ketat, antrean asinkronus dengan penanganan retry adaptif, dan rekonsiliasi otomatis multi-kanal.',
+          ],
+          bullets: [
+            {
+              label: 'Idempotency & Deduplikasi Transaksi',
+              text: 'Memastikan setiap permintaan pembayaran hanya diproses satu kali secara akurat meskipun terjadi koneksi timeout atau pengiriman callback berulang.',
+            },
+            {
+              label: 'Mesin Rekonsiliasi Otomatis',
+              text: 'Mencocokkan ribuan catatan mutasi antara sistem internal, switching gateway, dan laporan bank settlement untuk mendeteksi anomali secara instan.',
+            },
+            {
+              label: 'Manajemen Status Deterministik',
+              text: 'Pelacakan siklus hidup transaksi mulai dari in-flight, settled, reversed, hingga refunded dengan visibilitas penuh bagi tim operasi.',
+            },
+          ],
+          closingParagraph:
+            'Arsitektur pemrosesan transaksi yang tangguh menjaga integritas neraca finansial serta menekan biaya investigasi selisih dana harian.',
+        },
+        {
+          id: 'security-fraud',
+          tocLabel: 'Keamanan & Mitigasi Fraud',
+          title: 'Keamanan Berlapis & Deteksi Anomali',
+          paragraphs: [
+            'Keamanan dalam sektor perbankan adalah pilar utama kepercayaan publik dan kelangsungan bisnis. Setiap titik interaksi memerlukan perlindungan berlapis terhadap ancaman siber yang terus berkembang.',
+            'Penerapan defense-in-depth mencakup enkripsi data ujung-ke-ujung (E2EE), penandatanganan payload kriptografis dengan stempel waktu, serta pengawasan anomali trafik secara proaktif.',
+          ],
+          bullets: [
+            {
+              label: 'Kriptografi & Payload Signing',
+              text: 'Memvalidasi keaslian komunikasi antar-layanan menggunakan HMAC / RSA SHA-256 dan perlindungan anti-replay request.',
+            },
+            {
+              label: 'Otentikasi Berlapis (Adaptive MFA)',
+              text: 'Mewajibkan verifikasi ganda berbasis risiko, biometrik, dan validasi sesi perangkat untuk otorisasi tindakan finansial sensitif.',
+            },
+            {
+              label: 'Mitigasi OWASP & Rate Limiting',
+              text: 'Proteksi komprehensif terhadap SQL injection, credential stuffing, dan serangan scraping melalui throttling adaptif pada gateway API.',
+            },
+          ],
+          closingParagraph:
+            'Lapisan keamanan dirancang untuk bekerja secara transparan tanpa mengorbankan kenyamanan nasabah saat bertransaksi.',
+        },
+        {
+          id: 'data-governance',
+          tocLabel: 'Isolasi & Tata Kelola Data',
+          title: 'Isolasi Data, Masking & Tata Kelola Akses',
+          paragraphs: [
+            'Kepatuhan terhadap regulasi perlindungan data pribadi (UU PDP / GDPR) mewajibkan segmentasi data ketat serta pembatasan akses data finansial secara selektif.',
+            'Kami menerapkan arsitektur data terisolasi di mana informasi identitas pribadi (PII) dan data rekening dienkripsi baik saat transit maupun saat tersimpan di disk (encryption at-rest).',
+          ],
+          bullets: [
+            {
+              label: 'Prinsip Least Privilege & RBAC',
+              text: 'Hak akses staf dibatasi secara granular berdasarkan tanggung jawab operasional dengan verifikasi kredensial berbasis waktu.',
+            },
+            {
+              label: 'Penyamaran Otomatis (PII Masking)',
+              text: 'Log telemetri sistem dan antarmuka customer care secara otomatis menyamarkan nomor identitas dan saldo untuk mencegah kebocoran internal.',
+            },
+            {
+              label: 'Segmentasi Lingkungan Terisolasi',
+              text: 'Pemisahan fisik dan logis antara database produksi, pipeline analitik, serta lingkungan pengujian staging.',
+            },
+          ],
+          closingParagraph:
+            'Tata kelola data yang terstruktur menjamin bahwa privasi nasabah terlindungi penuh sepanjang siklus hidup penyimpanan informasi.',
+        },
+        {
+          id: 'high-availability',
+          tocLabel: 'High Availability & Resilience',
+          title: 'Arsitektur High-Availability & Fault Tolerance',
+          paragraphs: [
+            'Tuntutan ketersediaan layanan finansial 24/7 membutuhkan sistem yang siap menghadapi gangguan infrastruktur tanpa menimbulkan henti layanan masal.',
+            'Sistem dirancang dengan redundansi multi-zona, circuit breaker cerdas, dan antrean dead-letter (DLQ) agar kegagalan salah satu layanan eksternal tidak melumpuhkan seluruh ekosistem aplikasi.',
+          ],
+          bullets: [
+            {
+              label: 'Multi-Zone Redundancy & Failover',
+              text: 'Distribusi beban kerja di beberapa pusat data independen dengan mekanisme pengalihan rute otomatis saat terjadi insiden server.',
+            },
+            {
+              label: 'Circuit Breaker & Graceful Degradation',
+              text: 'Mencegah kehabisan thread koneksi dengan mengisolasi layanan mitra yang mengalami penurunan performa.',
+            },
+            {
+              label: 'Kesiapan Disaster Recovery (DR)',
+              text: 'Prosedur pencadangan data terotomatisasi dengan target RPO (Recovery Point Objective) dan RTO (Recovery Time Objective) yang terukur.',
+            },
+          ],
+          closingParagraph:
+            'Ketahanan sistem yang teruji memberikan rasa tenang bagi manajemen operasional dan kepastian layanan bagi jutaan nasabah.',
+        },
+        {
+          id: 'regulatory-audit',
+          tocLabel: 'Regulasi & Audit Trail',
+          title: 'Kesiapan Regulasi & Rigorous Audit Trail',
+          paragraphs: [
+            'Setiap mutasi, perubahan parameter konfigurasi, dan aksi administratif harus dapat ditelusuri kebenarannya untuk kebutuhan audit pengawas dan kepatuhan regulasi.',
+            'Kami menerapkan sistem pencatatan log transaksi yang tidak dapat diubah (append-only immutable ledger) serta mekanisme persetujuan ganda (maker-checker) untuk operasi kritis.',
+          ],
+          bullets: [
+            {
+              label: 'Immutable Audit Logging',
+              text: 'Pencatatan lengkap mencakup identitas pengguna, alamat IP, stempel waktu presisi mikrodetik, dan riwayat sebelum serta sesudah perubahan data.',
+            },
+            {
+              label: 'Mekanisme Maker-Checker',
+              text: 'Alur kerja persetujuan ganda wajib untuk perubahan limit transaksi nasabah, persetujuan pinjaman, atau modifikasi parameter suku bunga.',
+            },
+            {
+              label: 'Kesiapan Laporan Kepatuhan',
+              text: 'Struktur log dan metadata yang terorganisasi mempermudah penarikan bukti kepatuhan sesuai standar OJK, Bank Indonesia, dan ISO 27001.',
+            },
+          ],
+          closingParagraph:
+            'Dengan transparansi jejak audit yang kokoh, institusi keuangan selalu berada dalam posisi siap menghadapi evaluasi kepatuhan internal maupun eksternal.',
+        },
+      ],
+    }
+  : {
+      title: 'Digital Banking Systems Engineering & Security',
+      tocTitle: 'Table of Contents',
+      sections: [
+        {
+          id: 'core-modernization',
+          tocLabel: 'Core Modernization',
+          title: 'Core Banking & Ecosystem Modernization',
+          paragraphs: [
+            'Modern banking demands rapid feature delivery and flexible integrations without compromising the stability of core ledger systems. Many financial institutions face bottlenecks where legacy monolithic architectures cannot efficiently communicate with modern digital touchpoints.',
+            'Teknalogi engineers integration middleware and event-driven microservices orchestration. This pattern isolates heavy read traffic from core transaction databases, keeping customer applications highly responsive during peak hours.',
+          ],
+          bullets: [
+            {
+              label: 'Transactional Workload Decoupling',
+              text: 'Deploying read replicas and distributed caching to serve balance and statement inquiries without burdening the core banking engine.',
+            },
+            {
+              label: 'Open Banking Standards (SNAP / ISO 20022)',
+              text: 'Implementing standardized, secure, and documented open banking API interfaces to accelerate fintech partnerships.',
+            },
+            {
+              label: 'Phased Migration (Strangler Fig)',
+              text: 'Replacing modules incrementally with controlled traffic routing, mitigating the risk of system-wide downtime.',
+            },
+          ],
+          closingParagraph:
+            'Through disciplined dependency separation, financial institutions can launch new savings, credit, and partner products with significantly accelerated development cycles.',
+        },
+        {
+          id: 'payment-settlement',
+          tocLabel: 'Payment & Settlement',
+          title: 'Payment Gateways & Real-Time Settlement',
+          paragraphs: [
+            'Interbank fund transfers require deterministic transaction states and resilience against third-party network interruptions.',
+            'We build payment processing pipelines featuring strict idempotency, asynchronous message queues with adaptive retry policies, and automated multi-channel reconciliation.',
+          ],
+          bullets: [
+            {
+              label: 'Idempotency & Duplicate Handling',
+              text: 'Guaranteeing each payment instruction is processed exactly once even during network timeouts or repeated callback deliveries.',
+            },
+            {
+              label: 'Automated Reconciliation Engine',
+              text: 'Instantly matching records across internal ledgers, switching gateways, and bank settlement statements to detect anomalies.',
+            },
+            {
+              label: 'Deterministic State Management',
+              text: 'Tracking transactions through in-flight, settled, reversed, and refunded lifecycles with complete operational visibility.',
+            },
+          ],
+          closingParagraph:
+            'Robust payment processing pipelines safeguard financial balance sheets and eliminate costly manual dispute investigations.',
+        },
+        {
+          id: 'security-fraud',
+          tocLabel: 'Security & Fraud Mitigation',
+          title: 'Multi-Layer Security & Fraud Mitigation',
+          paragraphs: [
+            'Security in banking is the bedrock of public trust and business continuity. Every interaction endpoint requires defense-in-depth protection against sophisticated cyber threats.',
+            'Our implementation includes end-to-end data encryption (E2EE), cryptographic payload signing with timestamp verification, and proactive traffic anomaly monitoring.',
+          ],
+          bullets: [
+            {
+              label: 'Cryptography & Payload Signing',
+              text: 'Validating inter-service message authenticity using HMAC / RSA SHA-256 signatures with anti-replay timestamp protection.',
+            },
+            {
+              label: 'Adaptive Multi-Factor Authentication',
+              text: 'Requiring risk-based two-factor verification, biometric authentication, and session binding for high-risk financial actions.',
+            },
+            {
+              label: 'OWASP Mitigation & API Throttling',
+              text: 'Comprehensive defense against injection attacks, credential stuffing, and scraping via adaptive rate limiting at API gateways.',
+            },
+          ],
+          closingParagraph:
+            'Security controls are engineered to run transparently, preserving a frictionless customer experience during legitimate transactions.',
+        },
+        {
+          id: 'data-governance',
+          tocLabel: 'Data Governance & Masking',
+          title: 'Data Isolation, Masking & Access Governance',
+          paragraphs: [
+            'Compliance with personal data protection regulations requires strict data segregation and selective access governance over financial records.',
+            'We implement isolated data architectures where Personally Identifiable Information (PII) and account credentials are encrypted both in transit and at rest.',
+          ],
+          bullets: [
+            {
+              label: 'Principle of Least Privilege & RBAC',
+              text: 'Restricting employee access permissions on a granular role basis with time-bounded credential authorization.',
+            },
+            {
+              label: 'Automated PII Masking',
+              text: 'Telemetry logs and internal customer service views automatically mask sensitive account numbers and personal identifiers.',
+            },
+            {
+              label: 'Isolated Environment Segmentation',
+              text: 'Physical and logical segregation separating production transactional databases from analytics and testing sandboxes.',
+            },
+          ],
+          closingParagraph:
+            'Structured data governance guarantees customer privacy and regulatory adherence throughout the data lifecycle.',
+        },
+        {
+          id: 'high-availability',
+          tocLabel: 'High Availability & Resilience',
+          title: 'High-Availability & Fault-Tolerant Architecture',
+          paragraphs: [
+            'Maintaining 24/7 financial service availability requires software designed to absorb infrastructure hiccups without cascading failures.',
+            'Our systems incorporate multi-zone redundancy, intelligent circuit breakers, and dead-letter queues (DLQ) so external provider downtime never brings down core platform capabilities.',
+          ],
+          bullets: [
+            {
+              label: 'Multi-Zone Redundancy & Failover',
+              text: 'Distributing workloads across independent availability zones with automated traffic rerouting during datacenter incidents.',
+            },
+            {
+              label: 'Circuit Breakers & Graceful Degradation',
+              text: 'Preventing connection thread starvation by quickly isolating slow or degrading third-party upstream services.',
+            },
+            {
+              label: 'Disaster Recovery Preparedness',
+              text: 'Automated encrypted backup routines with verified Recovery Point Objective (RPO) and Recovery Time Objective (RTO) targets.',
+            },
+          ],
+          closingParagraph:
+            'Resilient software design gives operational peace of mind to leadership and seamless reliability to end users.',
+        },
+        {
+          id: 'regulatory-audit',
+          tocLabel: 'Regulation & Audit Trail',
+          title: 'Regulatory Alignment & Audit Trail Rigor',
+          paragraphs: [
+            'Every financial movement, configuration change, and administrative action must remain verifiable for internal governance and regulatory scrutiny.',
+            'We incorporate append-only immutable audit logging and dual-control maker-checker approval workflows for critical platform actions.',
+          ],
+          bullets: [
+            {
+              label: 'Immutable Audit Logging',
+              text: 'Comprehensive records capturing user identity, IP address, microsecond timestamps, and before/after diffs of all entity changes.',
+            },
+            {
+              label: 'Maker-Checker Approval Workflows',
+              text: 'Enforcing dual authorization on critical actions such as credit limit updates, loan disbursements, or rate adjustments.',
+            },
+            {
+              label: 'Audit Report Readiness',
+              text: 'Structured telemetry schemas simplifying compliance verification for regulatory frameworks and security audits.',
+            },
+          ],
+          closingParagraph:
+            'Rigorous audit trails keep financial institutions continually prepared for external inspections and risk assessments.',
+        },
+      ],
+    };
+---
+
+<section
+  id="banking-deep-dive"
+  aria-label={copy.title}
+  class="relative isolate bg-white py-12 sm:py-20 lg:py-32 border-t border-slate-200/80"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      
+      <!-- Left Column: Main Editorial Article -->
+      <div class="lg:col-span-8">
+        
+        <!-- Main Section Title -->
+        <h2
+          class="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-[-0.04em] text-slate-950 mb-7 sm:mb-14"
+        >
+          {copy.title}
+        </h2>
+
+        <!-- Mobile Table of Contents (collapsible drawer on small screens) -->
+        <div class="lg:hidden mb-8 rounded-2xl border border-slate-200/90 bg-slate-50/80 p-4 sm:p-5">
+          <details class="group">
+            <summary class="flex items-center justify-between cursor-pointer list-none font-mono text-xs font-bold uppercase tracking-wider text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded min-h-[44px]">
+              <span>{copy.tocTitle}</span>
+              <svg
+                class="w-4 h-4 text-slate-500 transition-transform duration-200 group-open:rotate-180"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <nav class="mt-3 flex flex-col space-y-1.5 border-t border-slate-200/80 pt-3">
+              {copy.sections.map((section) => (
+                <a
+                  href={`#${section.id}`}
+                  class="text-xs sm:text-sm text-slate-600 hover:text-slate-950 transition-colors py-1.5 pl-2.5 border-l-2 border-slate-300 hover:border-slate-900 font-sans min-h-[44px] flex items-center"
+                >
+                  {section.tocLabel}
+                </a>
+              ))}
+            </nav>
+          </details>
+        </div>
+
+        <!-- Editorial Sections -->
+        <div class="flex flex-col space-y-10 sm:space-y-16">
+          {copy.sections.map((section) => (
+            <article
+              id={section.id}
+              class="banking-editorial-section scroll-mt-20 sm:scroll-mt-28 pb-8 sm:pb-12 border-b border-slate-100 last:border-b-0"
+            >
+              <h3 class="text-xl sm:text-2xl font-medium tracking-[-0.03em] text-slate-950 mb-3 sm:mb-4 leading-snug">
+                {section.title}
+              </h3>
+
+              {section.paragraphs.map((p) => (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mb-3 sm:mb-4">
+                  {p}
+                </p>
+              ))}
+
+              {section.bullets && (
+                <ul class="my-4 sm:my-5 space-y-2.5 sm:space-y-3 pl-4 sm:pl-5 list-disc marker:text-slate-400 text-sm sm:text-[16px] leading-relaxed text-slate-600 font-sans">
+                  {section.bullets.map((b) => (
+                    <li>
+                      <strong class="font-semibold text-slate-900">{b.label}:</strong> {b.text}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {section.closingParagraph && (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mt-3 sm:mt-4">
+                  {section.closingParagraph}
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- Right Column: Sticky Table of Contents -->
+      <aside class="hidden lg:block lg:col-span-4 sticky top-28 xl:top-32 self-start">
+        <div class="max-h-[calc(100vh-9rem)] overflow-y-auto pl-8 border-l border-slate-200/90 py-1">
+          <h3 class="text-[11.5px] font-bold tracking-[0.14em] text-slate-900 uppercase font-mono mb-4 select-none">
+            {copy.tocTitle}
+          </h3>
+          <nav aria-label={copy.tocTitle} class="flex flex-col space-y-2.5 text-[13.5px] font-sans">
+            {copy.sections.map((section) => (
+              <a
+                href={`#${section.id}`}
+                data-banking-toc-id={section.id}
+                class="banking-toc-nav-link text-slate-500 hover:text-slate-950 transition-all duration-200 py-1 pl-3 border-l-2 border-transparent hover:border-slate-400 min-h-[32px] flex items-center"
+              >
+                {section.tocLabel}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupBankingTocHighlight() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-10% 0px -70% 0px',
+      threshold: 0,
+    };
+
+    const sections = document.querySelectorAll<HTMLElement>('.banking-editorial-section');
+    const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.banking-toc-nav-link');
+
+    if (!sections.length || !tocLinks.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href === `#${id}`) {
+              link.classList.add('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.remove('text-slate-500', 'border-transparent');
+            } else {
+              link.classList.remove('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.add('text-slate-500', 'border-transparent');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((sec) => observer.observe(sec));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupBankingTocHighlight);
+  } else {
+    setupBankingTocHighlight();
+  }
+  document.addEventListener('astro:page-load', setupBankingTocHighlight);
+</script>

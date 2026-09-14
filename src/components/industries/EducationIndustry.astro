@@ -1,0 +1,465 @@
+---
+// src/components/industries/EducationIndustry.astro
+import type { Locale } from '../../i18n/translations';
+import EducationAboutIndustry from './EducationAboutIndustry.astro';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      eyebrow: 'PENDIDIKAN & SISTEM INFORMASI AKADEMIK',
+      title: 'Engineering untuk ekosistem pembelajaran modern dan operasi kampus terpadu.',
+      lead: 'Bangun dan modernisasi platform pendidikan dengan Sistem Informasi Akademik (SIAKAD) terpadu, ujian berbasis komputer (CBT) skala tinggi, Learning Management System (LMS), dan otomasi billing biaya kuliah (SPP). Teknalogi menghadirkan rekayasa perangkat lunak akademik yang andal dan terukur.',
+      primaryCta: 'Diskusikan kebutuhan institusi Anda',
+      challengesTitle: 'Ketika sistem kampus terpisah, layanan terhambat.',
+      challengesLead: 'Operasional melambat saat data mahasiswa, pembayaran, dan portal kuliah berjalan terpisah.',
+      challenges: [
+        ['Data mahasiswa terpisah', 'Riwayat studi tersebar di banyak unit tanpa sinkronisasi terpusat.'],
+        ['Server tumbang saat KRS', 'Lonjakan serentak mahasiswa membuat server registrasi dan ujian down.'],
+        ['Rekonsiliasi SPP manual', 'Pengecekan bukti transfer manual menunda izin pengisian KRS.'],
+        ['Pelaporan PDDikti rumit', 'Format data tidak konsisten memicu kegagalan sinkronisasi Feeder.'],
+      ],
+      solutionsTitle: 'Solusi perangkat lunak terintegrasi untuk universitas, sekolah, dan platform edtech.',
+      solutionsLead: 'Ruang lingkup sistem disesuaikan dengan kurikulum dan tata kelola institusi Anda, mulai dari SIAKAD cloud-native, platform CBT bebas kecurangan, hingga integrasi feeder PDDikti.',
+      solutions: [
+        ['SIAKAD Terpadu & Perang KRS Cepat', 'Alokasi kuota mata kuliah sub-detik dengan pencegahan oversubscription dan validasi prasyarat otomatis.', 'siakad'],
+        ['Mesin Ujian Daring CBT Bebas Lag', 'Platform Computer-Based Testing dengan bank soal dinamis, auto-save offline, dan deteksi kecurangan.', 'cbt'],
+        ['Learning Management System (LMS)', 'Platform e-learning adaptif berstandar SCORM/xAPI dengan streaming video kuliah dan rubrik penilaian tugas.', 'lms'],
+        ['Otomasi Billing SPP & Virtual Account', 'Penerbitan Virtual Account bank otomatis dengan sinkronisasi instan ke pembukaan blokir KRS mahasiswa.', 'tuition'],
+        ['Penerimaan Mahasiswa Baru (PMB)', 'Portal pendaftaran calon mahasiswa daring, seleksi ujian masuk terintegrasi, dan verifikasi berkas digital.', 'admission'],
+        ['Bridging PDDikti & Analitik Akreditasi', 'Sinkronisasi otomatis Feeder API Kemendikbud, data cleansing, dan dashboard pemenuhan instrumen akreditasi.', 'pddikti'],
+      ],
+      approachTitle: 'Dirancang untuk akses serentak kampus dan integritas data akademik.',
+      domains: [
+        ['Alokasi Kuota KRS & Skalabilitas Konkurensi', 'Terapkan antrean memori terdistribusi untuk melayani puluhan ribu mahasiswa saat perang KRS tanpa server down.', 'concurrency'],
+        ['Ijazah Digital Terverifikasi & Integritas Nilai', 'Gunakan tanda tangan elektronik tersertifikasi (PSrE) dan kode QR verifikasi publik untuk mencegah pemalsuan ijazah.', 'integrity'],
+        ['Keandalan Ujian CBT & Penyimpanan Offline-First', 'Pastikan jawaban ujian mahasiswa tersimpan aman di peramban lokal dan otomatis tersinkron saat internet putus.', 'availability'],
+      ],
+      faqTitle: 'Hal yang biasanya dibahas sebelum proyek pendidikan dimulai.',
+      faqLead: 'Karakteristik struktur kurikulum, jumlah mahasiswa aktif, dan infrastruktur server setiap kampus berbeda. Discovery teknis kami memetakan dependensi sistem, beban konkurensi, dan prioritas migrasi data.',
+      faqTrustTitle: 'Dipercaya oleh',
+      faqTrustText: 'Institusi pendidikan dan universitas berkembang di Indonesia',
+      faqAction: 'Tanyakan kebutuhan kampus Anda',
+      faqs: [
+        ['Bagaimana sistem SIAKAD Teknalogi menangani lonjakan trafik saat perang KRS?', 'Kami merancang arsitektur cloud-native dengan auto-scaling elastis dan in-memory queueing (Redis/KV-cache) khusus untuk alokasi kuota mata kuliah, sehingga sistem mampu memproses puluhan ribu request per detik tanpa crash.'],
+        ['Apakah sistem SIAKAD ini terhubung resmi dengan PDDikti Feeder Kemendikbud?', 'Ya. Sistem kami memiliki modul bridging resmi yang terhubung langsung dengan PDDikti Web Services Feeder untuk sinkronisasi data mahasiswa, riwayat studi, aktivitas mengajar dosen, dan data kelulusan secara berkala.'],
+        ['Bagaimana sistem CBT mengantisipasi jika koneksi internet siswa tiba-tiba putus?', 'Aplikasi CBT kami menggunakan teknologi client-side caching. Setiap jawaban siswa langsung tersimpan di penyimpanan lokal peramban (IndexedDB) dan disinkronkan ke server pusat saat koneksi kembali stabil, sehingga data ujian tidak hilang.'],
+        ['Apakah modul pembayaran biaya kuliah terhubung dengan Virtual Account bank?', 'Ya. Kami mengintegrasikan sistem billing kampus dengan agregator pembayaran dan bank nasional (BCA, Mandiri, BNI, BRI, dll.) untuk menerbitkan VA dinamis yang otomatis membuka blokir KRS setelah pembayaran lunas.'],
+        ['Bisakah materi perkuliahan dari LMS lama (seperti Moodle) dipindahkan ke sistem baru?', 'Bisa. Sistem LMS kami mendukung standar ekspor-impor SCORM 1.2 / 2004, Common Cartridge, dan format bank soal baku sehingga seluruh materi lama dapat dimigrasikan dengan mudah.'],
+        ['Bagaimana keabsahan hukum dari Ijazah Digital dan Transkrip Elektronik?', 'Ijazah digital yang diterbitkan dilengkapi dengan tanda tangan elektronik tersertifikasi (PSrE berinduk Kominfo/BSrE) yang memiliki kekuatan hukum sah dan kode QR verifikasi publik anti-pemalsuan.'],
+        ['Berapa lama waktu yang dibutuhkan untuk migrasi data dari SIAKAD lama?', 'Proses audit data, penyesuaian kurikulum, dan migrasi basis data historis biasanya memakan waktu 4 hingga 8 minggu, dilakukan tanpa mengganggu kegiatan perkuliahan yang sedang berjalan.'],
+        ['Apakah Teknalogi menyediakan pelatihan bagi dosen, staf akademik, dan mahasiswa?', 'Ya. Kami menyediakan sesi pelatihan interaktif, dokumentasi panduan SOP lengkap per peran (role-based manuals), dan pendampingan intensif saat peluncuran perdana (go-live support).'],
+      ],
+    }
+  : {
+      eyebrow: 'EDUCATION & ACADEMIC INFORMATICS',
+      title: 'Engineering for modern learning ecosystems and campus operations.',
+      lead: 'Build resilient education platforms with unified academic information systems (SIAKAD), high-concurrency exam engines (CBT), interactive learning management (LMS), and automated tuition billing. Teknalogi empowers universities, schools, and edtech innovators with high-precision digital infrastructure.',
+      primaryCta: 'Discuss your education requirements',
+      challengesTitle: 'When campus systems disconnect, operations stall.',
+      challengesLead: 'Operations slow down when student records, payments, and portals operate in silos.',
+      challenges: [
+        ['Disconnected student records', 'Academic records remain scattered across uncoordinated departments.'],
+        ['Enrollment server crashes', 'Concurrent surges during course registration bring servers down.'],
+        ['Manual tuition reconciliation', 'Manual payment verification delays course registration clearance.'],
+        ['Complex regulatory compliance', 'Inconsistent data formats trigger national database (PDDikti) sync errors.'],
+      ],
+      solutionsTitle: 'Integrated software solutions engineered for universities, schools, and edtech platforms.',
+      solutionsLead: 'System architectures are custom-tailored to your academic governance, spanning cloud-native SIAKAD, cheat-proof CBT engines, and automated regulatory reporting.',
+      solutions: [
+        ['Unified SIAKAD & High-Speed Enrollment', 'Sub-second course seat allocation with oversubscription prevention and automated prerequisite validation.', 'siakad'],
+        ['Lag-Free Computer-Based Testing (CBT)', 'High-concurrency exam delivery with dynamic question randomization, client auto-save, and proctoring.', 'cbt'],
+        ['Learning Management System (LMS)', 'SCORM/xAPI-compliant e-learning platforms featuring adaptive video streaming and structured grading rubrics.', 'lms'],
+        ['Automated Tuition Billing & Virtual Accounts', 'Dynamic bank Virtual Account generation with instantaneous real-time course registration unlock.', 'tuition'],
+        ['Digital Student Admissions (PMB)', 'End-to-end online applicant onboarding, integrated entrance testing, and digital document verification.', 'admission'],
+        ['PDDikti Bridging & Accreditation Analytics', 'Automated National Education Database Feeder API sync, data cleansing, and accreditation dashboards.', 'pddikti'],
+      ],
+      approachTitle: 'Designed for concurrent campus access and academic data integrity.',
+      domains: [
+        ['High-Throughput KRS & Seat Allocation Engine', 'Deploy distributed in-memory queues serving tens of thousands of concurrent students during course enrollment wars.', 'concurrency'],
+        ['Tamper-Proof Digital Transcript & Verifiable Credentials', 'Implement certified cryptographic digital signatures and public QR validation gateways to eliminate credential forgery.', 'integrity'],
+        ['Zero-Downtime Exam Infrastructure & Offline CBT', 'Guarantee student exam progress is cached continuously on client browsers and synced seamlessly during network drops.', 'availability'],
+      ],
+      faqTitle: 'What teams usually discuss before an education project starts.',
+      faqLead: 'Curriculum hierarchies, active student counts, and server architectures vary across institutions. Technical discovery maps system dependencies, concurrency loads, and data migration milestones.',
+      faqTrustTitle: 'Trusted by',
+      faqTrustText: 'Educational institutions and growing universities across Indonesia',
+      faqAction: 'Ask about your campus requirements',
+      faqs: [
+        ['How does Teknalogi’s SIAKAD handle massive traffic surges during course registration wars?', 'We engineer cloud-native architectures with elastic auto-scaling and in-memory queueing (Redis/KV-cache) specifically for seat allocation, enabling the system to process tens of thousands of requests per second without crashes.'],
+        ['Is this academic platform natively integrated with the national PDDikti Feeder API?', 'Yes. Our platform includes certified bridging modules connecting directly with the PDDikti Web Services Feeder for scheduled bi-directional synchronization of student records, grades, and faculty teaching loads.'],
+        ['How does the CBT system handle sudden student internet disconnections during exams?', 'Our CBT platform utilizes robust client-side storage (IndexedDB). Answers are saved locally within the browser on every click and synchronized in the background once connectivity resumes, ensuring zero data loss.'],
+        ['Can campus tuition billing connect directly with bank Virtual Accounts?', 'Yes. We connect the campus finance engine with payment gateways and major banking APIs (BCA, Mandiri, BNI, BRI, etc.) to generate dynamic VAs that instantly clear student enrollment blocks upon settlement.'],
+        ['Can existing course materials from legacy LMS platforms (like Moodle) be migrated?', 'Yes. Our LMS supports SCORM 1.2 / 2004, Common Cartridge, and standardized question formats, enabling smooth batch migration of historical course assets.'],
+        ['What is the legal validity of Digital Diplomas and Electronic Transcripts?', 'Digital diplomas issued through our platform use certified digital signatures (BSrE/PSrE compliant) carrying full legal standing under electronic information laws, paired with cryptographic public QR verification.'],
+        ['What is the typical timeframe for migrating data from a legacy academic system?', 'Curriculum mapping, data cleansing, and database migration typically take 4 to 8 weeks, executed in parallel without causing disruption to active semester schedules.'],
+        ['Does Teknalogi provide onboarding training for faculty and administrative staff?', 'Yes. We conduct hands-on role-based workshops, provide comprehensive SOP manuals, and deliver dedicated on-site standby support during initial launch.'],
+      ],
+    };
+
+const partnerLogos = [
+  ['Anytime Fitness', '/partners/anytime.png'],
+  ['KelolaAja', '/partners/kelolaaja.png'],
+  ['Nikawa Teknika', '/partners/nikawa.png'],
+  ['PT Inti Bersama', '/partners/ptintibersama.png'],
+];
+---
+
+<section class="relative isolate min-h-[38rem] overflow-hidden bg-white py-28 sm:min-h-[42rem] sm:py-32 lg:min-h-[46rem] lg:py-40" aria-labelledby="education-title">
+  <img src="/industry/heroeducation.png" alt="Modern university campus and digital academic lecture hall" width="1536" height="1024" class="absolute inset-0 -z-20 h-full w-full object-cover object-[64%_center]" loading="eager" decoding="async" />
+  <div class="absolute inset-0 -z-10 bg-white/84 sm:bg-gradient-to-r sm:from-white sm:from-[7%] sm:via-white/86 sm:via-[46%] sm:to-white/0 sm:to-[80%]"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-white"></div>
+  <div class="home-container flex min-h-[calc(38rem-7rem)] items-end sm:min-h-[calc(42rem-8rem)] lg:min-h-[calc(46rem-10rem)]">
+    <div class="max-w-3xl pb-2 lg:pb-5">
+      <p class="text-[11px] font-semibold tracking-[0.14em] text-slate-600">{copy.eyebrow}</p>
+      <h1 id="education-title" class="mt-4 max-w-3xl text-4xl font-medium leading-[1.06] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-[4.5rem]">
+        {copy.title}
+      </h1>
+      <p class="mt-6 max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">{copy.lead}</p>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-[#f5a623] px-6 text-sm font-semibold text-slate-950 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e69818] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2">
+        {copy.primaryCta}
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="home-section bg-white" aria-labelledby="education-challenges-title">
+  <div class="home-container grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-12">
+    <div class="group relative overflow-hidden rounded-[24px] lg:sticky lg:top-28 lg:self-start">
+      <img src="/industry/secondaryeducation.png" alt="Collaborative learning environment and digital university campus" width="1448" height="1086" class="h-[21rem] w-full object-cover sm:h-[28rem] lg:h-[38rem]" loading="lazy" decoding="async" />
+      <div class="absolute inset-0 bg-slate-950/30 transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
+      <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-950/65 to-transparent"></div>
+      <div class="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+        <span class="font-mono text-[10px] font-semibold tracking-[0.18em] text-white/80">CONNECTED EDUCATION</span>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <h2 id="education-challenges-title" class="max-w-xl text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.challengesTitle}</h2>
+      <p class="mt-5 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.challengesLead}</p>
+      <ol class="mt-10 grid flex-1 grid-cols-1 gap-x-8 sm:mt-12 sm:grid-cols-2">
+        {copy.challenges.map(([title, description], index) => (
+          <li class="group border-t border-slate-200 py-6 sm:py-7">
+            <div class="flex items-baseline justify-between gap-5">
+              <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+              <span class="h-px flex-1 bg-slate-100 transition-colors duration-300 group-hover:bg-violet-200"></span>
+            </div>
+            <h3 class="mt-7 text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="education-solutions" class="home-section bg-white scroll-mt-20" aria-labelledby="education-solutions-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 id="education-solutions-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.solutionsTitle}</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.solutionsLead}</p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {copy.solutions.map(([title, description, icon]) => (
+        <article class="education-solution-card group relative isolate flex min-h-[17rem] overflow-hidden rounded-[20px] border border-slate-200/90 bg-white p-6 sm:min-h-[18rem] sm:p-7">
+          <div class="relative z-10 flex w-full flex-col justify-between">
+            <span class="education-solution-icon flex h-10 w-10 items-center justify-center text-slate-950" aria-hidden="true">
+              {icon === 'siakad' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 10l12-6 12 6-12 6-12-6z" stroke-linejoin="round" />
+                  <path d="M7 14.5v8c0 2.5 4 5 9 5s9-2.5 9-5v-8" stroke-linecap="round" />
+                  <path d="M28 12v9" stroke-linecap="round" />
+                  <circle cx="28" cy="22" r="1.5" fill="currentColor" />
+                </svg>
+              )}
+              {icon === 'cbt' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4" y="5" width="24" height="17" rx="3" />
+                  <path d="M10 26h12m-6-4v4" stroke-linecap="round" />
+                  <path d="M9 13l4 4 10-10" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {icon === 'lms' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2V8z" />
+                  <path d="M16 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2V8z" />
+                  <path d="M8 11h4M8 15h4M20 11h4M20 15h4" stroke-linecap="round" />
+                </svg>
+              )}
+              {icon === 'tuition' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4" y="6" width="24" height="20" rx="3" />
+                  <path d="M4 12h24M10 18h4m-4 4h8" stroke-linecap="round" />
+                  <circle cx="22" cy="20" r="3" fill="white" />
+                  <path d="m20.5 20 1 1 2-2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {icon === 'admission' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="16" cy="11" r="5" />
+                  <path d="M6 26c0-4.5 4.5-8 10-8s10 3.5 10 8" stroke-linecap="round" />
+                  <path d="M22 8l4 4-4 4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {icon === 'pddikti' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 26h24M8 22v-6m6 6v-12m6 12v-8m6 8v-14" stroke-linecap="round" />
+                  <path d="M8 14l6-4 6 3 6-7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+            </span>
+            <div class="mt-12">
+              <h3 class="max-w-sm text-xl font-medium tracking-[-0.025em] text-slate-950 sm:text-[22px]">{title}</h3>
+              <p class="mt-3 max-w-md text-sm leading-relaxed text-slate-600">{description}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="home-section bg-white" aria-labelledby="education-approach-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 id="education-approach-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.approachTitle}</h2>
+    </div>
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 lg:grid-cols-3 lg:gap-5">
+      {copy.domains.map(([title, description, key], index) => (
+        <article class={`education-domain-card education-domain-${key} flex min-h-[18rem] flex-col rounded-[20px] border border-slate-200 bg-white p-6 sm:p-7`}>
+          <div class="flex items-start justify-between gap-5">
+            <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+            <span class="text-[11px] font-medium tracking-[0.08em] text-slate-400">{key === 'concurrency' ? 'CONCURRENCY' : key === 'integrity' ? 'INTEGRITY' : 'AVAILABILITY'}</span>
+          </div>
+          <div class="education-domain-visual mt-5 text-slate-900" aria-hidden="true">
+            {key === 'concurrency' && (
+              <svg viewBox="0 0 260 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                <!-- Concurrent student course registration streams -->
+                <rect x="12" y="32" width="38" height="48" rx="6" fill="white" />
+                <path d="M20 44h22M20 54h14M20 64h18" stroke-linecap="round" />
+                <path d="M50 56h24" stroke-linecap="round" />
+                <circle cx="62" cy="56" r="3.5" fill="white" />
+                <!-- In-Memory Course Seat Queue Engine -->
+                <rect x="74" y="22" width="72" height="68" rx="8" fill="white" />
+                <path d="M84 56h8l6-16 8 32 8-22 6 6h12" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="110" cy="22" r="3" fill="white" />
+                <circle cx="110" cy="90" r="3" fill="white" />
+                <!-- Instant Study Plan (KRS) Clearance -->
+                <path d="M146 56h24" stroke-linecap="round" />
+                <circle cx="158" cy="56" r="3.5" fill="white" />
+                <rect x="170" y="32" width="56" height="48" rx="6" fill="white" />
+                <rect x="180" y="42" width="36" height="20" rx="3" fill="white" />
+                <circle cx="190" cy="52" r="2.5" fill="currentColor" />
+                <line x1="196" y1="52" x2="208" y2="52" stroke-linecap="round" />
+                <circle cx="244" cy="56" r="6" fill="white" />
+                <path d="m241 56 2 2 4-4" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+            {key === 'integrity' && (
+              <svg viewBox="0 0 320 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                <!-- Student Transcript Record -->
+                <rect x="14" y="28" width="58" height="56" rx="8" fill="white" />
+                <path d="M24 40h38M24 52h26M24 64h32" stroke-linecap="round" />
+                <circle cx="54" cy="64" r="2.5" fill="currentColor" />
+                <!-- Cryptographic Signature Verification Gate -->
+                <path d="M72 56h34" stroke-linecap="round" />
+                <circle cx="89" cy="56" r="4" fill="white" />
+                <rect x="106" y="18" width="108" height="76" rx="10" fill="white" stroke-dasharray="4 3" />
+                <rect x="124" y="30" width="72" height="52" rx="6" fill="white" />
+                <path d="M160 38l16 7v14c0 10-7 17-16 20-9-3-16-10-16-20V45l16-7z" fill="white" />
+                <path d="m154 59 4 4 8-9" stroke-linecap="round" stroke-linejoin="round" />
+                <!-- Public Verifiable Diploma Portal -->
+                <path d="M214 56h34" stroke-linecap="round" />
+                <circle cx="231" cy="56" r="4" fill="white" />
+                <rect x="248" y="28" width="58" height="56" rx="8" fill="white" />
+                <rect x="258" y="38" width="38" height="36" rx="4" fill="white" stroke-dasharray="2 2" />
+                <rect x="268" y="48" width="18" height="16" rx="2" fill="white" />
+                <path d="m273 56 3 3 5-6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+            {key === 'availability' && (
+              <svg viewBox="0 0 250 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                <!-- Dual Exam Cluster Rails -->
+                <path d="M16 38h48m0 0l24-16h40m-64 16l24 16h40" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="16" cy="38" r="6" fill="white" />
+                <!-- Local Browser Auto-Save Cache Node -->
+                <rect x="128" y="14" width="40" height="24" rx="4" fill="white" />
+                <circle cx="138" cy="26" r="2.5" fill="currentColor" />
+                <line x1="146" y1="26" x2="160" y2="26" stroke-linecap="round" />
+                <rect x="128" y="46" width="40" height="24" rx="4" fill="white" />
+                <circle cx="138" cy="58" r="2.5" fill="currentColor" />
+                <line x1="146" y1="58" x2="160" y2="58" stroke-linecap="round" />
+                <!-- Transparent Background Sync & Zero-Downtime Pulse -->
+                <path d="M168 26l20 18m-20 26l20-18h36" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M16 92h54l8-14 8 24 8-10h140" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="224" cy="44" r="8" fill="white" />
+                <circle cx="224" cy="44" r="3.5" fill="currentColor" />
+                <circle cx="224" cy="92" r="4" fill="white" />
+              </svg>
+            )}
+          </div>
+          <div class="mt-auto pt-6">
+            <h3 class="text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-2.5 max-w-xl text-sm leading-relaxed text-slate-600">{description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<EducationAboutIndustry lang={lang} />
+
+<section class="home-section bg-white" aria-labelledby="education-faq-title">
+  <div class="home-container grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-16">
+    <div class="space-y-6 lg:sticky lg:top-28 lg:col-span-5">
+      <div>
+        <h2 id="education-faq-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-[44px]">{copy.faqTitle}</h2>
+        <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-600 sm:text-base">{copy.faqLead}</p>
+      </div>
+      <div class="flex items-center gap-3.5">
+        <div class="flex -space-x-3" aria-label={`${copy.faqTrustTitle}: ${copy.faqTrustText}`}>
+          {partnerLogos.map(([name, logo]) => (
+            <span class="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 border-slate-100 bg-white p-1.5 shadow-sm">
+              <img src={logo} alt={name} class="h-full w-full object-contain" loading="lazy" decoding="async" />
+            </span>
+          ))}
+        </div>
+        <span class="max-w-[18rem] text-xs leading-snug text-slate-600">
+          <strong class="block font-semibold text-slate-950">{copy.faqTrustTitle}</strong>
+          <span class="mt-0.5 block">{copy.faqTrustText}</span>
+        </span>
+      </div>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-800 focus-visible:ring-offset-2">
+        {copy.faqAction}
+      </a>
+    </div>
+    <div class="space-y-3 lg:col-span-7">
+      {copy.faqs.map(([question, answer], index) => (
+        <details class="education-faq-item group overflow-hidden rounded-2xl border border-slate-900/80 bg-white transition-colors hover:border-slate-950">
+          <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 rounded-2xl p-5 text-base font-medium leading-snug text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-slate-900 sm:p-6">
+            <span>{question}</span>
+            <span class="education-faq-icon relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-900/30 bg-slate-50 text-slate-700 transition-colors" aria-hidden="true"><span class="absolute h-px w-3.5 bg-current"></span><span class="absolute h-3.5 w-px bg-current transition-transform group-open:scale-y-0"></span></span>
+          </summary>
+          <div role="region" aria-label={`${isId ? 'Jawaban' : 'Answer'} ${index + 1}`}>
+            <p class="max-w-2xl px-5 pb-5 pr-14 text-sm leading-relaxed text-slate-600 sm:px-6 sm:pb-6 sm:text-[15px]">{answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .education-domain-card {
+    box-shadow: 0 1px 10px -7px rgba(15, 23, 42, 0.14);
+  }
+
+  .education-domain-visual {
+    display: block;
+    width: 100%;
+  }
+
+  .education-domain-visual svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .education-domain-integrity .education-domain-visual {
+    margin-inline: auto;
+    max-width: 21rem;
+  }
+
+  .education-solution-card {
+    box-shadow: 0 2px 14px -4px rgba(15, 23, 42, 0.08);
+    transition:
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 320ms ease,
+      box-shadow 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .education-solution-card::before {
+    position: absolute;
+    top: -5.5rem;
+    right: -4.5rem;
+    width: 17rem;
+    height: 17rem;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(196, 181, 253, 0.52) 0%, rgba(221, 214, 254, 0.22) 42%, transparent 72%);
+    content: '';
+    filter: blur(15px);
+    opacity: 0.72;
+    pointer-events: none;
+    transition:
+      opacity 360ms ease,
+      transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .education-solution-card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(203 213 225);
+    box-shadow: 0 18px 38px -18px rgba(15, 23, 42, 0.28);
+  }
+
+  .education-solution-card:hover::before {
+    opacity: 0.92;
+    transform: translate(-0.75rem, 0.75rem) scale(1.06);
+  }
+
+  .education-solution-icon {
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .education-solution-icon svg {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .education-solution-card:hover .education-solution-icon {
+    transform: translateY(-2px);
+  }
+
+  .education-faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .education-faq-item[open] {
+    border-color: rgb(15 23 42);
+    background:
+      radial-gradient(circle at 86% 20%, rgba(196, 181, 253, 0.26), transparent 55%),
+      #ffffff;
+  }
+
+  .education-faq-item[open] .education-faq-icon {
+    border-color: rgb(15 23 42);
+    background: rgb(15 23 42);
+    color: white;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .education-domain-card,
+    .education-solution-card,
+    .education-solution-card::before,
+    .education-solution-icon {
+      transition: none;
+    }
+
+    .education-solution-card:hover,
+    .education-solution-card:hover::before,
+    .education-solution-card:hover .education-solution-icon {
+      transform: none;
+    }
+
+    .education-faq-item,
+    .education-faq-icon,
+    .education-faq-icon span {
+      transition: none;
+    }
+  }
+</style>

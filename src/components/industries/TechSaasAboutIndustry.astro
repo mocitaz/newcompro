@@ -1,0 +1,475 @@
+---
+// src/components/industries/TechSaasAboutIndustry.astro
+import type { Locale } from '../../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      title: 'Rekayasa Sistem & Arsitektur Platform SaaS Skala Tinggi',
+      tocTitle: 'Daftar Isi Pembahasan',
+      sections: [
+        {
+          id: 'multitenant-architecture',
+          tocLabel: 'Arsitektur Multi-Tenant',
+          title: 'Arsitektur Database Multi-Tenant & Mitigasi Noisy Neighbor',
+          paragraphs: [
+            'Membangun aplikasi SaaS B2B yang siap diskalakan menuntut strategi partisi data yang cermat. Pendekatan database bersama tanpa isolasi yang ketat sering kali membuat kueri berat dari satu tenant memperlambat performa akun pelanggan lainnya (efek noisy neighbor).',
+            'Teknalogi merancang arsitektur multi-tenant hibrida yang memadukan shared computing dengan partisi database logis (schema-per-tenant atau dynamic shard routing). Pola ini menjamin keamanan isolasi data enterprise sekaligus menekan biaya infrastruktur cloud secara optimal.',
+          ],
+          bullets: [
+            {
+              label: 'Routing Shard & Tenant Key Terindeks',
+              text: 'Mengalokasikan kueri basis data ke kluster penyimpanan yang tepat secara otomatis berdasarkan tenant identifier tanpa overhead latensi.',
+            },
+            {
+              label: 'Mitigasi Efek Noisy Neighbor',
+              text: 'Menerapkan kuota resource komputasi dan database rate-limiting per tenant agar lonjakan beban satu akun tidak mengganggu stabilitas sistem.',
+            },
+            {
+              label: 'Penyediaan Tenant Instan (Zero-Downtime Onboarding)',
+              text: 'Mengotomatiskan provisi skema basis data, konfigurasi kredensial, dan seed data master dalam hitungan detik saat pendaftaran akun baru.',
+            },
+          ],
+          closingParagraph:
+            'Partisi multi-tenant yang kokoh memberikan perlindungan privasi data tingkat tinggi bagi pelanggan enterprise dan skalabilitas tanpa batas bagi produk Anda.',
+        },
+        {
+          id: 'metering-billing',
+          tocLabel: 'Metering & Penagihan',
+          title: 'Sistem Metering Penggunaan & Penagihan Langganan Skala Besar',
+          paragraphs: [
+            'Model monetisasi SaaS modern bergerak dari sekadar flat subscription menuju penagihan berbasis penggunaan aktual (usage-based & hybrid pricing). Mencatat miliaran panggilan API dan event konsumsi secara akurat membutuhkan pipeline data berlatensi rendah yang bebas dari kebocoran transaksi.',
+            'Kami membangun mesin metering berbasis event yang mencatat konsumsi kuota secara asinkronus ke dalam antrean terdistribusi (Kafka/Redis) tanpa memperlambat eksekusi request utama pengguna.',
+          ],
+          bullets: [
+            {
+              label: 'Idempotent Event Ingestion',
+              text: 'Menjamin setiap metrik penggunaan tercatat tepat satu kali (exactly-once processing) meskipun terjadi retry jaringan atau transmisi ganda.',
+            },
+            {
+              label: 'Kalkulasi Tarif Bertingkat (Tiered & Volume Rating)',
+              text: 'Mendukung model penetapan harga dinamis mulai dari paket kuota bulanan, overage per unit, hingga diskon volume transaksi otomatis.',
+            },
+            {
+              label: 'Sinkronisasi Payment Gateway & Auto-Debit',
+              text: 'Mengintegrasikan Stripe, Xendit, dan Midtrans untuk penagihan invoice berkala, dunning management otomatis saat kartu kedaluwarsa, dan rekonsiliasi.',
+            },
+          ],
+          closingParagraph:
+            'Infrastruktur billing yang presisi melindungi pendapatan perusahaan dari kebocoran jam penagihan dan menyajikan rincian biaya yang transparan bagi pelanggan.',
+        },
+        {
+          id: 'enterprise-readiness',
+          tocLabel: 'Kesiapan Enterprise & SSO',
+          title: 'Kesiapan Enterprise: SSO/SAML, SCIM & Tata Kelola RBAC',
+          paragraphs: [
+            'Menjual produk SaaS ke perusahaan multinasional dan korporasi besar memerlukan pemenuhan standar keamanan TI perusahaan yang ketat (Enterprise Readiness). Ketiadaan fitur login terpusat dan tata kelola akses sering kali menjadi penyebab utama batalnya penutupan kontrak bernilai tinggi.',
+            'Kami membangun modul enterprise turnkey mencakup Single Sign-On berbasis SAML 2.0 / OIDC, protokol sinkronisasi pengguna otomatis (SCIM), dan Role-Based Access Control (RBAC) yang sangat granular.',
+          ],
+          bullets: [
+            {
+              label: 'Integrasi Universal Identity Provider (IdP)',
+              text: 'Mendukung koneksi langsung dengan Okta, Microsoft Azure AD (Entra ID), Google Workspace, dan Ping Identity.',
+            },
+            {
+              label: 'Otomasi Lifecycle Karyawan via SCIM',
+              text: 'Menyinkronkan provisi akun, pembaruan divisi kerja, dan pencabutan hak akses secara otomatis saat karyawan keluar dari perusahaan.',
+            },
+            {
+              label: 'Audit Log Terenkripsi & Tidak Dapat Diubah',
+              text: 'Mencatat setiap tindakan administratif, perubahan izin akses, dan ekspor data ke dalam log terstruktur sesuai standar SOC-2 dan ISO 27001.',
+            },
+          ],
+          closingParagraph:
+            'Fitur enterprise yang matang memuluskan proses security review oleh tim IT klien dan mempercepat siklus konversi penjualan B2B.',
+        },
+        {
+          id: 'api-webhook-infra',
+          tocLabel: 'Infrastruktur API & Webhook',
+          title: 'Infrastruktur API Developer & Antrean Webhook Tangguh',
+          paragraphs: [
+            'Produk SaaS modern dinilai dari kemudahannya diintegrasikan ke dalam alur kerja eksternal developer. Infrastruktur API publik dan webhook harus memiliki ketersediaan tinggi dan ketahanan terhadap lonjakan trafik yang tidak terduga.',
+            'Teknalogi merancang API Gateway berkecepatan tinggi dengan dokumentasi interaktif OpenAPI, pembuatan SDK otomatis (TypeScript, Python, Go), dan sistem pengiriman webhook bergaransi at-least-once.',
+          ],
+          bullets: [
+            {
+              label: 'Adaptive Token Bucket Rate Limiting',
+              text: 'Menerapkan batas laju pemanggilan API per tier langganan untuk melindungi server aplikasi dari scraping liar atau lonjakan anomali.',
+            },
+            {
+              label: 'Pengiriman Webhook dengan Exponential Backoff',
+              text: 'Mengirimkan event webhook ke server klien dengan mekanisme retry otomatis dan isolasi Dead-Letter Queue (DLQ) saat endpoint klien down.',
+            },
+            {
+              label: 'Keamanan Webhook Berbasis Signature HMAC',
+              text: 'Menandatangani setiap payload event dengan secret key kriptografis untuk mencegah serangan spoofing dan manipulasi data di sisi penerima.',
+            },
+          ],
+          closingParagraph:
+            'Ekosistem API yang andal menjadikan platform SaaS Anda pusat integrasi pilihan bagi para developer dan mitra teknologi.',
+        },
+        {
+          id: 'realtime-analytics',
+          tocLabel: 'Analitik Real-Time',
+          title: 'Analitik Produk Real-Time & Penyimpanan Data Time-Series',
+          paragraphs: [
+            'Memberikan wawasan analitik interaktif di dalam aplikasi SaaS tanpa membebani database operasional membutuhkan arsitektur data analitik terpisah (OLAP separation).',
+            'Kami mengimplementasikan basis data analitik berkecepatan tinggi berbasis kolom (seperti ClickHouse / DuckDB) yang mampu mengeksekusi agregasi jutaan baris data dalam hitungan milidetik.',
+          ],
+          bullets: [
+            {
+              label: 'Pemisahan Beban OLTP dan OLAP',
+              text: 'Merekam transaksi ke database operasional dan mengalirkan salinan event ke database analitik secara asinkronus melalui Change Data Capture (CDC).',
+            },
+            {
+              label: 'Visualisasi Kueri Sub-Milidetik',
+              text: 'Menyajikan dashboard analitik interaktif, filter kustom, dan grafik tren historis bagi pengguna tanpa jeda pemuatan (lag).',
+            },
+            {
+              label: 'Retensi Data & Agregasi Bertingkat',
+              text: 'Menerapkan kompresi data time-series cerdas untuk menghemat biaya penyimpanan data historis jangka panjang.',
+            },
+          ],
+          closingParagraph:
+            'Fitur analitik real-time memberikan nilai tambah yang signifikan bagi pengguna dan meningkatkan daya ikat (retention) produk SaaS Anda.',
+        },
+        {
+          id: 'slo-resilience',
+          tocLabel: 'Ketersediaan & CI/CD',
+          title: 'Ketersediaan Multi-Region & Deployment Tanpa Downtime',
+          paragraphs: [
+            'Komitmen Service Level Agreement (SLA 99.99%) menuntut arsitektur sistem yang tahan terhadap kegagalan perangkat keras dan proses rilis kode baru yang bebas dari gangguan layanan.',
+            'Kami menerapkan arsitektur microservices terdistribusi dengan orkestrasi Kubernetes, otomatisasi pipeline CI/CD berbasis GitOps, dan strategi deployment Canary / Blue-Green.',
+          ],
+          bullets: [
+            {
+              label: 'Zero-Downtime Deployment (Blue-Green / Canary)',
+              text: 'Merilis pembaruan perangkat lunak secara bertahap dengan pengujian otomatis sebelum mengalihkan 100% trafik pengguna.',
+            },
+            {
+              label: 'Auto-Healing & Skalabilitas Elastis (HPA)',
+              text: 'Mendeteksi pod server yang mengalami kegagalan dan secara otomatis meregenerasi instance baru serta menskalakan kapasitas saat jam sibuk.',
+            },
+            {
+              label: 'Observabilitas Menyeluruh (OpenTelemetry)',
+              text: 'Memantau metrik latensi p99, log terpusat, dan distributed tracing di seluruh microservices untuk mendeteksi akar masalah insiden dalam hitungan detik.',
+            },
+          ],
+          closingParagraph:
+            'Infrastruktur cloud yang tangguh memastikan platform SaaS Anda beroperasi tanpa henti dan siap melayani pengguna di seluruh dunia.',
+        },
+      ],
+    }
+  : {
+      title: 'Hyper-Scale SaaS Systems Engineering & Cloud Architecture',
+      tocTitle: 'Table of Contents',
+      sections: [
+        {
+          id: 'multitenant-architecture',
+          tocLabel: 'Multi-Tenant Architecture',
+          title: 'Multi-Tenant Database Architectures & Noisy Neighbor Mitigation',
+          paragraphs: [
+            'Scaling B2B SaaS applications requires disciplined tenant isolation strategies. Naive shared database architectures risk performance degradation when intensive queries from one tenant impact adjacent enterprise accounts (the noisy neighbor effect).',
+            'Teknalogi engineers hybrid multi-tenant architectures uniting shared elastic compute with logical and physical database sharding (schema-per-tenant or dynamic shard routing). This pattern delivers strict enterprise data isolation while optimizing cloud infrastructure footprint.',
+          ],
+          bullets: [
+            {
+              label: 'Dynamic Shard Routing & Tenant Partitioning',
+              text: 'Route database transactions automatically to designated storage partitions based on indexed tenant keys with zero latency overhead.',
+            },
+            {
+              label: 'Noisy Neighbor Resource Throttling',
+              text: 'Enforce per-tenant compute limits and database connection pooling safeguards to prevent single-tenant traffic surges from degrading global availability.',
+            },
+            {
+              label: 'Instant Tenant Provisioning (Zero-Downtime Onboarding)',
+              text: 'Automate database schema migrations, credential issuance, and master seed generation in seconds upon new workspace registration.',
+            },
+          ],
+          closingParagraph:
+            'Robust multi-tenant architectures provide ironclad privacy guarantees for enterprise clients and boundless scale for your SaaS product.',
+        },
+        {
+          id: 'metering-billing',
+          tocLabel: 'Metering & Subscription Billing',
+          title: 'Usage-Based Metering & High-Volume Subscription Billing',
+          paragraphs: [
+            'Modern SaaS monetization models have evolved from simple flat subscriptions to usage-based and hybrid pricing structures. Metering millions of asynchronous API calls and compute events demands high-throughput pipelines immune to revenue leakage.',
+            'We engineer event-driven metering engines that ingest billing telemetry asynchronously into distributed streaming queues (Kafka/Redis) without adding latency to core user workflows.',
+          ],
+          bullets: [
+            {
+              label: 'Idempotent Event Ingestion & Deduplication',
+              text: 'Ensure every metered event is processed exactly once regardless of network retries, connection timeouts, or duplicate webhook payloads.',
+            },
+            {
+              label: 'Tiered, Volume & Overage Rating Engines',
+              text: 'Support dynamic multi-tier rate cards spanning monthly included quotas, per-unit overages, and automated enterprise volume discounts.',
+            },
+            {
+              label: 'Payment Gateway Sync & Automated Dunning',
+              text: 'Connect seamlessly with Stripe, Xendit, and Midtrans for automated recurring invoicing, smart card retries, and failed-payment recovery workflows.',
+            },
+          ],
+          closingParagraph:
+            'Precision billing infrastructure eliminates revenue leakage and provides enterprise customers with transparent, auditable usage statements.',
+        },
+        {
+          id: 'enterprise-readiness',
+          tocLabel: 'Enterprise Readiness & SSO',
+          title: 'Enterprise Readiness: SSO/SAML, SCIM & Role-Based Governance',
+          paragraphs: [
+            'Closing six-figure enterprise contracts requires rigorous alignment with corporate IT security standards. Lacking turnkey authentication and user directory synchronization frequently stalls sales cycles during infosec reviews.',
+            'We build turnkey enterprise modules featuring SAML 2.0 / OIDC Single Sign-On, automated user lifecycle management via SCIM, and granular Role-Based Access Control (RBAC).',
+          ],
+          bullets: [
+            {
+              label: 'Universal Identity Provider (IdP) Connectors',
+              text: 'Provide zero-configuration integration for Okta, Microsoft Azure AD (Entra ID), Google Workspace, and Ping Identity.',
+            },
+            {
+              label: 'Automated Employee Lifecycle via SCIM 2.0',
+              text: 'Synchronize automated account provisioning, department updates, and instant deprovisioning when employees depart.',
+            },
+            {
+              label: 'Immutable Audit Logging for SOC-2 Compliance',
+              text: 'Log every administrative modification, permission change, and data export into tamper-evident audit ledgers aligned with SOC-2 and ISO 27001.',
+            },
+          ],
+          closingParagraph:
+            'Comprehensive enterprise readiness features streamline customer security assessments and accelerate B2B enterprise deal execution.',
+        },
+        {
+          id: 'api-webhook-infra',
+          tocLabel: 'Developer APIs & Webhooks',
+          title: 'High-Throughput Developer APIs & Resilient Webhook Queues',
+          paragraphs: [
+            'A SaaS platform’s stickiness depends heavily on its developer ecosystem and ease of external integration. Public developer APIs and webhooks must guarantee high availability and resilience against unforeseen traffic surges.',
+            'Teknalogi designs high-throughput API Gateways equipped with interactive OpenAPI specifications, automated multi-language SDK generation (TypeScript, Python, Go), and resilient at-least-once webhook delivery pipelines.',
+          ],
+          bullets: [
+            {
+              label: 'Adaptive Token Bucket Rate Limiting',
+              text: 'Protect backend microservices from rogue scrapers and traffic spikes by enforcing tier-based rate limits and burst allowances.',
+            },
+            {
+              label: 'Exponential Backoff Webhook Dispatching',
+              text: 'Deliver event notifications to customer endpoints with automated retry curves and Dead-Letter Queue (DLQ) fallback when recipient servers falter.',
+            },
+            {
+              label: 'Cryptographic HMAC Payload Signatures',
+              text: 'Sign outgoing event payloads with cryptographic HMAC secrets to prevent spoofing and verify message integrity on the receiving end.',
+            },
+          ],
+          closingParagraph:
+            'Resilient developer infrastructure establishes your SaaS platform as the mission-critical integration hub for tech partners and customers.',
+        },
+        {
+          id: 'realtime-analytics',
+          tocLabel: 'Real-Time Analytics',
+          title: 'Real-Time Product Analytics & Time-Series Data Stores',
+          paragraphs: [
+            'Delivering interactive in-app analytics without dragging down operational database performance requires strict analytical separation (OLAP vs OLTP separation).',
+            'We implement high-speed columnar analytical data stores (such as ClickHouse / DuckDB) capable of aggregating millions of customer events in single-digit milliseconds.',
+          ],
+          bullets: [
+            {
+              label: 'OLTP & OLAP Workload Decoupling',
+              text: 'Persist operational transactions into primary datastores while streaming replicated events asynchronously to analytical columnar stores via Change Data Capture (CDC).',
+            },
+            {
+              label: 'Sub-Millisecond Query Visualizations',
+              text: 'Power interactive client-facing dashboards, custom cohort filters, and historical trend charts with instantaneous rendering.',
+            },
+            {
+              label: 'Intelligent Data Retention & Rollups',
+              text: 'Apply columnar time-series compression and automated rollup aggregations to minimize long-term cloud storage expenses.',
+            },
+          ],
+          closingParagraph:
+            'Embedded real-time analytics create immense customer product stickiness and drive higher net revenue retention (NRR).',
+        },
+        {
+          id: 'slo-resilience',
+          tocLabel: 'Multi-Region CI/CD',
+          title: 'Multi-Region High Availability & Zero-Downtime Deployments',
+          paragraphs: [
+            'Backing a 99.99% Service Level Agreement (SLA) requires an infrastructure architecture that survives hardware failures and allows continuous software releases with zero user disruption.',
+            'We implement distributed cloud architectures with Kubernetes orchestration, GitOps-driven automated CI/CD pipelines, and Canary / Blue-Green deployment strategies.',
+          ],
+          bullets: [
+            {
+              label: 'Zero-Downtime Blue-Green & Canary Deployments',
+              text: 'Roll out software updates progressively with automated smoke tests before shifting 100% of live production traffic.',
+            },
+            {
+              label: 'Auto-Healing & Horizontal Pod Autoscaling (HPA)',
+              text: 'Detect failed container pods automatically, regenerate healthy instances, and scale computing capacity dynamically during traffic peaks.',
+            },
+            {
+              label: 'End-to-End Observability (OpenTelemetry)',
+              text: 'Track p99 latency metrics, centralized structured logs, and distributed traces across all microservices to isolate root causes in seconds.',
+            },
+          ],
+          closingParagraph:
+            'Resilient cloud engineering ensures your SaaS platform operates uninterrupted and reliably serves mission-critical global workloads.',
+        },
+      ],
+    };
+---
+
+<section
+  id="tech-saas-deep-dive"
+  aria-label={copy.title}
+  class="relative isolate bg-white py-12 sm:py-20 lg:py-32 border-t border-slate-200/80"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      
+      <!-- Left Column: Main Editorial Article -->
+      <div class="lg:col-span-8">
+        
+        <!-- Main Section Title -->
+        <h2
+          class="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-[-0.04em] text-slate-950 mb-7 sm:mb-14"
+        >
+          {copy.title}
+        </h2>
+
+        <!-- Mobile Table of Contents (collapsible drawer on small screens) -->
+        <div class="lg:hidden mb-8 rounded-2xl border border-slate-200/90 bg-slate-50/80 p-4 sm:p-5">
+          <details class="group">
+            <summary class="flex items-center justify-between cursor-pointer list-none font-mono text-xs font-bold uppercase tracking-wider text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded min-h-[44px]">
+              <span>{copy.tocTitle}</span>
+              <svg
+                class="w-4 h-4 text-slate-500 transition-transform duration-200 group-open:rotate-180"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <nav class="mt-3 flex flex-col space-y-1.5 border-t border-slate-200/80 pt-3">
+              {copy.sections.map((section) => (
+                <a
+                  href={`#${section.id}`}
+                  class="text-xs sm:text-sm text-slate-600 hover:text-slate-950 transition-colors py-1.5 pl-2.5 border-l-2 border-slate-300 hover:border-slate-900 font-sans min-h-[44px] flex items-center"
+                >
+                  {section.tocLabel}
+                </a>
+              ))}
+            </nav>
+          </details>
+        </div>
+
+        <!-- Editorial Sections -->
+        <div class="flex flex-col space-y-10 sm:space-y-16">
+          {copy.sections.map((section) => (
+            <article
+              id={section.id}
+              class="tech-saas-editorial-section scroll-mt-20 sm:scroll-mt-28 pb-8 sm:pb-12 border-b border-slate-100 last:border-b-0"
+            >
+              <h3 class="text-xl sm:text-2xl font-medium tracking-[-0.03em] text-slate-950 mb-3 sm:mb-4 leading-snug">
+                {section.title}
+              </h3>
+
+              {section.paragraphs.map((p) => (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mb-3 sm:mb-4">
+                  {p}
+                </p>
+              ))}
+
+              {section.bullets && (
+                <ul class="my-4 sm:my-5 space-y-2.5 sm:space-y-3 pl-4 sm:pl-5 list-disc marker:text-slate-400 text-sm sm:text-[16px] leading-relaxed text-slate-600 font-sans">
+                  {section.bullets.map((b) => (
+                    <li>
+                      <strong class="font-semibold text-slate-900">{b.label}:</strong> {b.text}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {section.closingParagraph && (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mt-3 sm:mt-4">
+                  {section.closingParagraph}
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- Right Column: Sticky Table of Contents -->
+      <aside class="hidden lg:block lg:col-span-4 sticky top-28 xl:top-32 self-start">
+        <div class="max-h-[calc(100vh-9rem)] overflow-y-auto pl-8 border-l border-slate-200/90 py-1">
+          <h3 class="text-[11.5px] font-bold tracking-[0.14em] text-slate-900 uppercase font-mono mb-4 select-none">
+            {copy.tocTitle}
+          </h3>
+          <nav aria-label={copy.tocTitle} class="flex flex-col space-y-2.5 text-[13.5px] font-sans">
+            {copy.sections.map((section) => (
+              <a
+                href={`#${section.id}`}
+                data-tech-saas-toc-id={section.id}
+                class="tech-saas-toc-nav-link text-slate-500 hover:text-slate-950 transition-all duration-200 py-1 pl-3 border-l-2 border-transparent hover:border-slate-400 min-h-[32px] flex items-center"
+              >
+                {section.tocLabel}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupTechSaasTocHighlight() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-10% 0px -70% 0px',
+      threshold: 0,
+    };
+
+    const sections = document.querySelectorAll<HTMLElement>('.tech-saas-editorial-section');
+    const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.tech-saas-toc-nav-link');
+
+    if (!sections.length || !tocLinks.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href === `#${id}`) {
+              link.classList.add('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.remove('text-slate-500', 'border-transparent');
+            } else {
+              link.classList.remove('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.add('text-slate-500', 'border-transparent');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((sec) => observer.observe(sec));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupTechSaasTocHighlight);
+  } else {
+    setupTechSaasTocHighlight();
+  }
+  document.addEventListener('astro:page-load', setupTechSaasTocHighlight);
+</script>

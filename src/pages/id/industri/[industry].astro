@@ -3,6 +3,16 @@
 import Layout from "../../../layouts/Layout.astro";
 import TopBar from "../../../components/TopBar.astro";
 import IndustryComingSoon from "../../../components/IndustryComingSoon.astro";
+import BankingIndustry from "../../../components/industries/BankingIndustry.astro";
+import ManufacturingIndustry from "../../../components/industries/ManufacturingIndustry.astro";
+import HealthcareIndustry from "../../../components/industries/HealthcareIndustry.astro";
+import RetailIndustry from "../../../components/industries/RetailIndustry.astro";
+import TelecomIndustry from "../../../components/industries/TelecomIndustry.astro";
+import EducationIndustry from "../../../components/industries/EducationIndustry.astro";
+import LogisticsIndustry from "../../../components/industries/LogisticsIndustry.astro";
+import BusinessServicesIndustry from "../../../components/industries/BusinessServicesIndustry.astro";
+import InsuranceIndustry from "../../../components/industries/InsuranceIndustry.astro";
+import TechSaasIndustry from "../../../components/industries/TechSaasIndustry.astro";
 import LetsTalk from "../../../components/LetsTalk.astro";
 import BackToTop from "../../../components/BackToTop.astro";
 import { getTranslations } from "../../../i18n/translations";
@@ -36,13 +46,55 @@ if (!industry) {
 }
 
 const pageTitle = `${industry.title} | PT Teknalogi Transformasi Digital`;
-const pageDesc = `${industry.desc} Solusi rekayasa perangkat lunak dan arsitektur enterprise oleh Teknalogi.`;
+const pageDesc = industrySlug === 'banking'
+  ? 'Pendekatan software engineering untuk integrasi pembayaran, operasi keuangan, rekonsiliasi, kontrol akses, dan modernisasi sistem.'
+  : industrySlug === 'manufacturing'
+  ? 'Pendekatan software engineering untuk telemetri IoT industri, work order MES, traceability batch, pemeliharaan prediktif, dan keamanan OT/IT.'
+  : industrySlug === 'healthcare'
+  ? 'Pendekatan software engineering untuk interoperabilitas RME, integrasi HL7 FHIR SATUSEHAT, diagnostik LIS/PACS, klaim BPJS, dan privasi data pasien.'
+  : industrySlug === 'retail'
+  ? 'Pendekatan software engineering untuk sinkronisasi inventori omnichannel, sistem kasir POS, checkout e-commerce skala besar, logistik WMS, dan loyalitas member.'
+  : industrySlug === 'telecom'
+  ? 'Pendekatan software engineering untuk integrasi OSS/BSS standar TM Forum, mesin rating OCS real-time, telemetri jaringan, dan aktivasi eSIM mandiri.'
+  : industrySlug === 'education'
+  ? 'Pendekatan software engineering untuk SIAKAD cloud-native, ujian daring CBT bebas lag, LMS terintegrasi, pembayaran SPP otomatis, dan bridging PDDikti.'
+  : industrySlug === 'logistics'
+  ? 'Pendekatan software engineering untuk orkestrasi freight TMS, manajemen slotting WMS, telemetri armada IoT, optimasi rute last-mile, dan rekonsiliasi e-POD.'
+  : industrySlug === 'business-services'
+  ? 'Pendekatan software engineering untuk portal ekstranet klien, otomasi penagihan timesheet proyek, alokasi konsultan, dan alur kontrak CLM.'
+  : industrySlug === 'insurance'
+  ? 'Pendekatan software engineering untuk core Policy Administration System (PAS), ajudikasi klaim STP otomatis, underwriting aktuaria, dan pelaporan IFRS 17.'
+  : industrySlug === 'tech-saas'
+  ? 'Pendekatan software engineering untuk arsitektur multi-tenant SaaS, sistem metering billing berbasis penggunaan, enterprise SSO/SAML, dan reliabilitas SLA 99.99%.'
+  : `${industry.desc} Solusi rekayasa perangkat lunak dan arsitektur enterprise oleh Teknalogi.`;
 ---
 
 <Layout lang={lang} title={pageTitle} description={pageDesc}>
   <TopBar lang={lang} />
   <main class="min-h-screen bg-white">
-    <IndustryComingSoon lang={lang} industry={industry} />
+    {industrySlug === 'banking' ? (
+      <BankingIndustry lang={lang} />
+    ) : industrySlug === 'manufacturing' ? (
+      <ManufacturingIndustry lang={lang} />
+    ) : industrySlug === 'healthcare' ? (
+      <HealthcareIndustry lang={lang} />
+    ) : industrySlug === 'retail' ? (
+      <RetailIndustry lang={lang} />
+    ) : industrySlug === 'telecom' ? (
+      <TelecomIndustry lang={lang} />
+    ) : industrySlug === 'education' ? (
+      <EducationIndustry lang={lang} />
+    ) : industrySlug === 'logistics' ? (
+      <LogisticsIndustry lang={lang} />
+    ) : industrySlug === 'business-services' ? (
+      <BusinessServicesIndustry lang={lang} />
+    ) : industrySlug === 'insurance' ? (
+      <InsuranceIndustry lang={lang} />
+    ) : industrySlug === 'tech-saas' ? (
+      <TechSaasIndustry lang={lang} />
+    ) : (
+      <IndustryComingSoon lang={lang} industry={industry} />
+    )}
     <LetsTalk lang={lang} bgWhite={true} />
   </main>
   <BackToTop label="Kembali ke atas" />

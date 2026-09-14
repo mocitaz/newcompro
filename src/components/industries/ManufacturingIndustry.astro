@@ -1,0 +1,427 @@
+---
+// src/components/industries/ManufacturingIndustry.astro
+import type { Locale } from '../../i18n/translations';
+import ManufacturingAboutIndustry from './ManufacturingAboutIndustry.astro';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      eyebrow: 'MANUFAKTUR & OPERASI INDUSTRI',
+      title: 'Engineering untuk pabrik modern dan rantai pasok terintegrasi.',
+      lead: 'Bangun dan modernisasi platform manufaktur dengan integrasi telemetri mesin, pelacakan bahan baku real-time, dan visibilitas alur kerja dari hulu ke hilir. Teknalogi menerjemahkan proses produksi fisik menjadi sistem digital yang presisi dan andal.',
+      primaryCta: 'Diskusikan kebutuhan pabrik Anda',
+      challengesTitle: 'Ketika sistem pabrik terpisah, efisiensi menurun.',
+      challengesLead: 'Operasional melambat ketika data mesin, catatan kualitas, dan pasokan berjalan sendiri-sendiri.',
+      challenges: [
+        ['Data produksi terpisah', 'Output mesin dan catatan shift sulit dijaga konsisten antar-lini.'],
+        ['Pencatatan mutu manual', 'Inspeksi berbasis kertas memperlambat deteksi cacat dan audit.'],
+        ['Downtime tak terduga', 'Kurangnya telemetri membuat aus mesin tidak terdeteksi sebelum henti lini.'],
+        ['Kendala pasokan bahan', 'Ketidakpastian vendor dan stok material memicu hambatan perakitan.'],
+      ],
+      solutionsTitle: 'Solusi perangkat lunak yang disesuaikan dengan alur manufaktur Anda.',
+      solutionsLead: 'Ruang lingkup ditentukan melalui discovery di lapangan agar arsitektur software, integrasi sensor IoT, dan alur kerja sesuai dengan lini produksi yang berjalan.',
+      solutions: [
+        ['Integrasi Telemetri IoT & PLC', 'Hubungkan sensor mesin, robotik, dan kontroler PLC ke gateway digital dengan protokol standar industri (OPC UA, MQTT, Modbus).', 'iot'],
+        ['Digital Work Orders & MES', 'Distribusikan instruksi kerja interaktif ke terminal operator dengan pelacakan cycle time dan status lini real-time.', 'mes'],
+        ['Traceability & Silsilah Batch', 'Lacak riwayat material dari lot bahan baku pemasok hingga nomor seri produk akhir yang diterima pelanggan.', 'traceability'],
+        ['Pemeliharaan Prediktif & OEE', 'Hitung Availability, Performance, dan Quality secara otomatis serta dapatkan peringatan dini anomali mesin.', 'oee'],
+        ['Orkestrasi Inventori & Gudang', 'Sinkronkan stok bahan baku Just-in-Time, otomatisasi Purchase Order, dan manajemen distribusi multi-gudang.', 'inventory'],
+        ['Portal Vendor & Rantai Pasok', 'Sediakan akses kolaboratif bagi pemasok untuk konfirmasi pengiriman bahan, sertifikat uji (COA), dan jadwal kedatangan.', 'supplier'],
+      ],
+      approachTitle: 'Dirancang untuk keandalan lantai produksi dan presisi operasional.',
+      domains: [
+        ['Integritas Data Industri', 'Tetapkan standardisasi telemetri, penanganan data offline-first di edge pabrik, dan sinkronisasi otomatis ke cloud.', 'integrity'],
+        ['Segmentasi Jaringan OT/IT', 'Rancang arsitektur keamanan bertingkat (ISA/IEC 62443) dengan IDMZ untuk memisahkan jaringan mesin dari jaringan kantor.', 'access'],
+        ['Ketahanan Operasi Pabrik', 'Uji ketahanan sistem terhadap pemadaman jaringan lokal, failover server edge, dan prosedur pemulihan bencana.', 'resilience'],
+      ],
+      faqTitle: 'Hal yang biasanya dibahas sebelum proyek manufaktur dimulai.',
+      faqLead: 'Karakteristik mesin, protokol kontroler, dan alur kerja setiap pabrik berbeda. Discovery teknis membantu kami memetakan topologi pabrik, risiko, dan ruang lingkup implementasi.',
+      faqTrustTitle: 'Dipercaya oleh',
+      faqTrustText: 'Korporasi dan manufaktur berkembang di Indonesia',
+      faqAction: 'Tanyakan kebutuhan Anda',
+      faqs: [
+        ['Bisakah sistem Teknalogi terhubung dengan mesin lama (legacy machinery)?', 'Bisa. Kami dapat mengintegrasikan modul gateway IoT eksternal dan sensor tambahan untuk membaca sinyal analog/digital dari mesin lama tanpa perlu mengganti unit kontroler inti.'],
+        ['Bagaimana jika koneksi internet di area pabrik mengalami gangguan?', 'Arsitektur kami menerapkan prinsip Edge Computing dan Local-First Storage. Gateway lokal di lantai pabrik tetap mencatat data produksi dan mengeksekusi logika kritis, lalu menyinkronkannya ke server pusat saat koneksi pulih.'],
+        ['Apakah sistem ini dapat diintegrasikan dengan ERP korporat seperti SAP atau Oracle?', 'Bisa. Kami membangun API adapter dan middleware yang menghubungkan sistem eksekusi manufaktur (MES) langsung dengan modul inventory, purchasing, dan finance pada ERP Anda.'],
+        ['Bagaimana data kualitas dan traceability dicatat di lantai produksi?', 'Pencatatan dapat dilakukan otomatis melalui integrasi barcode/QR scanner, RFID tag, timbangan digital, atau sensor visi komputer yang terpasang di stasiun inspeksi.'],
+        ['Apakah implementasi sistem membutuhkan penghentian lini produksi?', 'Tidak harus. Deployment dan pengujian sensor dilakukan secara bertahap per stasiun kerja atau saat jadwal pemeliharaan berkala untuk menjaga kontinuitas produksi.'],
+        ['Apa yang dicakup dalam tahap discovery teknis pabrik?', 'Kami memetakan layout lini produksi, protokol komunikasi mesin, format pencatatan saat ini, titik kritis downtime, dan kebutuhan integrasi dengan sistem manajemen yang ada.'],
+        ['Bagaimana keamanan siber diterapkan pada jaringan mesin pabrik?', 'Kami menerapkan segmentasi jaringan OT/IT yang ketat, enkripsi komunikasi internal, otentikasi berbasis peran (RBAC), dan isolasi akses remote vendor mesin.'],
+        ['Apakah Teknalogi menyediakan dukungan teknis setelah sistem beroperasi?', 'Ya. Kami menyediakan paket SLA pemeliharaan berkala, pemantauan telemetri, patch keamanan, dan eskalasi teknis darurat sesuai kebutuhan operasional pabrik Anda.'],
+      ],
+    }
+  : {
+      eyebrow: 'MANUFACTURING & INDUSTRIAL OPERATIONS',
+      title: 'Engineering for connected manufacturing and supply operations.',
+      lead: 'Build and modernize industrial platforms with real-time machine telemetry, material tracking, and end-to-end operational visibility. Teknalogi translates physical factory floor processes into precise, resilient digital systems.',
+      primaryCta: 'Discuss your factory requirements',
+      challengesTitle: 'When factory systems operate separately, efficiency drops.',
+      challengesLead: 'Operations become difficult to manage when machine, quality, and supply systems run independently.',
+      challenges: [
+        ['Disconnected production data', 'Machine output and shift logs remain inconsistent across lines.'],
+        ['Manual quality logs', 'Paper-based inspection records delay defect detection and audit checks.'],
+        ['Unplanned downtime', 'Lack of telemetry leaves equipment wear undetected until line stoppages occur.'],
+        ['Supply chain blindspots', 'Uncertain vendor deliveries and material delays trigger line bottlenecks.'],
+      ],
+      solutionsTitle: 'Manufacturing software tailored to your industrial workflows.',
+      solutionsLead: 'Discovery on the factory floor defines the scope so software architecture, IoT sensors, and workflows match active production lines.',
+      solutions: [
+        ['IoT & PLC Telemetry Integration', 'Connect machine sensors, robotics, and PLCs to digital gateways using industry-standard protocols (OPC UA, MQTT, Modbus).', 'iot'],
+        ['Digital Work Orders & MES', 'Deliver interactive digital work instructions to operator tablets with cycle time tracking and real-time station progress.', 'mes'],
+        ['Batch Traceability & Genealogy', 'Track material genealogy from supplier raw material lots to customer-delivered finished serials.', 'traceability'],
+        ['Predictive Maintenance & OEE', 'Calculate Availability, Performance, and Quality metrics automatically with proactive equipment anomaly alerts.', 'oee'],
+        ['Inventory & Warehouse Sync', 'Synchronize Just-in-Time material stock, automated Purchase Order triggers, and multi-warehouse distribution.', 'inventory'],
+        ['Supplier & Supply Chain Portal', 'Provide collaborative vendor portals for delivery scheduling, Certificates of Analysis (COA) uploads, and order confirmation.', 'supplier'],
+      ],
+      approachTitle: 'Designed for shop floor reliability and operational precision.',
+      domains: [
+        ['Industrial Data Integrity', 'Standardize machine telemetry, implement offline-first edge processing, and automate central synchronization.', 'integrity'],
+        ['OT/IT Network Segmentation', 'Design multi-tier security architectures (ISA/IEC 62443) with IDMZ boundaries separating factory controls from office IT.', 'access'],
+        ['Plant Operational Resilience', 'Test failure tolerance against local network dropouts, edge server failovers, and rapid disaster recovery protocols.', 'resilience'],
+      ],
+      faqTitle: 'What teams usually discuss before a manufacturing project starts.',
+      faqLead: 'Machine configurations, communication protocols, and plant workflows vary widely. Technical discovery maps shop floor topology, risks, and implementation scope.',
+      faqTrustTitle: 'Trusted by',
+      faqTrustText: 'Corporations and growing manufacturers across Indonesia',
+      faqAction: 'Ask about your factory requirements',
+      faqs: [
+        ['Can Teknalogi connect to legacy industrial machinery?', 'Yes. We deploy external IoT gateways and auxiliary sensor arrays to capture digital and analog signals from legacy machines without altering core PLC programming.'],
+        ['How does the system handle factory internet outages?', 'Our architecture leverages Edge Computing and local-first data caching. Local plant gateways continue capturing telemetry and executing critical logic, synchronizing with the central server once connectivity restores.'],
+        ['Can this platform integrate with enterprise ERP systems like SAP or Oracle?', 'Yes. We engineer robust API adapters and middleware connecting Manufacturing Execution Systems (MES) directly with your ERP inventory, purchasing, and finance modules.'],
+        ['How is quality and traceability data recorded on the plant floor?', 'Data capture is automated through barcode/QR scanners, RFID tags, digital scales, and automated vision inspection cameras positioned at critical workstations.'],
+        ['Does software deployment require shutting down production lines?', 'No. Sensor installation and software testing are conducted incrementally per workstation or during scheduled routine maintenance windows to avoid disrupting production.'],
+        ['What does the factory discovery phase cover?', 'We map line layouts, machine communication protocols, current logging methods, critical downtime causes, and enterprise integration requirements.'],
+        ['How is cybersecurity enforced on factory machine networks?', 'We implement strict OT/IT network segmentation, encrypted internal communication channels, role-based access control (RBAC), and isolated remote vendor access.'],
+        ['Does Teknalogi provide post-launch support and maintenance?', 'Yes. We offer dedicated SLA maintenance packages including telemetry monitoring, security patching, and rapid emergency technical assistance tailored to your plant operating hours.'],
+      ],
+    };
+
+const partnerLogos = [
+  ['Anytime Fitness', '/partners/anytime.png'],
+  ['KelolaAja', '/partners/kelolaaja.png'],
+  ['Nikawa Teknika', '/partners/nikawa.png'],
+  ['PT Inti Bersama', '/partners/ptintibersama.png'],
+];
+---
+
+<section class="relative isolate min-h-[38rem] overflow-hidden bg-white py-28 sm:min-h-[42rem] sm:py-32 lg:min-h-[46rem] lg:py-40" aria-labelledby="manufacturing-title">
+  <img src="/industry/heromanufacture.png" alt="Industrial manufacturing and engineering floor" width="1536" height="1024" class="absolute inset-0 -z-20 h-full w-full object-cover object-[64%_center]" loading="eager" decoding="async" />
+  <div class="absolute inset-0 -z-10 bg-white/84 sm:bg-gradient-to-r sm:from-white sm:from-[7%] sm:via-white/86 sm:via-[46%] sm:to-white/0 sm:to-[80%]"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-white"></div>
+  <div class="home-container flex min-h-[calc(38rem-7rem)] items-end sm:min-h-[calc(42rem-8rem)] lg:min-h-[calc(46rem-10rem)]">
+    <div class="max-w-3xl pb-2 lg:pb-5">
+      <p class="text-[11px] font-semibold tracking-[0.14em] text-slate-600">{copy.eyebrow}</p>
+      <h1 id="manufacturing-title" class="mt-4 max-w-3xl text-4xl font-medium leading-[1.06] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-[4.5rem]">
+        {copy.title}
+      </h1>
+      <p class="mt-6 max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">{copy.lead}</p>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-[#f5a623] px-6 text-sm font-semibold text-slate-950 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e69818] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2">
+        {copy.primaryCta}
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="home-section bg-white" aria-labelledby="manufacturing-challenges-title">
+  <div class="home-container grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-12">
+    <div class="group relative overflow-hidden rounded-[24px] lg:sticky lg:top-28 lg:self-start">
+      <img src="/industry/secondphotomanufacture.png" alt="Automated production facility and robotic assembly line" width="1448" height="1086" class="h-[21rem] w-full object-cover sm:h-[28rem] lg:h-[38rem]" loading="lazy" decoding="async" />
+      <div class="absolute inset-0 bg-slate-950/30 transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
+      <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-950/65 to-transparent"></div>
+      <div class="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+        <span class="font-mono text-[10px] font-semibold tracking-[0.18em] text-white/80">CONNECTED FACTORY</span>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <h2 id="manufacturing-challenges-title" class="max-w-xl text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.challengesTitle}</h2>
+      <p class="mt-5 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.challengesLead}</p>
+      <ol class="mt-10 grid flex-1 grid-cols-1 gap-x-8 sm:mt-12 sm:grid-cols-2">
+        {copy.challenges.map(([title, description], index) => (
+          <li class="group border-t border-slate-200 py-6 sm:py-7">
+            <div class="flex items-baseline justify-between gap-5">
+              <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+              <span class="h-px flex-1 bg-slate-100 transition-colors duration-300 group-hover:bg-violet-200"></span>
+            </div>
+            <h3 class="mt-7 text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="manufacturing-solutions" class="home-section bg-white scroll-mt-20" aria-labelledby="manufacturing-solutions-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 id="manufacturing-solutions-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.solutionsTitle}</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.solutionsLead}</p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {copy.solutions.map(([title, description, icon]) => (
+        <article class="manufacturing-solution-card group relative isolate flex min-h-[17rem] overflow-hidden rounded-[20px] border border-slate-200/90 bg-white p-6 sm:min-h-[18rem] sm:p-7">
+          <div class="relative z-10 flex w-full flex-col justify-between">
+            <span class="manufacturing-solution-icon flex h-10 w-10 items-center justify-center text-slate-950" aria-hidden="true">
+              {icon === 'iot' && <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="16" cy="16" r="4"/><path d="M9 9a10 10 0 0 1 14 0M6 6a14.5 14.5 0 0 1 20 0M9 23a10 10 0 0 0 14 0M6 26a14.5 14.5 0 0 0 20 0" stroke-linecap="round"/></svg>}
+              {icon === 'mes' && <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4.5" y="5.5" width="23" height="21" rx="3"/><path d="M9 11h14M9 16h10M9 21h6" stroke-linecap="round"/><circle cx="21" cy="20" r="2.5" fill="white"/></svg>}
+              {icon === 'traceability' && <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="5" width="7" height="7" rx="1.5"/><rect x="21" y="5" width="7" height="7" rx="1.5"/><rect x="4" y="20" width="7" height="7" rx="1.5"/><rect x="21" y="20" width="7" height="7" rx="1.5"/><path d="M11 8.5h10M7.5 12v8M24.5 12v8M11 23.5h10" stroke-linecap="round" stroke-dasharray="2 2"/></svg>}
+              {icon === 'oee' && <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="16" cy="16" r="11"/><path d="M16 8v8l6 3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 16h3M22 16h3M16 22v3" stroke-linecap="round"/></svg>}
+              {icon === 'inventory' && <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 10l11-5 11 5-11 5-11-5z" stroke-linejoin="round"/><path d="M5 16l11 5 11-5M5 22l11 5 11-5" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+              {icon === 'supplier' && <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="8" width="16" height="15" rx="2"/><path d="M20 13h5l3 4v6h-8V13z" stroke-linejoin="round"/><circle cx="10" cy="24" r="2.5" fill="white"/><circle cx="24" cy="24" r="2.5" fill="white"/></svg>}
+            </span>
+            <div class="mt-12">
+              <h3 class="max-w-sm text-xl font-medium tracking-[-0.025em] text-slate-950 sm:text-[22px]">{title}</h3>
+              <p class="mt-3 max-w-md text-sm leading-relaxed text-slate-600">{description}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="home-section bg-white" aria-labelledby="manufacturing-approach-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 id="manufacturing-approach-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.approachTitle}</h2>
+    </div>
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 lg:grid-cols-3 lg:gap-5">
+      {copy.domains.map(([title, description, key], index) => (
+        <article class={`manufacturing-domain-card manufacturing-domain-${key} flex min-h-[18rem] flex-col rounded-[20px] border border-slate-200 bg-white p-6 sm:p-7`}>
+          <div class="flex items-start justify-between gap-5">
+            <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+            <span class="text-[11px] font-medium tracking-[0.08em] text-slate-400">{key === 'integrity' ? 'CONTROL' : key === 'access' ? 'BOUNDARY' : 'READINESS'}</span>
+          </div>
+          <div class="manufacturing-domain-visual mt-5 text-slate-900" aria-hidden="true">
+            {key === 'integrity' && (
+              <svg viewBox="0 0 260 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                <rect x="12" y="32" width="36" height="48" rx="6" fill="white" />
+                <line x1="20" y1="44" x2="32" y2="44" stroke-linecap="round" />
+                <line x1="20" y1="56" x2="40" y2="56" stroke-linecap="round" />
+                <line x1="20" y1="68" x2="28" y2="68" stroke-linecap="round" />
+                <path d="M48 56h24" stroke-linecap="round" />
+                <circle cx="60" cy="56" r="3.5" fill="white" />
+                <rect x="72" y="24" width="70" height="64" rx="8" fill="white" />
+                <path d="M82 56h10l6-16 8 32 8-22 6 6h12" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="107" cy="24" r="3" fill="white" />
+                <circle cx="107" cy="88" r="3" fill="white" />
+                <path d="M107 16v8m0 64v8" stroke-linecap="round" />
+                <path d="M142 56h24" stroke-linecap="round" />
+                <circle cx="154" cy="56" r="3.5" fill="white" />
+                <rect x="166" y="32" width="56" height="48" rx="6" fill="white" />
+                <ellipse cx="194" cy="46" rx="18" ry="6" fill="white" />
+                <path d="M176 46v14c0 3.3 8.1 6 18 6s18-2.7 18-6V46" fill="none" />
+                <path d="M176 60v10c0 3.3 8.1 6 18 6s18-2.7 18-6V60" fill="none" />
+                <path d="M222 56h20" stroke-linecap="round" />
+                <circle cx="248" cy="56" r="6" fill="white" />
+                <path d="m245 56 2 2 4-4" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+            {key === 'access' && (
+              <svg viewBox="0 0 320 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                <rect x="14" y="28" width="58" height="56" rx="8" fill="white" />
+                <circle cx="43" cy="56" r="14" fill="white" stroke-dasharray="3 2" />
+                <circle cx="43" cy="56" r="5" fill="white" />
+                <path d="M43 38v4m0 28v4M25 56h4m28 0h4" stroke-linecap="round" />
+                <path d="M72 56h34" stroke-linecap="round" />
+                <circle cx="89" cy="56" r="4" fill="white" />
+                <rect x="106" y="18" width="108" height="76" rx="10" fill="white" stroke-dasharray="4 3" />
+                <rect x="124" y="30" width="72" height="52" rx="6" fill="white" />
+                <path d="M160 38l16 7v14c0 10-7 17-16 20-9-3-16-10-16-20V45l16-7z" fill="white" />
+                <path d="m154 59 4 4 8-9" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M214 56h34" stroke-linecap="round" />
+                <circle cx="231" cy="56" r="4" fill="white" />
+                <rect x="248" y="28" width="58" height="56" rx="8" fill="white" />
+                <rect x="258" y="38" width="38" height="14" rx="3" fill="white" />
+                <rect x="258" y="58" width="38" height="14" rx="3" fill="white" />
+                <circle cx="266" cy="45" r="2" fill="currentColor" />
+                <circle cx="266" cy="65" r="2" fill="currentColor" />
+                <line x1="274" y1="45" x2="288" y2="45" stroke-linecap="round" />
+                <line x1="274" y1="65" x2="288" y2="65" stroke-linecap="round" />
+              </svg>
+            )}
+            {key === 'resilience' && (
+              <svg viewBox="0 0 250 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                <path d="M16 38h48m0 0l24-16h40m-64 16l24 16h40" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="16" cy="38" r="6" fill="white" />
+                <rect x="128" y="14" width="40" height="24" rx="4" fill="white" />
+                <circle cx="140" cy="26" r="2.5" fill="currentColor" />
+                <line x1="148" y1="26" x2="160" y2="26" stroke-linecap="round" />
+                <rect x="128" y="46" width="40" height="24" rx="4" fill="white" />
+                <circle cx="140" cy="58" r="2.5" fill="currentColor" />
+                <line x1="148" y1="58" x2="160" y2="58" stroke-linecap="round" />
+                <path d="M168 26l20 18m-20 26l20-18h36" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M16 92h60l8-14 8 24 8-10h134" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="224" cy="44" r="8" fill="white" />
+                <circle cx="224" cy="44" r="3.5" fill="currentColor" />
+                <circle cx="224" cy="92" r="4" fill="white" />
+              </svg>
+            )}
+          </div>
+          <div class="mt-auto pt-6">
+            <h3 class="text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-2.5 max-w-xl text-sm leading-relaxed text-slate-600">{description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<ManufacturingAboutIndustry lang={lang} />
+
+<section class="home-section bg-white" aria-labelledby="manufacturing-faq-title">
+  <div class="home-container grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-16">
+    <div class="space-y-6 lg:sticky lg:top-28 lg:col-span-5">
+      <div>
+        <h2 id="manufacturing-faq-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-[44px]">{copy.faqTitle}</h2>
+        <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-600 sm:text-base">{copy.faqLead}</p>
+      </div>
+      <div class="flex items-center gap-3.5">
+        <div class="flex -space-x-3" aria-label={`${copy.faqTrustTitle}: ${copy.faqTrustText}`}>
+          {partnerLogos.map(([name, logo]) => (
+            <span class="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 border-slate-100 bg-white p-1.5 shadow-sm">
+              <img src={logo} alt={name} class="h-full w-full object-contain" loading="lazy" decoding="async" />
+            </span>
+          ))}
+        </div>
+        <span class="max-w-[18rem] text-xs leading-snug text-slate-600">
+          <strong class="block font-semibold text-slate-950">{copy.faqTrustTitle}</strong>
+          <span class="mt-0.5 block">{copy.faqTrustText}</span>
+        </span>
+      </div>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-800 focus-visible:ring-offset-2">
+        {copy.faqAction}
+      </a>
+    </div>
+    <div class="space-y-3 lg:col-span-7">
+      {copy.faqs.map(([question, answer], index) => (
+        <details class="manufacturing-faq-item group overflow-hidden rounded-2xl border border-slate-900/80 bg-white transition-colors hover:border-slate-950">
+          <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 rounded-2xl p-5 text-base font-medium leading-snug text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-slate-900 sm:p-6">
+            <span>{question}</span>
+            <span class="manufacturing-faq-icon relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-900/30 bg-slate-50 text-slate-700 transition-colors" aria-hidden="true"><span class="absolute h-px w-3.5 bg-current"></span><span class="absolute h-3.5 w-px bg-current transition-transform group-open:scale-y-0"></span></span>
+          </summary>
+          <div role="region" aria-label={`${isId ? 'Jawaban' : 'Answer'} ${index + 1}`}>
+            <p class="max-w-2xl px-5 pb-5 pr-14 text-sm leading-relaxed text-slate-600 sm:px-6 sm:pb-6 sm:text-[15px]">{answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .manufacturing-domain-card {
+    box-shadow: 0 1px 10px -7px rgba(15, 23, 42, 0.14);
+  }
+
+  .manufacturing-domain-visual {
+    display: block;
+    width: 100%;
+  }
+
+  .manufacturing-domain-visual svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .manufacturing-domain-access .manufacturing-domain-visual {
+    margin-inline: auto;
+    max-width: 21rem;
+  }
+
+  .manufacturing-solution-card {
+    box-shadow: 0 2px 14px -4px rgba(15, 23, 42, 0.08);
+    transition:
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 320ms ease,
+      box-shadow 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .manufacturing-solution-card::before {
+    position: absolute;
+    top: -5.5rem;
+    right: -4.5rem;
+    width: 17rem;
+    height: 17rem;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(196, 181, 253, 0.52) 0%, rgba(221, 214, 254, 0.22) 42%, transparent 72%);
+    content: '';
+    filter: blur(15px);
+    opacity: 0.72;
+    pointer-events: none;
+    transition:
+      opacity 360ms ease,
+      transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .manufacturing-solution-card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(203 213 225);
+    box-shadow: 0 18px 38px -18px rgba(15, 23, 42, 0.28);
+  }
+
+  .manufacturing-solution-card:hover::before {
+    opacity: 0.92;
+    transform: translate(-0.75rem, 0.75rem) scale(1.06);
+  }
+
+  .manufacturing-solution-icon {
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .manufacturing-solution-icon svg {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .manufacturing-solution-card:hover .manufacturing-solution-icon {
+    transform: translateY(-2px);
+  }
+
+  .manufacturing-faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .manufacturing-faq-item[open] {
+    border-color: rgb(15 23 42);
+    background:
+      radial-gradient(circle at 86% 20%, rgba(196, 181, 253, 0.26), transparent 55%),
+      #ffffff;
+  }
+
+  .manufacturing-faq-item[open] .manufacturing-faq-icon {
+    border-color: rgb(15 23 42);
+    background: rgb(15 23 42);
+    color: white;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .manufacturing-domain-card,
+    .manufacturing-solution-card,
+    .manufacturing-solution-card::before,
+    .manufacturing-solution-icon {
+      transition: none;
+    }
+
+    .manufacturing-solution-card:hover,
+    .manufacturing-solution-card:hover::before,
+    .manufacturing-solution-card:hover .manufacturing-solution-icon {
+      transform: none;
+    }
+
+    .manufacturing-faq-item,
+    .manufacturing-faq-icon,
+    .manufacturing-faq-icon span {
+      transition: none;
+    }
+  }
+</style>

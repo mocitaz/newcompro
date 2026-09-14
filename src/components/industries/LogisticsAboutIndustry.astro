@@ -1,0 +1,475 @@
+---
+// src/components/industries/LogisticsAboutIndustry.astro
+import type { Locale } from '../../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      title: 'Rekayasa Sistem & Infrastruktur Logistik Digital',
+      tocTitle: 'Daftar Isi Pembahasan',
+      sections: [
+        {
+          id: 'tms-orchestration',
+          tocLabel: 'Orkestrasi TMS & Pengiriman',
+          title: 'Orkestrasi TMS & Manajemen Pengiriman Terpadu',
+          paragraphs: [
+            'Kompleksitas distribusi logistik modern menuntut visibilitas penuh atas pergerakan muatan dari titik penjemputan awal (first-mile), hub transit lintas moda, hingga pengantaran akhir ke penerima. Banyak perusahaan logistik menghadapi kendala integrasi ketika data pesanan terfragmentasi di berbagai platform vendor.',
+            'Teknalogi merancang arsitektur Transportation Management System (TMS) terpadu berbasis event-driven. Sistem ini mengorkestrasi alur penugasan muatan, manajemen kapasitas armada, dan perhitungan SLA secara deterministik di seluruh jaringan kurir mitra.',
+          ],
+          bullets: [
+            {
+              label: 'Konsolidasi Muatan Multi-Moda',
+              text: 'Menggabungkan pesanan LTL (Less-than-Truckload) dan FTL (Full-Truckload) secara otomatis untuk memaksimalkan utilisasi kubikasi ruang kargo.',
+            },
+            {
+              label: 'Manajemen Status Deterministik',
+              text: 'Melacak siklus hidup pengiriman secara real-time mulai dari order created, dispatched, in-transit, cross-docked, out-for-delivery, hingga delivered.',
+            },
+            {
+              label: 'Integrasi Ekosistem 3PL / 4PL',
+              text: 'Menyediakan gateway API terstandarisasi untuk koneksi instan dengan mitra pihak ketiga, maskapai kargo, dan operator pelabuhan.',
+            },
+          ],
+          closingParagraph:
+            'Sistem orkestrasi yang terpusat memastikan setiap paket dan kontainer bergerak dengan biaya rute terendah dan kepatuhan SLA yang terukur.',
+        },
+        {
+          id: 'wms-slotting',
+          tocLabel: 'Manajemen Gudang WMS',
+          title: 'Operasi Pergudangan Cepat & Slotting Cerdas (WMS)',
+          paragraphs: [
+            'Efisiensi throughput gudang sangat bergantung pada kecepatan proses inbound receiving, penataan lokasi barang (slotting), dan akurasi picking saat volume pesanan memuncak.',
+            'Kami membangun Warehouse Management System (WMS) cloud-native yang memandu staf gudang melalui rute picking terpendek, pemindaian barcode/RFID terverifikasi, dan sinkronisasi inventori sub-detik.',
+          ],
+          bullets: [
+            {
+              label: 'Slotting Dinamis Berbasis Kecepatan Perputaran',
+              text: 'Menempatkan SKU fast-moving di zona rak yang paling mudah dijangkau untuk meminimalkan waktu tempuh picker di area gudang.',
+            },
+            {
+              label: 'Batch & Wave Picking Otomatis',
+              text: 'Mengelompokkan puluhan pesanan ke dalam satu gelombang picking terpadu untuk mencegah bolak-balik rute di lorong penyimpanan.',
+            },
+            {
+              label: 'Pencegahan Selisih Stok Real-Time',
+              text: 'Menerapkan validasi barcode dua arah di setiap titik perpindahan barang guna meniadakan risiko salah ambil barang (picking mismatch).',
+            },
+          ],
+          closingParagraph:
+            'Infrastruktur WMS yang presisi meningkatkan kecepatan fulfillment hingga puluhan ribu order per hari tanpa kesalahan sortasi.',
+        },
+        {
+          id: 'fleet-telemetry',
+          tocLabel: 'Telemetri IoT & Cold-Chain',
+          title: 'Telemetri Armada IoT & Pengawasan Suhu Cold-Chain',
+          paragraphs: [
+            'Pemantauan armada tidak lagi terbatas pada koordinat GPS statis. Keamanan pengiriman barang bernilai tinggi dan rantai dingin (cold-chain) membutuhkan pengawasan sensor telemetri secara berkelanjutan.',
+            'Arsitektur IoT kami mengalirkan data telemetri dari perangkat OBD-II, sensor suhu kargo, dan pintu kontainer ke pipeline analitik Kafka berkecepatan tinggi.',
+          ],
+          bullets: [
+            {
+              label: 'Geofencing & Deteksi Deviasi Rute',
+              text: 'Memicu peringatan otomatis ketika kendaraan keluar dari rute resmi atau berhenti tidak wajar di luar jadwal checkpoint.',
+            },
+            {
+              label: 'Monitoring Rantai Dingin Terakreditasi',
+              text: 'Merekam suhu dan kelembapan boks pendingin secara berkala dengan peringatan instan jika terjadi lonjakan suhu di atas ambang batas.',
+            },
+            {
+              label: 'Analitik Perilaku Pengemudi',
+              text: 'Menganalisis insiden pengereman mendadak, akselerasi berlebih, dan waktu mesin menyala tanpa bergerak (idling) untuk efisiensi BBM.',
+            },
+          ],
+          closingParagraph:
+            'Pengawasan telemetri yang andal melindungi integritas kualitas barang kargo sensitif dan menekan biaya pemeliharaan armada.',
+        },
+        {
+          id: 'route-optimization',
+          tocLabel: 'Optimasi Rute Last-Mile',
+          title: 'Optimasi Rute Dinamis & Distribusi Last-Mile',
+          paragraphs: [
+            'Biaya logistik last-mile mencakup porsi terbesar dari total ongkos kirim. Perencanaan rute statis tidak mampu mengantisipasi kemacetan jalan, jendela waktu penerima, dan pembatasan beban kendaraan.',
+            'Kami menerapkan mesin optimasi rute berbasis algoritma metaheuristik yang menghitung urutan titik pengantaran paling optimal dalam hitungan detik.',
+          ],
+          bullets: [
+            {
+              label: 'Vehicle Routing Problem with Time Windows (VRPTW)',
+              text: 'Menghitung rute multi-stop yang mempertimbangkan kapasitas volume kendaraan, jam buka lokasi penerima, dan batasan lalu lintas.',
+            },
+            {
+              label: 'Penugasan Kurir Otomatis (Dynamic Dispatch)',
+              text: 'Mendistribusikan paket kiriman baru kepada kurir terdekat yang masih memiliki sisa kapasitas muatan secara real-time.',
+            },
+            {
+              label: 'Navigasi Kurir Offline-First',
+              text: 'Aplikasi mobile kurir tetap berfungsi mengurutkan rute dan mencatat status pengantaran saat melewati area blank spot seluler.',
+            },
+          ],
+          closingParagraph:
+            'Optimasi rute yang cerdas menurunkan jarak tempuh armada hingga 20% sekaligus meningkatkan tingkat keberhasilan pengiriman pada percobaan pertama.',
+        },
+        {
+          id: 'epod-reconciliation',
+          tocLabel: 'Surat Jalan e-POD & Billing',
+          title: 'Surat Jalan Digital (e-POD) & Rekonsiliasi Ongkir',
+          paragraphs: [
+            'Ketergantungan pada surat jalan kertas fisik memperpanjang siklus penagihan tagihan hingga berminggu-minggu serta memicu sengketa bukti serah terima paket.',
+            'Kami mendigitalkan seluruh siklus penutupan pengiriman melalui aplikasi e-POD dengan penangkapan tanda tangan digital, foto lokasi berstempel GPS, dan audit invoice otomatis.',
+          ],
+          bullets: [
+            {
+              label: 'Tanda Tangan & Foto Bukti Berstempel Waktu',
+              text: 'Mengabadikan tanda tangan penerima, foto kondisi paket, dan koordinat GPS penyerahan dengan segel kriptografi anti-manipulasi.',
+            },
+            {
+              label: 'Kalkulasi Otomatis Tarif Volumetrik (CBM/KG)',
+              text: 'Menerapkan mesin kalkulasi tarif multi-tier berdasarkan zona asal-tujuan, berat aktual versus volumetrik, dan biaya tambahan (surcharge).',
+            },
+            {
+              label: 'Rekonsiliasi Faktur 3PL Tanpa Selisih',
+              text: 'Mencocokkan data tagihan ongkos kirim dari mitra kurir secara otomatis terhadap data berat dan volume aktual yang tercatat di gudang.',
+            },
+          ],
+          closingParagraph:
+            'Digitalisasi e-POD mempercepat perputaran arus kas penagihan dari puluhan hari menjadi hitungan jam setelah paket diserahkan.',
+        },
+        {
+          id: 'supply-chain-visibility',
+          tocLabel: 'Visibilitas Rantai Pasok',
+          title: 'Menara Kontrol Logistik & Ekosistem Terbuka',
+          paragraphs: [
+            'Pengambilan keputusan rantai pasok membutuhkan data holistik yang menyatukan performa gudang, utilisasi armada, dan metrik kepuasan pelanggan dalam satu panel kendali terpadu.',
+            'Teknalogi membangun Supply Chain Control Tower dengan dashboard analitik real-time, prediksi keterlambatan berbasis pola historis, dan integrasi API yang terbuka.',
+          ],
+          bullets: [
+            {
+              label: 'Dashboard Control Tower 360°',
+              text: 'Memantau seluruh metrik operasional logistik secara real-time: tingkat On-Time In-Full (OTIF), utilisasi armada, dan backlog pengiriman.',
+            },
+            {
+              label: 'Prediksi Keterlambatan Pengiriman',
+              text: 'Mendeteksi potensi bottleneck di hub transit lebih awal agar tim operasional dapat mengalihkan rute alternatif sebelum SLA terlanggar.',
+            },
+            {
+              label: 'Portal Pelacakan Mandiri Publik (B2B/B2C)',
+              text: 'Menyediakan halaman pelacakan resi interaktif dengan estimasi waktu tiba (ETA) akurat untuk menekan volume komplain customer service.',
+            },
+          ],
+          closingParagraph:
+            'Visibilitas rantai pasok yang menyeluruh memberikan keunggulan kompetitif bagi perusahaan untuk merespons dinamika pasar dengan cepat.',
+        },
+      ],
+    }
+  : {
+      title: 'Logistics Systems Engineering & Supply Chain Architecture',
+      tocTitle: 'Table of Contents',
+      sections: [
+        {
+          id: 'tms-orchestration',
+          tocLabel: 'TMS & Multi-Modal Orchestration',
+          title: 'TMS Orchestration & Multi-Modal Freight Operations',
+          paragraphs: [
+            'Modern freight distribution demands end-to-end visibility across first-mile pickups, multi-modal cross-dock hubs, and final-mile deliveries. Many logistics enterprises struggle with fragmented order data trapped inside isolated carrier platforms.',
+            'Teknalogi designs event-driven Transportation Management Systems (TMS) that orchestrate load allocations, fleet capacity management, and deterministic SLA tracking across multi-carrier networks.',
+          ],
+          bullets: [
+            {
+              label: 'Multi-Modal Load Consolidation',
+              text: 'Automatically consolidate Less-than-Truckload (LTL) and Full-Truckload (FTL) orders to maximize container cubic capacity utilization.',
+            },
+            {
+              label: 'Deterministic Shipment Lifecycles',
+              text: 'Track real-time shipment milestones from order created, dispatched, in-transit, cross-docked, out-for-delivery, to delivered.',
+            },
+            {
+              label: '3PL / 4PL Carrier Ecosystem APIs',
+              text: 'Provide standardized API gateways for seamless bidirectional integration with third-party logistics partners, air freight, and sea carriers.',
+            },
+          ],
+          closingParagraph:
+            'Centralized freight orchestration guarantees that every parcel and container moves at optimal freight costs while adhering strictly to agreed delivery SLAs.',
+        },
+        {
+          id: 'wms-slotting',
+          tocLabel: 'Warehouse Management (WMS)',
+          title: 'High-Velocity Warehouse Operations & Smart Slotting',
+          paragraphs: [
+            'Warehouse throughput efficiency hinges on rapid inbound receiving, optimal inventory slotting, and accurate order picking during surge order volumes.',
+            'We engineer cloud-native Warehouse Management Systems (WMS) that guide warehouse operators through shortest pick paths, barcode/RFID verification, and sub-second inventory synchronization.',
+          ],
+          bullets: [
+            {
+              label: 'Velocity-Based Dynamic Slotting',
+              text: 'Position fast-moving SKUs in primary accessible rack zones to drastically reduce picker travel distances across warehouse aisles.',
+            },
+            {
+              label: 'Automated Wave & Batch Picking',
+              text: 'Aggregate high volumes of disparate orders into single optimized picking waves to eliminate redundant travel.',
+            },
+            {
+              label: 'Real-Time Inventory Discrepancy Prevention',
+              text: 'Enforce two-way barcode scans at every touchpoint to eliminate SKU picking and packing errors.',
+            },
+          ],
+          closingParagraph:
+            'High-precision WMS architectures empower fulfillment facilities to scale to tens of thousands of parcels daily with near-zero sorting discrepancies.',
+        },
+        {
+          id: 'fleet-telemetry',
+          tocLabel: 'IoT Telemetry & Cold-Chain',
+          title: 'IoT Fleet Telemetry & Cold-Chain Environmental Monitoring',
+          paragraphs: [
+            'Fleet management extends far beyond periodic GPS pings. Transporting high-value cargo, pharmaceuticals, and perishable goods requires continuous sensor telemetry.',
+            'Our IoT telemetry architecture streams sensor data from vehicle OBD-II interfaces, temperature loggers, and container door contacts directly into high-throughput Kafka streaming pipelines.',
+          ],
+          bullets: [
+            {
+              label: 'Geofencing & Route Deviation Alerts',
+              text: 'Trigger immediate automated alerts when vehicles stray from designated transport corridors or engage in unscheduled halts.',
+            },
+            {
+              label: 'Certified Cold-Chain Compliance',
+              text: 'Log continuous reefer temperature and humidity curves with instantaneous alerts upon temperature threshold breaches.',
+            },
+            {
+              label: 'Driver Behavior & Fuel Analytics',
+              text: 'Analyze harsh braking events, rapid accelerations, and excessive vehicle idling to drive down operational fuel burn.',
+            },
+          ],
+          closingParagraph:
+            'Continuous telemetry safeguards perishable shipment integrity while reducing fleet maintenance and fuel overhead.',
+        },
+        {
+          id: 'route-optimization',
+          tocLabel: 'Last-Mile Route Optimization',
+          title: 'Dynamic Route Optimization & Last-Mile Dispatch',
+          paragraphs: [
+            'Last-mile logistics accounts for the largest fraction of total transportation expenses. Static route templates cannot handle unpredictable urban traffic, recipient time windows, or load limits.',
+            'We implement metaheuristic route optimization engines that calculate optimal multi-stop delivery sequences in seconds.',
+          ],
+          bullets: [
+            {
+              label: 'Vehicle Routing Problem with Time Windows (VRPTW)',
+              text: 'Calculate multi-stop sequences factoring vehicle weight/cube limits, recipient delivery hours, and real-time traffic speeds.',
+            },
+            {
+              label: 'Dynamic On-Demand Driver Dispatch',
+              text: 'Assign incoming ad-hoc parcel pickups to nearest active drivers with remaining cargo capacity in real time.',
+            },
+            {
+              label: 'Offline-First Driver Mobile Workflow',
+              text: 'Equip drivers with mobile apps that continue sequencing stops and recording deliveries seamlessly in connectivity dead zones.',
+            },
+          ],
+          closingParagraph:
+            'Algorithmic route planning cuts fleet mileage by up to 20% while elevating first-attempt delivery success rates.',
+        },
+        {
+          id: 'epod-reconciliation',
+          tocLabel: 'Digital Proof of Delivery (e-POD)',
+          title: 'Digital Proof of Delivery (e-POD) & Automated Billing',
+          paragraphs: [
+            'Relying on physical paper delivery receipts delays billing cycles by weeks and breeds billing disputes between shippers and carriers.',
+            'We digitize delivery confirmation with mobile e-POD capture featuring cryptographic biometric signatures, geostamped photo proofs, and automated invoice reconciliation.',
+          ],
+          bullets: [
+            {
+              label: 'Cryptographic Geostamped Signatures & Photos',
+              text: 'Capture recipient digital signatures, package condition photos, and timestamped GPS coordinates with tamper-evident seals.',
+            },
+            {
+              label: 'Automated Volumetric Tariff Calculation (CBM/KG)',
+              text: 'Execute multi-tier rate calculations factoring origin-destination matrices, actual versus volumetric dimensional weight, and fuel surcharges.',
+            },
+            {
+              label: '3PL Carrier Freight Audit & Reconciliation',
+              text: 'Automatically match carrier freight invoices against actual warehouse check-in weights and validated delivery timestamps.',
+            },
+          ],
+          closingParagraph:
+            'Automated e-POD workflows accelerate cash collection from weeks to hours immediately upon delivery verification.',
+        },
+        {
+          id: 'supply-chain-visibility',
+          tocLabel: 'Supply Chain Visibility',
+          title: 'Supply Chain Control Tower & Open API Ecosystem',
+          paragraphs: [
+            'High-level supply chain governance demands a single pane of glass uniting warehouse inventory health, fleet transit velocity, and customer delivery metrics.',
+            'Teknalogi builds real-time Supply Chain Control Towers featuring live operational analytics, predictive delay forecasting, and modern open APIs.',
+          ],
+          bullets: [
+            {
+              label: '360° Operational Control Tower',
+              text: 'Monitor real-time On-Time In-Full (OTIF) fulfillment rates, transit dwell times, and distribution hub bottlenecks in one dashboard.',
+            },
+            {
+              label: 'Predictive Transit Delay Forecasting',
+              text: 'Identify potential transit delays early using historical route telemetry, allowing proactive rerouting before SLA violations occur.',
+            },
+            {
+              label: 'Public Self-Service Tracking Portals (B2B/B2C)',
+              text: 'Deliver branded interactive milestone tracking with accurate dynamic ETAs, reducing inbound customer support inquiries.',
+            },
+          ],
+          closingParagraph:
+            'End-to-end supply chain visibility empowers logistics organizations to adapt rapidly to market disruptions and deliver outstanding customer experiences.',
+        },
+      ],
+    };
+---
+
+<section
+  id="logistics-deep-dive"
+  aria-label={copy.title}
+  class="relative isolate bg-white py-12 sm:py-20 lg:py-32 border-t border-slate-200/80"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      
+      <!-- Left Column: Main Editorial Article -->
+      <div class="lg:col-span-8">
+        
+        <!-- Main Section Title -->
+        <h2
+          class="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-[-0.04em] text-slate-950 mb-7 sm:mb-14"
+        >
+          {copy.title}
+        </h2>
+
+        <!-- Mobile Table of Contents (collapsible drawer on small screens) -->
+        <div class="lg:hidden mb-8 rounded-2xl border border-slate-200/90 bg-slate-50/80 p-4 sm:p-5">
+          <details class="group">
+            <summary class="flex items-center justify-between cursor-pointer list-none font-mono text-xs font-bold uppercase tracking-wider text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded min-h-[44px]">
+              <span>{copy.tocTitle}</span>
+              <svg
+                class="w-4 h-4 text-slate-500 transition-transform duration-200 group-open:rotate-180"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <nav class="mt-3 flex flex-col space-y-1.5 border-t border-slate-200/80 pt-3">
+              {copy.sections.map((section) => (
+                <a
+                  href={`#${section.id}`}
+                  class="text-xs sm:text-sm text-slate-600 hover:text-slate-950 transition-colors py-1.5 pl-2.5 border-l-2 border-slate-300 hover:border-slate-900 font-sans min-h-[44px] flex items-center"
+                >
+                  {section.tocLabel}
+                </a>
+              ))}
+            </nav>
+          </details>
+        </div>
+
+        <!-- Editorial Sections -->
+        <div class="flex flex-col space-y-10 sm:space-y-16">
+          {copy.sections.map((section) => (
+            <article
+              id={section.id}
+              class="logistics-editorial-section scroll-mt-20 sm:scroll-mt-28 pb-8 sm:pb-12 border-b border-slate-100 last:border-b-0"
+            >
+              <h3 class="text-xl sm:text-2xl font-medium tracking-[-0.03em] text-slate-950 mb-3 sm:mb-4 leading-snug">
+                {section.title}
+              </h3>
+
+              {section.paragraphs.map((p) => (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mb-3 sm:mb-4">
+                  {p}
+                </p>
+              ))}
+
+              {section.bullets && (
+                <ul class="my-4 sm:my-5 space-y-2.5 sm:space-y-3 pl-4 sm:pl-5 list-disc marker:text-slate-400 text-sm sm:text-[16px] leading-relaxed text-slate-600 font-sans">
+                  {section.bullets.map((b) => (
+                    <li>
+                      <strong class="font-semibold text-slate-900">{b.label}:</strong> {b.text}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {section.closingParagraph && (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mt-3 sm:mt-4">
+                  {section.closingParagraph}
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- Right Column: Sticky Table of Contents -->
+      <aside class="hidden lg:block lg:col-span-4 sticky top-28 xl:top-32 self-start">
+        <div class="max-h-[calc(100vh-9rem)] overflow-y-auto pl-8 border-l border-slate-200/90 py-1">
+          <h3 class="text-[11.5px] font-bold tracking-[0.14em] text-slate-900 uppercase font-mono mb-4 select-none">
+            {copy.tocTitle}
+          </h3>
+          <nav aria-label={copy.tocTitle} class="flex flex-col space-y-2.5 text-[13.5px] font-sans">
+            {copy.sections.map((section) => (
+              <a
+                href={`#${section.id}`}
+                data-logistics-toc-id={section.id}
+                class="logistics-toc-nav-link text-slate-500 hover:text-slate-950 transition-all duration-200 py-1 pl-3 border-l-2 border-transparent hover:border-slate-400 min-h-[32px] flex items-center"
+              >
+                {section.tocLabel}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupLogisticsTocHighlight() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-10% 0px -70% 0px',
+      threshold: 0,
+    };
+
+    const sections = document.querySelectorAll<HTMLElement>('.logistics-editorial-section');
+    const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.logistics-toc-nav-link');
+
+    if (!sections.length || !tocLinks.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href === `#${id}`) {
+              link.classList.add('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.remove('text-slate-500', 'border-transparent');
+            } else {
+              link.classList.remove('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.add('text-slate-500', 'border-transparent');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((sec) => observer.observe(sec));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupLogisticsTocHighlight);
+  } else {
+    setupLogisticsTocHighlight();
+  }
+  document.addEventListener('astro:page-load', setupLogisticsTocHighlight);
+</script>

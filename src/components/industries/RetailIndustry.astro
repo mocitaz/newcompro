@@ -1,0 +1,465 @@
+---
+// src/components/industries/RetailIndustry.astro
+import type { Locale } from '../../i18n/translations';
+import RetailAboutIndustry from './RetailAboutIndustry.astro';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      eyebrow: 'RETAIL & PERDAGANGAN OMNICHANNEL',
+      title: 'Engineering untuk perdagangan omnichannel dan operasi retail modern.',
+      lead: 'Bangun dan modernisasi platform retail dengan sinkronisasi inventori terpadu, integrasi POS, orkestrasi pesanan otomatis, dan infrastruktur transaksi berkecepatan tinggi. Teknalogi menyatukan toko fisik dan kanal digital ke dalam ekosistem perdagangan yang tangguh.',
+      primaryCta: 'Diskusikan kebutuhan retail Anda',
+      challengesTitle: 'Ketika kanal retail terpisah, efisiensi menurun.',
+      challengesLead: 'Operasional melambat ketika toko fisik, e-commerce, dan gudang berjalan sendiri-sendiri.',
+      challenges: [
+        ['Inventori tidak sinkron', 'Selisih stok toko dan online memicu pembatalan pesanan.'],
+        ['Rute pesanan manual', 'Penerusan pesanan ke gudang lambat dan rentan salah kirim.'],
+        ['Checkout lambat saat promo', 'Lonjakan flash sale membuat server crash dan antrean kasir tertunda.'],
+        ['Data pelanggan terpisah', 'Riwayat belanja toko tidak terhubung dengan akun member aplikasi.'],
+      ],
+      solutionsTitle: 'Solusi perangkat lunak terintegrasi untuk bisnis retail dan e-commerce.',
+      solutionsLead: 'Ruang lingkup sistem disesuaikan dengan alur perdagangan Anda, mulai dari modernisasi POS kasir, sinkronisasi inventori multi-cabang, hingga arsitektur checkout skala besar.',
+      solutions: [
+        ['Sistem POS & Terminal Toko Cerdas', 'Aplikasi kasir responsif offline-first dengan integrasi EDC, QRIS dinamis, barcode scanner, dan printer struk.', 'pos'],
+        ['Orkestrasi Inventori Omnichannel (OMS)', 'Sinkronisasi kuota stok real-time antar-toko fisik, marketplace, dan gudang pusat dengan order routing cerdas.', 'oms'],
+        ['E-Commerce Skala Tinggi & Checkout Kilat', 'Storefront modern dengan auto-scaling elastis, pencegahan overselling, dan alur pembayaran ringkas.', 'ecommerce'],
+        ['Otomasi Gudang & Integrasi Kurir 3PL', 'Alur wave picking terpandu, pencetakan label resi otomatis masal, dan perbandingan ongkir multi-kurir.', 'wms'],
+        ['Program Loyalitas & Customer Data (CDP)', 'Akumulasi dan penukaran poin member lintas channel (online & offline) serta segmentasi promosi terarah.', 'loyalty'],
+        ['Analitik Penjualan & Prediksi Kebutuhan Stok', 'Dashboard performa per gerai, audit selisih stok (shrinkage), dan rekomendasi reorder otomatis.', 'analytics'],
+      ],
+      approachTitle: 'Dirancang untuk kecepatan transaksi dan integritas inventori retail.',
+      domains: [
+        ['Kecepatan Transaksi & Skala Flash Sale', 'Terapkan auto-scaling elastis, concurrency control presisi, dan arsitektur checkout sub-detik untuk traffic puncak.', 'velocity'],
+        ['Sinkronisasi Inventori Multi-Kanal', 'Rancang event-driven inventory bus yang menyiarkan perubahan kuota stok secara instan ke seluruh titik penjualan.', 'sync'],
+        ['Keandalan Kasir Offline & Otonomi Toko', 'Pastikan terminal kasir toko fisik tetap beroperasi penuh saat internet padam dengan sinkronisasi otomatis.', 'resilience'],
+      ],
+      faqTitle: 'Hal yang biasanya dibahas sebelum proyek retail dimulai.',
+      faqLead: 'Karakteristik kanal penjualan, volume transaksi gerai, dan sistem ERP setiap peritel berbeda. Discovery teknis kami memetakan integrasi data, risiko performa, dan prioritas implementasi.',
+      faqTrustTitle: 'Dipercaya oleh',
+      faqTrustText: 'Brand retail dan peritel omnichannel berkembang di Indonesia',
+      faqAction: 'Tanyakan kebutuhan retail Anda',
+      faqs: [
+        ['Apakah sistem POS Teknalogi tetap dapat digunakan jika internet toko offline?', 'Ya. Arsitektur POS kami menggunakan penyimpanan lokal-first (local cache). Kasir tetap dapat memproses transaksi, menghitung diskon, dan mencetak struk saat internet mati, lalu data otomatis terunggah saat koneksi pulih.'],
+        ['Bagaimana sistem mencegah overselling saat event promo atau flash sale besar?', 'Kami menerapkan teknologi optimistic locking dan antrean reservasi stok sementara di tingkat database (memory-cache tier) sehingga alokasi barang presisi hingga milidetik.'],
+        ['Bisakah sistem ini diintegrasikan dengan ERP seperti SAP, Microsoft Dynamics, atau Odoo?', 'Bisa. Kami merancang API adapter dan middleware yang menghubungkan POS, OMS, dan e-commerce secara langsung dengan modul inventory, purchasing, dan finance ERP Anda.'],
+        ['Bagaimana integrasi dengan marketplace seperti Shopee, Tokopedia, atau TikTok Shop?', 'Kami menyediakan modul sinkronisasi omnichannel yang menghubungkan katalog produk, harga promo, dan stok barang secara otomatis ke berbagai marketplace resmi melalui Open API.'],
+        ['Apakah program loyalitas dan poin member berlaku di toko fisik dan aplikasi mobile?', 'Ya. Data member tersentralisasi secara real-time, memungkinkan pelanggan mengumpulkan poin di kasir toko dan menukarkannya langsung di aplikasi online, atau sebaliknya.'],
+        ['Apakah sistem mendukung fitur Buy Online Pick-Up In-Store (BOPIS)?', 'Ya. Pelanggan dapat memilih opsi pengambilan barang di toko tertentu, dan sistem akan mengarahkan pesanan ke staf gerai dengan verifikasi kode QR saat pengambilan.'],
+        ['Bagaimana integrasi dengan kurir logistik pihak ketiga (3PL)?', 'Sistem terhubung langsung dengan API multi-kurir untuk cek tarif pengiriman otomatis, pembuatan nomor resi instan, pencetakan label pengiriman masal, dan pelacakan status kurir.'],
+        ['Apakah Teknalogi menyediakan dukungan teknis saat event promosi puncak?', 'Ya. Kami menyediakan layanan standby technical monitoring khusus saat event flash sale atau promo akhir tahun untuk memastikan performa server dan alur transaksi berjalan optimal.'],
+      ],
+    }
+  : {
+      eyebrow: 'RETAIL & OMNICHANNEL COMMERCE',
+      title: 'Engineering for unified commerce and high-velocity retail operations.',
+      lead: 'Build scalable retail systems with unified inventory, POS synchronization, automated order fulfillment, and resilient transaction pipelines. Teknalogi connects offline stores and digital channels into high-performance commerce ecosystems.',
+      primaryCta: 'Discuss your retail requirements',
+      challengesTitle: 'When retail channels operate separately, efficiency drops.',
+      challengesLead: 'Operations slow down when stores, e-commerce, and warehouses run independently.',
+      challenges: [
+        ['Disconnected inventory', 'Stock discrepancies between stores and online trigger overselling.'],
+        ['Manual order routing', 'Routing orders to warehouses is slow and prone to dispatch errors.'],
+        ['Slow checkout during promos', 'Traffic surges during promo drops overwhelm servers and cashier lines.'],
+        ['Siloed customer profiles', 'In-store purchases remain disconnected from digital member accounts.'],
+      ],
+      solutionsTitle: 'Integrated software solutions engineered for modern retail and e-commerce.',
+      solutionsLead: 'System architectures are custom-tailored to your retail operations, spanning next-gen store POS, omnichannel inventory sync, and rapid checkout engines.',
+      solutions: [
+        ['Smart POS & Store Terminals', 'Offline-first cashier applications with dynamic QRIS, payment terminal (EDC), scanner, and receipt printer support.', 'pos'],
+        ['Omnichannel Inventory & OMS', 'Real-time multi-location stock synchronization across physical stores, marketplaces, and central distribution hubs.', 'oms'],
+        ['High-Scale E-Commerce & Checkout', 'Elastic cloud storefronts with anti-overselling inventory locks and frictionless 1-click checkout flows.', 'ecommerce'],
+        ['Warehouse Automation & 3PL Logistics', 'Guided wave picking paths, bulk shipping label printing, and automated multi-carrier rate calculation.', 'wms'],
+        ['Unified Loyalty & Customer Data (CDP)', 'Cross-channel reward point accumulation, membership tiering, and data-backed personalized campaigns.', 'loyalty'],
+        ['Retail Analytics & Demand Forecasting', 'Store-level performance dashboards, shrinkage audit tracking, and automated stock replenishment triggers.', 'analytics'],
+      ],
+      approachTitle: 'Designed for transaction velocity and unified retail inventory.',
+      domains: [
+        ['High-Concurrency Checkout & Velocity', 'Deploy elastic auto-scaling, optimistic locking, and sub-second checkout pipelines engineered for viral traffic spikes.', 'velocity'],
+        ['Real-Time Multi-Channel Inventory Bus', 'Structure event-driven inventory streams broadcasting stock changes instantaneously across all digital and physical sales nodes.', 'sync'],
+        ['Offline-First POS & Store Autonomy', 'Ensure retail store terminals maintain complete standalone checkout capability during internet dropouts with seamless sync.', 'resilience'],
+      ],
+      faqTitle: 'What teams usually discuss before a retail project starts.',
+      faqLead: 'Sales channel topologies, store foot traffic volumes, and ERP architectures vary widely. Technical discovery maps data interfaces, concurrency risks, and deployment milestones.',
+      faqTrustTitle: 'Trusted by',
+      faqTrustText: 'Retail brands and growing omnichannel merchants across Indonesia',
+      faqAction: 'Ask about your retail requirements',
+      faqs: [
+        ['Can Teknalogi’s POS system operate when the store internet connection drops?', 'Yes. Our POS architecture utilizes local-first caching. Cashiers continue scanning items, applying discounts, and printing receipts offline, automatically synchronizing transaction journals once internet connectivity restores.'],
+        ['How does the system prevent overselling during major flash sales?', 'We implement optimistic concurrency locking and memory-cached inventory reservations at the database tier, ensuring stock allocations remain accurate down to the millisecond without locking other shoppers.'],
+        ['Can this platform integrate with enterprise ERPs like SAP, Microsoft Dynamics, or Odoo?', 'Yes. We engineer dedicated API adapters connecting POS, OMS, and e-commerce layers directly with your ERP inventory, purchasing, and finance modules.'],
+        ['How is integration with marketplaces like Shopee, Tokopedia, or TikTok Shop handled?', 'We provide omnichannel synchronization connectors that update product catalogs, promo pricing, and live inventory allocations across marketplaces automatically via official Open APIs.'],
+        ['Do customer loyalty points sync across physical stores and mobile apps?', 'Yes. Customer profiles are centralized in real-time, allowing shoppers to earn points at brick-and-mortar cashiers and redeem them inside mobile apps, or vice versa.'],
+        ['Does the platform support Buy Online Pick-Up In-Store (BOPIS)?', 'Yes. Shoppers can select store pickup during checkout, and the system routes fulfillment instructions to store staff with instant QR code verification upon customer arrival.'],
+        ['How does third-party logistics (3PL) integration work?', 'The platform interfaces with multi-carrier logistics APIs to automatically calculate real-time shipping rates, generate waybills, print bulk shipping labels, and track delivery progress.'],
+        ['Does Teknalogi provide technical standby support during major shopping campaigns?', 'Yes. We provide dedicated real-time infrastructure monitoring and engineer standby coverage during high-volume flash sales and year-end promotional events.'],
+      ],
+    };
+
+const partnerLogos = [
+  ['Anytime Fitness', '/partners/anytime.png'],
+  ['KelolaAja', '/partners/kelolaaja.png'],
+  ['Nikawa Teknika', '/partners/nikawa.png'],
+  ['PT Inti Bersama', '/partners/ptintibersama.png'],
+];
+---
+
+<section class="relative isolate min-h-[38rem] overflow-hidden bg-white py-28 sm:min-h-[42rem] sm:py-32 lg:min-h-[46rem] lg:py-40" aria-labelledby="retail-title">
+  <img src="/industry/heroretail.png" alt="Modern retail and omnichannel commerce operations" width="1536" height="1024" class="absolute inset-0 -z-20 h-full w-full object-cover object-[64%_center]" loading="eager" decoding="async" />
+  <div class="absolute inset-0 -z-10 bg-white/84 sm:bg-gradient-to-r sm:from-white sm:from-[7%] sm:via-white/86 sm:via-[46%] sm:to-white/0 sm:to-[80%]"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-white"></div>
+  <div class="home-container flex min-h-[calc(38rem-7rem)] items-end sm:min-h-[calc(42rem-8rem)] lg:min-h-[calc(46rem-10rem)]">
+    <div class="max-w-3xl pb-2 lg:pb-5">
+      <p class="text-[11px] font-semibold tracking-[0.14em] text-slate-600">{copy.eyebrow}</p>
+      <h1 id="retail-title" class="mt-4 max-w-3xl text-4xl font-medium leading-[1.06] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-[4.5rem]">
+        {copy.title}
+      </h1>
+      <p class="mt-6 max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">{copy.lead}</p>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-[#f5a623] px-6 text-sm font-semibold text-slate-950 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e69818] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2">
+        {copy.primaryCta}
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="home-section bg-white" aria-labelledby="retail-challenges-title">
+  <div class="home-container grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-12">
+    <div class="group relative overflow-hidden rounded-[24px] lg:sticky lg:top-28 lg:self-start">
+      <img src="/industry/secondaryretail.png" alt="Smart retail store technology and cashier transaction systems" width="1448" height="1086" class="h-[21rem] w-full object-cover sm:h-[28rem] lg:h-[38rem]" loading="lazy" decoding="async" />
+      <div class="absolute inset-0 bg-slate-950/30 transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
+      <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-950/65 to-transparent"></div>
+      <div class="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+        <span class="font-mono text-[10px] font-semibold tracking-[0.18em] text-white/80">CONNECTED RETAIL</span>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <h2 id="retail-challenges-title" class="max-w-xl text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.challengesTitle}</h2>
+      <p class="mt-5 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.challengesLead}</p>
+      <ol class="mt-10 grid flex-1 grid-cols-1 gap-x-8 sm:mt-12 sm:grid-cols-2">
+        {copy.challenges.map(([title, description], index) => (
+          <li class="group border-t border-slate-200 py-6 sm:py-7">
+            <div class="flex items-baseline justify-between gap-5">
+              <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+              <span class="h-px flex-1 bg-slate-100 transition-colors duration-300 group-hover:bg-violet-200"></span>
+            </div>
+            <h3 class="mt-7 text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="retail-solutions" class="home-section bg-white scroll-mt-20" aria-labelledby="retail-solutions-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 id="retail-solutions-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.solutionsTitle}</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.solutionsLead}</p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {copy.solutions.map(([title, description, icon]) => (
+        <article class="retail-solution-card group relative isolate flex min-h-[17rem] overflow-hidden rounded-[20px] border border-slate-200/90 bg-white p-6 sm:min-h-[18rem] sm:p-7">
+          <div class="relative z-10 flex w-full flex-col justify-between">
+            <span class="retail-solution-icon flex h-10 w-10 items-center justify-center text-slate-950" aria-hidden="true">
+              {icon === 'pos' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4" y="6" width="24" height="15" rx="2" />
+                  <path d="M4 14h24M9 25h14l3 3H6l3-3z" stroke-linejoin="round" />
+                  <circle cx="9" cy="10" r="1" fill="currentColor" />
+                  <circle cx="13" cy="10" r="1" fill="currentColor" />
+                </svg>
+              )}
+              {icon === 'oms' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M16 4l11 6.5v11L16 28 5 21.5v-11L16 4z" stroke-linejoin="round" />
+                  <path d="M5 10.5l11 6.5 11-6.5M16 17v11" />
+                  <circle cx="16" cy="17" r="2.5" fill="white" />
+                </svg>
+              )}
+              {icon === 'ecommerce' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 6h4l3.5 14h13.5l3-10H10" stroke-linecap="round" stroke-linejoin="round" />
+                  <circle cx="13" cy="25" r="2.5" fill="white" />
+                  <circle cx="23" cy="25" r="2.5" fill="white" />
+                  <path d="M18 10l3 3-3 3" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {icon === 'wms' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4" y="8" width="10" height="10" rx="1.5" />
+                  <rect x="18" y="8" width="10" height="10" rx="1.5" />
+                  <rect x="4" y="21" width="10" height="7" rx="1.5" />
+                  <path d="M18 24h10l-4-3m4 3l-4 3" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {icon === 'loyalty' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M16 4l3.5 7.5 8.5 1-6 6 1.5 8.5L16 23l-7.5 4 1.5-8.5-6-6 8.5-1L16 4z" stroke-linejoin="round" />
+                  <circle cx="16" cy="15" r="2.5" fill="white" />
+                </svg>
+              )}
+              {icon === 'analytics' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 26h24M8 22v-6m6 6v-12m6 12v-8m6 8v-14" stroke-linecap="round" />
+                  <path d="M8 14l6-4 6 3 6-7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+            </span>
+            <div class="mt-12">
+              <h3 class="max-w-sm text-xl font-medium tracking-[-0.025em] text-slate-950 sm:text-[22px]">{title}</h3>
+              <p class="mt-3 max-w-md text-sm leading-relaxed text-slate-600">{description}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="home-section bg-white" aria-labelledby="retail-approach-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 id="retail-approach-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.approachTitle}</h2>
+    </div>
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 lg:grid-cols-3 lg:gap-5">
+      {copy.domains.map(([title, description, key], index) => (
+        <article class={`retail-domain-card retail-domain-${key} flex min-h-[18rem] flex-col rounded-[20px] border border-slate-200 bg-white p-6 sm:p-7`}>
+          <div class="flex items-start justify-between gap-5">
+            <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+            <span class="text-[11px] font-medium tracking-[0.08em] text-slate-400">{key === 'velocity' ? 'VELOCITY' : key === 'sync' ? 'SYNCHRONIZATION' : 'RESILIENCE'}</span>
+          </div>
+          <div class="retail-domain-visual mt-5 text-slate-900" aria-hidden="true">
+            {key === 'velocity' && (
+              <svg viewBox="0 0 260 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                <!-- Concurrency Influx Cart Items -->
+                <rect x="12" y="32" width="38" height="48" rx="6" fill="white" />
+                <path d="M20 44h22M20 54h14M20 64h18" stroke-linecap="round" />
+                <path d="M50 56h24" stroke-linecap="round" />
+                <circle cx="62" cy="56" r="3.5" fill="white" />
+                <!-- Optimistic Lock Engine -->
+                <rect x="74" y="22" width="72" height="68" rx="8" fill="white" />
+                <path d="M84 56h8l6-16 8 32 8-22 6 6h12" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="110" cy="22" r="3" fill="white" />
+                <circle cx="110" cy="90" r="3" fill="white" />
+                <!-- Sub-second payment confirmation node -->
+                <path d="M146 56h24" stroke-linecap="round" />
+                <circle cx="158" cy="56" r="3.5" fill="white" />
+                <rect x="170" y="32" width="56" height="48" rx="6" fill="white" />
+                <rect x="180" y="42" width="36" height="20" rx="3" fill="white" />
+                <circle cx="190" cy="52" r="2.5" fill="currentColor" />
+                <line x1="196" y1="52" x2="208" y2="52" stroke-linecap="round" />
+                <circle cx="244" cy="56" r="6" fill="white" />
+                <path d="m241 56 2 2 4-4" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+            {key === 'sync' && (
+              <svg viewBox="0 0 320 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                <!-- Physical POS node -->
+                <rect x="14" y="28" width="58" height="56" rx="8" fill="white" />
+                <rect x="24" y="38" width="38" height="22" rx="3" fill="white" />
+                <line x1="28" y1="46" x2="54" y2="46" stroke-linecap="round" />
+                <path d="M28 66h30" stroke-linecap="round" />
+                <!-- Central Inventory Message Bus -->
+                <path d="M72 56h34" stroke-linecap="round" />
+                <circle cx="89" cy="56" r="4" fill="white" />
+                <rect x="106" y="18" width="108" height="76" rx="10" fill="white" stroke-dasharray="4 3" />
+                <rect x="122" y="30" width="76" height="52" rx="6" fill="white" />
+                <path d="M160 38l14 8v16l-14 8-14-8v-16l14-8z" fill="white" />
+                <circle cx="160" cy="54" r="3" fill="currentColor" />
+                <!-- Connected Online Store & Warehouse -->
+                <path d="M214 56h34" stroke-linecap="round" />
+                <circle cx="231" cy="56" r="4" fill="white" />
+                <rect x="248" y="28" width="58" height="56" rx="8" fill="white" />
+                <path d="M260 40h34M260 52h24M260 64h30" stroke-linecap="round" />
+                <circle cx="296" cy="64" r="3" fill="white" />
+              </svg>
+            )}
+            {key === 'resilience' && (
+              <svg viewBox="0 0 250 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                <!-- Dual offline-online sync rails -->
+                <path d="M16 38h48m0 0l24-16h40m-64 16l24 16h40" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="16" cy="38" r="6" fill="white" />
+                <!-- Local Store Cache & Edge Terminal -->
+                <rect x="128" y="14" width="40" height="24" rx="4" fill="white" />
+                <circle cx="138" cy="26" r="2.5" fill="currentColor" />
+                <line x1="146" y1="26" x2="160" y2="26" stroke-linecap="round" />
+                <rect x="128" y="46" width="40" height="24" rx="4" fill="white" />
+                <circle cx="138" cy="58" r="2.5" fill="currentColor" />
+                <line x1="146" y1="58" x2="160" y2="58" stroke-linecap="round" />
+                <!-- Cloud Sync Reconciliation & Uptime Indicator -->
+                <path d="M168 26l20 18m-20 26l20-18h36" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M16 92h54l8-14 8 24 8-10h140" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="224" cy="44" r="8" fill="white" />
+                <circle cx="224" cy="44" r="3.5" fill="currentColor" />
+                <circle cx="224" cy="92" r="4" fill="white" />
+              </svg>
+            )}
+          </div>
+          <div class="mt-auto pt-6">
+            <h3 class="text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-2.5 max-w-xl text-sm leading-relaxed text-slate-600">{description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<RetailAboutIndustry lang={lang} />
+
+<section class="home-section bg-white" aria-labelledby="retail-faq-title">
+  <div class="home-container grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-16">
+    <div class="space-y-6 lg:sticky lg:top-28 lg:col-span-5">
+      <div>
+        <h2 id="retail-faq-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-[44px]">{copy.faqTitle}</h2>
+        <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-600 sm:text-base">{copy.faqLead}</p>
+      </div>
+      <div class="flex items-center gap-3.5">
+        <div class="flex -space-x-3" aria-label={`${copy.faqTrustTitle}: ${copy.faqTrustText}`}>
+          {partnerLogos.map(([name, logo]) => (
+            <span class="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 border-slate-100 bg-white p-1.5 shadow-sm">
+              <img src={logo} alt={name} class="h-full w-full object-contain" loading="lazy" decoding="async" />
+            </span>
+          ))}
+        </div>
+        <span class="max-w-[18rem] text-xs leading-snug text-slate-600">
+          <strong class="block font-semibold text-slate-950">{copy.faqTrustTitle}</strong>
+          <span class="mt-0.5 block">{copy.faqTrustText}</span>
+        </span>
+      </div>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-800 focus-visible:ring-offset-2">
+        {copy.faqAction}
+      </a>
+    </div>
+    <div class="space-y-3 lg:col-span-7">
+      {copy.faqs.map(([question, answer], index) => (
+        <details class="retail-faq-item group overflow-hidden rounded-2xl border border-slate-900/80 bg-white transition-colors hover:border-slate-950">
+          <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 rounded-2xl p-5 text-base font-medium leading-snug text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-slate-900 sm:p-6">
+            <span>{question}</span>
+            <span class="retail-faq-icon relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-900/30 bg-slate-50 text-slate-700 transition-colors" aria-hidden="true"><span class="absolute h-px w-3.5 bg-current"></span><span class="absolute h-3.5 w-px bg-current transition-transform group-open:scale-y-0"></span></span>
+          </summary>
+          <div role="region" aria-label={`${isId ? 'Jawaban' : 'Answer'} ${index + 1}`}>
+            <p class="max-w-2xl px-5 pb-5 pr-14 text-sm leading-relaxed text-slate-600 sm:px-6 sm:pb-6 sm:text-[15px]">{answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .retail-domain-card {
+    box-shadow: 0 1px 10px -7px rgba(15, 23, 42, 0.14);
+  }
+
+  .retail-domain-visual {
+    display: block;
+    width: 100%;
+  }
+
+  .retail-domain-visual svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .retail-domain-sync .retail-domain-visual {
+    margin-inline: auto;
+    max-width: 21rem;
+  }
+
+  .retail-solution-card {
+    box-shadow: 0 2px 14px -4px rgba(15, 23, 42, 0.08);
+    transition:
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 320ms ease,
+      box-shadow 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .retail-solution-card::before {
+    position: absolute;
+    top: -5.5rem;
+    right: -4.5rem;
+    width: 17rem;
+    height: 17rem;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(196, 181, 253, 0.52) 0%, rgba(221, 214, 254, 0.22) 42%, transparent 72%);
+    content: '';
+    filter: blur(15px);
+    opacity: 0.72;
+    pointer-events: none;
+    transition:
+      opacity 360ms ease,
+      transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .retail-solution-card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(203 213 225);
+    box-shadow: 0 18px 38px -18px rgba(15, 23, 42, 0.28);
+  }
+
+  .retail-solution-card:hover::before {
+    opacity: 0.92;
+    transform: translate(-0.75rem, 0.75rem) scale(1.06);
+  }
+
+  .retail-solution-icon {
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .retail-solution-icon svg {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .retail-solution-card:hover .retail-solution-icon {
+    transform: translateY(-2px);
+  }
+
+  .retail-faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .retail-faq-item[open] {
+    border-color: rgb(15 23 42);
+    background:
+      radial-gradient(circle at 86% 20%, rgba(196, 181, 253, 0.26), transparent 55%),
+      #ffffff;
+  }
+
+  .retail-faq-item[open] .retail-faq-icon {
+    border-color: rgb(15 23 42);
+    background: rgb(15 23 42);
+    color: white;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .retail-domain-card,
+    .retail-solution-card,
+    .retail-solution-card::before,
+    .retail-solution-icon {
+      transition: none;
+    }
+
+    .retail-solution-card:hover,
+    .retail-solution-card:hover::before,
+    .retail-solution-card:hover .retail-solution-icon {
+      transform: none;
+    }
+
+    .retail-faq-item,
+    .retail-faq-icon,
+    .retail-faq-icon span {
+      transition: none;
+    }
+  }
+</style>

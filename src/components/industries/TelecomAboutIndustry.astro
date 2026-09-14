@@ -1,0 +1,475 @@
+---
+// src/components/industries/TelecomAboutIndustry.astro
+import type { Locale } from '../../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      title: 'Rekayasa Sistem Telekomunikasi, OSS/BSS & Infrastruktur Jaringan',
+      tocTitle: 'Daftar Isi Pembahasan',
+      sections: [
+        {
+          id: 'oss-bss-modernization',
+          tocLabel: 'Modernisasi OSS/BSS',
+          title: 'Modernisasi Arsitektur OSS/BSS & TM Forum Open API',
+          paragraphs: [
+            'Operator telekomunikasi dan Internet Service Provider (ISP) menghadapi kompleksitas integrasi antara sistem operasi jaringan (Operations Support Systems / OSS) dan sistem bisnis komersial (Business Support Systems / BSS). Silo antar-sistem memperlambat peluncuran paket data baru dan aktivasi layanan pelanggan.',
+            'Teknalogi membangun arsitektur middleware dan microservices telekomunikasi berbasis TM Forum Open API yang menghubungkan katalog produk digital, manajemen pesanan (order-to-activate), serta provisi perangkat jaringan secara otomatis.',
+          ],
+          bullets: [
+            {
+              label: 'Standardisasi TM Forum Open API',
+              text: 'Penerapan standar API industri (TMF620, TMF622, TMF641) untuk pertukaran data katalog produk, pemesanan, dan provisi layanan yang terstandarisasi.',
+            },
+            {
+              label: 'Otomasi Provisi Layanan (Zero-Touch)',
+              text: 'Aktivasi otomatis jalur internet, bandwidth on-demand, dan konfigurasi port router/OLT segera setelah pembayaran terverifikasi.',
+            },
+            {
+              label: 'Katalog Produk Terpusat (Enterprise Catalog)',
+              text: 'Satu sumber kebenaran untuk aturan paket data, add-on, batasan FUP, dan skema harga multi-wilayah.',
+            },
+          ],
+          closingParagraph:
+            'Integrasi OSS/BSS yang terpadu memangkas durasi peluncuran produk baru dari hitungan bulan menjadi hitungan hari.',
+        },
+        {
+          id: 'realtime-ocs-rating',
+          tocLabel: 'Online Charging (OCS)',
+          title: 'Sistem Online Charging (OCS) & Rating Kuota Real-Time',
+          paragraphs: [
+            'Pemrosesan konsumsi data, panggilan suara, dan SMS pada jaringan 4G/5G atau broadband serat optik menuntut latensi sub-milidetik. Keterlambatan rating dapat mengakibatkan kebocoran pendapatan (revenue leakage) atau saldo negatif pelanggan.',
+            'Kami merekayasa mesin Online Charging System (OCS) dan Policy and Charging Rules Function (PCRF) dengan arsitektur memory-cache terdistribusi untuk mengevaluasi saldo kuota, menerapkan batasan FUP, dan memutus sesi secara instan saat kuota habis.',
+          ],
+          bullets: [
+            {
+              label: 'Rating & Deduct Kuota Sub-Milidetik',
+              text: 'Evaluasi paket data dan pemotongan saldo pulsa/kuota secara instan dengan throughput tinggi jutaan request per detik.',
+            },
+            {
+              label: 'Kontrol Kebijakan Bandwidth & FUP Dinamis',
+              text: 'Pengaturan kecepatan bandwidth otomatis (throttling) sesuai ambang batas Fair Usage Policy tanpa perlu reboot sesi pelanggan.',
+            },
+            {
+              label: 'Reservasi Saldo Transaksi Terdistribusi',
+              text: 'Mekanisme penguncian kuota sementara selama sesi aktif untuk mencegah penggunaan berlebih di banyak perangkat bersamaan.',
+            },
+          ],
+          closingParagraph:
+            'Performa mesin rating yang presisi melindungi margin operator dan memberikan kepastian kuota waktu nyata kepada pelanggan.',
+        },
+        {
+          id: 'network-telemetry-faults',
+          tocLabel: 'Telemetri Jaringan & Fault',
+          title: 'Pemantauan Telemetri Jaringan & Deteksi Anomali Otomatis',
+          paragraphs: [
+            'Infrastruktur jaringan telekomunikasi yang membentang dari core network, optical transport, hingga menara Base Transceiver Station (BTS) menghasilkan jutaan sinyal telemetri setiap menit. Menemukan akar masalah gangguan kabel putus atau degradasi sinyal membutuhkan korelasi data cerdas.',
+            'Teknalogi mengembangkan pipeline streaming telemetri berkecepatan tinggi yang menyerap sinyal SNMP, Syslog, NetFlow, dan streaming gNMI untuk mendeteksi anomali jaringan sebelum berdampak luas pada pelanggan.',
+          ],
+          bullets: [
+            {
+              label: 'Streaming Ingestion Data Jaringan Skala Masif',
+              text: 'Pengumpulan metrik utilisasi link, packet loss, jitter, dan temperatur perangkat jaringan secara kontinu tanpa membebani CPU perangkat.',
+            },
+            {
+              label: 'Korelasi Alarm & Root-Cause Analysis',
+              text: 'Pengelompokan ribuan alarm turunan menjadi satu notifikasi insiden utama untuk mempercepat respon tim Network Operations Center (NOC).',
+            },
+            {
+              label: 'Pemantauan Kualitas Layanan (QoE / QoS)',
+              text: 'Pengukuran latensi aktual rute peering internet dan performa Content Delivery Network (CDN) populer di tingkat regional.',
+            },
+          ],
+          closingParagraph:
+            'Observabilitas jaringan yang mendalam membantu tim NOC memitigasi gangguan transmisi sebelum pengguna mengeluhkan penurunan kualitas.',
+        },
+        {
+          id: 'subscriber-portals-esim',
+          tocLabel: 'Portal Pelanggan & eSIM',
+          title: 'Portal Pelanggan Mandiri & Aktivasi Layanan Digital / eSIM',
+          paragraphs: [
+            'Pelanggan telekomunikasi menuntut transparansi penuh atas penggunaan kuota, riwayat tagihan, serta kemudahan pembelian paket data langsung dari ponsel pintar mereka.',
+            'Kami membangun aplikasi mobile pelanggan dan web portal mandiri berlatensi rendah dengan integrasi server Subscription Manager Data Preparation (SM-DP+) untuk provisi profil eSIM secara instan.',
+          ],
+          bullets: [
+            {
+              label: 'Aktivasi Profil eSIM & Provisi SIM Cepat',
+              text: 'Penerbitan profil eSIM digital langsung ke perangkat smartphone pelanggan dengan pemindaian kode QR terenkripsi.',
+            },
+            {
+              label: 'Dashboard Kuota & Riwayat Penggunaan Real-Time',
+              text: 'Visualisasi sisa kuota data utama, kuota aplikasi, dan masa aktif paket yang disinkronkan langsung dari OCS.',
+            },
+            {
+              label: 'Pembelian Paket 1-Klik & Auto-Renewal',
+              text: 'Integrasi gerbang pembayaran instan (e-wallet, kartu kredit, transfer bank) dengan opsi perpanjangan otomatis saat kuota menipis.',
+            },
+          ],
+          closingParagraph:
+            'Aplikasi digital yang responsif memangkas beban panggilan call center dan meningkatkan konversi pembelian paket data tambahan.',
+        },
+        {
+          id: 'wholesale-interconnect-cdr',
+          tocLabel: 'Wholesale & Mediasi CDR',
+          title: 'Manajemen Wholesale, Interkoneksi & Mediasi CDR',
+          paragraphs: [
+            'Penyelesaian tagihan interkoneksi antar-operator dan penyewaan jalur bandwidth wholesale melibatkan miliaran rekaman Call Detail Records (CDR) dan data volume traffic yang harus direkonsiliasi dengan akurasi tinggi.',
+            'Kami merancang engine mediasi CDR berkecepatan tinggi yang memvalidasi, menormalkan format data dari berbagai vendor switch/router, dan mengkalkulasi bagi hasil interkoneksi secara otomatis.',
+          ],
+          bullets: [
+            {
+              label: 'Parsing & Normalisasi CDR Multi-Vendor',
+              text: 'Pengolahan jutaan file CDR dari perangkat Huawei, Ericsson, Cisco, dan Nokia ke dalam format data standar tunggal.',
+            },
+            {
+              label: 'Perhitungan Tarif Interkoneksi & Transit',
+              text: 'Otomatisasi kalkulasi biaya terminasi panggilan, SMS A2P (Application-to-Person), dan sewa kapasitas sirkuit IPLC/Metro-E.',
+            },
+            {
+              label: 'Rekonsiliasi & Deteksi Selisih Traffic',
+              text: 'Pencocokan rekaman log trafik antar-operator untuk mengidentifikasi selisih volume billing sebelum penagihan invoice resmi.',
+            },
+          ],
+          closingParagraph:
+            'Mediasi CDR yang akurat mencegah dispute penagihan antar-operator dan mempercepat siklus pelunasan piutang wholesale.',
+        },
+        {
+          id: 'telecom-security-compliance',
+          tocLabel: 'Keamanan Jaringan & Regulasi',
+          title: 'Keamanan Siber Telekomunikasi & Kepatuhan Regulasi Carrier',
+          paragraphs: [
+            'Jaringan telekomunikasi merupakan infrastruktur informasi vital nasional yang rentan terhadap ancaman serangan DDoS, penyadapan ilegal, dan spoofing identitas pelanggan.',
+            'Teknalogi menerapkan arsitektur keamanan bertingkat yang mematuhi standar 3GPP Security Assurance, segmentasi jaringan Signaling (SS7/Diameter/HTTP2), dan perlindungan data pribadi pelanggan.',
+          ],
+          bullets: [
+            {
+              label: 'Perlindungan Jaringan Signaling (SS7 / Diameter Firewall)',
+              text: 'Penyaringan lalu lintas signaling telekomunikasi untuk memblokir eksploitasi pelacakan lokasi dan pembajakan SMS OTP.',
+            },
+            {
+              label: 'Enkripsi & Manajemen Kunci Kriptografi',
+              text: 'Pengamanan kanal komunikasi internal O&M (Operation and Maintenance) dan manajemen kunci identitas pelanggan (K/Ki/OPc).',
+            },
+            {
+              label: 'Kepatuhan Regulasi Registrasi Pelanggan',
+              text: 'Integrasi sistem validasi identitas kependudukan (Dukcapil) resmi dengan perlindungan data pribadi sesuai UU PDP.',
+            },
+          ],
+          closingParagraph:
+            'Standar keamanan carrier-grade menjaga integritas jaringan nasional dan melindungi privasi jutaan pelanggan telekomunikasi.',
+        },
+      ],
+    }
+  : {
+      title: 'Telecommunications Systems Engineering & Carrier-Grade Operations',
+      tocTitle: 'Table of Contents',
+      sections: [
+        {
+          id: 'oss-bss-modernization',
+          tocLabel: 'OSS/BSS Modernization',
+          title: 'OSS/BSS Architecture Modernization & TM Forum Open APIs',
+          paragraphs: [
+            'Telecom operators and Internet Service Providers (ISPs) face immense complexity bridging Operations Support Systems (OSS) with commercial Business Support Systems (BSS). System silos create latency during service provisioning and slow down new plan rollouts.',
+            'Teknalogi builds carrier-grade middleware and microservices adopting TM Forum Open API standards, unifying enterprise product catalogs, automated order fulfillment (order-to-activate), and network element configuration.',
+          ],
+          bullets: [
+            {
+              label: 'TM Forum Open API Standardization',
+              text: 'Implementing standardized specifications (TMF620, TMF622, TMF641) for decoupled product catalog, order management, and service orchestration.',
+            },
+            {
+              label: 'Zero-Touch Service Provisioning',
+              text: 'Instant automated provisioning of broadband bandwidth, VLAN routing, and OLT/router port configurations upon payment verification.',
+            },
+            {
+              label: 'Unified Enterprise Product Catalog',
+              text: 'Centralized rules engine governing data quotas, regional pricing tiers, add-ons, and Fair Usage Policy (FUP) parameters.',
+            },
+          ],
+          closingParagraph:
+            'Decoupled OSS/BSS integration accelerates new commercial tariff rollouts from quarters to days.',
+        },
+        {
+          id: 'realtime-ocs-rating',
+          tocLabel: 'Online Charging (OCS)',
+          title: 'Online Charging Systems (OCS) & Real-Time Rating Engines',
+          paragraphs: [
+            'Processing subscriber data consumption, voice calls, and digital service bundles across 4G/5G and fiber networks demands sub-millisecond evaluation latencies. Rating lags cause revenue leakage and negative balance liabilities.',
+            'We engineer carrier-grade Online Charging Systems (OCS) and Policy and Charging Rules Function (PCRF) components using distributed in-memory caching to enforce quota balances, FUP thresholds, and session termination in real time.',
+          ],
+          bullets: [
+            {
+              label: 'Sub-Millisecond Rating & Quota Deduction',
+              text: 'Instantaneous transaction rating supporting massive multi-million request-per-second concurrency with zero database bottlenecks.',
+            },
+            {
+              label: 'Dynamic Bandwidth Policy & FUP Enforcement',
+              text: 'Real-time bandwidth throttling upon reaching fair usage thresholds without requiring subscriber session disconnects.',
+            },
+            {
+              label: 'Distributed Balance Reservation',
+              text: 'Temporary quota reservation locks preventing simultaneous over-consumption across multi-SIM subscriber configurations.',
+            },
+          ],
+          closingParagraph:
+            'Deterministic rating engines safeguard operator margins while delivering instantaneous quota transparency to end-users.',
+        },
+        {
+          id: 'network-telemetry-faults',
+          tocLabel: 'Network Telemetry & Faults',
+          title: 'Real-Time Network Telemetry Streaming & Fault Diagnostics',
+          paragraphs: [
+            'Carrier infrastructure spanning core networks, optical transport backbones, and cell towers produces millions of telemetry signals every minute. Rapidly isolating fiber cuts and link degradation requires intelligent event correlation.',
+            'Teknalogi engineers high-throughput telemetry ingestion pipelines processing SNMP traps, Syslogs, IPFIX/NetFlow, and gNMI streaming telemetry to detect and isolate network anomalies before customers experience service degradation.',
+          ],
+          bullets: [
+            {
+              label: 'High-Throughput Telemetry Ingestion',
+              text: 'Continuous collection of interface utilization, packet loss, optical power levels, and hardware metrics with minimal CPU impact on network elements.',
+            },
+            {
+              label: 'Alarm Correlation & Root-Cause Isolation',
+              text: 'Consolidating cascading downstream alarms into single root-cause incident tickets for rapid Network Operations Center (NOC) response.',
+            },
+            {
+              label: 'Quality of Experience (QoE / QoS) Monitoring',
+              text: 'Real-time peering latency benchmarking and popular Content Delivery Network (CDN) transit quality tracking at the regional level.',
+            },
+          ],
+          closingParagraph:
+            'Deep network observability allows NOC engineers to remediate transmission anomalies proactively before SLA breaches occur.',
+        },
+        {
+          id: 'subscriber-portals-esim',
+          tocLabel: 'Subscriber Portals & eSIM',
+          title: 'Self-Service Subscriber Portals & Instant eSIM Provisioning',
+          paragraphs: [
+            'Modern telecom subscribers demand frictionless self-service apps for real-time balance tracking, instant top-ups, and automated digital subscription management.',
+            'We build native mobile apps and ultra-responsive subscriber web portals integrated with Subscription Manager Data Preparation (SM-DP+) engines for instantaneous remote eSIM profile provisioning.',
+          ],
+          bullets: [
+            {
+              label: 'Digital eSIM Lifecycle Management',
+              text: 'Instant remote eSIM profile delivery directly to subscriber smartphones via secure, encrypted QR code activation.',
+            },
+            {
+              label: 'Real-Time Quota & Usage Dashboard',
+              text: 'Visual breakdown of remaining high-speed data, application quotas, and plan validity periods synchronized directly from the OCS.',
+            },
+            {
+              label: '1-Click Plan Purchases & Auto-Renewal',
+              text: 'Integrated payment gateways supporting e-wallets, credit cards, and bank transfers with automated auto-debit renewals.',
+            },
+          ],
+          closingParagraph:
+            'Intuitive digital self-service reduces call center operational costs while unlocking higher average revenue per user (ARPU).',
+        },
+        {
+          id: 'wholesale-interconnect-cdr',
+          tocLabel: 'Wholesale & CDR Mediation',
+          title: 'Wholesale Partner Management, Interconnect & CDR Mediation',
+          paragraphs: [
+            'Carrier interconnect billing and wholesale capacity leasing require processing billions of Call Detail Records (CDR) and IP transit usage logs with uncompromising fiscal precision.',
+            'We build high-velocity CDR mediation engines that ingest, validate, and normalize records from disparate network switch vendors, automating inter-carrier billing and revenue reconciliation.',
+          ],
+          bullets: [
+            {
+              label: 'Multi-Vendor CDR Parsing & Normalization',
+              text: 'Batch processing of heterogeneous CDR dumps from Huawei, Ericsson, Cisco, and Nokia hardware into unified data schemas.',
+            },
+            {
+              label: 'Interconnect & Transit Billing Automation',
+              text: 'Automated settlement calculation for voice termination, A2P SMS traffic, and dedicated leased line (IPLC/Metro-E) capacities.',
+            },
+            {
+              label: 'Dispute Mitigation & Traffic Reconciliation',
+              text: 'Algorithmic matching of partner operator traffic logs to highlight discrepancies before formal monthly invoice issuance.',
+            },
+          ],
+          closingParagraph:
+            'Reliable CDR mediation prevents costly inter-carrier billing disputes and accelerates wholesale accounts receivable collections.',
+        },
+        {
+          id: 'telecom-security-compliance',
+          tocLabel: 'Carrier Security & Compliance',
+          title: 'Telecom Network Cybersecurity, Signaling Defense & Compliance',
+          paragraphs: [
+            'As national critical information infrastructure, telecom networks face relentless risks from DDoS floods, signaling exploits, and subscriber identity spoofing.',
+            'Teknalogi implements multi-tier defense architectures conforming to 3GPP Security Assurance specifications, signaling firewalls (SS7/Diameter/HTTP2), and carrier data protection governance.',
+          ],
+          bullets: [
+            {
+              label: 'Signaling Security & Firewall Gateways',
+              text: 'Filtering mobile core signaling traffic to block unauthorized subscriber location tracking and SMS OTP interception attacks.',
+            },
+            {
+              label: 'Encrypted Operation & Maintenance (O&M)',
+              text: 'Hardened network management access, mutual TLS authentication, and cryptographic credential isolation (Ki/OPc keys).',
+            },
+            {
+              label: 'Subscriber Registration & Regulatory Compliance',
+              text: 'Official civil registry identity verification integrations coupled with strict privacy governance under data protection statutes.',
+            },
+          ],
+          closingParagraph:
+            'Carrier-grade security architectures ensure mission-critical network availability and protect subscriber communications integrity.',
+        },
+      ],
+    };
+---
+
+<section
+  id="telecom-deep-dive"
+  aria-label={copy.title}
+  class="relative isolate bg-white py-12 sm:py-20 lg:py-32 border-t border-slate-200/80"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      
+      <!-- Left Column: Main Editorial Article -->
+      <div class="lg:col-span-8">
+        
+        <!-- Main Section Title -->
+        <h2
+          class="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-[-0.04em] text-slate-950 mb-7 sm:mb-14"
+        >
+          {copy.title}
+        </h2>
+
+        <!-- Mobile Table of Contents (collapsible drawer on small screens) -->
+        <div class="lg:hidden mb-8 rounded-2xl border border-slate-200/90 bg-slate-50/80 p-4 sm:p-5">
+          <details class="group">
+            <summary class="flex items-center justify-between cursor-pointer list-none font-mono text-xs font-bold uppercase tracking-wider text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded min-h-[44px]">
+              <span>{copy.tocTitle}</span>
+              <svg
+                class="w-4 h-4 text-slate-500 transition-transform duration-200 group-open:rotate-180"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <nav class="mt-3 flex flex-col space-y-1.5 border-t border-slate-200/80 pt-3">
+              {copy.sections.map((section) => (
+                <a
+                  href={`#${section.id}`}
+                  class="text-xs sm:text-sm text-slate-600 hover:text-slate-950 transition-colors py-1.5 pl-2.5 border-l-2 border-slate-300 hover:border-slate-900 font-sans min-h-[44px] flex items-center"
+                >
+                  {section.tocLabel}
+                </a>
+              ))}
+            </nav>
+          </details>
+        </div>
+
+        <!-- Editorial Sections -->
+        <div class="flex flex-col space-y-10 sm:space-y-16">
+          {copy.sections.map((section) => (
+            <article
+              id={section.id}
+              class="telecom-editorial-section scroll-mt-20 sm:scroll-mt-28 pb-8 sm:pb-12 border-b border-slate-100 last:border-b-0"
+            >
+              <h3 class="text-xl sm:text-2xl font-medium tracking-[-0.03em] text-slate-950 mb-3 sm:mb-4 leading-snug">
+                {section.title}
+              </h3>
+
+              {section.paragraphs.map((p) => (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mb-3 sm:mb-4">
+                  {p}
+                </p>
+              ))}
+
+              {section.bullets && (
+                <ul class="my-4 sm:my-5 space-y-2.5 sm:space-y-3 pl-4 sm:pl-5 list-disc marker:text-slate-400 text-sm sm:text-[16px] leading-relaxed text-slate-600 font-sans">
+                  {section.bullets.map((b) => (
+                    <li>
+                      <strong class="font-semibold text-slate-900">{b.label}:</strong> {b.text}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {section.closingParagraph && (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mt-3 sm:mt-4">
+                  {section.closingParagraph}
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- Right Column: Sticky Table of Contents -->
+      <aside class="hidden lg:block lg:col-span-4 sticky top-28 xl:top-32 self-start">
+        <div class="max-h-[calc(100vh-9rem)] overflow-y-auto pl-8 border-l border-slate-200/90 py-1">
+          <h3 class="text-[11.5px] font-bold tracking-[0.14em] text-slate-900 uppercase font-mono mb-4 select-none">
+            {copy.tocTitle}
+          </h3>
+          <nav aria-label={copy.tocTitle} class="flex flex-col space-y-2.5 text-[13.5px] font-sans">
+            {copy.sections.map((section) => (
+              <a
+                href={`#${section.id}`}
+                data-telecom-toc-id={section.id}
+                class="telecom-toc-nav-link text-slate-500 hover:text-slate-950 transition-all duration-200 py-1 pl-3 border-l-2 border-transparent hover:border-slate-400 min-h-[32px] flex items-center"
+              >
+                {section.tocLabel}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupTelecomTocHighlight() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-10% 0px -70% 0px',
+      threshold: 0,
+    };
+
+    const sections = document.querySelectorAll<HTMLElement>('.telecom-editorial-section');
+    const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.telecom-toc-nav-link');
+
+    if (!sections.length || !tocLinks.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href === `#${id}`) {
+              link.classList.add('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.remove('text-slate-500', 'border-transparent');
+            } else {
+              link.classList.remove('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.add('text-slate-500', 'border-transparent');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((sec) => observer.observe(sec));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupTelecomTocHighlight);
+  } else {
+    setupTelecomTocHighlight();
+  }
+  document.addEventListener('astro:page-load', setupTelecomTocHighlight);
+</script>

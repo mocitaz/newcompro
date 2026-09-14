@@ -1,0 +1,475 @@
+---
+// src/components/industries/BusinessServicesAboutIndustry.astro
+import type { Locale } from '../../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      title: 'Rekayasa Sistem & Operasi Layanan Bisnis Digital',
+      tocTitle: 'Daftar Isi Pembahasan',
+      sections: [
+        {
+          id: 'client-portals',
+          tocLabel: 'Portal Klien & Ekstranet',
+          title: 'Ekstranet Klien Korporasi & Kolaborasi Aman',
+          paragraphs: [
+            'Interaksi dengan klien korporat menuntut transparansi progres pekerjaan, pertukaran berkas terenkripsi, dan alur persetujuan yang terdokumentasi rapi. Ketergantungan pada lampiran email yang tersebar sering memicu miskomunikasi dan hilangnya riwayat revisi deliverable.',
+            'Teknalogi merancang portal klien (extranet) kustom dengan antarmuka bermerek, segmentasi hak akses berbasis proyek, dan sistem notifikasi real-time. Platform ini memberikan visibilitas penuh bagi pemangku kepentingan klien tanpa mengekspos data internal perusahaan.',
+          ],
+          bullets: [
+            {
+              label: 'Ruang Kerja Terisolasi (Project Workspaces)',
+              text: 'Membatasi akses berkas, timeline, dan deliverable hanya untuk anggota tim klien yang memiliki otorisasi sah.',
+            },
+            {
+              label: 'Persetujuan Deliverable Mandiri',
+              text: 'Menyediakan tombol sign-off digital pada setiap milestone dengan pencatatan stempel waktu dan identitas penyetujui.',
+            },
+            {
+              label: 'Audit Trail Riwayat Diskusi',
+              text: 'Merekam seluruh komentar revisi, permintaan perubahan lingkup (change requests), dan lampiran dokumen dalam satu linimasa terpusat.',
+            },
+          ],
+          closingParagraph:
+            'Portal klien yang profesional memperkuat citra keandalan institusi Anda sekaligus memangkas waktu koordinasi administratif.',
+        },
+        {
+          id: 'time-billing',
+          tocLabel: 'Timesheet & Billing Proyek',
+          title: 'Otomasi Timesheet, Retainer & Penagihan Proyek',
+          paragraphs: [
+            'Kebocoran pendapatan pada bisnis jasa profesional umumnya berakar dari pencatatan jam kerja yang terlambat dan perhitungan tagihan reimbursable expense yang tidak sinkron.',
+            'Kami membangun mesin penagihan otomatis yang mengonversi catatan timesheet staf, milestone deliverable, dan perjanjian retainer bulanan menjadi draf invoice terverifikasi.',
+          ],
+          bullets: [
+            {
+              label: 'Penghitungan Multi-Struktur Tarif (Rate Cards)',
+              text: 'Mendukung tarif per jam berdasarkan senioritas konsultan, tarif flat per milestone, hingga model fixed-fee bertahap.',
+            },
+            {
+              label: 'Kalkulasi Otomatis Pajak & Biaya Operasional',
+              text: 'Menghitung pemotongan PPh 23, PPN, dan pengeluaran talangan proyek (disbursements) secara akurat dalam draf tagihan.',
+            },
+            {
+              label: 'Integrasi Payment Gateway & Virtual Account B2B',
+              text: 'Menerbitkan tautan pembayaran invoice digital dengan rekonsiliasi otomatis saat dana pelunasan masuk ke rekening bank.',
+            },
+          ],
+          closingParagraph:
+            'Otomasi billing mempercepat siklus penagihan piutang dan mengeliminasi sengketa rincian jam kerja dari klien.',
+        },
+        {
+          id: 'resource-planning',
+          tocLabel: 'Manajemen Alokasi Konsultan',
+          title: 'Penjadwalan Kapasitas & Alokasi Konsultan',
+          paragraphs: [
+            'Keseimbangan antara target utilisasi konsultan dan kapasitas riil tim menentukan profitabilitas proyek serta pencegahan risiko kelelahan kerja (burnout).',
+            'Kami menerapkan platform Resource Management cerdas dengan matriks keterampilan staf, kalender ketersediaan interaktif, dan proyeksi utilisasi real-time.',
+          ],
+          bullets: [
+            {
+              label: 'Pencocokan Staf Berbasis Keterampilan (Skills Matrix)',
+              text: 'Menemukan konsultan yang memiliki keahlian, sertifikasi, dan ketersediaan waktu yang paling cocok untuk proyek baru.',
+            },
+            {
+              label: 'Peta Panas Utilisasi (Capacity Heatmaps)',
+              text: 'Memvisualisasikan beban kerja tim di seluruh departemen guna mengidentifikasi konsultan yang overbooked atau underutilized.',
+            },
+            {
+              label: 'Proyeksi Margin Laba per Proyek',
+              text: 'Menghitung estimasi biaya tenaga kerja aktual terhadap nilai kontrak proyek untuk memantau batas profitabilitas.',
+            },
+          ],
+          closingParagraph:
+            'Alokasi sumber daya yang presisi memastikan setiap proyek diselesaikan tepat waktu oleh tenaga ahli yang tepat.',
+        },
+        {
+          id: 'contract-lifecycle',
+          tocLabel: 'Otomasi Kontrak & e-Sign',
+          title: 'Manajemen Siklus Kontrak (CLM) & E-Signature',
+          paragraphs: [
+            'Proses pembuatan perjanjian kerja sama, Non-Disclosure Agreement (NDA), dan Statement of Work (SOW) yang manual sering kali memperlambat konversi prospek menjadi klien aktif.',
+            'Kami membangun pipeline Contract Lifecycle Management (CLM) dengan generator klausul otomatis, pelacakan revisi (redlining), dan integrasi tanda tangan digital tersertifikasi.',
+          ],
+          bullets: [
+            {
+              label: 'Penyusunan Kontrak Dinamis Berbasis Template',
+              text: 'Mengisi variabel kontrak (lingkup kerja, nilai kontrak, termin pembayaran) secara otomatis dari master data penawaran.',
+            },
+            {
+              label: 'Tanda Tangan Elektronik Sah (PSrE / e-Sign)',
+              text: 'Mengintegrasikan sertifikat tanda tangan digital berinduk resmi dengan segel kriptografi anti-manipulasi.',
+            },
+            {
+              label: 'Pengingat Otomatis Perpanjangan Kontrak',
+              text: 'Mengirimkan notifikasi berkala sebelum masa berlaku kontrak retainer atau perjanjian kerja sama berakhir.',
+            },
+          ],
+          closingParagraph:
+            'Otomasi kontrak mempercepat proses onboarding klien dari hitungan minggu menjadi hanya dalam beberapa jam.',
+        },
+        {
+          id: 'confidentiality-security',
+          tocLabel: 'Isolasi Data & Keamanan',
+          title: 'Isolasi Data Klien & Tata Kelola Kerahasiaan',
+          paragraphs: [
+            'Kerahasiaan dokumen finansial, legal, dan strategi bisnis klien adalah fondasi reputasi setiap firma profesional. Pelanggaran data dapat memicu sanksi hukum dan hilangnya kepercayaan pasar.',
+            'Arsitektur keamanan kami menerapkan prinsip isolasi data multi-penyewa (multi-tenancy) yang ketat, enkripsi tingkat enterprise, dan kontrol akses berbasis peran (RBAC).',
+          ],
+          bullets: [
+            {
+              label: 'Isolasi Ruang Penyimpanan Logis & Kriptografi',
+              text: 'Setiap klien memiliki kunci enkripsi berkas terpisah untuk mencegah akses silang antar-proyek yang tidak sah.',
+            },
+            {
+              label: 'Watermarking Dokumen Otomatis',
+              text: 'Menambahkan tanda air identitas pengunduh dan stempel waktu pada dokumen sensitif untuk mencegah pembocoran berkas.',
+            },
+            {
+              label: 'Log Audit Akses Komprehensif',
+              text: 'Mencatat setiap aktivitas pratinjau, pengunduhan, dan penyuntingan dokumen ke dalam log yang tidak dapat diubah.',
+            },
+          ],
+          closingParagraph:
+            'Perlindungan data yang kokoh memberikan rasa tenang bagi klien korporat bahwa rahasia bisnis mereka tersimpan dengan aman.',
+        },
+        {
+          id: 'analytics-profitability',
+          tocLabel: 'Analitik Praktik Bisnis',
+          title: 'Analitik Praktik Bisnis & Profitabilitas Real-Time',
+          paragraphs: [
+            'Pimpinan firma membutuhkan wawasan berbasis data untuk mengevaluasi efisiensi layanan, profitabilitas klien, dan performa keuangan firma secara menyeluruh.',
+            'Teknalogi membangun Executive Dashboard yang mengonsolidasikan data penjualan, progres proyek, utilisasi staf, dan arus kas penagihan ke dalam visualisasi analitik interaktif.',
+          ],
+          bullets: [
+            {
+              label: 'Metrik Profitabilitas per Klien & Layanan',
+              text: 'Menganalisis pendapatan bersih setelah dikurangi biaya operasional dan jam kerja tim untuk setiap portofolio klien.',
+            },
+            {
+              label: 'Analisis Realisasi Tagihan (Realization Rates)',
+              text: 'Membandingkan nilai jam kerja standar terhadap jumlah yang berhasil ditagihkan dan dibayarkan oleh klien.',
+            },
+            {
+              label: 'Integrasi Buku Besar Akuntansi (ERP/General Ledger)',
+              text: 'Menyinkronkan data invoice dan penerimaan kas secara otomatis dengan software akuntansi (Xero, QuickBooks, SAP, Jurnal).',
+            },
+          ],
+          closingParagraph:
+            'Analitik yang komprehensif memandu para partner dan direktur dalam mengambil keputusan strategis guna mendorong pertumbuhan bisnis yang berkelanjutan.',
+        },
+      ],
+    }
+  : {
+      title: 'Business Systems Engineering & Professional Practice Architecture',
+      tocTitle: 'Table of Contents',
+      sections: [
+        {
+          id: 'client-portals',
+          tocLabel: 'Client Portals & Extranets',
+          title: 'Enterprise Client Extranets & Secure Collaboration',
+          paragraphs: [
+            'Interacting with enterprise clients requires transparent milestone reporting, encrypted document exchange, and structured approval audit trails. Relying on loose email attachments breeds miscommunication and scattered revision histories.',
+            'Teknalogi builds custom branded client portals (extranets) featuring granular project permissions, milestone progress dashboards, and real-time notification engines. The platform delivers full transparency to client stakeholders without exposing internal operations.',
+          ],
+          bullets: [
+            {
+              label: 'Isolated Project Workspaces',
+              text: 'Restrict access to files, schedules, and deliverables strictly to authorized client and internal team members.',
+            },
+            {
+              label: 'Self-Service Deliverable Sign-Offs',
+              text: 'Empower client sponsors to approve milestones directly with timestamped cryptographic authentication.',
+            },
+            {
+              label: 'Centralized Change Request Audit Trails',
+              text: 'Capture scope changes, revision comments, and contractual amendments in a single verifiable timeline.',
+            },
+          ],
+          closingParagraph:
+            'A polished digital client portal elevates your firm’s brand prestige while drastically reducing administrative coordination overhead.',
+        },
+        {
+          id: 'time-billing',
+          tocLabel: 'Time & Project Billing',
+          title: 'Automated Time Tracking, Retainers & Project Billing',
+          paragraphs: [
+            'Professional services revenue leakage primarily stems from delayed timesheet logging and disjointed reimbursable expense reconciliation.',
+            'We engineer automated billing engines that translate staff time logs, deliverable milestones, and monthly recurring retainers into verified invoice drafts.',
+          ],
+          bullets: [
+            {
+              label: 'Multi-Tier Rate Card Execution',
+              text: 'Support seniority-based hourly billing, flat deliverable fees, and phased milestone drawdowns automatically.',
+            },
+            {
+              label: 'Automated Tax & Disbursement Pass-Through',
+              text: 'Calculate regional withholding taxes (PPh 23, VAT) and reimbursable client expenses directly inside invoice items.',
+            },
+            {
+              label: 'B2B Payment Gateway & Virtual Account Bridging',
+              text: 'Issue digital payment links with instant reconciliation upon bank settlement into practice accounts.',
+            },
+          ],
+          closingParagraph:
+            'Automated billing accelerates accounts receivable turnover and eliminates client fee disputes with transparent time logs.',
+        },
+        {
+          id: 'resource-planning',
+          tocLabel: 'Resource Scheduling',
+          title: 'Intelligent Resource Scheduling & Capacity Forecasting',
+          paragraphs: [
+            'Balancing consultant utilization targets against realistic team capacity determines project profit margins and prevents burnout.',
+            'We implement intelligent Resource Management platforms equipped with skills taxonomies, interactive availability schedules, and real-time utilization curves.',
+          ],
+          bullets: [
+            {
+              label: 'Skills-Based Matchmaking Matrix',
+              text: 'Match project requirements with consultant expertise, certifications, and forward schedule openings.',
+            },
+            {
+              label: 'Capacity & Utilization Heatmaps',
+              text: 'Visualize department workloads to pinpoint overbooked staff and deploy available capacity proactively.',
+            },
+            {
+              label: 'Project Gross Margin Forecasting',
+              text: 'Compare live billable hours cost against contract values to safeguard engagement profitability in real time.',
+            },
+          ],
+          closingParagraph:
+            'Precise resource scheduling guarantees that client engagements are delivered on schedule by the right subject matter experts.',
+        },
+        {
+          id: 'contract-lifecycle',
+          tocLabel: 'Contract Lifecycle (CLM)',
+          title: 'Contract Lifecycle Management (CLM) & Digital Signatures',
+          paragraphs: [
+            'Manual drafting of master services agreements (MSAs), Non-Disclosure Agreements (NDAs), and Statements of Work (SOWs) bottlenecks new client onboarding.',
+            'We build automated CLM pipelines featuring dynamic clause generation, redline audit histories, and certified cryptographic digital signatures.',
+          ],
+          bullets: [
+            {
+              label: 'Dynamic Template-Driven Contract Generation',
+              text: 'Populate legal parameters (scope, fee schedules, payment terms) automatically from approved sales proposals.',
+            },
+            {
+              label: 'Certified Cryptographic Digital Signatures',
+              text: 'Integrate legally binding e-signatures with tamper-evident digital certificate seals and verification QR codes.',
+            },
+            {
+              label: 'Automated Renewal & SLA Alerts',
+              text: 'Dispatch scheduled reminders ahead of retainer expiration dates and milestone renewal deadlines.',
+            },
+          ],
+          closingParagraph:
+            'Contract automation shrinks client onboarding cycles from weeks to minutes while ensuring full compliance governance.',
+        },
+        {
+          id: 'confidentiality-security',
+          tocLabel: 'Data Isolation & Governance',
+          title: 'Multi-Tenant Data Isolation & Confidentiality Governance',
+          paragraphs: [
+            'Maintaining confidentiality for client financial, legal, and intellectual property is the bedrock of professional reputation. Breaches lead to severe liabilities and loss of market trust.',
+            'Our security architecture implements rigorous multi-tenant data boundaries, enterprise-grade encryption at rest and in transit, and role-based access controls.',
+          ],
+          bullets: [
+            {
+              label: 'Cryptographic Storage Isolation',
+              text: 'Isolate client engagement files with distinct cryptographic encryption keys to prevent cross-tenant data leakage.',
+            },
+            {
+              label: 'Dynamic Document Watermarking',
+              text: 'Embed viewer identities and timestamp watermarks on sensitive deliverables to deter unauthorized dissemination.',
+            },
+            {
+              label: 'Immutable Audit Logging',
+              text: 'Log every file preview, download, and modification event into tamper-proof security access ledgers.',
+            },
+          ],
+          closingParagraph:
+            'Robust data safeguards provide corporate clients with absolute confidence that sensitive proprietary data is protected.',
+        },
+        {
+          id: 'analytics-profitability',
+          tocLabel: 'Practice Analytics',
+          title: 'Practice Analytics & Real-Time Profitability Engines',
+          paragraphs: [
+            'Firm leadership requires real-time business intelligence to evaluate practice group efficiency, client realization rates, and overall financial health.',
+            'Teknalogi designs Executive Dashboards uniting pipeline sales, project milestone velocity, staff utilization, and cash collection into intuitive analytics.',
+          ],
+          bullets: [
+            {
+              label: 'Client & Service Line Profitability Metrics',
+              text: 'Track net margin contributions after direct labor costs and project overheads across client portfolios.',
+            },
+            {
+              label: 'Realization & Collection Rate Analysis',
+              text: 'Benchmark billable hours worked against fee amounts billed and collected to measure revenue efficiency.',
+            },
+            {
+              label: 'Automated General Ledger Accounting Sync',
+              text: 'Stream verified billing and receipt data into enterprise accounting systems (Xero, QuickBooks, SAP, Jurnal).',
+            },
+          ],
+          closingParagraph:
+            'Unified practice analytics equip managing partners with actionable clarity to drive scalable business expansion.',
+        },
+      ],
+    };
+---
+
+<section
+  id="business-deep-dive"
+  aria-label={copy.title}
+  class="relative isolate bg-white py-12 sm:py-20 lg:py-32 border-t border-slate-200/80"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      
+      <!-- Left Column: Main Editorial Article -->
+      <div class="lg:col-span-8">
+        
+        <!-- Main Section Title -->
+        <h2
+          class="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-[-0.04em] text-slate-950 mb-7 sm:mb-14"
+        >
+          {copy.title}
+        </h2>
+
+        <!-- Mobile Table of Contents (collapsible drawer on small screens) -->
+        <div class="lg:hidden mb-8 rounded-2xl border border-slate-200/90 bg-slate-50/80 p-4 sm:p-5">
+          <details class="group">
+            <summary class="flex items-center justify-between cursor-pointer list-none font-mono text-xs font-bold uppercase tracking-wider text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded min-h-[44px]">
+              <span>{copy.tocTitle}</span>
+              <svg
+                class="w-4 h-4 text-slate-500 transition-transform duration-200 group-open:rotate-180"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <nav class="mt-3 flex flex-col space-y-1.5 border-t border-slate-200/80 pt-3">
+              {copy.sections.map((section) => (
+                <a
+                  href={`#${section.id}`}
+                  class="text-xs sm:text-sm text-slate-600 hover:text-slate-950 transition-colors py-1.5 pl-2.5 border-l-2 border-slate-300 hover:border-slate-900 font-sans min-h-[44px] flex items-center"
+                >
+                  {section.tocLabel}
+                </a>
+              ))}
+            </nav>
+          </details>
+        </div>
+
+        <!-- Editorial Sections -->
+        <div class="flex flex-col space-y-10 sm:space-y-16">
+          {copy.sections.map((section) => (
+            <article
+              id={section.id}
+              class="business-editorial-section scroll-mt-20 sm:scroll-mt-28 pb-8 sm:pb-12 border-b border-slate-100 last:border-b-0"
+            >
+              <h3 class="text-xl sm:text-2xl font-medium tracking-[-0.03em] text-slate-950 mb-3 sm:mb-4 leading-snug">
+                {section.title}
+              </h3>
+
+              {section.paragraphs.map((p) => (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mb-3 sm:mb-4">
+                  {p}
+                </p>
+              ))}
+
+              {section.bullets && (
+                <ul class="my-4 sm:my-5 space-y-2.5 sm:space-y-3 pl-4 sm:pl-5 list-disc marker:text-slate-400 text-sm sm:text-[16px] leading-relaxed text-slate-600 font-sans">
+                  {section.bullets.map((b) => (
+                    <li>
+                      <strong class="font-semibold text-slate-900">{b.label}:</strong> {b.text}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {section.closingParagraph && (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mt-3 sm:mt-4">
+                  {section.closingParagraph}
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- Right Column: Sticky Table of Contents -->
+      <aside class="hidden lg:block lg:col-span-4 sticky top-28 xl:top-32 self-start">
+        <div class="max-h-[calc(100vh-9rem)] overflow-y-auto pl-8 border-l border-slate-200/90 py-1">
+          <h3 class="text-[11.5px] font-bold tracking-[0.14em] text-slate-900 uppercase font-mono mb-4 select-none">
+            {copy.tocTitle}
+          </h3>
+          <nav aria-label={copy.tocTitle} class="flex flex-col space-y-2.5 text-[13.5px] font-sans">
+            {copy.sections.map((section) => (
+              <a
+                href={`#${section.id}`}
+                data-business-toc-id={section.id}
+                class="business-toc-nav-link text-slate-500 hover:text-slate-950 transition-all duration-200 py-1 pl-3 border-l-2 border-transparent hover:border-slate-400 min-h-[32px] flex items-center"
+              >
+                {section.tocLabel}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupBusinessTocHighlight() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-10% 0px -70% 0px',
+      threshold: 0,
+    };
+
+    const sections = document.querySelectorAll<HTMLElement>('.business-editorial-section');
+    const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.business-toc-nav-link');
+
+    if (!sections.length || !tocLinks.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href === `#${id}`) {
+              link.classList.add('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.remove('text-slate-500', 'border-transparent');
+            } else {
+              link.classList.remove('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.add('text-slate-500', 'border-transparent');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((sec) => observer.observe(sec));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupBusinessTocHighlight);
+  } else {
+    setupBusinessTocHighlight();
+  }
+  document.addEventListener('astro:page-load', setupBusinessTocHighlight);
+</script>

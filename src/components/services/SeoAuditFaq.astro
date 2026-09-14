@@ -50,7 +50,7 @@ const trustedSub = (faq as any).trustedSub || (lang === 'id' ? 'Perusahaan dan b
         <div>
           <h2
             id="faq-heading"
-            class="text-2xl sm:text-4xl lg:text-[44px] font-bold text-slate-950 tracking-[-0.035em] leading-[1.18] font-sans"
+            class="text-2xl sm:text-4xl lg:text-[44px] font-medium text-slate-950 tracking-[-0.035em] leading-[1.18] font-sans"
           >
             {title}
           </h2>
@@ -212,34 +212,20 @@ const trustedSub = (faq as any).trustedSub || (lang === 'id' ? 'Perusahaan dan b
       const collapse = item.querySelector<HTMLElement>('.faq-collapse');
       const iconMinus = item.querySelector<HTMLElement>('.faq-icon-minus');
       const iconPlus = item.querySelector<HTMLElement>('.faq-icon-plus');
-      const iconWrapper = item.querySelector<HTMLElement>('.faq-icon-wrapper');
 
-      item.classList.add(
-        'faq-open',
-        'border-slate-950',
-        'bg-[radial-gradient(ellipse_at_top_left,rgba(37,99,235,0.18)_0%,rgba(191,219,254,0.30)_40%,rgba(255,255,255,1)_70%)]',
-        'shadow-[0_10px_30px_-5px_rgba(37,99,235,0.22)]'
-      );
-      item.classList.remove(
-        'border-slate-900/80',
-        'shadow-[0_2px_6px_-2px_rgba(15,23,42,0.03)]',
-        'hover:border-slate-950'
-      );
+      if (!trigger || !collapse) return;
 
-      trigger?.setAttribute('aria-expanded', 'true');
+      item.classList.add('faq-open');
+      trigger.setAttribute('aria-expanded', 'true');
 
-      if (collapse) {
-        collapse.classList.remove('grid-rows-[0fr]', 'opacity-0');
-        collapse.classList.add('grid-rows-[1fr]', 'opacity-100');
-      }
+      collapse.classList.remove('grid-rows-[0fr]', 'opacity-0');
+      collapse.classList.add('grid-rows-[1fr]', 'opacity-100');
 
-      if (iconMinus && iconPlus && iconWrapper) {
+      if (iconMinus && iconPlus) {
         iconMinus.classList.remove('hidden');
         iconMinus.classList.add('block');
         iconPlus.classList.remove('block');
         iconPlus.classList.add('hidden');
-        iconWrapper.classList.add('border-slate-950', 'bg-slate-950', 'text-white');
-        iconWrapper.classList.remove('border-slate-900/30', 'bg-slate-50', 'text-slate-700');
       }
     }
 
@@ -248,34 +234,20 @@ const trustedSub = (faq as any).trustedSub || (lang === 'id' ? 'Perusahaan dan b
       const collapse = item.querySelector<HTMLElement>('.faq-collapse');
       const iconMinus = item.querySelector<HTMLElement>('.faq-icon-minus');
       const iconPlus = item.querySelector<HTMLElement>('.faq-icon-plus');
-      const iconWrapper = item.querySelector<HTMLElement>('.faq-icon-wrapper');
 
-      item.classList.remove(
-        'faq-open',
-        'border-slate-950',
-        'bg-[radial-gradient(ellipse_at_top_left,rgba(37,99,235,0.18)_0%,rgba(191,219,254,0.30)_40%,rgba(255,255,255,1)_70%)]',
-        'shadow-[0_10px_30px_-5px_rgba(37,99,235,0.22)]'
-      );
-      item.classList.add(
-        'border-slate-900/80',
-        'shadow-[0_2px_6px_-2px_rgba(15,23,42,0.03)]',
-        'hover:border-slate-950'
-      );
+      if (!trigger || !collapse) return;
 
-      trigger?.setAttribute('aria-expanded', 'false');
+      item.classList.remove('faq-open');
+      trigger.setAttribute('aria-expanded', 'false');
 
-      if (collapse) {
-        collapse.classList.remove('grid-rows-[1fr]', 'opacity-100');
-        collapse.classList.add('grid-rows-[0fr]', 'opacity-0');
-      }
+      collapse.classList.remove('grid-rows-[1fr]', 'opacity-100');
+      collapse.classList.add('grid-rows-[0fr]', 'opacity-0');
 
-      if (iconMinus && iconPlus && iconWrapper) {
+      if (iconMinus && iconPlus) {
         iconMinus.classList.remove('block');
         iconMinus.classList.add('hidden');
         iconPlus.classList.remove('hidden');
         iconPlus.classList.add('block');
-        iconWrapper.classList.remove('border-slate-950', 'bg-slate-950', 'text-white');
-        iconWrapper.classList.add('border-slate-900/30', 'bg-slate-50', 'text-slate-700');
       }
     }
   }
@@ -285,23 +257,20 @@ const trustedSub = (faq as any).trustedSub || (lang === 'id' ? 'Perusahaan dan b
 </script>
 
 <style>
-  /* Accordion Item Active State with Rich Ambient Radial Wash across the entire container */
   .faq-item.faq-open {
-    background: 
-      radial-gradient(circle at 85% 25%, rgba(59, 130, 246, 0.22) 0%, rgba(219, 234, 254, 0.14) 42%, transparent 72%),
-      radial-gradient(circle at 15% 85%, rgba(99, 102, 241, 0.16) 0%, transparent 60%),
+    background:
+      radial-gradient(circle at 86% 20%, rgba(196, 181, 253, 0.26), transparent 55%),
       #ffffff !important;
-    border-color: #0f172a !important;
+    border-color: rgb(15 23 42) !important;
     box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08) !important;
   }
 
   .faq-item.faq-open .faq-icon-wrapper {
-    background-color: #0f172a !important;
+    background-color: rgb(15 23 42) !important;
     color: #ffffff !important;
-    border-color: #0f172a !important;
+    border-color: rgb(15 23 42) !important;
   }
 
-  /* Focus & accessibility */
   .faq-trigger:focus-visible {
     outline: 2px solid #0f172a;
     outline-offset: 2px;

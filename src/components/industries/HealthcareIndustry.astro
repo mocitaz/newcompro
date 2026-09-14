@@ -1,0 +1,470 @@
+---
+// src/components/industries/HealthcareIndustry.astro
+import type { Locale } from '../../i18n/translations';
+import HealthcareAboutIndustry from './HealthcareAboutIndustry.astro';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      eyebrow: 'KESEHATAN & INFORMATIKA KLINIS',
+      title: 'Engineering untuk platform kesehatan modern dan integrasi klinis terpadu.',
+      lead: 'Bangun dan modernisasi platform layanan kesehatan dengan integrasi RME terstandar (HL7 FHIR & SATUSEHAT), otomasi klaim BPJS/asuransi, serta arsitektur data dengan privasi tingkat tinggi. Teknalogi menghadirkan rekayasa perangkat lunak klinis yang presisi dan andal.',
+      primaryCta: 'Diskusikan kebutuhan faskes Anda',
+      challengesTitle: 'Ketika sistem klinis dan administrasi terpisah, layanan terhambat.',
+      challengesLead: 'Operasional melambat ketika rekam medis, hasil diagnostik, dan penagihan berjalan sendiri-sendiri.',
+      challenges: [
+        ['Rekam medis terpisah', 'Riwayat pasien tersebar di berbagai unit, menyulitkan dokter melihat gambaran klinis utuh.'],
+        ['Klaim dan billing manual', 'Pengajuan berkas asuransi dan BPJS yang manual memperlambat arus kas faskes.'],
+        ['Hasil diagnostik tertunda', 'Mesin laboratorium dan radiologi yang belum terhubung memperpanjang waktu tunggu tindakan.'],
+        ['Kebutuhan regulasi dan privasi', 'Integrasi data kesehatan dan kepatuhan privasi menuntut kontrol sistem yang ketat.'],
+      ],
+      solutionsTitle: 'Solusi perangkat lunak terintegrasi untuk rumah sakit dan fasilitas kesehatan.',
+      solutionsLead: 'Ruang lingkup sistem disesuaikan dengan alur klinis fasilitas kesehatan Anda, mulai dari implementasi SIMRS, bridging regulasi, hingga telemedis modern.',
+      solutions: [
+        ['SIMRS Terpadu & Manajemen Bangsal', 'Otomatisasi pendaftaran, triase IGD, antrean poliklinik, reservasi tempat tidur (bed management), dan jadwal ruang operasi.', 'simrs'],
+        ['RME & Integrasi HL7 FHIR SATUSEHAT', 'Rekam Medis Elektronik adaptif dokter spesialis dengan integrasi langsung ke API SATUSEHAT Kementerian Kesehatan.', 'ehr'],
+        ['Integrasi Laboratorium & PACS Radiologi', 'Konektivitas mesin analyzer otomatis (ASTM/HL7) dan web DICOM viewer berkecepatan tinggi untuk dokter.', 'diagnostics'],
+        ['Otomasi Klaim BPJS (V-Claim) & Asuransi', 'Bridging V-Claim BPJS, integrasi grouper E-Klaim INA-CBG, dan validasi berkas klaim digital sebelum pengajuan.', 'claims'],
+        ['Manajemen Farmasi & E-Prescribing', 'Resep obat digital terintegrasi dengan validasi interaksi obat, stok farmasi Just-in-Time, dan inventori faskes.', 'pharmacy'],
+        ['Telekonsultasi & Portal Pasien', 'Platform konsultasi video WebRTC terenkripsi, pembayaran digital, dan akses riwayat medis mandiri untuk pasien.', 'telehealth'],
+      ],
+      approachTitle: 'Dirancang untuk privasi data pasien dan presisi operasional klinis.',
+      domains: [
+        ['Tata Kelola Privasi Data Klinis', 'Terapkan enkripsi AES-256 tingkat kolom, penyamaran identitas pasien (data masking), dan jejak audit akses tidak terhapus sesuai UU PDP.', 'privacy'],
+        ['Interoperabilitas Standar FHIR', 'Standarisasi struktur data klinis dengan protokol HL7 FHIR, ICD-10, dan SNOMED CT untuk pertukaran data faskes dan SATUSEHAT.', 'interoperability'],
+        ['Keandalan Sistem Kritis & Failover', 'Uji ketahanan sistem terhadap pemadaman jaringan lokal, failover database bangsal rawat inap, dan jaminan ketersediaan 99.99%.', 'continuity'],
+      ],
+      faqTitle: 'Hal yang biasanya dibahas sebelum proyek kesehatan dimulai.',
+      faqLead: 'Karakteristik alur kerja faskes, mesin diagnostik, dan kebutuhan akreditasi sangat spesifik. Discovery teknis kami memetakan topologi sistem, risiko keamanan, dan prioritas implementasi.',
+      faqTrustTitle: 'Dipercaya oleh',
+      faqTrustText: 'Fasilitas kesehatan dan penyedia layanan medis terkemuka di Indonesia',
+      faqAction: 'Tanyakan kebutuhan faskes Anda',
+      faqs: [
+        ['Apakah sistem Rekam Medis Elektronik Teknalogi sudah siap terhubung ke SATUSEHAT Kemkes?', 'Ya. Arsitektur RME kami telah mengadopsi standar HL7 FHIR dan terminologi baku (ICD-10, LOINC, SNOMED CT) dengan modul bridging siap pakai untuk pengiriman data encounter, kondisi, observasi, dan prosedur ke SATUSEHAT.'],
+        ['Bagaimana sistem menjamin keamanan data pasien sesuai UU PDP?', 'Kami menerapkan enkripsi end-to-end (AES-256 pada database dan TLS 1.3 pada transmisi), kontrol akses berbasis peran (RBAC) ketat, penyamaran data (masking) pada identitas sensitif, serta audit log tak terhapus untuk setiap aktivitas pembacaan berkas medis.'],
+        ['Bisakah sistem diintegrasikan dengan mesin analyzer laboratorium kami?', 'Bisa. Kami membangun middleware LIS yang berkomunikasi langsung dengan instrumen hematologi, kimia klinik, dan mikrobiologi melalui protokol serial/LAN (ASTM/HL7) sehingga hasil tes otomatis masuk ke resume rekam medis.'],
+        ['Bagaimana integrasi dengan BPJS Kesehatan (V-Claim dan INA-CBG)?', 'Sistem kami menyediakan modul bridging resmi untuk pengecekan eligibilitas peserta, penerbitan SEP otomatis, validasi kuota antrean online BPJS, dan integrasi dengan aplikasi E-Klaim INA-CBG.'],
+        ['Apakah SIMRS dapat beroperasi jika koneksi internet rumah sakit terputus?', 'Bisa. Kami merancang arsitektur hybrid on-premise/edge yang memungkinkan seluruh workstation poli, IGD, dan bangsal tetap melayani pasien secara offline lokal dan menyinkronkan data ke cloud saat koneksi pulih.'],
+        ['Berapa lama waktu yang dibutuhkan untuk migrasi dari SIMRS lama?', 'Waktu migrasi bergantung pada skala faskes dan format data lama. Tahap discovery teknis dan migrasi data historis biasanya diselesaikan dalam 4 hingga 8 minggu tanpa mengganggu layanan harian rumah sakit.'],
+        ['Apakah tersedia modul resep digital (e-prescribing) dengan pengecekan alergi obat?', 'Ya. Modul farmasi kami memvalidasi resep digital secara otomatis terhadap riwayat alergi pasien dan potensi interaksi obat sebelum dikirim ke instalasi farmasi.'],
+        ['Apakah Teknalogi menyediakan pelatihan bagi dokter dan tenaga kesehatan?', 'Ya. Kami menyusun materi pelatihan terstruktur, panduan SOP per instalasi, serta pendampingan langsung (go-live support) bagi dokter, perawat, analis laboratorium, dan staf administrasi.'],
+      ],
+    }
+  : {
+      eyebrow: 'HEALTHCARE & CLINICAL INFORMATICS',
+      title: 'Engineering for secure, patient-centric healthcare operations.',
+      lead: 'Build resilient healthcare platforms with seamless EHR interoperability (HL7 FHIR & SATUSEHAT), automated BPJS/insurance billing, and privacy-first data architecture. Teknalogi empowers hospitals, clinics, and healthtech innovators with high-precision digital systems.',
+      primaryCta: 'Discuss your healthcare requirements',
+      challengesTitle: 'When clinical and admin systems disconnect, care suffers.',
+      challengesLead: 'Operations slow down when health records, diagnostic results, and billing work in silos.',
+      challenges: [
+        ['Fragmented health records', 'Patient histories remain scattered, making it hard to see complete clinical context.'],
+        ['Manual claims and billing', 'Paper-heavy insurance and BPJS filing slows reimbursement and hospital cash flow.'],
+        ['Diagnostic bottlenecks', 'Disconnected lab analyzers and PACS archives delay urgent medical interventions.'],
+        ['Changing privacy mandates', 'New health data registries and privacy rules require strict architectural controls.'],
+      ],
+      solutionsTitle: 'Integrated software solutions engineered for hospitals and clinical enterprises.',
+      solutionsLead: 'System architectures are custom-tailored to your clinical workflows, spanning modern hospital management systems, regulatory bridging, and secure telemedicine.',
+      solutions: [
+        ['Unified Hospital Management (HIMS)', 'Automate outpatient registration, emergency triage, intelligent clinic queues, bed management, and operating theater scheduling.', 'simrs'],
+        ['EHR & HL7 FHIR SATUSEHAT Integration', 'Specialty-adaptive Electronic Health Records natively compliant with HL7 FHIR standards and national SATUSEHAT APIs.', 'ehr'],
+        ['Laboratory LIS & Radiology PACS Integration', 'Direct automated analyzer connectivity (ASTM/HL7) and zero-footprint web DICOM viewing for instantaneous physician diagnosis.', 'diagnostics'],
+        ['BPJS V-Claim & Insurance Claim Automation', 'Official BPJS bridging, INA-CBG grouper integration, and automated digital claim packet assembly to eliminate disputes.', 'claims'],
+        ['Pharmacy Management & E-Prescribing', 'Digital medication orders with automated drug-allergy interaction checking, Just-in-Time inventory, and dispensing workflows.', 'pharmacy'],
+        ['Telemedicine & Patient Self-Service Portal', 'Encrypted WebRTC virtual consultations, digital prescription routing, and patient mobile access to laboratory reports.', 'telehealth'],
+      ],
+      approachTitle: 'Designed for patient privacy and clinical operational precision.',
+      domains: [
+        ['Clinical Data Governance & Compliance', 'Implement column-level AES-256 encryption, patient de-identification (masking), and immutable access audit trails aligned with health data laws.', 'privacy'],
+        ['Standardized Clinical Data Exchange', 'Structure healthcare data using HL7 FHIR, ICD-10, and SNOMED CT schemas for seamless interoperability across clinical registries.', 'interoperability'],
+        ['High-Availability Clinical Infrastructure', 'Validate system resilience against network dropouts, inpatient ward database failovers, and guarantee 99.99% clinical uptime.', 'continuity'],
+      ],
+      faqTitle: 'What teams usually discuss before a healthcare project starts.',
+      faqLead: 'Hospital workflows, diagnostic hardware protocols, and accreditation standards are highly specialized. Technical discovery maps facility topology, data flows, and priority milestones.',
+      faqTrustTitle: 'Trusted by',
+      faqTrustText: 'Healthcare facilities and growing clinical organizations across Indonesia',
+      faqAction: 'Ask about your healthcare requirements',
+      faqs: [
+        ['Is Teknalogi’s Electronic Health Record (EHR) fully compliant with SATUSEHAT?', 'Yes. Our EHR architecture is built on HL7 FHIR specifications and standardized vocabularies (ICD-10, LOINC, SNOMED CT) with production-ready bridging modules for encounters, diagnoses, observations, and procedures.'],
+        ['How does the system ensure patient data confidentiality and regulatory compliance?', 'We enforce end-to-end encryption (AES-256 for data at rest and TLS 1.3 in transit), strict role-based access control (RBAC), field-level data masking, and tamper-evident audit logs capturing every chart access.'],
+        ['Can the platform integrate directly with our diagnostic laboratory analyzers?', 'Yes. We engineer bidirectional LIS interfaces supporting ASTM and HL7 protocols over serial/LAN connections, routing blood and specimen test results directly into patient charts.'],
+        ['How is integration with BPJS Kesehatan (V-Claim and INA-CBG) handled?', 'We provide certified bridging for participant eligibility verification, automated SEP generation, online queue management, and direct synchronisation with INA-CBG tariff grouping systems.'],
+        ['Can the hospital system operate if the local internet connection goes down?', 'Yes. We implement edge-resilient local caching architectures ensuring that outpatient clinics, emergency units, and inpatient wards maintain full charting capability offline, synchronizing automatically once connectivity is restored.'],
+        ['What is the typical timeframe for migrating data from a legacy hospital system?', 'Depending on data complexity, data cleansing and migration from legacy databases typically takes 4 to 8 weeks, executed in parallel without causing downtime to active patient care.'],
+        ['Does the system support e-prescribing with drug interaction warnings?', 'Yes. The digital pharmacy module checks prescribed medications against known patient allergies and existing pharmacological regimens, issuing warnings for adverse drug interactions.'],
+        ['Does Teknalogi provide clinical staff onboarding and training?', 'Yes. We conduct hands-on training sessions, role-based SOP documentation, and dedicated on-site go-live support for doctors, nursing staff, pharmacists, and administrative teams.'],
+      ],
+    };
+
+const partnerLogos = [
+  ['Anytime Fitness', '/partners/anytime.png'],
+  ['KelolaAja', '/partners/kelolaaja.png'],
+  ['Nikawa Teknika', '/partners/nikawa.png'],
+  ['PT Inti Bersama', '/partners/ptintibersama.png'],
+];
+---
+
+<section class="relative isolate min-h-[38rem] overflow-hidden bg-white py-28 sm:min-h-[42rem] sm:py-32 lg:min-h-[46rem] lg:py-40" aria-labelledby="healthcare-title">
+  <img src="/industry/herokesehatan.png" alt="Modern healthcare and clinical informatics operations" width="1536" height="1024" class="absolute inset-0 -z-20 h-full w-full object-cover object-[64%_center]" loading="eager" decoding="async" />
+  <div class="absolute inset-0 -z-10 bg-white/84 sm:bg-gradient-to-r sm:from-white sm:from-[7%] sm:via-white/86 sm:via-[46%] sm:to-white/0 sm:to-[80%]"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-white"></div>
+  <div class="home-container flex min-h-[calc(38rem-7rem)] items-end sm:min-h-[calc(42rem-8rem)] lg:min-h-[calc(46rem-10rem)]">
+    <div class="max-w-3xl pb-2 lg:pb-5">
+      <p class="text-[11px] font-semibold tracking-[0.14em] text-slate-600">{copy.eyebrow}</p>
+      <h1 id="healthcare-title" class="mt-4 max-w-3xl text-4xl font-medium leading-[1.06] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-[4.5rem]">
+        {copy.title}
+      </h1>
+      <p class="mt-6 max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">{copy.lead}</p>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-[#f5a623] px-6 text-sm font-semibold text-slate-950 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e69818] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2">
+        {copy.primaryCta}
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="home-section bg-white" aria-labelledby="healthcare-challenges-title">
+  <div class="home-container grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-12">
+    <div class="group relative overflow-hidden rounded-[24px] lg:sticky lg:top-28 lg:self-start">
+      <img src="/industry/secondkesehatan.png" alt="Clinical consultation and digital hospital management systems" width="1448" height="1086" class="h-[21rem] w-full object-cover sm:h-[28rem] lg:h-[38rem]" loading="lazy" decoding="async" />
+      <div class="absolute inset-0 bg-slate-950/30 transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
+      <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-950/65 to-transparent"></div>
+      <div class="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+        <span class="font-mono text-[10px] font-semibold tracking-[0.18em] text-white/80">CONNECTED HEALTHCARE</span>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <h2 id="healthcare-challenges-title" class="max-w-xl text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.challengesTitle}</h2>
+      <p class="mt-5 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.challengesLead}</p>
+      <ol class="mt-10 grid flex-1 grid-cols-1 gap-x-8 sm:mt-12 sm:grid-cols-2">
+        {copy.challenges.map(([title, description], index) => (
+          <li class="group border-t border-slate-200 py-6 sm:py-7">
+            <div class="flex items-baseline justify-between gap-5">
+              <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+              <span class="h-px flex-1 bg-slate-100 transition-colors duration-300 group-hover:bg-violet-200"></span>
+            </div>
+            <h3 class="mt-7 text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="healthcare-solutions" class="home-section bg-white scroll-mt-20" aria-labelledby="healthcare-solutions-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 id="healthcare-solutions-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.solutionsTitle}</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.solutionsLead}</p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {copy.solutions.map(([title, description, icon]) => (
+        <article class="healthcare-solution-card group relative isolate flex min-h-[17rem] overflow-hidden rounded-[20px] border border-slate-200/90 bg-white p-6 sm:min-h-[18rem] sm:p-7">
+          <div class="relative z-10 flex w-full flex-col justify-between">
+            <span class="healthcare-solution-icon flex h-10 w-10 items-center justify-center text-slate-950" aria-hidden="true">
+              {icon === 'simrs' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4" y="5" width="24" height="22" rx="3" />
+                  <path d="M16 10v12M10 16h12" stroke-linecap="round" />
+                  <circle cx="8" cy="9" r="1" fill="currentColor" />
+                  <circle cx="24" cy="9" r="1" fill="currentColor" />
+                </svg>
+              )}
+              {icon === 'ehr' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M7 4h13l6 6v17a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" />
+                  <path d="M20 4v6h6" />
+                  <path d="M10 16h12M10 20h8M10 24h5" stroke-linecap="round" />
+                </svg>
+              )}
+              {icon === 'diagnostics' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M5 16h5l3-8 6 16 3-8h5" stroke-linecap="round" stroke-linejoin="round" />
+                  <circle cx="16" cy="16" r="12" stroke-dasharray="2 3" />
+                </svg>
+              )}
+              {icon === 'claims' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4" y="6" width="24" height="20" rx="3" />
+                  <path d="M4 12h24M10 18h4m-4 4h8" stroke-linecap="round" />
+                  <circle cx="22" cy="20" r="3" fill="white" />
+                  <path d="m20.5 20 1 1 2-2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {icon === 'pharmacy' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="9" y="4" width="14" height="24" rx="7" transform="rotate(45 16 16)" />
+                  <line x1="8" y1="24" x2="24" y2="8" />
+                  <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+                </svg>
+              )}
+              {icon === 'telehealth' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="5" y="7" width="16" height="18" rx="2" />
+                  <path d="M21 12l6-4v16l-6-4v-8z" stroke-linejoin="round" />
+                  <circle cx="13" cy="14" r="3" />
+                  <path d="M9 21c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke-linecap="round" />
+                </svg>
+              )}
+            </span>
+            <div class="mt-12">
+              <h3 class="max-w-sm text-xl font-medium tracking-[-0.025em] text-slate-950 sm:text-[22px]">{title}</h3>
+              <p class="mt-3 max-w-md text-sm leading-relaxed text-slate-600">{description}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="home-section bg-white" aria-labelledby="healthcare-approach-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 id="healthcare-approach-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.approachTitle}</h2>
+    </div>
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 lg:grid-cols-3 lg:gap-5">
+      {copy.domains.map(([title, description, key], index) => (
+        <article class={`healthcare-domain-card healthcare-domain-${key} flex min-h-[18rem] flex-col rounded-[20px] border border-slate-200 bg-white p-6 sm:p-7`}>
+          <div class="flex items-start justify-between gap-5">
+            <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+            <span class="text-[11px] font-medium tracking-[0.08em] text-slate-400">{key === 'privacy' ? 'PRIVACY' : key === 'interoperability' ? 'INTEROPERABILITY' : 'CONTINUITY'}</span>
+          </div>
+          <div class="healthcare-domain-visual mt-5 text-slate-900" aria-hidden="true">
+            {key === 'privacy' && (
+              <svg viewBox="0 0 260 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                <!-- Patient record source -->
+                <rect x="12" y="28" width="46" height="56" rx="6" fill="white" />
+                <path d="M22 40h26M22 50h18M22 60h22" stroke-linecap="round" />
+                <circle cx="48" cy="68" r="3" fill="white" />
+                <path d="M58 56h22" stroke-linecap="round" />
+                <circle cx="69" cy="56" r="3.5" fill="white" />
+                <!-- Encryption / Shield Gateway -->
+                <rect x="80" y="20" width="76" height="72" rx="10" fill="white" />
+                <path d="M118 28l20 9v18c0 13-9 22-20 26-11-4-20-13-20-26V37l20-9z" fill="white" />
+                <path d="M118 44v14m-7-7h14" stroke-linecap="round" />
+                <path d="M156 56h22" stroke-linecap="round" />
+                <circle cx="167" cy="56" r="3.5" fill="white" />
+                <!-- Encrypted storage / Tokenized vault -->
+                <rect x="178" y="28" width="50" height="56" rx="6" fill="white" />
+                <ellipse cx="203" cy="42" rx="16" ry="5.5" fill="white" />
+                <path d="M187 42v14c0 3 7.2 5.5 16 5.5s16-2.5 16-5.5V42" fill="none" />
+                <path d="M187 56v14c0 3 7.2 5.5 16 5.5s16-2.5 16-5.5V56" fill="none" />
+                <circle cx="245" cy="56" r="6" fill="white" />
+                <path d="m242 56 2 2 4-4" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+            {key === 'interoperability' && (
+              <svg viewBox="0 0 320 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                <!-- FHIR EHR Node -->
+                <rect x="14" y="28" width="58" height="56" rx="8" fill="white" />
+                <rect x="22" y="38" width="42" height="12" rx="3" fill="white" />
+                <line x1="28" y1="44" x2="56" y2="44" stroke-linecap="round" />
+                <rect x="22" y="58" width="42" height="16" rx="3" fill="white" />
+                <path d="M28 66h8m4 0h12" stroke-linecap="round" />
+                <!-- Data stream connection -->
+                <path d="M72 56h34" stroke-linecap="round" />
+                <circle cx="89" cy="56" r="4" fill="white" />
+                <!-- Central FHIR SATUSEHAT API Gateway -->
+                <rect x="106" y="18" width="108" height="76" rx="10" fill="white" stroke-dasharray="4 3" />
+                <rect x="120" y="30" width="80" height="52" rx="6" fill="white" />
+                <!-- Heartbeat pulse wave -->
+                <path d="M128 56h12l5-14 8 28 8-18 5 4h14" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="160" cy="24" r="3" fill="white" />
+                <circle cx="160" cy="88" r="3" fill="white" />
+                <!-- Connected national health repository -->
+                <path d="M214 56h34" stroke-linecap="round" />
+                <circle cx="231" cy="56" r="4" fill="white" />
+                <rect x="248" y="28" width="58" height="56" rx="8" fill="white" />
+                <path d="M277 36l18 8v16c0 11-8 19-18 22-10-3-18-11-18-22V44l18-8z" fill="white" />
+                <path d="m272 58 3.5 3.5 7-8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+            {key === 'continuity' && (
+              <svg viewBox="0 0 250 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                <!-- Dual primary & backup server rails -->
+                <path d="M16 38h48m0 0l24-16h40m-64 16l24 16h40" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="16" cy="38" r="6" fill="white" />
+                <!-- Server nodes with medical heartbeat indicator -->
+                <rect x="128" y="14" width="40" height="24" rx="4" fill="white" />
+                <circle cx="138" cy="26" r="2.5" fill="currentColor" />
+                <line x1="146" y1="26" x2="160" y2="26" stroke-linecap="round" />
+                <rect x="128" y="46" width="40" height="24" rx="4" fill="white" />
+                <circle cx="138" cy="58" r="2.5" fill="currentColor" />
+                <line x1="146" y1="58" x2="160" y2="58" stroke-linecap="round" />
+                <!-- Failover convergence & 24/7 uptime pulse -->
+                <path d="M168 26l20 18m-20 26l20-18h36" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M16 92h54l8-14 8 24 8-10h140" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="224" cy="44" r="8" fill="white" />
+                <circle cx="224" cy="44" r="3.5" fill="currentColor" />
+                <circle cx="224" cy="92" r="4" fill="white" />
+              </svg>
+            )}
+          </div>
+          <div class="mt-auto pt-6">
+            <h3 class="text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-2.5 max-w-xl text-sm leading-relaxed text-slate-600">{description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<HealthcareAboutIndustry lang={lang} />
+
+<section class="home-section bg-white" aria-labelledby="healthcare-faq-title">
+  <div class="home-container grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-16">
+    <div class="space-y-6 lg:sticky lg:top-28 lg:col-span-5">
+      <div>
+        <h2 id="healthcare-faq-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-[44px]">{copy.faqTitle}</h2>
+        <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-600 sm:text-base">{copy.faqLead}</p>
+      </div>
+      <div class="flex items-center gap-3.5">
+        <div class="flex -space-x-3" aria-label={`${copy.faqTrustTitle}: ${copy.faqTrustText}`}>
+          {partnerLogos.map(([name, logo]) => (
+            <span class="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 border-slate-100 bg-white p-1.5 shadow-sm">
+              <img src={logo} alt={name} class="h-full w-full object-contain" loading="lazy" decoding="async" />
+            </span>
+          ))}
+        </div>
+        <span class="max-w-[18rem] text-xs leading-snug text-slate-600">
+          <strong class="block font-semibold text-slate-950">{copy.faqTrustTitle}</strong>
+          <span class="mt-0.5 block">{copy.faqTrustText}</span>
+        </span>
+      </div>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-800 focus-visible:ring-offset-2">
+        {copy.faqAction}
+      </a>
+    </div>
+    <div class="space-y-3 lg:col-span-7">
+      {copy.faqs.map(([question, answer], index) => (
+        <details class="healthcare-faq-item group overflow-hidden rounded-2xl border border-slate-900/80 bg-white transition-colors hover:border-slate-950">
+          <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 rounded-2xl p-5 text-base font-medium leading-snug text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-slate-900 sm:p-6">
+            <span>{question}</span>
+            <span class="healthcare-faq-icon relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-900/30 bg-slate-50 text-slate-700 transition-colors" aria-hidden="true"><span class="absolute h-px w-3.5 bg-current"></span><span class="absolute h-3.5 w-px bg-current transition-transform group-open:scale-y-0"></span></span>
+          </summary>
+          <div role="region" aria-label={`${isId ? 'Jawaban' : 'Answer'} ${index + 1}`}>
+            <p class="max-w-2xl px-5 pb-5 pr-14 text-sm leading-relaxed text-slate-600 sm:px-6 sm:pb-6 sm:text-[15px]">{answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .healthcare-domain-card {
+    box-shadow: 0 1px 10px -7px rgba(15, 23, 42, 0.14);
+  }
+
+  .healthcare-domain-visual {
+    display: block;
+    width: 100%;
+  }
+
+  .healthcare-domain-visual svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .healthcare-domain-interoperability .healthcare-domain-visual {
+    margin-inline: auto;
+    max-width: 21rem;
+  }
+
+  .healthcare-solution-card {
+    box-shadow: 0 2px 14px -4px rgba(15, 23, 42, 0.08);
+    transition:
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 320ms ease,
+      box-shadow 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .healthcare-solution-card::before {
+    position: absolute;
+    top: -5.5rem;
+    right: -4.5rem;
+    width: 17rem;
+    height: 17rem;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(196, 181, 253, 0.52) 0%, rgba(221, 214, 254, 0.22) 42%, transparent 72%);
+    content: '';
+    filter: blur(15px);
+    opacity: 0.72;
+    pointer-events: none;
+    transition:
+      opacity 360ms ease,
+      transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .healthcare-solution-card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(203 213 225);
+    box-shadow: 0 18px 38px -18px rgba(15, 23, 42, 0.28);
+  }
+
+  .healthcare-solution-card:hover::before {
+    opacity: 0.92;
+    transform: translate(-0.75rem, 0.75rem) scale(1.06);
+  }
+
+  .healthcare-solution-icon {
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .healthcare-solution-icon svg {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .healthcare-solution-card:hover .healthcare-solution-icon {
+    transform: translateY(-2px);
+  }
+
+  .healthcare-faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .healthcare-faq-item[open] {
+    border-color: rgb(15 23 42);
+    background:
+      radial-gradient(circle at 86% 20%, rgba(196, 181, 253, 0.26), transparent 55%),
+      #ffffff;
+  }
+
+  .healthcare-faq-item[open] .healthcare-faq-icon {
+    border-color: rgb(15 23 42);
+    background: rgb(15 23 42);
+    color: white;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .healthcare-domain-card,
+    .healthcare-solution-card,
+    .healthcare-solution-card::before,
+    .healthcare-solution-icon {
+      transition: none;
+    }
+
+    .healthcare-solution-card:hover,
+    .healthcare-solution-card:hover::before,
+    .healthcare-solution-card:hover .healthcare-solution-icon {
+      transform: none;
+    }
+
+    .healthcare-faq-item,
+    .healthcare-faq-icon,
+    .healthcare-faq-icon span {
+      transition: none;
+    }
+  }
+</style>

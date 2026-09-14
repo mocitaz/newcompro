@@ -1,0 +1,448 @@
+---
+// src/components/industries/InsuranceIndustry.astro
+import type { Locale } from '../../i18n/translations';
+import InsuranceAboutIndustry from './InsuranceAboutIndustry.astro';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      eyebrow: 'ASURANSI & INSURTECH',
+      title: 'Engineering untuk ekosistem asuransi digital dan otomasi klaim terpadu.',
+      lead: 'Bangun dan modernisasi platform asuransi dengan Policy Administration System (PAS) terpadu, ajudikasi klaim otomatis, mesin underwriting aktuaria cerdas, dan distribusi agen/bancassurance multi-kanal. Teknalogi menghadirkan rekayasa perangkat lunak asuransi yang andal dan terukur.',
+      primaryCta: 'Diskusikan kebutuhan asuransi Anda',
+      challengesTitle: 'Ketika sistem polis terpisah, proses klaim terhambat.',
+      challengesLead: 'Operasional melambat saat data polis, pengajuan klaim, dan kanal keagenan berjalan sendiri-sendiri.',
+      challenges: [
+        ['Silo data polis lama', 'Data polis yang terisolasi di server legacy memperlambat penerbitan dan pembaruan polis.'],
+        ['Penumpukan klaim manual', 'Pemeriksaan kuitansi dan dokumen fisik memicu penundaan pencairan klaim berbulan-bulan.'],
+        ['Risiko klaim fiktif dan fraud', 'Ketiadaan analitik anomali otomatis meningkatkan risiko pembayaran klaim yang tidak sah.'],
+        ['Audit regulasi ketat', 'Pelaporan solvabilitas OJK dan kepatuhan standar IFRS 17 menuntut audit data presisi.'],
+      ],
+      solutionsTitle: 'Solusi perangkat lunak terintegrasi untuk perusahaan asuransi jiwa, umum, dan insurtech.',
+      solutionsLead: 'Ruang lingkup sistem disesuaikan dengan arsitektur produk dan tata kelola risiko institusi Anda, mulai dari core PAS modern, ajudikasi klaim Straight-Through Processing (STP), hingga integrasi rumah sakit cashless.',
+      solutions: [
+        ['Core Policy Administration (PAS)', 'Manajemen siklus hidup polis terpadu mulai dari pembuatan ilustrasi, endorsement, hingga penagihan premi berkala.', 'pas'],
+        ['Ajudikasi Klaim Cepat & Pemindaian OCR', 'Ekstraksi data kuitansi medis via OCR, skor risiko fraud, dan persetujuan klaim otomatis tanpa intervensi manual.', 'claims'],
+        ['Mesin Underwriting & Tarif Aktuaria', 'Penilaian risiko aktuaria berbasis aturan dinamis untuk penetapan premi instan berdasarkan profil risiko nasabah.', 'underwriting'],
+        ['Portal Distribusi Agen & Bancassurance', 'Aplikasi Surat Permintaan Asuransi (SPAJ) digital untuk agen lapangan dan integrasi API mitra perbankan.', 'distribution'],
+        ['E-Polis & Portal Nasabah Mandiri', 'Penerbitan e-polis instan bertanda tangan digital sah, kartu cashless RS berbasis QR, dan pengajuan klaim online.', 'epolicy'],
+        ['Kepatuhan IFRS 17 & Pelaporan Regulasi OJK', 'Pemodelan arus kas diskonto, kalkulasi Contractual Service Margin (CSM), dan data mart pelaporan OJK.', 'compliance'],
+      ],
+      approachTitle: 'Dirancang untuk keakuratan aktuaria dan kecepatan pencairan klaim nasabah.',
+      domains: [
+        ['Ajudikasi Klaim Otomatis (STP Engine)', 'Otomatiskan verifikasi manfaat polis dan ekstraksi kuitansi medis OCR untuk menyetujui klaim minor dalam hitungan detik.', 'adjudication'],
+        ['E-Polis Kriptografis & Integritas Dokumen', 'Gunakan tanda tangan digital tersertifikasi (PSrE) dan segel dokumen anti-manipulasi yang sah di mata hukum.', 'security'],
+        ['Valuasi Aktuaria & Pemodelan Solvabilitas', 'Proses jutaan data transaksi polis ke dalam model diskonto arus kas untuk memenuhi standar IFRS 17 dan OJK.', 'actuarial'],
+      ],
+      faqTitle: 'Hal yang biasanya dibahas sebelum proyek asuransi dimulai.',
+      faqLead: 'Karakteristik portofolio produk asuransi, sistem core legacy, dan jalur distribusi setiap perusahaan berbeda. Discovery teknis kami memetakan integrasi sistem inti, audit kepatuhan OJK, dan arsitektur klaim.',
+      faqTrustTitle: 'Dipercaya oleh',
+      faqTrustText: 'Perusahaan asuransi, pialang asuransi, dan platform insurtech di Indonesia',
+      faqAction: 'Tanyakan kebutuhan asuransi Anda',
+      faqs: [
+        ['Bisakah platform Teknalogi dihubungkan dengan core PAS legacy seperti AS/400 atau mainframe lama?', 'Ya. Kami membangun lapisan middleware API dan sistem antrean berbasis event yang berkomunikasi aman dengan sistem legacy, memungkinkan kanal digital beroperasi cepat tanpa membebani server inti.'],
+        ['Bagaimana sistem OCR memproses kuitansi rumah sakit yang bertulisan tangan atau tidak beraturan?', 'Modul OCR medis kami mengombinasikan computer vision dan model bahasa medis untuk mengenali nama rumah sakit, nomor kuitansi, kode diagnosis ICD-10, dan rincian biaya obat dengan tingkat akurasi tinggi.'],
+        ['Apakah sistem klaim terhubung langsung dengan Third-Party Administrator (TPA) dan rumah sakit?', 'Ya. Kami menyediakan modul integrasi gateway untuk pertukaran data otorisasi awal (pre-authorization), surat jaminan (guarantee letter), dan data billing final secara elektronik dengan pihak rumah sakit/TPA.'],
+        ['Bagaimana sistem memastikan kepatuhan terhadap perhitungan Contractual Service Margin (CSM) IFRS 17?', 'Data mart aktuaria kami mengumpulkan data transaksi polis secara granular, mengelompokkannya ke dalam kelompok kontrak setara (cohorts), dan menghitung amortisasi CSM secara deterministik sesuai standar audit.'],
+        ['Apakah penerbitan e-polis menggunakan sertifikat tanda tangan digital yang diakui regulator?', 'Ya. Penerbitan e-polis terhubung langsung dengan Penyelenggara Sertifikasi Elektronik (PSrE) terakreditasi Kominfo dan OJK (seperti PrivyID, Peruri, BSrE) dengan segel digital anti-tampering.'],
+        ['Bisakah produk asuransi baru dikonfigurasi tanpa harus mengubah kode pemrograman inti?', 'Bisa. Sistem Product Factory kami memungkinkan tim aktuaria dan produk untuk mendefinisikan tabel premi, batas pertanggungan, masa tunggu, dan pilihan rider secara mandiri melalui antarmuka visual.'],
+        ['Berapa lama waktu yang dibutuhkan untuk mengimplementasikan portal keagenan atau sistem klaim baru?', 'Implementasi modular umumnya berlangsung antara 8 hingga 16 minggu, mencakup integrasi data nasabah, pelatihan agen lapangan, pengujian User Acceptance Testing (UAT), dan peluncuran bertahap.'],
+        ['Apakah Teknalogi menyediakan dukungan pemeliharaan performa dan pemantauan sistem 24/7?', 'Ya. Kami menyediakan layanan pemeliharaan server komprehensif, pemantauan latensi API bancassurance, patch keamanan berkala, dan penanganan insiden operasional 24/7.'],
+      ],
+    }
+  : {
+      eyebrow: 'INSURANCE & INSURTECH ENGINEERING',
+      title: 'Engineering for digital insurance ecosystems and automated claims.',
+      lead: 'Build and modernize mission-critical insurance platforms with automated policy administration (PAS), real-time claims adjudication, algorithmic actuarial underwriting, and multi-channel agent/bancassurance distribution. Teknalogi delivers secure, highly resilient enterprise architectures for modern insurers.',
+      primaryCta: 'Discuss your insurance requirements',
+      challengesTitle: 'When policy systems disconnect, claims adjudication stalls.',
+      challengesLead: 'Operations slow down when policy databases, claims processing, and agent channels operate in silos.',
+      challenges: [
+        ['Legacy policy silos', 'Scattered policy data across legacy mainframes delays quote issuance and renewals.'],
+        ['Manual claims bottlenecks', 'Paper-intensive medical receipts and manual reviews cause month-long claim backlogs.'],
+        ['Fraud and leakage risks', 'Lack of automated cross-claim pattern analysis triggers costly fraudulent payouts.'],
+        ['Strict regulatory audits', 'Complex OJK compliance and IFRS 17 solvency calculations demand rigid data lineage.'],
+      ],
+      solutionsTitle: 'Integrated software solutions engineered for life, general, and insurtech carriers.',
+      solutionsLead: 'System architectures are custom-tailored to your risk governance, spanning core PAS modernization, Straight-Through Processing (STP) claims engines, and cashless hospital integrations.',
+      solutions: [
+        ['Core Policy Administration (PAS)', 'End-to-end policy lifecycle management from quote creation, endorsement changes, to automated recurring billing.', 'pas'],
+        ['Automated Claims Adjudication & OCR', 'Document OCR data extraction, fraud risk scoring, and automated straight-through processing (STP) for minor claims.', 'claims'],
+        ['Algorithmic Underwriting & Rating Engine', 'Rule-based and actuarial risk assessment dynamically pricing premiums based on applicant medical and risk profiles.', 'underwriting'],
+        ['Agent & Bancassurance Portals', 'Mobile-ready e-SPA tools for field insurance agents and certified API connectors for banking distribution partners.', 'distribution'],
+        ['e-Policy & Customer Self-Service Portal', 'Instant digital policy delivery with certified e-signatures, hospital cashless card QR, and online claim submissions.', 'epolicy'],
+        ['IFRS 17 Engine & OJK Regulatory Compliance', 'Automated cash flow modeling, contractual service margin (CSM) calculations, and audited regulatory reporting.', 'compliance'],
+      ],
+      approachTitle: 'Designed for actuarial precision and rapid customer claims settlement.',
+      domains: [
+        ['Straight-Through Processing & Claims Engine', 'Automate policy benefit validation and medical receipt OCR to adjudicate routine claims in seconds.', 'adjudication'],
+        ['Cryptographic e-Policy & Document Integrity', 'Deploy certified electronic signatures (PSrE) and tamper-evident document seals with full legal standing.', 'security'],
+        ['Actuarial Valuation & Solvency Modeling', 'Stream millions of policy events into discounted cash flow models compliant with IFRS 17 and OJK mandates.', 'actuarial'],
+      ],
+      faqTitle: 'What teams usually discuss before an insurance project starts.',
+      faqLead: 'Product portfolio structures, legacy core systems, and distribution channels vary. Technical discovery maps core PAS integrations, OJK regulatory audits, and claims architecture.',
+      faqTrustTitle: 'Trusted by',
+      faqTrustText: 'Insurance carriers, brokers, and insurtech platforms across Indonesia',
+      faqAction: 'Ask about your insurance requirements',
+      faqs: [
+        ['Can Teknalogi interface with legacy core PAS platforms like AS/400 or mainframe systems?', 'Yes. We engineer event-driven API middleware layers that communicate safely with legacy cores, allowing modern digital applications to operate at high speed without overloading backend ledgers.'],
+        ['How does the OCR engine parse irregular or semi-structured hospital medical receipts?', 'Our medical OCR pipeline pairs computer vision with healthcare domain language models to accurately extract clinic names, receipt totals, ICD-10 diagnostic codes, and pharmacy line items.'],
+        ['Does the claims system connect directly with Third-Party Administrators (TPAs) and hospitals?', 'Yes. We provide electronic gateway connectors for pre-authorization requests, guarantee letter (GL) generation, and final hospital discharge billing data exchange.'],
+        ['How does the platform ensure compliance with IFRS 17 Contractual Service Margin (CSM) calculations?', 'Our actuarial data mart captures granular policy transactions, groups them into defined cohort portfolios, and computes CSM amortizations deterministically under rigorous audit trails.'],
+        ['Are issued e-policies signed using legally recognized digital certification authorities?', 'Yes. Digital policy issuance connects natively with licensed Electronic Certification Authorities (PSrE compliant under Kominfo/OJK), applying cryptographic anti-tamper seals.'],
+        ['Can non-technical product teams configure new insurance riders without custom code changes?', 'Yes. Our visual Product Factory engine enables actuarial and product teams to define premium rate tables, coverage limits, waiting periods, and rider rules independently.'],
+        ['What is the typical timeframe for deploying a new agency portal or claims adjudication platform?', 'Modular implementations typically span 8 to 16 weeks, covering core data synchronization, field agent training, comprehensive User Acceptance Testing (UAT), and staged rollout.'],
+        ['Does Teknalogi provide 24/7 system monitoring and high-availability support?', 'Yes. We provide 24/7 managed infrastructure support covering bancassurance API latency monitoring, security patching, database optimization, and rapid incident resolution.'],
+      ],
+    };
+
+const partnerLogos = [
+  ['Anytime Fitness', '/partners/anytime.png'],
+  ['KelolaAja', '/partners/kelolaaja.png'],
+  ['Nikawa Teknika', '/partners/nikawa.png'],
+  ['PT Inti Bersama', '/partners/ptintibersama.png'],
+];
+---
+
+<!-- Hero Section with Background Image and Gradient Overlay -->
+<section class="relative isolate min-h-[38rem] overflow-hidden bg-white py-28 sm:min-h-[42rem] sm:py-32 lg:min-h-[46rem] lg:py-40" aria-labelledby="insurance-title">
+  <img src="/industry/heroinsurance.png" alt="" width="1536" height="1024" class="absolute inset-0 -z-20 h-full w-full object-cover object-[64%_center]" loading="eager" decoding="async" />
+  <div class="absolute inset-0 -z-10 bg-white/84 sm:bg-gradient-to-r sm:from-white sm:from-[7%] sm:via-white/86 sm:via-[46%] sm:to-white/0 sm:to-[80%]"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-white"></div>
+  <div class="home-container flex min-h-[calc(38rem-7rem)] items-end sm:min-h-[calc(42rem-8rem)] lg:min-h-[calc(46rem-10rem)]">
+    <div class="max-w-3xl pb-2 lg:pb-5">
+      <p class="text-[11px] font-semibold tracking-[0.14em] text-slate-600">{copy.eyebrow}</p>
+      <h1 id="insurance-title" class="mt-4 max-w-3xl text-4xl font-medium leading-[1.06] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-[4.5rem]">
+        {copy.title}
+      </h1>
+      <p class="mt-6 max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">{copy.lead}</p>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-[#f5a623] px-6 text-sm font-semibold text-slate-950 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e69818] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2">
+        {copy.primaryCta}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Challenges Section with Sticky Secondary Photo and Numbered Grid -->
+<section class="home-section bg-white" aria-labelledby="insurance-challenges-title">
+  <div class="home-container grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-12">
+    <div class="group relative overflow-hidden rounded-[24px] lg:sticky lg:top-28 lg:self-start">
+      <img src="/industry/secondaryinsurance.png" alt="Modern insurance enterprise operations and underwriting infrastructure" width="1448" height="1086" class="h-[21rem] w-full object-cover sm:h-[28rem] lg:h-[38rem]" loading="lazy" decoding="async" />
+      <div class="absolute inset-0 bg-slate-950/30 transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
+      <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-950/65 to-transparent"></div>
+      <div class="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+        <span class="font-mono text-[10px] font-semibold tracking-[0.18em] text-white/80">CONNECTED POLICY & CLAIMS</span>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <h2 id="insurance-challenges-title" class="max-w-xl text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.challengesTitle}</h2>
+      <p class="mt-5 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.challengesLead}</p>
+      <ol class="mt-10 grid flex-1 grid-cols-1 gap-x-8 sm:mt-12 sm:grid-cols-2">
+        {copy.challenges.map(([title, description], index) => (
+          <li class="group border-t border-slate-200 py-6 sm:py-7">
+            <div class="flex items-baseline justify-between gap-5">
+              <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+              <span class="h-px flex-1 bg-slate-100 transition-colors duration-300 group-hover:bg-violet-200"></span>
+            </div>
+            <h3 class="mt-7 text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- Solutions Grid Section (6 Cards with Hover Gradient Glow & Custom Icons) -->
+<section id="insurance-solutions" class="home-section bg-white scroll-mt-20" aria-labelledby="insurance-solutions-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 id="insurance-solutions-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.solutionsTitle}</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.solutionsLead}</p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {copy.solutions.map(([title, description, icon]) => (
+        <article class="insurance-solution-card group relative isolate flex min-h-[17rem] overflow-hidden rounded-[20px] border border-slate-200/90 bg-white p-6 sm:min-h-[18rem] sm:p-7">
+          <div class="relative z-10 flex w-full flex-col justify-between">
+            <span class="insurance-solution-icon flex h-10 w-10 items-center justify-center text-slate-950" aria-hidden="true">
+              {icon === 'pas' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M16 3.5 6 7.5v8c0 7 4.5 11.5 10 13 5.5-1.5 10-6 10-13v-8z" stroke-linejoin="round" />
+                  <path d="m11 16 3.5 3.5L21 12" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {icon === 'claims' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="5" y="4.5" width="22" height="23" rx="3" stroke-linejoin="round" />
+                  <path d="M9 10h14M9 14h14M9 18h8" stroke-linecap="round" />
+                  <circle cx="21" cy="21" r="4.5" />
+                  <path d="m19 21 1.5 1.5 3-3" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {icon === 'underwriting' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="16" cy="16" r="11" />
+                  <path d="M9 20c2.5-4 5-7 7-7s4 3 7 7" stroke-linecap="round" />
+                  <circle cx="16" cy="13" r="2.5" />
+                  <path d="M16 5V3M16 29v-2" stroke-linecap="round" />
+                </svg>
+              )}
+              {icon === 'distribution' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="5" y="7" width="14" height="20" rx="2" />
+                  <rect x="19" y="5" width="8" height="12" rx="2" />
+                  <path d="M19 22h8M23 17v8" stroke-linecap="round" />
+                  <circle cx="12" cy="23" r="1" fill="currentColor" />
+                </svg>
+              )}
+              {icon === 'epolicy' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M7 4.5h12l6 6v17H7z" stroke-linejoin="round" />
+                  <path d="M19 4.5v6h6M11 14h10M11 18h6" stroke-linecap="round" />
+                  <path d="M11 23h10" stroke-linecap="round" stroke-dasharray="2 2" />
+                </svg>
+              )}
+              {icon === 'compliance' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 27h24M7 27V12l9-7 9 7v15" stroke-linejoin="round" />
+                  <path d="M12 17h8M12 21h8M16 8v3" stroke-linecap="round" />
+                </svg>
+              )}
+            </span>
+            <div class="mt-12">
+              <h3 class="max-w-sm text-xl font-medium tracking-[-0.025em] text-slate-950 sm:text-[22px]">{title}</h3>
+              <p class="mt-3 max-w-md text-sm leading-relaxed text-slate-600">{description}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Approach Section (3 Domain Cards with Bespoke Insurance Schematics) -->
+<section class="home-section bg-white" aria-labelledby="insurance-approach-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 id="insurance-approach-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.approachTitle}</h2>
+    </div>
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 lg:grid-cols-3 lg:gap-5">
+      {copy.domains.map(([title, description, key], index) => (
+        <article class={`insurance-domain-card insurance-domain-${key} flex min-h-[18rem] flex-col rounded-[20px] border border-slate-200 bg-white p-6 sm:p-7`}>
+          <div class="flex items-start justify-between gap-5">
+            <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+            <span class="text-[11px] font-medium tracking-[0.08em] text-slate-400">
+              {key === 'adjudication' ? 'ADJUDICATION' : key === 'security' ? 'INTEGRITY' : 'ACTUARIAL'}
+            </span>
+          </div>
+          <div class="insurance-domain-visual mt-5 text-slate-900" aria-hidden="true">
+            {key === 'adjudication' && (
+              <svg viewBox="0 0 260 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                {/* Straight-Through Processing Claims Pipeline */}
+                <path d="M20 56h50m38 0h50m38 0h44" stroke-linecap="round" />
+                <circle cx="20" cy="56" r="8" fill="white" />
+                <rect x="70" y="34" width="38" height="44" rx="7" fill="white" />
+                <rect x="158" y="34" width="38" height="44" rx="7" fill="white" />
+                <path d="m81 56 4 4 10-10m68 10 4 4 10-10" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="240" cy="56" r="8" fill="white" />
+                <path d="M236 56l3 3 5-5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+            {key === 'security' && (
+              <svg viewBox="0 0 320 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                {/* Cryptographic e-Policy contract with PSrE digital seal & QR badge */}
+                <path d="M16 56h50m38 0h50m38 0h50" stroke-linecap="round" />
+                <circle cx="16" cy="56" r="8" fill="white" />
+                <rect x="66" y="34" width="38" height="44" rx="7" fill="white" />
+                <path d="M78 48h14M78 56h10M78 64h14" stroke-linecap="round" />
+                <rect x="154" y="34" width="38" height="44" rx="7" fill="white" />
+                <path d="m165 56 5 5 10-10" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M230 36 270 50v24c0 15-11 26-20 30-9-4-20-15-20-30V50z" fill="white" />
+                <path d="m241 71 7 7 14-17" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+            {key === 'actuarial' && (
+              <svg viewBox="0 0 250 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                {/* Actuarial valuation curve & IFRS 17 solvency balance */}
+                <path d="M18 86h214" stroke-linecap="round" />
+                <path d="M25 76c25 0 22-45 46-45s20 28 44 28 20-38 46-38 18 42 42 42 16-15 25-15" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="71" cy="31" r="6" fill="white" />
+                <circle cx="115" cy="59" r="6" fill="white" />
+                <circle cx="161" cy="21" r="6" fill="white" />
+                <circle cx="203" cy="63" r="6" fill="white" />
+                <path d="M220 20v22m-11-11h22" stroke-linecap="round" />
+              </svg>
+            )}
+          </div>
+          <div class="mt-auto pt-6">
+            <h3 class="text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-2.5 max-w-xl text-sm leading-relaxed text-slate-600">{description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Deep-Dive Editorial Section with Sticky Desktop TOC & Mobile Drawer -->
+<InsuranceAboutIndustry lang={lang} />
+
+<!-- FAQ Section with Accordion and Partner Trust Bar -->
+<section class="home-section bg-white" aria-labelledby="insurance-faq-title">
+  <div class="home-container grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-16">
+    <div class="space-y-6 lg:sticky lg:top-28 lg:col-span-5">
+      <div>
+        <h2 id="insurance-faq-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-[44px]">{copy.faqTitle}</h2>
+        <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-600 sm:text-base">{copy.faqLead}</p>
+      </div>
+      <div class="flex items-center gap-3.5">
+        <div class="flex -space-x-3" aria-label={`${copy.faqTrustTitle}: ${copy.faqTrustText}`}>
+          {partnerLogos.map(([name, logo]) => (
+            <span class="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 border-slate-100 bg-white p-1.5 shadow-sm">
+              <img src={logo} alt={name} class="h-full w-full object-contain" loading="lazy" decoding="async" />
+            </span>
+          ))}
+        </div>
+        <span class="max-w-[18rem] text-xs leading-snug text-slate-600">
+          <strong class="block font-semibold text-slate-950">{copy.faqTrustTitle}</strong>
+          <span class="mt-0.5 block">{copy.faqTrustText}</span>
+        </span>
+      </div>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-800 focus-visible:ring-offset-2">
+        {copy.faqAction}
+      </a>
+    </div>
+    <div class="space-y-3 lg:col-span-7">
+      {copy.faqs.map(([question, answer], index) => (
+        <details class="insurance-faq-item group overflow-hidden rounded-2xl border border-slate-900/80 bg-white transition-colors hover:border-slate-950">
+          <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 rounded-2xl p-5 text-base font-medium leading-snug text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-slate-900 sm:p-6">
+            <span>{question}</span>
+            <span class="insurance-faq-icon relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-900/30 bg-slate-50 text-slate-700 transition-colors" aria-hidden="true">
+              <span class="absolute h-px w-3.5 bg-current"></span>
+              <span class="absolute h-3.5 w-px bg-current transition-transform group-open:scale-y-0"></span>
+            </span>
+          </summary>
+          <div role="region" aria-label={`${isId ? 'Jawaban' : 'Answer'} ${index + 1}`}>
+            <p class="max-w-2xl px-5 pb-5 pr-14 text-sm leading-relaxed text-slate-600 sm:px-6 sm:pb-6 sm:text-[15px]">{answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .insurance-domain-card {
+    box-shadow: 0 1px 10px -7px rgba(15, 23, 42, 0.14);
+  }
+
+  .insurance-domain-visual {
+    display: block;
+    width: 100%;
+  }
+
+  .insurance-domain-visual svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .insurance-domain-security .insurance-domain-visual {
+    margin-inline: auto;
+    max-width: 21rem;
+  }
+
+  .insurance-solution-card {
+    box-shadow: 0 2px 14px -4px rgba(15, 23, 42, 0.08);
+    transition:
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 320ms ease,
+      box-shadow 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .insurance-solution-card::before {
+    position: absolute;
+    top: -5.5rem;
+    right: -4.5rem;
+    width: 17rem;
+    height: 17rem;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(196, 181, 253, 0.52) 0%, rgba(221, 214, 254, 0.22) 42%, transparent 72%);
+    content: '';
+    filter: blur(15px);
+    opacity: 0.72;
+    pointer-events: none;
+    transition:
+      opacity 360ms ease,
+      transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .insurance-solution-card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(203 213 225);
+    box-shadow: 0 18px 38px -18px rgba(15, 23, 42, 0.28);
+  }
+
+  .insurance-solution-card:hover::before {
+    opacity: 0.92;
+    transform: translate(-0.75rem, 0.75rem) scale(1.06);
+  }
+
+  .insurance-solution-icon {
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .insurance-solution-icon svg {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .insurance-solution-card:hover .insurance-solution-icon {
+    transform: translateY(-2px);
+  }
+
+  .insurance-faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .insurance-faq-item[open] {
+    border-color: rgb(15 23 42);
+    background:
+      radial-gradient(circle at 86% 20%, rgba(196, 181, 253, 0.26), transparent 55%),
+      #ffffff;
+  }
+
+  .insurance-faq-item[open] .insurance-faq-icon {
+    border-color: rgb(15 23 42);
+    background: rgb(15 23 42);
+    color: white;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .insurance-domain-card,
+    .insurance-solution-card,
+    .insurance-solution-card::before,
+    .insurance-solution-icon {
+      transition: none;
+    }
+
+    .insurance-solution-card:hover,
+    .insurance-solution-card:hover::before,
+    .insurance-solution-card:hover .insurance-solution-icon {
+      transform: none;
+    }
+
+    .insurance-faq-item,
+    .insurance-faq-icon,
+    .insurance-faq-icon span {
+      transition: none;
+    }
+  }
+</style>

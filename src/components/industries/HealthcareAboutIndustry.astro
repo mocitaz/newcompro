@@ -1,0 +1,475 @@
+---
+// src/components/industries/HealthcareAboutIndustry.astro
+import type { Locale } from '../../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      title: 'Rekayasa Sistem Informasi Kesehatan & Rekam Medis Digital',
+      tocTitle: 'Daftar Isi Pembahasan',
+      sections: [
+        {
+          id: 'simrs-operations',
+          tocLabel: 'SIMRS & Manajemen RS',
+          title: 'Sistem Informasi Manajemen Rumah Sakit (SIMRS) Terpadu',
+          paragraphs: [
+            'Operasional fasilitas layanan kesehatan modern mengandalkan koordinasi lintas instalasi yang cepat dan tanpa jeda. Alur kerja dari pendaftaran pasien, antrean poli, triase IGD, rawat inap, hingga farmasi membutuhkan platform terpusat yang tangguh.',
+            'Teknalogi merancang arsitektur SIMRS modular yang mengintegrasikan seluruh unit pelayanan faskes ke dalam satu basis data terpusat, mengurangi waktu tunggu pasien dan meniadakan duplikasi entri data antar-departemen.',
+          ],
+          bullets: [
+            {
+              label: 'Pendaftaran & Manajemen Antrean Cerdas',
+              text: 'Sistem alokasi kuota dokter dan jadwal poliklinik terintegrasi dengan mesin kios mandiri serta aplikasi reservasi mobile.',
+            },
+            {
+              label: 'Manajemen Tempat Tidur (Bed Management)',
+              text: 'Visibilitas ketersediaan bed rawat inap, ICU, dan isolasi secara real-time yang langsung terhubung ke dashboard pendaftaran.',
+            },
+            {
+              label: 'Orkestrasi Alur Kerja IGD & Kamar Operasi',
+              text: 'Penjadwalan tim bedah, pencatatan durasi pra-pasca operasi, dan pelacakan instrumen steril secara terstruktur.',
+            },
+          ],
+          closingParagraph:
+            'Implementasi SIMRS yang tepat meningkatkan utilisasi fasilitas kesehatan dan mempercepat waktu penanganan pasien di semua lini pelayanan.',
+        },
+        {
+          id: 'ehr-fhir-satusehat',
+          tocLabel: 'RME & Integrasi SATUSEHAT',
+          title: 'Rekam Medis Elektronik (RME) & Standarisasi HL7 FHIR',
+          paragraphs: [
+            'Kewajiban digitalisasi rekam medis menurut Permenkes No. 24 Tahun 2022 menuntut faskes memiliki RME yang tidak hanya mudah digunakan dokter, tetapi juga mampu bertukar data klinis secara aman.',
+            'Kami membangun modul RME yang mengadopsi standar internasional HL7 FHIR (Fast Healthcare Interoperability Resources) dan terminologi klinis standar (ICD-10, ICD-9-CM, SNOMED CT, LOINC), serta terintegrasi langsung dengan platform SATUSEHAT Kementerian Kesehatan.',
+          ],
+          bullets: [
+            {
+              label: 'Integrasi API SATUSEHAT Kemkes',
+              text: 'Pengiriman data encounter, kondisi klinis, observasi tanda vital, prosedur medis, dan imunisasi secara otomatis dan terenkripsi.',
+            },
+            {
+              label: 'Formulir Klinis Adaptif untuk Spesialis',
+              text: 'Antarmuka pencatatan anamnesis dan pemeriksaan fisik yang disesuaikan dengan kebutuhan spesifik masing-masing bidang spesialisasi dokter.',
+            },
+            {
+              label: 'Tanda Tangan Elektronik Tersertifikasi',
+              text: 'Penerapan digital signature dokter berbasis sertifikat digital BSrE / PSrE untuk memastikan keabsahan hukum resume medis.',
+            },
+          ],
+          closingParagraph:
+            'Standarisasi data RME menjamin kesinambungan perawatan pasien (continuity of care) saat pasien dirujuk ke fasilitas kesehatan lain.',
+        },
+        {
+          id: 'lis-pacs-integration',
+          tocLabel: 'Laboratorium & Radiologi',
+          title: 'Integrasi Laboratorium (LIS) & Pencitraan Medis (PACS/DICOM)',
+          paragraphs: [
+            'Kecepatan penegakan diagnosis dokter sangat dipengaruhi oleh waktu penerimaan hasil laboratorium diagnostik dan pencitraan radiologi.',
+            'Kami menghubungkan instrumen analyzer laboratorium ke Laboratory Information System (LIS) dengan protokol ASTM/HL7, serta mengintegrasikan Picture Archiving and Communication System (PACS) dengan viewer DICOM berbasis web berkecepatan tinggi.',
+          ],
+          bullets: [
+            {
+              label: 'Konektivitas Mesin Analyzer Otomatis',
+              text: 'Pengambilan nilai hasil tes darah, urine, dan mikrobiologi langsung dari mesin ke RME tanpa risiko salah ketik oleh analis.',
+            },
+            {
+              label: 'Web DICOM Viewer Responsif',
+              text: 'Akses instan hasil rontgen, CT scan, dan MRI beresolusi tinggi langsung di layar kerja dokter dengan dukungan alat ukur digital.',
+            },
+            {
+              label: 'Pemberitahuan Nilai Kritis (Critical Values)',
+              text: 'Sistem peringatan darurat otomatis ke dokter penanggung jawab saat hasil tes laboratorium berada di luar ambang batas aman.',
+            },
+          ],
+          closingParagraph:
+            'Integrasi tanpa batas antara alat diagnostik dan rekam medis memangkas waktu tunggu dokter dalam menentukan tindakan terapi kritis.',
+        },
+        {
+          id: 'claims-billing-bpjs',
+          tocLabel: 'Klaim BPJS & Billing Medis',
+          title: 'Otomasi Klaim BPJS (V-Claim), Asuransi & Billing Medis',
+          paragraphs: [
+            'Proses verifikasi dan pengajuan klaim asuransi kesehatan yang berbelit sering menimbulkan penolakan klaim (dispute) dan menghambat arus kas faskes.',
+            'Teknalogi mengintegrasikan modul bridging V-Claim BPJS Kesehatan, E-Klaim INA-CBG, dan portal asuransi swasta untuk otomatisasi penerbitan Surat Eligibilitas Peserta (SEP) dan verifikasi dokumen klaim secara digital.',
+          ],
+          bullets: [
+            {
+              label: 'Bridging V-Claim & E-Klaim INA-CBG',
+              text: 'Pengecekan keaktifan kepesertaan BPJS, generate SEP otomatis, dan sinkronisasi kode grouping tarif tindakan tanpa jeda.',
+            },
+            {
+              label: 'Validasi Kelengkapan Berkas Digital',
+              text: 'Pengecekan otomatis dokumen resume medis, laporan operasi, dan bukti penunjang sebelum pengajuan berkas klaim dilakukan.',
+            },
+            {
+              label: 'Multi-Tarif Billing & Payment Gateway',
+              text: 'Perhitungan tagihan fleksibel untuk pasien umum, asuransi korporat, dan BPJS dengan rekonsiliasi kasir otomatis.',
+            },
+          ],
+          closingParagraph:
+            'Otomasi klaim mempercepat siklus pencairan dana reimbursment dan menekan tingkat dispute klaim hingga ke batas minimal.',
+        },
+        {
+          id: 'patient-privacy-compliance',
+          tocLabel: 'Privasi Pasien & Keamanan',
+          title: 'Tata Kelola Privasi Data Pasien & Kepatuhan Regulasi',
+          paragraphs: [
+            'Data kesehatan merupakan kategori data pribadi spesifik yang sensitif menurut Undang-Undang Perlindungan Data Pribadi (UU PDP) dan standar keamanan informasi internasional seperti ISO 27799 / HIPAA.',
+            'Kami menerapkan arsitektur keamanan data berlapis dengan enkripsi tingkat kolom, kontrol akses berbasis peran (RBAC), penyamaran data identitas (data masking), dan pencatatan jejak audit (audit logs) yang tidak dapat dihapus.',
+          ],
+          bullets: [
+            {
+              label: 'Enkripsi Data In-Transit & At-Rest',
+              text: 'Penerapan standar enkripsi AES-256 pada penyimpanan data medis dan TLS 1.3 pada seluruh kanal pertukaran data API.',
+            },
+            {
+              label: 'Jejak Audit Akses Berkas Medis',
+              text: 'Perekaman detail setiap kali rekam medis dibuka, diubah, atau dicetak oleh tenaga medis demi akuntabilitas hukum.',
+            },
+            {
+              label: 'Isolasi & Manajemen Persetujuan Pasien',
+              text: 'Pencatatan persetujuan tindakan medis (informed consent) digital dengan riwayat versi yang terikat secara kriptografis.',
+            },
+          ],
+          closingParagraph:
+            'Infrastruktur kepatuhan data melindungi rumah sakit dan dokter dari risiko sengketa hukum serta kebocoran data medis.',
+        },
+        {
+          id: 'telemedicine-iomt',
+          tocLabel: 'Telemedis & Integrasi IoMT',
+          title: 'Telemedicine, Portal Pasien & Perangkat Medis Terhubung (IoMT)',
+          paragraphs: [
+            'Perluasan jangkauan faskes di luar gedung rumah sakit membutuhkan platform telemedis yang aman dan integrasi perangkat pemantauan pasien jarak jauh (Remote Patient Monitoring).',
+            'Kami membangun aplikasi telekonsultasi terenkripsi dengan video WebRTC berlatensi rendah, e-resep farmasi, serta integrasi alat kesehatan pintar (Internet of Medical Things / IoMT).',
+          ],
+          bullets: [
+            {
+              label: 'Telekonsultasi Video & E-Prescribing',
+              text: 'Sesi konsultasi dokter-pasien terenkripsi yang langsung terhubung ke pembuatan resep obat digital dan pengiriman kurir faskes.',
+            },
+            {
+              label: 'Portal Pasien Mandiri',
+              text: 'Akses aman bagi pasien untuk mengunduh riwayat laboratorium, jadwal kontrol berikutnya, dan riwayat pembayaran.',
+            },
+            {
+              label: 'Integrasi Sensor Pemantauan Pasien',
+              text: 'Penerimaan data glukometer, tensimeter, dan pulse oximeter pasien rawat jalan langsung ke sistem monitoring klinis.',
+            },
+          ],
+          closingParagraph:
+            'Platform digital terdesentralisasi mempermudah pemantauan pasien kronis dan memperluas cakupan layanan kesehatan faskes.',
+        },
+      ],
+    }
+  : {
+      title: 'Digital Healthcare Systems Engineering & Health Informatics',
+      tocTitle: 'Table of Contents',
+      sections: [
+        {
+          id: 'simrs-operations',
+          tocLabel: 'Hospital Systems & Ops',
+          title: 'Unified Hospital Information Management Systems (HIMS / SIMRS)',
+          paragraphs: [
+            'Modern healthcare facilities require seamless coordination across clinical and administrative units. Patient journeys from outpatient registration, triage, and operating theaters to wards and pharmacies demand a resilient, centralized infrastructure.',
+            'Teknalogi designs modular hospital information architectures that unify departmental workflows into a coherent central database, cutting patient wait times and eliminating duplicate data entry.',
+          ],
+          bullets: [
+            {
+              label: 'Intelligent Registration & Queue Management',
+              text: 'Doctor scheduling and clinic quota engines integrated with self-service kiosk terminals and patient mobile apps.',
+            },
+            {
+              label: 'Real-Time Bed & Ward Management',
+              text: 'Live bed occupancy tracking across inpatient, ICU, and isolation units connected directly to admission desks.',
+            },
+            {
+              label: 'OR & Emergency Workflow Orchestration',
+              text: 'Surgical team scheduling, perioperative duration logging, and sterile instrument inventory tracking.',
+            },
+          ],
+          closingParagraph:
+            'A well-architected hospital management platform optimizes healthcare facility capacity and accelerates clinical intervention speed.',
+        },
+        {
+          id: 'ehr-fhir-satusehat',
+          tocLabel: 'EHR & FHIR Interoperability',
+          title: 'Electronic Health Records (EHR) & HL7 FHIR Interoperability',
+          paragraphs: [
+            'Digital healthcare regulations mandate that Electronic Health Records (EHR) be clinically intuitive for practitioners while maintaining seamless, secure data exchange across healthcare ecosystems.',
+            'We engineer EHR platforms implementing HL7 FHIR (Fast Healthcare Interoperability Resources) data models and standardized clinical vocabularies (ICD-10, SNOMED CT, LOINC), with direct bridging to national health platforms such as SATUSEHAT.',
+          ],
+          bullets: [
+            {
+              label: 'SATUSEHAT API Ecosystem Integration',
+              text: 'Automated, encrypted transmission of encounter summaries, clinical diagnoses, vital signs, procedures, and immunizations.',
+            },
+            {
+              label: 'Specialty-Adaptive Clinical Forms',
+              text: 'Customizable documentation interfaces tailored to the diagnostic workflows of individual medical specialties.',
+            },
+            {
+              label: 'Certified Digital Signatures',
+              text: 'Integration with recognized Certificate Authorities for tamper-evident cryptographic signing of discharge summaries.',
+            },
+          ],
+          closingParagraph:
+            'Standardized clinical data structures ensure unbroken continuity of care whenever patients transition across healthcare networks.',
+        },
+        {
+          id: 'lis-pacs-integration',
+          tocLabel: 'Diagnostics: LIS & PACS',
+          title: 'Laboratory Information Systems (LIS) & Medical Imaging (PACS/DICOM)',
+          paragraphs: [
+            'Physician decision-making relies critically on rapid turnaround times for diagnostic lab tests and high-fidelity radiological imaging.',
+            'We interface laboratory analyzers directly with LIS workflows using ASTM and HL7 protocols, and integrate enterprise Picture Archiving and Communication Systems (PACS) with zero-footprint web DICOM viewers.',
+          ],
+          bullets: [
+            {
+              label: 'Automated Analyzer Connectivity',
+              text: 'Direct digital ingestion of hematology, biochemistry, and urinalysis outputs into EHR records without manual transcription.',
+            },
+            {
+              label: 'High-Performance Web DICOM Viewer',
+              text: 'Instant browser access to multi-slice CT, MRI, and X-ray studies with digital measurement and windowing tools.',
+            },
+            {
+              label: 'Automated Critical Value Alerts',
+              text: 'Instant emergency notifications routed to attending physicians when laboratory results breach clinical safety thresholds.',
+            },
+          ],
+          closingParagraph:
+            'Frictionless diagnostic integration provides doctors with rapid, high-confidence clinical evidence at the point of care.',
+        },
+        {
+          id: 'claims-billing-bpjs',
+          tocLabel: 'Claims, BPJS & Billing',
+          title: 'Automated Insurance Claims, BPJS Bridging & Medical Billing',
+          paragraphs: [
+            'Complex healthcare reimbursement workflows and manual claims filing frequently cause claim rejections, dispute backlogs, and revenue cycle delays.',
+            'Teknalogi integrates direct bridging with BPJS Kesehatan V-Claim, INA-CBG grouper engines, and private insurance portals to automate eligibility verification and claims packet assembly.',
+          ],
+          bullets: [
+            {
+              label: 'BPJS V-Claim & INA-CBG Bridging',
+              text: 'Instant participant eligibility checks, automated SEP generation, and seamless tariff grouping synchronization.',
+            },
+            {
+              label: 'Automated Claims Completeness Validation',
+              text: 'Algorithmic pre-submission checks verifying medical resumes, surgical notes, and diagnostic proof attachments.',
+            },
+            {
+              label: 'Multi-Payer Billing & Payment Gateways',
+              text: 'Flexible split-billing engines accommodating self-pay patients, corporate insurance, and national health coverage.',
+            },
+          ],
+          closingParagraph:
+            'Automated claims workflows accelerate reimbursement velocity and reduce claim dispute rates to near zero.',
+        },
+        {
+          id: 'patient-privacy-compliance',
+          tocLabel: 'Data Privacy & Compliance',
+          title: 'Patient Privacy Governance, Medical Cybersecurity & Compliance',
+          paragraphs: [
+            'Protected Health Information (PHI) requires stringent privacy governance under data protection statutes (UU PDP) and healthcare security standards like ISO 27799 and HIPAA.',
+            'We deploy multi-layer defensive architectures featuring column-level field encryption, role-based access control (RBAC), patient record de-identification, and immutable audit logs.',
+          ],
+          bullets: [
+            {
+              label: 'In-Transit & At-Rest Encryption',
+              text: 'Enforcing AES-256 encryption across clinical databases and TLS 1.3 for all inter-system API exchanges.',
+            },
+            {
+              label: 'Immutable Access Audit Logging',
+              text: 'Granular recording of every chart review, export, and record amendment for medical-legal accountability.',
+            },
+            {
+              label: 'Cryptographic Consent Management',
+              text: 'Version-controlled digital informed consent tracking bound securely to patient encounter records.',
+            },
+          ],
+          closingParagraph:
+            'Enterprise compliance safeguards healthcare institutions against data breaches, regulatory penalties, and malpractice liabilities.',
+        },
+        {
+          id: 'telemedicine-iomt',
+          tocLabel: 'Telemedicine & IoMT',
+          title: 'Telemedicine, Patient Portals & Medical Device Integration (IoMT)',
+          paragraphs: [
+            'Extending healthcare delivery beyond physical hospital walls requires secure telehealth software and continuous remote patient monitoring pipelines.',
+            'We engineer compliant virtual consultation systems with ultra-low latency WebRTC video, digital prescription routing, and Internet of Medical Things (IoMT) hardware interfaces.',
+          ],
+          bullets: [
+            {
+              label: 'Encrypted Virtual Consultation & E-Prescribing',
+              text: 'Secure physician-patient teleconsultation sessions linked to digital pharmacy dispensing and courier fulfillment.',
+            },
+            {
+              label: 'Secure Patient Self-Service Portals',
+              text: 'Mobile-friendly patient access for downloading diagnostic reports, reviewing treatment plans, and booking appointments.',
+            },
+            {
+              label: 'IoMT Telemetry & Remote Monitoring',
+              text: 'Real-time telemetry ingestion from home blood pressure monitors, continuous glucose sensors, and pulse oximeters.',
+            },
+          ],
+          closingParagraph:
+            'Decentralized healthcare platforms simplify chronic disease management and widen access to quality medical services.',
+        },
+      ],
+    };
+---
+
+<section
+  id="healthcare-deep-dive"
+  aria-label={copy.title}
+  class="relative isolate bg-white py-12 sm:py-20 lg:py-32 border-t border-slate-200/80"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      
+      <!-- Left Column: Main Editorial Article -->
+      <div class="lg:col-span-8">
+        
+        <!-- Main Section Title -->
+        <h2
+          class="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-[-0.04em] text-slate-950 mb-7 sm:mb-14"
+        >
+          {copy.title}
+        </h2>
+
+        <!-- Mobile Table of Contents (collapsible drawer on small screens) -->
+        <div class="lg:hidden mb-8 rounded-2xl border border-slate-200/90 bg-slate-50/80 p-4 sm:p-5">
+          <details class="group">
+            <summary class="flex items-center justify-between cursor-pointer list-none font-mono text-xs font-bold uppercase tracking-wider text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded min-h-[44px]">
+              <span>{copy.tocTitle}</span>
+              <svg
+                class="w-4 h-4 text-slate-500 transition-transform duration-200 group-open:rotate-180"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <nav class="mt-3 flex flex-col space-y-1.5 border-t border-slate-200/80 pt-3">
+              {copy.sections.map((section) => (
+                <a
+                  href={`#${section.id}`}
+                  class="text-xs sm:text-sm text-slate-600 hover:text-slate-950 transition-colors py-1.5 pl-2.5 border-l-2 border-slate-300 hover:border-slate-900 font-sans min-h-[44px] flex items-center"
+                >
+                  {section.tocLabel}
+                </a>
+              ))}
+            </nav>
+          </details>
+        </div>
+
+        <!-- Editorial Sections -->
+        <div class="flex flex-col space-y-10 sm:space-y-16">
+          {copy.sections.map((section) => (
+            <article
+              id={section.id}
+              class="healthcare-editorial-section scroll-mt-20 sm:scroll-mt-28 pb-8 sm:pb-12 border-b border-slate-100 last:border-b-0"
+            >
+              <h3 class="text-xl sm:text-2xl font-medium tracking-[-0.03em] text-slate-950 mb-3 sm:mb-4 leading-snug">
+                {section.title}
+              </h3>
+
+              {section.paragraphs.map((p) => (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mb-3 sm:mb-4">
+                  {p}
+                </p>
+              ))}
+
+              {section.bullets && (
+                <ul class="my-4 sm:my-5 space-y-2.5 sm:space-y-3 pl-4 sm:pl-5 list-disc marker:text-slate-400 text-sm sm:text-[16px] leading-relaxed text-slate-600 font-sans">
+                  {section.bullets.map((b) => (
+                    <li>
+                      <strong class="font-semibold text-slate-900">{b.label}:</strong> {b.text}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {section.closingParagraph && (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mt-3 sm:mt-4">
+                  {section.closingParagraph}
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- Right Column: Sticky Table of Contents -->
+      <aside class="hidden lg:block lg:col-span-4 sticky top-28 xl:top-32 self-start">
+        <div class="max-h-[calc(100vh-9rem)] overflow-y-auto pl-8 border-l border-slate-200/90 py-1">
+          <h3 class="text-[11.5px] font-bold tracking-[0.14em] text-slate-900 uppercase font-mono mb-4 select-none">
+            {copy.tocTitle}
+          </h3>
+          <nav aria-label={copy.tocTitle} class="flex flex-col space-y-2.5 text-[13.5px] font-sans">
+            {copy.sections.map((section) => (
+              <a
+                href={`#${section.id}`}
+                data-healthcare-toc-id={section.id}
+                class="healthcare-toc-nav-link text-slate-500 hover:text-slate-950 transition-all duration-200 py-1 pl-3 border-l-2 border-transparent hover:border-slate-400 min-h-[32px] flex items-center"
+              >
+                {section.tocLabel}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupHealthcareTocHighlight() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-10% 0px -70% 0px',
+      threshold: 0,
+    };
+
+    const sections = document.querySelectorAll<HTMLElement>('.healthcare-editorial-section');
+    const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.healthcare-toc-nav-link');
+
+    if (!sections.length || !tocLinks.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href === `#${id}`) {
+              link.classList.add('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.remove('text-slate-500', 'border-transparent');
+            } else {
+              link.classList.remove('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.add('text-slate-500', 'border-transparent');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((sec) => observer.observe(sec));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupHealthcareTocHighlight);
+  } else {
+    setupHealthcareTocHighlight();
+  }
+  document.addEventListener('astro:page-load', setupHealthcareTocHighlight);
+</script>

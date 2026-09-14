@@ -1,0 +1,447 @@
+---
+// src/components/industries/BusinessServicesIndustry.astro
+import type { Locale } from '../../i18n/translations';
+import BusinessServicesAboutIndustry from './BusinessServicesAboutIndustry.astro';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      eyebrow: 'LAYANAN BISNIS & PROFESIONAL',
+      title: 'Engineering untuk operasi layanan profesional dan interaksi klien terpadu.',
+      lead: 'Bangun dan modernisasi portal klien interaktif, otomasi penagihan berbasis waktu proyek, penjadwalan alokasi konsultan, dan pipeline alur kerja kontrak digital. Teknalogi menghadirkan rekayasa perangkat lunak operasi B2B yang andal dan terukur.',
+      primaryCta: 'Diskusikan kebutuhan bisnis Anda',
+      challengesTitle: 'Ketika operasi klien terpisah, efisiensi penagihan bocor.',
+      challengesLead: 'Operasional melambat saat timesheet, milestone proyek, dan invoice klien berjalan sendiri-sendiri.',
+      challenges: [
+        ['Komunikasi klien tercecer', 'Dokumen proyek dan revisi pekerjaan hilang di utas email yang terpisah.'],
+        ['Kebocoran jam kerja tertagih', 'Pencatatan timesheet manual memperlambat penagihan dan memicu unbilled hours.'],
+        ['Kapasitas tim tidak terpantau', 'Ketiadaan visibilitas beban kerja memicu kelebihan beban dan jadwal molor.'],
+        ['Persetujuan kontrak lambat', 'Penyusunan dan review perjanjian hukum manual menunda kickoff proyek klien.'],
+      ],
+      solutionsTitle: 'Solusi perangkat lunak terintegrasi untuk firma konsultan, agensi, dan penyedia jasa korporat.',
+      solutionsLead: 'Ruang lingkup sistem disesuaikan dengan tata kelola praktik bisnis Anda, mulai dari ekstranet klien bermerek, mesin kalkulasi tarif multi-tier, hingga integrasi buku besar akuntansi.',
+      solutions: [
+        ['Portal Klien & Ekstranet Interaktif', 'Ekstranet bermerek khusus untuk review milestone proyek, pertukaran berkas aman, dan persetujuan mandiri.', 'portal'],
+        ['Otomasi Timesheet & Billing Proyek', 'Mesin penagihan jam kerja, milestone, dan retainer otomatis dengan kalkulasi pajak dan reimbursable expense.', 'billing'],
+        ['Manajemen Kapasitas & Utilisasi Tim', 'Proyeksi beban kerja konsultan real-time, pencocokan keahlian staf, dan matriks utilisasi tim.', 'scheduling'],
+        ['Otomasi Kontrak & e-Signature (CLM)', 'Penyusunan klausul dinamis, riwayat revisi berversi, dan penandatanganan elektronik tersertifikasi.', 'contract'],
+        ['Repositori Pengetahuan & Aset Digital', 'Pangkalan data metodologi, template proposal, dan aset penelitian dengan hak akses tersegmentasi.', 'knowledge'],
+        ['Integrasi ERP & Sistem Keuangan Kantor', 'Sinkronisasi dua arah dengan buku besar akuntansi (Xero/SAP), CRM penjualan, dan perbankan korporasi.', 'integration'],
+      ],
+      approachTitle: 'Dirancang untuk kerahasiaan data klien dan transparansi operasi bisnis.',
+      domains: [
+        ['Isolasi Multi-Tenancy & Hak Akses Granular', 'Terapkan perimeter data terisolasi antar-klien untuk menjamin kerahasiaan berkas, kepatuhan NDA, dan audit akses.', 'tenancy'],
+        ['Telemetri Utilisasi Tim & Margin Laba Proyek', 'Pantau metrik kapasitas kerja dan tingkat realisasi penagihan (realization rate) secara langsung tanpa jeda.', 'utilization'],
+        ['Alur Kerja Persetujuan Status Deterministik', 'Otomatiskan gerbang persetujuan bertingkat guna memastikan deliverable tervalidasi sebelum penagihan termin.', 'workflow'],
+      ],
+      faqTitle: 'Hal yang biasanya dibahas sebelum proyek layanan bisnis dimulai.',
+      faqLead: 'Struktur tarif penagihan, hierarki persetujuan internal, dan standar kepatuhan setiap firma profesional berbeda. Discovery teknis kami memetakan batasan sistem, keamanan data klien, dan alur integrasi.',
+      faqTrustTitle: 'Dipercaya oleh',
+      faqTrustText: 'Firma profesional, agensi korporat, dan penyedia jasa B2B di Indonesia',
+      faqAction: 'Tanyakan kebutuhan bisnis Anda',
+      faqs: [
+        ['Bisakah portal klien dihubungkan dengan software akuntansi seperti Xero, QuickBooks, atau Jurnal?', 'Ya. Kami membangun antarmuka API dua arah untuk menyinkronkan data kontak klien, draf tagihan invoice yang telah disetujui, dan status pembayaran langsung ke buku besar akuntansi Anda.'],
+        ['Bagaimana sistem memastikan kerahasiaan dokumen sensitif antar-klien yang berbeda?', 'Platform kami menerapkan isolasi data logis dan kriptografis (multi-tenant security boundary). Setiap klien hanya dapat melihat berkas proyek mereka sendiri dengan kunci enkripsi terpisah dan pencatatan log audit akses yang ketat.'],
+        ['Apakah tanda tangan elektronik pada sistem kontrak dan NDA memiliki kekuatan hukum yang sah?', 'Ya. Modul e-signature kami dapat diintegrasikan dengan Penyelenggara Sertifikasi Elektronik (PSrE) terakreditasi Kominfo (seperti PrivyID, Peruri, BSrE) sehingga dokumen memenuhi kekuatan pembuktian hukum penuh.'],
+        ['Bagaimana sistem mengelola skema penagihan gabungan antara retainer bulanan dan jam kerja tambahan?', 'Mesin billing kami mengonfigurasi batas kuota jam kerja retainer secara otomatis. Jam kerja tambahan yang melampaui kuota retainer akan otomatis dialokasikan ke tagihan overage berdasarkan rate card konsultan yang bersangkutan.'],
+        ['Bisakah klien eksternal memberikan komentar revisi dan menyetujui deliverable langsung di portal?', 'Bisa. Portal klien dilengkapi fitur preview dokumen interaktif, penambahan catatan revisi berstempel waktu, dan tombol persetujuan digital resmi yang otomatis mengunci versi deliverable.'],
+        ['Bagaimana manajer proyek melacak tingkat utilisasi dan pencegahan overbooking konsultan?', 'Sistem kami menyediakan dashboard matriks kapasitas dengan kode warna interaktif yang memperlihatkan alokasi jam kerja setiap konsultan di seluruh proyek aktif secara real-time.'],
+        ['Berapa lama waktu implementasi platform operasi bisnis dari tahap discovery hingga peluncuran?', 'Implementasi modular umumnya membutuhkan waktu 6 hingga 12 minggu, mencakup konfigurasi alur kerja, migrasi data historis, integrasi sistem pembayaran/akuntansi, dan pelatihan staf.'],
+        ['Apakah Teknalogi menyediakan dukungan pemeliharaan dan kustomisasi alur kerja setelah go-live?', 'Ya. Kami menyediakan layanan pemeliharaan berkelanjutan mencakup pemantauan performa server, pembaruan patch keamanan, audit hak akses berkala, dan penyesuaian modul seiring pertumbuhan firma.'],
+      ],
+    }
+  : {
+      eyebrow: 'PROFESSIONAL & BUSINESS SERVICES',
+      title: 'Engineering for modern professional services and client operations.',
+      lead: 'Build resilient client extranets, automated time-and-billing engines, resource scheduling platforms, and contract workflow pipelines. Teknalogi empowers consulting firms, agencies, and professional practices with high-precision digital operations.',
+      primaryCta: 'Discuss your business requirements',
+      challengesTitle: 'When client operations disconnect, billable hours leak.',
+      challengesLead: 'Operations slow down when timesheets, project milestones, and client invoicing operate in silos.',
+      challenges: [
+        ['Scattered client communications', 'Project briefs and deliverables get lost across fragmented email threads.'],
+        ['Unbilled hours and revenue leakage', 'Manual timesheet tracking delays invoice approvals and causes unbilled fee write-offs.'],
+        ['Resource allocation blindspots', 'Lack of real-time capacity visibility triggers team burnout and delivery bottlenecks.'],
+        ['Slow contract execution', 'Manual drafting and compliance reviews delay client onboarding and project kickoffs.'],
+      ],
+      solutionsTitle: 'Integrated software solutions engineered for consultancies, agencies, and corporate practices.',
+      solutionsLead: 'System architectures are custom-tailored to your practice governance, spanning secure branded client extranets, multi-tier billing engines, and general ledger financial integrations.',
+      solutions: [
+        ['Interactive Client Portals & Extranets', 'Dedicated branded extranets for milestone reviews, encrypted file sharing, and self-service approval sign-offs.', 'portal'],
+        ['Automated Time, Retainer & Billing Engines', 'Multi-currency hourly, milestone, and retainer invoicing engines with automated tax and expense pass-through.', 'billing'],
+        ['Resource Scheduling & Utilization Engine', 'Real-time consultant workload forecasting, skills-based matchmaking, and utilization rate heatmaps.', 'scheduling'],
+        ['Digital Contract & NDA Lifecycle Automation', 'Dynamic clause generation, version-controlled audit trails, and certified cryptographic digital signatures.', 'contract'],
+        ['Secure Knowledge & IP Repositories', 'Granular role-based knowledge bases for practice templates, methodology frameworks, and research assets.', 'knowledge'],
+        ['Unified Practice Management & ERP Bridging', 'Bidirectional data synchronization with corporate accounting (QuickBooks, Xero, SAP) and CRM pipelines.', 'integration'],
+      ],
+      approachTitle: 'Designed for client confidentiality and operational business clarity.',
+      domains: [
+        ['Granular RBAC & Client Multi-Tenancy', 'Enforce strict tenant data boundaries ensuring client confidentiality, NDA compliance, and audited access controls.', 'tenancy'],
+        ['Real-Time Utilization & Revenue Telemetry', 'Live utilization metrics calculating project profit margins and consultant billable efficiency in real time.', 'utilization'],
+        ['Deterministic State Workflows & Approvals', 'Automated sign-off pipelines preventing milestone delivery until mandatory compliance checklists are verified.', 'workflow'],
+      ],
+      faqTitle: 'What teams usually discuss before a business services project starts.',
+      faqLead: 'Billing structures, approval hierarchies, and compliance standards vary across professional practices. Technical discovery maps data boundaries, client privacy controls, and integration workflows.',
+      faqTrustTitle: 'Trusted by',
+      faqTrustText: 'Consulting practices, corporate agencies, and B2B service firms across Indonesia',
+      faqAction: 'Ask about your business requirements',
+      faqs: [
+        ['Can the client portal integrate with existing accounting software like Xero, QuickBooks, or SAP?', 'Yes. We engineer secure bi-directional APIs to synchronize approved billing drafts, client payment settlements, and expense items directly with your firm’s general ledger.'],
+        ['How does the platform enforce document confidentiality across competing enterprise clients?', 'Our architecture enforces rigorous logical and cryptographic multi-tenant separation. Each client’s engagement files are encrypted with dedicated keys and protected by strict role-based access logs.'],
+        ['Are digital signatures executed on contracts and NDAs legally binding in Indonesia?', 'Yes. Our contract workflow integrates with licensed Electronic Certification Authorities (PSrE under Kominfo/BSrE) ensuring full legal standing and evidentiary validity under Indonesian electronic transaction laws.'],
+        ['How does the system handle hybrid retainer agreements with hourly overage billing?', 'Our billing engine continuously monitors monthly retainer consumption thresholds and automatically routes billable overage hours into invoice drafts according to assigned consultant rate cards.'],
+        ['Can external client stakeholders annotate deliverables and sign off directly in the portal?', 'Yes. The portal provides interactive file previewing, timestamped revision annotation tools, and formal cryptographic deliverable approval buttons that permanently lock approved milestones.'],
+        ['How do practice leaders track consultant billable utilization and prevent overbooking?', 'The platform features interactive capacity heatmaps that cross-reference forward-looking project allocations against actual timesheet logs to highlight team bandwidth in real time.'],
+        ['What is the typical deployment timeline for a professional practice operations platform?', 'A phased implementation typically spans 6 to 12 weeks, encompassing workflow configuration, historical data migration, billing gateway setup, and role-based staff onboarding.'],
+        ['Does Teknalogi provide long-term maintenance and custom workflow evolution after launch?', 'Yes. We provide comprehensive managed services including infrastructure monitoring, periodic access audits, security updates, and workflow iterations as your firm scales.'],
+      ],
+    };
+
+const partnerLogos = [
+  ['Anytime Fitness', '/partners/anytime.png'],
+  ['KelolaAja', '/partners/kelolaaja.png'],
+  ['Nikawa Teknika', '/partners/nikawa.png'],
+  ['PT Inti Bersama', '/partners/ptintibersama.png'],
+];
+---
+
+<!-- Hero Section with Background Image and Gradient Overlay -->
+<section class="relative isolate min-h-[38rem] overflow-hidden bg-white py-28 sm:min-h-[42rem] sm:py-32 lg:min-h-[46rem] lg:py-40" aria-labelledby="business-title">
+  <img src="/industry/herobisnis.png" alt="" width="1536" height="1024" class="absolute inset-0 -z-20 h-full w-full object-cover object-[64%_center]" loading="eager" decoding="async" />
+  <div class="absolute inset-0 -z-10 bg-white/84 sm:bg-gradient-to-r sm:from-white sm:from-[7%] sm:via-white/86 sm:via-[46%] sm:to-white/0 sm:to-[80%]"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-white"></div>
+  <div class="home-container flex min-h-[calc(38rem-7rem)] items-end sm:min-h-[calc(42rem-8rem)] lg:min-h-[calc(46rem-10rem)]">
+    <div class="max-w-3xl pb-2 lg:pb-5">
+      <p class="text-[11px] font-semibold tracking-[0.14em] text-slate-600">{copy.eyebrow}</p>
+      <h1 id="business-title" class="mt-4 max-w-3xl text-4xl font-medium leading-[1.06] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-[4.5rem]">
+        {copy.title}
+      </h1>
+      <p class="mt-6 max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">{copy.lead}</p>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-[#f5a623] px-6 text-sm font-semibold text-slate-950 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e69818] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2">
+        {copy.primaryCta}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Challenges Section with Sticky Secondary Photo and Numbered Grid -->
+<section class="home-section bg-white" aria-labelledby="business-challenges-title">
+  <div class="home-container grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-12">
+    <div class="group relative overflow-hidden rounded-[24px] lg:sticky lg:top-28 lg:self-start">
+      <img src="/industry/secondarybisnis.png" alt="Modern corporate advisory and professional services operations" width="1448" height="1086" class="h-[21rem] w-full object-cover sm:h-[28rem] lg:h-[38rem]" loading="lazy" decoding="async" />
+      <div class="absolute inset-0 bg-slate-950/30 transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
+      <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-950/65 to-transparent"></div>
+      <div class="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+        <span class="font-mono text-[10px] font-semibold tracking-[0.18em] text-white/80">CONNECTED CLIENT OPERATIONS</span>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <h2 id="business-challenges-title" class="max-w-xl text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.challengesTitle}</h2>
+      <p class="mt-5 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.challengesLead}</p>
+      <ol class="mt-10 grid flex-1 grid-cols-1 gap-x-8 sm:mt-12 sm:grid-cols-2">
+        {copy.challenges.map(([title, description], index) => (
+          <li class="group border-t border-slate-200 py-6 sm:py-7">
+            <div class="flex items-baseline justify-between gap-5">
+              <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+              <span class="h-px flex-1 bg-slate-100 transition-colors duration-300 group-hover:bg-violet-200"></span>
+            </div>
+            <h3 class="mt-7 text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- Solutions Grid Section (6 Cards with Hover Gradient Glow & Custom Icons) -->
+<section id="business-solutions" class="home-section bg-white scroll-mt-20" aria-labelledby="business-solutions-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 id="business-solutions-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.solutionsTitle}</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">{copy.solutionsLead}</p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {copy.solutions.map(([title, description, icon]) => (
+        <article class="business-solution-card group relative isolate flex min-h-[17rem] overflow-hidden rounded-[20px] border border-slate-200/90 bg-white p-6 sm:min-h-[18rem] sm:p-7">
+          <div class="relative z-10 flex w-full flex-col justify-between">
+            <span class="business-solution-icon flex h-10 w-10 items-center justify-center text-slate-950" aria-hidden="true">
+              {icon === 'portal' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4" y="5.5" width="24" height="21" rx="3" stroke-linejoin="round" />
+                  <path d="M4 11h24M11 16h10M11 20h6" stroke-linecap="round" />
+                  <circle cx="21" cy="20" r="2.5" />
+                </svg>
+              )}
+              {icon === 'billing' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="16" cy="16" r="11" />
+                  <path d="M16 10v6l4 2.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M16 5V3M16 29v-2M5 16H3M29 16h-2" stroke-linecap="round" />
+                </svg>
+              )}
+              {icon === 'scheduling' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4.5" y="6" width="23" height="20" rx="3" stroke-linejoin="round" />
+                  <path d="M5 12h22M10 4v4M22 4v4" stroke-linecap="round" />
+                  <rect x="8.5" y="16" width="6" height="3" rx="1" fill="currentColor" fill-opacity="0.2" />
+                  <rect x="17.5" y="16" width="6" height="3" rx="1" fill="currentColor" fill-opacity="0.2" />
+                </svg>
+              )}
+              {icon === 'contract' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M8 4.5h11l6 6v17H8z" stroke-linejoin="round" />
+                  <path d="M19 4.5v6h6M12 15h8M12 19h5" stroke-linecap="round" />
+                  <circle cx="19" cy="23" r="3" />
+                  <path d="M21 25.5l2 3" stroke-linecap="round" />
+                </svg>
+              )}
+              {icon === 'knowledge' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M5 7a3 3 0 0 1 3-3h18v21H8a3 3 0 0 0-3 3V7z" stroke-linejoin="round" />
+                  <path d="M5 25a3 3 0 0 1 3-3h18M11 9h10M11 13h7" stroke-linecap="round" />
+                </svg>
+              )}
+              {icon === 'integration' && (
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4" y="6" width="9" height="7" rx="2" />
+                  <rect x="19" y="6" width="9" height="7" rx="2" />
+                  <rect x="11.5" y="19" width="9" height="7" rx="2" />
+                  <path d="M8.5 13v3a3 3 0 0 0 3 3h4.5m7.5-6v3a3 3 0 0 1-3 3h-4.5" stroke-linecap="round" />
+                </svg>
+              )}
+            </span>
+            <div class="mt-12">
+              <h3 class="max-w-sm text-xl font-medium tracking-[-0.025em] text-slate-950 sm:text-[22px]">{title}</h3>
+              <p class="mt-3 max-w-md text-sm leading-relaxed text-slate-600">{description}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Approach Section (3 Domain Cards with Bespoke Business Services Schematics) -->
+<section class="home-section bg-white" aria-labelledby="business-approach-title">
+  <div class="home-container">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 id="business-approach-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">{copy.approachTitle}</h2>
+    </div>
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-12 lg:grid-cols-3 lg:gap-5">
+      {copy.domains.map(([title, description, key], index) => (
+        <article class={`business-domain-card business-domain-${key} flex min-h-[18rem] flex-col rounded-[20px] border border-slate-200 bg-white p-6 sm:p-7`}>
+          <div class="flex items-start justify-between gap-5">
+            <span class="font-mono text-xs font-medium tracking-[0.12em] text-slate-400">{String(index + 1).padStart(2, '0')}</span>
+            <span class="text-[11px] font-medium tracking-[0.08em] text-slate-400">
+              {key === 'tenancy' ? 'TENANCY' : key === 'utilization' ? 'EFFICIENCY' : 'GOVERNANCE'}
+            </span>
+          </div>
+          <div class="business-domain-visual mt-5 text-slate-900" aria-hidden="true">
+            {key === 'tenancy' && (
+              <svg viewBox="0 0 260 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                {/* Isolated multi-tenant client pod blocks with encryption lock seals */}
+                <rect x="20" y="32" width="56" height="48" rx="8" fill="white" />
+                <rect x="102" y="32" width="56" height="48" rx="8" fill="white" />
+                <rect x="184" y="32" width="56" height="48" rx="8" fill="white" />
+                <circle cx="48" cy="56" r="6" fill="currentColor" fill-opacity="0.1" />
+                <circle cx="130" cy="56" r="6" fill="currentColor" fill-opacity="0.1" />
+                <circle cx="212" cy="56" r="6" fill="currentColor" fill-opacity="0.1" />
+                <path d="M48 40v-4a4 4 0 0 1 8 0v4m74 0v-4a4 4 0 0 1 8 0v4m74 0v-4a4 4 0 0 1 8 0v4" stroke-linecap="round" />
+                <path d="M76 56h26m56 0h26" stroke-linecap="round" stroke-dasharray="2 3" />
+              </svg>
+            )}
+            {key === 'utilization' && (
+              <svg viewBox="0 0 320 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                {/* Resource utilization gauge & billable efficiency curve */}
+                <path d="M20 86h280" stroke-linecap="round" />
+                <path d="M30 76c35 0 45-42 75-42s40 32 75 32 45-48 75-48 25 18 35 18" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="105" cy="34" r="7" fill="white" />
+                <circle cx="180" cy="66" r="7" fill="white" />
+                <circle cx="255" cy="18" r="7" fill="white" />
+                <path d="m102 34 2 2 4-5m70 33 2 2 4-5m70-49 2 2 4-5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+            {key === 'workflow' && (
+              <svg viewBox="0 0 250 112" fill="none" stroke="currentColor" stroke-width="1.45">
+                {/* Deterministic state workflow: Draft -> Review -> Approved Sign-Off */}
+                <path d="M20 56h210" stroke-linecap="round" />
+                <circle cx="36" cy="56" r="16" fill="white" />
+                <circle cx="125" cy="56" r="16" fill="white" />
+                <circle cx="214" cy="56" r="16" fill="white" />
+                <path d="m30 56 4 4 8-8m77 4 4 4 8-8m77 4 4 4 8-8" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M60 48l12 8-12 8m77-16 12 8-12 8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+          </div>
+          <div class="mt-auto pt-6">
+            <h3 class="text-xl font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+            <p class="mt-2.5 max-w-xl text-sm leading-relaxed text-slate-600">{description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Deep-Dive Editorial Section with Sticky Desktop TOC & Mobile Drawer -->
+<BusinessServicesAboutIndustry lang={lang} />
+
+<!-- FAQ Section with Accordion and Partner Trust Bar -->
+<section class="home-section bg-white" aria-labelledby="business-faq-title">
+  <div class="home-container grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-16">
+    <div class="space-y-6 lg:sticky lg:top-28 lg:col-span-5">
+      <div>
+        <h2 id="business-faq-title" class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-[44px]">{copy.faqTitle}</h2>
+        <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-600 sm:text-base">{copy.faqLead}</p>
+      </div>
+      <div class="flex items-center gap-3.5">
+        <div class="flex -space-x-3" aria-label={`${copy.faqTrustTitle}: ${copy.faqTrustText}`}>
+          {partnerLogos.map(([name, logo]) => (
+            <span class="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 border-slate-100 bg-white p-1.5 shadow-sm">
+              <img src={logo} alt={name} class="h-full w-full object-contain" loading="lazy" decoding="async" />
+            </span>
+          ))}
+        </div>
+        <span class="max-w-[18rem] text-xs leading-snug text-slate-600">
+          <strong class="block font-semibold text-slate-950">{copy.faqTrustTitle}</strong>
+          <span class="mt-0.5 block">{copy.faqTrustText}</span>
+        </span>
+      </div>
+      <a href="https://wa.me/628517442245" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-800 focus-visible:ring-offset-2">
+        {copy.faqAction}
+      </a>
+    </div>
+    <div class="space-y-3 lg:col-span-7">
+      {copy.faqs.map(([question, answer], index) => (
+        <details class="business-faq-item group overflow-hidden rounded-2xl border border-slate-900/80 bg-white transition-colors hover:border-slate-950">
+          <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 rounded-2xl p-5 text-base font-medium leading-snug text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-slate-900 sm:p-6">
+            <span>{question}</span>
+            <span class="business-faq-icon relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-900/30 bg-slate-50 text-slate-700 transition-colors" aria-hidden="true">
+              <span class="absolute h-px w-3.5 bg-current"></span>
+              <span class="absolute h-3.5 w-px bg-current transition-transform group-open:scale-y-0"></span>
+            </span>
+          </summary>
+          <div role="region" aria-label={`${isId ? 'Jawaban' : 'Answer'} ${index + 1}`}>
+            <p class="max-w-2xl px-5 pb-5 pr-14 text-sm leading-relaxed text-slate-600 sm:px-6 sm:pb-6 sm:text-[15px]">{answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .business-domain-card {
+    box-shadow: 0 1px 10px -7px rgba(15, 23, 42, 0.14);
+  }
+
+  .business-domain-visual {
+    display: block;
+    width: 100%;
+  }
+
+  .business-domain-visual svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .business-domain-utilization .business-domain-visual {
+    margin-inline: auto;
+    max-width: 21rem;
+  }
+
+  .business-solution-card {
+    box-shadow: 0 2px 14px -4px rgba(15, 23, 42, 0.08);
+    transition:
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 320ms ease,
+      box-shadow 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .business-solution-card::before {
+    position: absolute;
+    top: -5.5rem;
+    right: -4.5rem;
+    width: 17rem;
+    height: 17rem;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(196, 181, 253, 0.52) 0%, rgba(221, 214, 254, 0.22) 42%, transparent 72%);
+    content: '';
+    filter: blur(15px);
+    opacity: 0.72;
+    pointer-events: none;
+    transition:
+      opacity 360ms ease,
+      transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .business-solution-card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(203 213 225);
+    box-shadow: 0 18px 38px -18px rgba(15, 23, 42, 0.28);
+  }
+
+  .business-solution-card:hover::before {
+    opacity: 0.92;
+    transform: translate(-0.75rem, 0.75rem) scale(1.06);
+  }
+
+  .business-solution-icon {
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .business-solution-icon svg {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .business-solution-card:hover .business-solution-icon {
+    transform: translateY(-2px);
+  }
+
+  .business-faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .business-faq-item[open] {
+    border-color: rgb(15 23 42);
+    background:
+      radial-gradient(circle at 86% 20%, rgba(196, 181, 253, 0.26), transparent 55%),
+      #ffffff;
+  }
+
+  .business-faq-item[open] .business-faq-icon {
+    border-color: rgb(15 23 42);
+    background: rgb(15 23 42);
+    color: white;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .business-domain-card,
+    .business-solution-card,
+    .business-solution-card::before,
+    .business-solution-icon {
+      transition: none;
+    }
+
+    .business-solution-card:hover,
+    .business-solution-card:hover::before,
+    .business-solution-card:hover .business-solution-icon {
+      transform: none;
+    }
+
+    .business-faq-item,
+    .business-faq-icon,
+    .business-faq-icon span {
+      transition: none;
+    }
+  }
+</style>

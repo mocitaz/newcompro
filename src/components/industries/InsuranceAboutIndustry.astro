@@ -1,0 +1,475 @@
+---
+// src/components/industries/InsuranceAboutIndustry.astro
+import type { Locale } from '../../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      title: 'Rekayasa Sistem & Arsitektur Asuransi Digital',
+      tocTitle: 'Daftar Isi Pembahasan',
+      sections: [
+        {
+          id: 'pas-architecture',
+          tocLabel: 'Modernisasi Core PAS',
+          title: 'Modernisasi Policy Administration System (PAS)',
+          paragraphs: [
+            'Sebagian besar perusahaan asuransi mengandalkan sistem pencatatan polis lama (legacy PAS) yang kaku dan sulit diintegrasikan dengan aplikasi digital modern. Kondisi ini memperlambat peluncuran produk asuransi mikro dan kemitraan digital.',
+            'Teknalogi merancang arsitektur perantara (integration middleware) dan microservices decoupled yang mengisolasi database polis inti dari lonjakan trafik kanal digital. Pola ini memungkinkan penerbitan polis instan tanpa mengganggu kestabilan buku besar aktuaria.',
+          ],
+          bullets: [
+            {
+              label: 'Pemisahan Mesin Produk & Kontrak Polis',
+              text: 'Memisahkan konfigurasi manfaat produk asuransi dari mesin administrasi kontrak guna mempercepat peluncuran rider dan produk baru.',
+            },
+            {
+              label: 'Penerbitan e-Polis Sub-Detik',
+              text: 'Mengotomatiskan alur verifikasi pembayaran premi, penandatanganan elektronik tersertifikasi (PSrE), dan pengiriman polis digital ke nasabah.',
+            },
+            {
+              label: 'Otomasi Endorsement & Perubahan Polis',
+              text: 'Menyediakan alur kerja digital mandiri untuk pembaruan data tertanggung, perubahan penerima manfaat, dan penyesuaian uang pertanggungan.',
+            },
+          ],
+          closingParagraph:
+            'Modernisasi sistem administrasi polis memangkas time-to-market produk asuransi dari hitungan bulan menjadi beberapa hari saja.',
+        },
+        {
+          id: 'claims-automation',
+          tocLabel: 'Ajudikasi Klaim & STP',
+          title: 'Ajudikasi Klaim Cepat & Deteksi Anomali Fraud',
+          paragraphs: [
+            'Proses klaim adalah momen penentu kepuasan nasabah asuransi. Verifikasi dokumen medis manual memicu antrean panjang dan meningkatkan biaya operasional klaim secara signifikan.',
+            'Kami membangun pipeline ajudikasi klaim berbasis Straight-Through Processing (STP) dengan teknologi OCR medis cerdas, validasi limit polis instan, dan penilaian risiko fraud otomatis.',
+          ],
+          bullets: [
+            {
+              label: 'Ekstraksi OCR Kuitansi & Resume Medis',
+              text: 'Membaca dan mengonversi kuitansi rumah sakit, diagnosis ICD-10, dan rincian obat menjadi data terstruktur dalam hitungan detik.',
+            },
+            {
+              label: 'Persetujuan Otomatis Klaim Minor (STP)',
+              text: 'Mengeksekusi persetujuan klaim rawat jalan berisiko rendah secara otomatis berdasarkan aturan polis tanpa intervensi manual.',
+            },
+            {
+              label: 'Pendeteksian Klaim Fiktif (Fraud Scoring)',
+              text: 'Menganalisis anomali frekuensi pengajuan, pola tarif rumah sakit yang tidak lazim, dan riwayat klaim ganda lintas penjamin.',
+            },
+          ],
+          closingParagraph:
+            'Otomasi klaim mempercepat pencairan manfaat bagi nasabah sekaligus melindungi dana klaim perusahaan dari kebocoran akibat fraud.',
+        },
+        {
+          id: 'actuarial-rating',
+          tocLabel: 'Underwriting Aktuaria',
+          title: 'Underwriting Dinamis & Mesin Tarif Aktuaria',
+          paragraphs: [
+            'Penetapan tarif premi yang akurat memerlukan evaluasi profil risiko nasabah yang komprehensif, cepat, dan transparan.',
+            'Kami menerapkan mesin underwriting algoritmik yang mengevaluasi riwayat kesehatan, gaya hidup, dan data demografis untuk menentukan premi secara deterministik.',
+          ],
+          bullets: [
+            {
+              label: 'Pohon Keputusan Underwriting Otomatis',
+              text: 'Menerjemahkan kuesioner medis SPAJ menjadi keputusan instant accept, standard, sub-standard rating, atau perujukan ke underwriter senior.',
+            },
+            {
+              label: 'Kalkulasi Premi Berdasarkan Risiko Dinamis',
+              text: 'Menyesuaikan beban mortalitas dan morbiditas secara real-time berdasarkan usia masuk, riwayat merokok, dan pekerjaan tertanggung.',
+            },
+            {
+              label: 'Koneksi Gateway Laboratorium Rekanan',
+              text: 'Menerima hasil tes kesehatan digital secara langsung dari klinik rekanan untuk mempercepat proses persetujuan underwriting medis.',
+            },
+          ],
+          closingParagraph:
+            'Mesin underwriting otomatis meningkatkan rasio konversi aplikasi asuransi tanpa mengorbankan prinsip kehati-hatian aktuaria.',
+        },
+        {
+          id: 'bancassurance-apis',
+          tocLabel: 'Bancassurance & Open APIs',
+          title: 'Ekosistem Bancassurance & API Open Insurance',
+          paragraphs: [
+            'Distribusi asuransi melalui kanal perbankan (bancassurance) dan platform e-commerce menuntut integrasi API yang aman, berstandar tinggi, dan memiliki latensi rendah.',
+            'Teknalogi membangun Open Insurance Gateway dengan otentikasi standar industri (OAuth 2.0 / mTLS), enkripsi payload ujung-ke-ujung, dan pemantauan SLA integrasi mitra.',
+          ],
+          bullets: [
+            {
+              label: 'API Ilustrasi & Simulasi Produk B2B',
+              text: 'Menyediakan endpoint kalkulasi simulasi premi yang siap disematkan di dalam aplikasi mobile banking mitra perbankan.',
+            },
+            {
+              label: 'Sinkronisasi Pembayaran Auto-Debet & VA',
+              text: 'Mengotomatiskan penarikan premi berkala melalui fasilitas standing instruction bank dengan rekonsiliasi status mutasi instan.',
+            },
+            {
+              label: 'Portal Keagenan & Manajemen Komisi',
+              text: 'Aplikasi terpadu untuk agen asuransi mencakup pembuatan proposal, penandatanganan elektronik, dan dashboard kalkulasi komisi.',
+            },
+          ],
+          closingParagraph:
+            'Konektivitas API yang andal memperluas jangkauan distribusi produk asuransi ke jutaan nasabah perbankan dan ekosistem fintech.',
+        },
+        {
+          id: 'ifrs17-compliance',
+          tocLabel: 'IFRS 17 & Regulasi OJK',
+          title: 'Kepatuhan Pelaporan IFRS 17 & Solvabilitas OJK',
+          paragraphs: [
+            'Penerapan standar akuntansi asuransi IFRS 17 menuntut pemisahan pendapatan asuransi dari komponen investasi serta kalkulasi Contractual Service Margin (CSM) yang sangat ketat.',
+            'Kami membangun data mart aktuaria dan pipeline pemrosesan data historis yang memetakan arus kas polis ke dalam model diskonto dan pengelompokan portofolio berstandar IFRS 17.',
+          ],
+          bullets: [
+            {
+              label: 'Mesin Kalkulasi CSM & Liabilitas Arus Kas',
+              text: 'Menghitung nilai sekarang dari estimasi arus kas masa depan (Present Value of Future Cash Flows) dan penyesuaian risiko non-finansial.',
+            },
+            {
+              label: 'Lineage Data Transaksi Lengkap untuk Audit',
+              text: 'Melacak riwayat setiap angka dalam laporan keuangan kembali ke transaksi polis individual untuk kepatuhan audit eksternal.',
+            },
+            {
+              label: 'Dashboard Pemantauan Rasio Solvabilitas (RBC)',
+              text: 'Menampilkan rasio kecukupan modal berbasis risiko (Risk-Based Capital) secara berkala sesuai ketentuan regulasi OJK.',
+            },
+          ],
+          closingParagraph:
+            'Arsitektur pelaporan terintegrasi menjamin kepatuhan penuh terhadap regulasi OJK dan standar akuntansi internasional tanpa beban kalkulasi manual.',
+        },
+        {
+          id: 'customer-experience',
+          tocLabel: 'Portal Mandiri & Cashless RS',
+          title: 'E-Polis Digital & Integrasi Layanan Rumah Sakit Cashless',
+          paragraphs: [
+            'Nasabah asuransi modern menginginkan akses informasi polis dan kemudahan klaim di genggaman tangan tanpa hambatan birokrasi kartu fisik.',
+            'Kami menghadirkan aplikasi nasabah mandiri (mobile portal) dengan kartu kepesertaan digital berbasis QR code, integrasi bridging Third-Party Administrator (TPA), dan klaim instan.',
+          ],
+          bullets: [
+            {
+              label: 'Kartu Asuransi Digital & Validasi QR RS',
+              text: 'Memungkinkan proses penerimaan rawat inap rumah sakit secara cashless cukup dengan pemindaian barcode digital di meja pendaftaran.',
+            },
+            {
+              label: 'Pelacakan Status Klaim Real-Time',
+              text: 'Memberikan transparansi linimasa pemrosesan klaim mulai dari berkas diterima, verifikasi medis, hingga dana ditransfer ke rekening.',
+            },
+            {
+              label: 'Pengajuan Klaim Rawat Jalan Paperless',
+              text: 'Nasabah cukup mengunggah foto kuitansi dan resume medis langsung dari ponsel untuk verifikasi klaim cepat.',
+            },
+          ],
+          closingParagraph:
+            'Pengalaman digital yang mulus meningkatkan loyalitas nasabah dan mempercepat proses administrasi di ribuan rumah sakit rekanan.',
+        },
+      ],
+    }
+  : {
+      title: 'Digital Insurance Systems Engineering & Insurtech Architecture',
+      tocTitle: 'Table of Contents',
+      sections: [
+        {
+          id: 'pas-architecture',
+          tocLabel: 'Core PAS Modernization',
+          title: 'Policy Administration System (PAS) Modernization',
+          paragraphs: [
+            'Many insurance enterprises remain constrained by legacy mainframe Policy Administration Systems that are difficult to connect with modern digital touchpoints. This bottleneck delays new micro-insurance product rollouts and partner integrations.',
+            'Teknalogi designs event-driven integration middleware and decoupled microservices architectures that isolate legacy ledger cores from high-concurrency digital traffic, enabling sub-second policy issuance.',
+          ],
+          bullets: [
+            {
+              label: 'Product Factory & Contract Decoupling',
+              text: 'Separate insurance coverage rules from core contract ledgers to accelerate rider configuration and new policy launches.',
+            },
+            {
+              label: 'Sub-Second e-Policy Issuance',
+              text: 'Automate premium settlement verification, certified cryptographic digital signing (PSrE), and instant e-policy dispatch.',
+            },
+            {
+              label: 'Self-Service Endorsements & Alterations',
+              text: 'Provide automated workflows for beneficiary updates, sum insured adjustments, and policyholder contact changes.',
+            },
+          ],
+          closingParagraph:
+            'PAS modernization compresses insurance product time-to-market from months to days while safeguarding core ledger integrity.',
+        },
+        {
+          id: 'claims-automation',
+          tocLabel: 'Claims Adjudication & STP',
+          title: 'Rapid Claims Adjudication & Fraud Anomaly Detection',
+          paragraphs: [
+            'Claims settlement is the defining moment of truth for policyholder trust. Manual document verification creates extensive backlogs and drives up claims adjustment overhead.',
+            'We engineer Straight-Through Processing (STP) claims engines featuring intelligent medical OCR, instantaneous policy limit checks, and automated fraud scoring.',
+          ],
+          bullets: [
+            {
+              label: 'Medical OCR Receipt & Invoice Ingestion',
+              text: 'Extract and standardize hospital receipts, ICD-10 diagnostic codes, and pharmaceutical line items in seconds.',
+            },
+            {
+              label: 'Straight-Through Processing for Low-Risk Claims',
+              text: 'Execute automated payouts for eligible outpatient claims based on strict policy coverage rules with zero manual friction.',
+            },
+            {
+              label: 'Automated Fraud Risk Scoring',
+              text: 'Analyze submission frequencies, tariff anomalies, and multi-insurer cross-claim patterns to flag suspicious claims early.',
+            },
+          ],
+          closingParagraph:
+            'Automated claims adjudication accelerates legitimate customer payouts while protecting insurer reserve pools from fraudulent loss.',
+        },
+        {
+          id: 'actuarial-rating',
+          tocLabel: 'Actuarial Underwriting',
+          title: 'Algorithmic Underwriting & Dynamic Rating Engines',
+          paragraphs: [
+            'Accurate premium pricing requires transparent, fast, and data-driven risk evaluation across applicant health and lifestyle factors.',
+            'We implement algorithmic underwriting decision engines that assess medical questionnaires, lifestyle disclosures, and demographic metrics deterministically.',
+          ],
+          bullets: [
+            {
+              label: 'Automated Decision Trees',
+              text: 'Translate digital proposal forms into instant accept, standard, sub-standard rating, or medical referral decisions.',
+            },
+            {
+              label: 'Dynamic Risk-Based Premium Calculations',
+              text: 'Compute mortality and morbidity loadings in real time based on entry age, smoking history, and occupational risk tiers.',
+            },
+            {
+              label: 'Partner Diagnostic Clinic Gateways',
+              text: 'Directly ingest electronic medical examination results from partner laboratories to accelerate medical underwriting approvals.',
+            },
+          ],
+          closingParagraph:
+            'Automated underwriting elevates policy conversion rates while maintaining rigorous actuarial discipline.',
+        },
+        {
+          id: 'bancassurance-apis',
+          tocLabel: 'Bancassurance & Open APIs',
+          title: 'Bancassurance & Open Insurance Partner Ecosystems',
+          paragraphs: [
+            'Distributing insurance through banking channels and e-commerce platforms requires secure, low-latency, and standardized enterprise API interfaces.',
+            'Teknalogi builds Open Insurance Gateways featuring industry-standard authentication (OAuth 2.0 / mTLS), end-to-end payload encryption, and real-time SLA telemetry.',
+          ],
+          bullets: [
+            {
+              label: 'B2B Product Illustration & Quote APIs',
+              text: 'Deliver premium simulation endpoints ready for embedding directly inside partner mobile banking applications.',
+            },
+            {
+              label: 'Automated Recurring Premium Debit & VA',
+              text: 'Automate scheduled premium deductions through standing instructions and dynamic bank Virtual Accounts with instant reconciliation.',
+            },
+            {
+              label: 'Unified Agency Portal & Commission Ledger',
+              text: 'Equip insurance agents with mobile digital proposal tools, e-signatures, and real-time commission tracking.',
+            },
+          ],
+          closingParagraph:
+            'Reliable API connectivity expands insurance distribution to millions of banking customers and digital ecosystem users.',
+        },
+        {
+          id: 'ifrs17-compliance',
+          tocLabel: 'IFRS 17 & Compliance',
+          title: 'IFRS 17 Financial Reporting & Actuarial Solvency Engines',
+          paragraphs: [
+            'Implementing IFRS 17 demands precise separation of insurance revenue from investment components, alongside rigorous Contractual Service Margin (CSM) amortization.',
+            'We build actuarial data marts and historical transaction pipelines that project policy cash flows into discounted valuation models compliant with IFRS 17 standards.',
+          ],
+          bullets: [
+            {
+              label: 'CSM & Cash Flow Liability Valuation',
+              text: 'Calculate Present Value of Future Cash Flows (PVFCF) and non-financial risk adjustments across partitioned policy cohorts.',
+            },
+            {
+              label: 'Complete Transaction Lineage for Audits',
+              text: 'Trace financial report line items directly back to underlying individual policy events for external auditor validation.',
+            },
+            {
+              label: 'Risk-Based Capital (RBC) Solvency Dashboards',
+              text: 'Track capital adequacy ratios continuously to fulfill statutory financial solvency requirements mandated by regulators.',
+            },
+          ],
+          closingParagraph:
+            'Integrated reporting architectures ensure total compliance with international accounting standards and regulatory mandates without manual spreadsheet dependencies.',
+        },
+        {
+          id: 'customer-experience',
+          tocLabel: 'e-Policy & Cashless Hospital',
+          title: 'Digital e-Policy & Cashless Hospital Integration',
+          paragraphs: [
+            'Modern policyholders expect instant digital policy access and cashless hospital admissions without the burden of physical plastic cards.',
+            'We deliver customer self-service mobile portals featuring QR-based membership cards, Third-Party Administrator (TPA) bridging, and real-time claims tracking.',
+          ],
+          bullets: [
+            {
+              label: 'Digital Membership Card & QR Hospital Check-In',
+              text: 'Enable cashless hospital admissions by scanning dynamic digital membership barcodes at admission desks.',
+            },
+            {
+              label: 'Real-Time Claims Tracking Timeline',
+              text: 'Provide total milestone visibility from claim submission, medical review, to bank disbursement.',
+            },
+            {
+              label: 'Paperless Outpatient Reimbursement',
+              text: 'Allow policyholders to upload clinic receipts and medical summaries directly from their smartphones for rapid reimbursement.',
+            },
+          ],
+          closingParagraph:
+            'Seamless digital policyholder touchpoints drive customer retention and streamline hospital administrative handoffs.',
+        },
+      ],
+    };
+---
+
+<section
+  id="insurance-deep-dive"
+  aria-label={copy.title}
+  class="relative isolate bg-white py-12 sm:py-20 lg:py-32 border-t border-slate-200/80"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      
+      <!-- Left Column: Main Editorial Article -->
+      <div class="lg:col-span-8">
+        
+        <!-- Main Section Title -->
+        <h2
+          class="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-[-0.04em] text-slate-950 mb-7 sm:mb-14"
+        >
+          {copy.title}
+        </h2>
+
+        <!-- Mobile Table of Contents (collapsible drawer on small screens) -->
+        <div class="lg:hidden mb-8 rounded-2xl border border-slate-200/90 bg-slate-50/80 p-4 sm:p-5">
+          <details class="group">
+            <summary class="flex items-center justify-between cursor-pointer list-none font-mono text-xs font-bold uppercase tracking-wider text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded min-h-[44px]">
+              <span>{copy.tocTitle}</span>
+              <svg
+                class="w-4 h-4 text-slate-500 transition-transform duration-200 group-open:rotate-180"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <nav class="mt-3 flex flex-col space-y-1.5 border-t border-slate-200/80 pt-3">
+              {copy.sections.map((section) => (
+                <a
+                  href={`#${section.id}`}
+                  class="text-xs sm:text-sm text-slate-600 hover:text-slate-950 transition-colors py-1.5 pl-2.5 border-l-2 border-slate-300 hover:border-slate-900 font-sans min-h-[44px] flex items-center"
+                >
+                  {section.tocLabel}
+                </a>
+              ))}
+            </nav>
+          </details>
+        </div>
+
+        <!-- Editorial Sections -->
+        <div class="flex flex-col space-y-10 sm:space-y-16">
+          {copy.sections.map((section) => (
+            <article
+              id={section.id}
+              class="insurance-editorial-section scroll-mt-20 sm:scroll-mt-28 pb-8 sm:pb-12 border-b border-slate-100 last:border-b-0"
+            >
+              <h3 class="text-xl sm:text-2xl font-medium tracking-[-0.03em] text-slate-950 mb-3 sm:mb-4 leading-snug">
+                {section.title}
+              </h3>
+
+              {section.paragraphs.map((p) => (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mb-3 sm:mb-4">
+                  {p}
+                </p>
+              ))}
+
+              {section.bullets && (
+                <ul class="my-4 sm:my-5 space-y-2.5 sm:space-y-3 pl-4 sm:pl-5 list-disc marker:text-slate-400 text-sm sm:text-[16px] leading-relaxed text-slate-600 font-sans">
+                  {section.bullets.map((b) => (
+                    <li>
+                      <strong class="font-semibold text-slate-900">{b.label}:</strong> {b.text}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {section.closingParagraph && (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mt-3 sm:mt-4">
+                  {section.closingParagraph}
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- Right Column: Sticky Table of Contents -->
+      <aside class="hidden lg:block lg:col-span-4 sticky top-28 xl:top-32 self-start">
+        <div class="max-h-[calc(100vh-9rem)] overflow-y-auto pl-8 border-l border-slate-200/90 py-1">
+          <h3 class="text-[11.5px] font-bold tracking-[0.14em] text-slate-900 uppercase font-mono mb-4 select-none">
+            {copy.tocTitle}
+          </h3>
+          <nav aria-label={copy.tocTitle} class="flex flex-col space-y-2.5 text-[13.5px] font-sans">
+            {copy.sections.map((section) => (
+              <a
+                href={`#${section.id}`}
+                data-insurance-toc-id={section.id}
+                class="insurance-toc-nav-link text-slate-500 hover:text-slate-950 transition-all duration-200 py-1 pl-3 border-l-2 border-transparent hover:border-slate-400 min-h-[32px] flex items-center"
+              >
+                {section.tocLabel}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupInsuranceTocHighlight() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-10% 0px -70% 0px',
+      threshold: 0,
+    };
+
+    const sections = document.querySelectorAll<HTMLElement>('.insurance-editorial-section');
+    const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.insurance-toc-nav-link');
+
+    if (!sections.length || !tocLinks.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href === `#${id}`) {
+              link.classList.add('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.remove('text-slate-500', 'border-transparent');
+            } else {
+              link.classList.remove('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.add('text-slate-500', 'border-transparent');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((sec) => observer.observe(sec));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupInsuranceTocHighlight);
+  } else {
+    setupInsuranceTocHighlight();
+  }
+  document.addEventListener('astro:page-load', setupInsuranceTocHighlight);
+</script>

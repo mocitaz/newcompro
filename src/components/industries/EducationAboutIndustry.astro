@@ -1,0 +1,475 @@
+---
+// src/components/industries/EducationAboutIndustry.astro
+import type { Locale } from '../../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isId = lang === 'id';
+
+const copy = isId
+  ? {
+      title: 'Rekayasa Sistem Informasi Akademik & Infrastruktur EdTech',
+      tocTitle: 'Daftar Isi Pembahasan',
+      sections: [
+        {
+          id: 'siakad-course-registration',
+          tocLabel: 'SIAKAD & Registrasi KRS',
+          title: 'Sistem Informasi Akademik (SIAKAD) & Perang KRS Skala Tinggi',
+          paragraphs: [
+            'Periode pengisian Kartu Rencana Studi (KRS) pada awal semester selalu menjadi beban terberat bagi server kampus. Puluhan ribu mahasiswa mengakses sistem secara serentak dalam hitungan menit untuk memperebutkan kuota kelas mata kuliah.',
+            'Teknalogi merekayasa SIAKAD modern dengan arsitektur cloud-native dan mekanisme penanganan konkurensi (optimistic locking & memory queuing) yang memastikan pemilihan kelas berlangsung cepat, adil, dan tanpa server down.',
+          ],
+          bullets: [
+            {
+              label: 'Alokasi Kuota Kelas Sub-Detik',
+              text: 'Mesin antrean kuota mata kuliah berbasis cache memori yang mencegah perebutan kursi ganda (oversubscription) dan kegagalan transaksi KRS.',
+            },
+            {
+              label: 'Manajemen Kurikulum & Prasyarat Otomatis',
+              text: 'Validasi otomatis batas SKS berdasarkan Indeks Prestasi (IPK) dan pemenuhan mata kuliah prasyarat secara real-time.',
+            },
+            {
+              label: 'Portal Dosen Wali & Persetujuan Online',
+              text: 'Antarmuka terpadu bagi dosen pembimbing akademik untuk meninjau, memberi catatan, dan menyetujui rencana studi mahasiswa.',
+            },
+          ],
+          closingParagraph:
+            'Arsitektur SIAKAD yang tangguh menghilangkan kepanikan server down dan menjamin kelancaran registrasi semester mahasiswa.',
+        },
+        {
+          id: 'cbt-exam-engine',
+          tocLabel: 'Mesin Ujian Daring (CBT)',
+          title: 'Mesin Ujian Berbasis Komputer (CBT) & Integritas Penilaian',
+          paragraphs: [
+            'Penyelenggaraan ujian tengah semester (UTS), ujian akhir (UAS), maupun seleksi masuk perguruan tinggi menuntut platform Computer-Based Testing (CBT) yang stabil, adil, dan aman dari kecurangan.',
+            'Kami membangun platform CBT berlatensi ultra-rendah dengan fitur pengacakan soal cerdas, penyimpanan jawaban lokal otomatis (auto-save offline resilience), dan pengawasan ujian digital (proctoring).',
+          ],
+          bullets: [
+            {
+              label: 'Penyimpanan Jawaban Lokal & Anti-Putus Koneksi',
+              text: 'Jawaban ujian disimpan secara otomatis di cache peramban lokal dan disinkronkan berkala, sehingga gangguan internet tidak menghilangkan progres ujian mahasiswa.',
+            },
+            {
+              label: 'Bank Soal Dinamis & Pengacakan Butir',
+              text: 'Pengacakan urutan nomor soal dan opsi jawaban secara unik untuk setiap peserta ujian demi menekan potensi kolaborasi antar-siswa.',
+            },
+            {
+              label: 'Integritas Layar & Anti-Cheating Lock',
+              text: 'Pendeteksian otomatis saat peserta membuka tab baru, keluar dari mode layar penuh, atau menggunakan aplikasi pihak ketiga.',
+            },
+          ],
+          closingParagraph:
+            'Platform CBT yang terpercaya menjamin validitas hasil evaluasi belajar dan menjaga integritas akademik institusi.',
+        },
+        {
+          id: 'distributed-lms',
+          tocLabel: 'Learning Management (LMS)',
+          title: 'Learning Management System (LMS) & Ruang Kelas Interaktif',
+          paragraphs: [
+            'Pembelajaran campuran (hybrid learning) membutuhkan lingkungan belajar digital yang mendukung distribusi materi perkuliahan multimedia, pengumpulan tugas terstruktur, dan diskusi kelas yang hidup.',
+            'Kami mengembangkan platform LMS yang mengadopsi standar e-learning global (SCORM / xAPI / LTI) dengan pemutar video adaptif berkecepatan tinggi dan sistem penilaian tugas otomatis.',
+          ],
+          bullets: [
+            {
+              label: 'Kompatibilitas Standar SCORM & xAPI',
+              text: 'Dukungan penuh untuk modul pembelajaran interaktif, simulasi digital, dan pelacakan interaksi belajar siswa secara terperinci.',
+            },
+            {
+              label: 'Streaming Video Kuliah Adaptif',
+              text: 'Kompresi dan penyesuaian resolusi video otomatis (HLS) agar materi perkuliahan tetap lancar diakses dengan jaringan internet terbatas.',
+            },
+            {
+              label: 'Rubrik Penilaian & Deteksi Plagiarisme',
+              text: 'Alat bantu bagi dosen untuk memeriksa esai tugas mahasiswa dengan rubrik terstruktur dan integrasi alat pemeriksa kesamaan teks.',
+            },
+          ],
+          closingParagraph:
+            'LMS modern memperkaya pengalaman belajar mandiri mahasiswa dan memudahkan dosen dalam memantau keaktifan kelas.',
+        },
+        {
+          id: 'tuition-billing-va',
+          tocLabel: 'Billing SPP & Virtual Account',
+          title: 'Otomasi Pembayaran SPP, Virtual Account & Rekonsiliasi Keuangan',
+          paragraphs: [
+            'Pengelolaan tagihan biaya kuliah (UKT / SPP), uang pangkal, dan biaya praktikum yang melibatkan ribuan mahasiswa sering terkendala rekonsiliasi manual bukti transfer bank yang rawan pemalsuan.',
+            'Teknalogi mengintegrasikan modul billing keuangan kampus dengan payment gateway perbankan untuk menerbitkan nomor Virtual Account (VA) dinamis dan melakukan pembukaan blokir KRS otomatis setelah pembayaran lunas.',
+          ],
+          bullets: [
+            {
+              label: 'Penerbitan Virtual Account Bank Dinamis',
+              text: 'Integrasi langsung dengan bank mitra (BRI, BNI, Mandiri, BCA, dll.) untuk pembayaran tagihan otomatis tanpa konfirmasi manual.',
+            },
+            {
+              label: 'Sinkronisasi Status Pembayaran ke SIAKAD',
+              text: 'Pemberian hak akses pengisian KRS atau pendaftaran wisuda secara instan dalam hitungan detik setelah notifikasi settlement diterima.',
+            },
+            {
+              label: 'Manajemen Skema Cicilan & Beasiswa',
+              text: 'Pengaturan fleksibel untuk penjadwalan cicilan biaya kuliah, potongan beasiswa yayasan, dan dispensasi pembayaran.',
+            },
+          ],
+          closingParagraph:
+            'Otomasi keuangan memastikan transparansi arus kas kampus dan meniadakan antrean pembayaran di kantor tata usaha.',
+        },
+        {
+          id: 'pddikti-accreditation',
+          tocLabel: 'Pelaporan PDDikti & Akreditasi',
+          title: 'Integrasi PDDikti Kemendikbud & Analitik Akreditasi',
+          paragraphs: [
+            'Kewajiban pelaporan data mahasiswa, dosen, dan aktivitas perkuliahan ke Pangkalan Data Pendidikan Tinggi (PDDikti) menuntut format data yang presisi dan valid sesuai standar kementerian.',
+            'Kami membangun modul bridging resmi PDDikti Feeder (Web Services API) yang melakukan validasi kelengkapan data sebelum sinkronisasi, serta dashboard analitik untuk mendukung instrumen akreditasi BAN-PT / LAM.',
+          ],
+          bullets: [
+            {
+              label: 'Bridging Otomatis PDDikti Feeder API',
+              text: 'Sinkronisasi data riwayat studi, nilai semester, aktivitas mengajar dosen, dan data kelulusan tanpa ekspor-impor file manual.',
+            },
+            {
+              label: 'Prapemeriksaan Validasi Data (Data Cleansing)',
+              text: 'Pendeteksian otomatis NIK ganda, nomor induk mahasiswa (NIM) tidak valid, atau rasio dosen-mahasiswa yang melanggar batas regulasi.',
+            },
+            {
+              label: 'Dashboard Kesiapan Akreditasi Program Studi',
+              text: 'Visualisasi metrik capaian pembelajaran lulusan (CPL), masa studi rata-rata, dan hasil tracer study alumni secara terstruktur.',
+            },
+          ],
+          closingParagraph:
+            'Sinkronisasi PDDikti yang terotomatisasi menjaga reputasi akreditasi kampus dan menghemat ratusan jam kerja staf administrasi.',
+        },
+        {
+          id: 'digital-credentials-security',
+          tocLabel: 'Ijazah Digital & Keamanan',
+          title: 'Ijazah Digital Terverifikasi, Transkrip Kriptografis & Privasi Data',
+          paragraphs: [
+            'Pemalsuan ijazah dan transkrip nilai merupakan ancaman serius terhadap integritas institusi pendidikan. Selain itu, data pribadi mahasiswa wajib dilindungi sesuai UU Perlindungan Data Pribadi (UU PDP).',
+            'Kami menerapkan teknologi tanda tangan elektronik tersertifikasi (PSrE / BSrE) dan kode QR verifikasi publik kriptografis untuk penerbitan Ijazah Digital dan Transkrip Nilai resmi yang tidak dapat dimanipulasi.',
+          ],
+          bullets: [
+            {
+              label: 'Tanda Tangan Elektronik Sah (Digital Signature)',
+              text: 'Penerbitan dokumen ijazah PDF bertanda tangan digital tersertifikasi yang diakui secara hukum nasional dan internasional.',
+            },
+            {
+              label: 'Portal Verifikasi Ijazah Publik',
+              text: 'Laman pemindaian kode QR resmi bagi perusahaan perekrut untuk memvalidasi keaslian dokumen kelulusan alumni secara instan.',
+            },
+            {
+              label: 'Tata Kelola Privasi Data Mahasiswa',
+              text: 'Enkripsi database nilai, kontrol akses berbasis peran (RBAC) ketat, dan log audit akses riwayat akademik mahasiswa.',
+            },
+          ],
+          closingParagraph:
+            'Kredensial digital yang aman melindungi integritas ijazah alumni dan mempermudah verifikasi kualifikasi kerja di era digital.',
+        },
+      ],
+    }
+  : {
+      title: 'Academic Information Systems Engineering & EdTech Infrastructure',
+      tocTitle: 'Table of Contents',
+      sections: [
+        {
+          id: 'siakad-course-registration',
+          tocLabel: 'SIAKAD & Course Registration',
+          title: 'Unified Academic Information Systems (SIAKAD) & High-Load Course Registration',
+          paragraphs: [
+            'Semester course registration periods create massive traffic spikes as tens of thousands of students attempt to secure limited class seat allocations within minutes.',
+            'Teknalogi designs cloud-native Academic Information Systems (SIAKAD) with advanced concurrency controls (optimistic locking and memory queuing) ensuring fast, fair, and crash-free course enrollment.',
+          ],
+          bullets: [
+            {
+              label: 'Sub-Second Seat Allocation Engine',
+              text: 'In-memory queue architecture preventing seat oversubscription and race conditions during high-volume registration wars.',
+            },
+            {
+              label: 'Automated Prerequisite & Credit Evaluation',
+              text: 'Real-time GPA-based credit limit checks and strict prerequisite course enforcement evaluated dynamically during selection.',
+            },
+            {
+              label: 'Academic Advisor Approval Portal',
+              text: 'Unified dashboard for faculty mentors to review, annotate, and approve student study plans with digital audit trails.',
+            },
+          ],
+          closingParagraph:
+            'Resilient SIAKAD architecture eliminates server downtime during enrollment and ensures seamless semester onboarding.',
+        },
+        {
+          id: 'cbt-exam-engine',
+          tocLabel: 'Online Exam Engines (CBT)',
+          title: 'Computer-Based Testing (CBT) Engines & Assessment Integrity',
+          paragraphs: [
+            'Conducting high-stakes midterm exams, semester finals, and university entrance tests demands a Computer-Based Testing (CBT) engine that remains rock-solid, fair, and tamper-resistant.',
+            'We engineer ultra-low latency CBT platforms featuring intelligent question randomization, client-side offline auto-saving, and automated digital proctoring controls.',
+          ],
+          bullets: [
+            {
+              label: 'Client-Side Auto-Save & Offline Resilience',
+              text: 'Answers are cached continuously on local browser storage and synced in the background, ensuring zero progress loss during local network drops.',
+            },
+            {
+              label: 'Dynamic Question Bank & Option Randomization',
+              text: 'Unique question sequences and answer permutation algorithms per candidate to minimize unauthorized student collaboration.',
+            },
+            {
+              label: 'Screen Integrity & Anti-Cheating Lockdown',
+              text: 'Automated event logging detecting tab switching, full-screen exits, and unauthorized secondary application usage.',
+            },
+          ],
+          closingParagraph:
+            'A dependable CBT platform guarantees the validity of student evaluations and upholds institutional academic integrity.',
+        },
+        {
+          id: 'distributed-lms',
+          tocLabel: 'Learning Management (LMS)',
+          title: 'Distributed Learning Management Systems (LMS) & Interactive Classrooms',
+          paragraphs: [
+            'Hybrid and remote education environments require modern digital classrooms that support high-definition video lectures, structured assignment workflows, and collaborative discussion forums.',
+            'We build extensible LMS platforms compliant with global e-learning standards (SCORM / xAPI / LTI), featuring adaptive video delivery and automated assignment grading rubrics.',
+          ],
+          bullets: [
+            {
+              label: 'Full SCORM & xAPI Interoperability',
+              text: 'Comprehensive support for interactive courseware modules, digital simulations, and detailed learner interaction analytics.',
+            },
+            {
+              label: 'Adaptive Video Streaming Delivery',
+              text: 'Automated video transcoding (HLS) ensuring smooth lecture playback across varying bandwidth conditions and mobile devices.',
+            },
+            {
+              label: 'Structured Grading & Similarity Detection',
+              text: 'Custom grading rubrics for professors combined with automated text similarity verification against plagiarism.',
+            },
+          ],
+          closingParagraph:
+            'Modern LMS infrastructure enriches self-paced learning while giving faculty deep visibility into student engagement.',
+        },
+        {
+          id: 'tuition-billing-va',
+          tocLabel: 'Tuition Billing & Virtual Accounts',
+          title: 'Automated Tuition Billing, Virtual Accounts & Financial Reconciliation',
+          paragraphs: [
+            'Managing tuition fees (UKT/SPP), entrance fees, and lab charges across thousands of enrolled students is prone to bottlenecks when relying on manual bank transfer receipts.',
+            'Teknalogi connects campus billing engines directly with banking APIs to generate dynamic Virtual Account (VA) numbers, automating payment verification and unlocking course registration instantly.',
+          ],
+          bullets: [
+            {
+              label: 'Dynamic Bank Virtual Account Generation',
+              text: 'Direct integration with major banking partners for automated real-time settlement without manual cashier receipts.',
+            },
+            {
+              label: 'Instant SIAKAD Academic Clearance',
+              text: 'Real-time payment callback triggers unlocking course enrollment and graduation eligibility within milliseconds.',
+            },
+            {
+              label: 'Installment Plans & Scholarship Allocation',
+              text: 'Flexible scheduling rules supporting multi-stage installment plans, institutional discounts, and foundation scholarships.',
+            },
+          ],
+          closingParagraph:
+            'Automated campus billing guarantees financial transparency and eliminates long administrative payment queues.',
+        },
+        {
+          id: 'pddikti-accreditation',
+          tocLabel: 'PDDikti Sync & Accreditation',
+          title: 'National Education Database (PDDikti) Integration & Accreditation Analytics',
+          paragraphs: [
+            'Mandatory reporting of student records, faculty teaching loads, and semester grades to the National Higher Education Database (PDDikti) requires strict data structure compliance.',
+            'We engineer official PDDikti Feeder Web Services API bridging modules featuring automated data pre-validation and comprehensive analytics dashboards supporting accreditation audits.',
+          ],
+          bullets: [
+            {
+              label: 'Automated PDDikti Feeder API Synchronization',
+              text: 'Seamless sync of study records, transcripts, faculty teaching allocations, and graduation data without manual file conversion.',
+            },
+            {
+              label: 'Data Integrity Pre-Validation Cleansing',
+              text: 'Automated detection of duplicate national identity numbers (NIK), invalid student IDs, or student-faculty ratio anomalies.',
+            },
+            {
+              label: 'Accreditation Analytics & Tracer Study',
+              text: 'Visual dashboards tracking Program Learning Outcomes (PLO), average study durations, and alumni employment metrics.',
+            },
+          ],
+          closingParagraph:
+            'Automated regulatory synchronization safeguards institutional accreditation and saves hundreds of administrative hours each semester.',
+        },
+        {
+          id: 'digital-credentials-security',
+          tocLabel: 'Digital Diplomas & Security',
+          title: 'Verifiable Digital Diplomas, Cryptographic Transcripts & Data Privacy',
+          paragraphs: [
+            'Diploma forgery and grade alterations threaten the reputational trust of academic institutions. Furthermore, student personal data must be safeguarded under personal data protection statutes.',
+            'We deploy certified digital signatures (BSrE / PSrE) and public cryptographic QR verification gateways for issuing verifiable digital diplomas and official transcripts.',
+          ],
+          bullets: [
+            {
+              label: 'Certified Cryptographic Digital Signatures',
+              text: 'Issuing legally recognized PDF diplomas and transcripts signed with certified public-key cryptography.',
+            },
+            {
+              label: 'Instant Public Verification Portal',
+              text: 'A dedicated QR verification gateway enabling employers to validate graduation credentials securely in seconds.',
+            },
+            {
+              label: 'Student Record Privacy Governance',
+              text: 'Column-level grade encryption, granular role-based access control (RBAC), and immutable access audit logs for all academic records.',
+            },
+          ],
+          closingParagraph:
+            'Secure verifiable credentials protect institutional reputation and simplify graduate employment verification globally.',
+        },
+      ],
+    };
+---
+
+<section
+  id="education-deep-dive"
+  aria-label={copy.title}
+  class="relative isolate bg-white py-12 sm:py-20 lg:py-32 border-t border-slate-200/80"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      
+      <!-- Left Column: Main Editorial Article -->
+      <div class="lg:col-span-8">
+        
+        <!-- Main Section Title -->
+        <h2
+          class="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-[-0.04em] text-slate-950 mb-7 sm:mb-14"
+        >
+          {copy.title}
+        </h2>
+
+        <!-- Mobile Table of Contents (collapsible drawer on small screens) -->
+        <div class="lg:hidden mb-8 rounded-2xl border border-slate-200/90 bg-slate-50/80 p-4 sm:p-5">
+          <details class="group">
+            <summary class="flex items-center justify-between cursor-pointer list-none font-mono text-xs font-bold uppercase tracking-wider text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded min-h-[44px]">
+              <span>{copy.tocTitle}</span>
+              <svg
+                class="w-4 h-4 text-slate-500 transition-transform duration-200 group-open:rotate-180"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <nav class="mt-3 flex flex-col space-y-1.5 border-t border-slate-200/80 pt-3">
+              {copy.sections.map((section) => (
+                <a
+                  href={`#${section.id}`}
+                  class="text-xs sm:text-sm text-slate-600 hover:text-slate-950 transition-colors py-1.5 pl-2.5 border-l-2 border-slate-300 hover:border-slate-900 font-sans min-h-[44px] flex items-center"
+                >
+                  {section.tocLabel}
+                </a>
+              ))}
+            </nav>
+          </details>
+        </div>
+
+        <!-- Editorial Sections -->
+        <div class="flex flex-col space-y-10 sm:space-y-16">
+          {copy.sections.map((section) => (
+            <article
+              id={section.id}
+              class="education-editorial-section scroll-mt-20 sm:scroll-mt-28 pb-8 sm:pb-12 border-b border-slate-100 last:border-b-0"
+            >
+              <h3 class="text-xl sm:text-2xl font-medium tracking-[-0.03em] text-slate-950 mb-3 sm:mb-4 leading-snug">
+                {section.title}
+              </h3>
+
+              {section.paragraphs.map((p) => (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mb-3 sm:mb-4">
+                  {p}
+                </p>
+              ))}
+
+              {section.bullets && (
+                <ul class="my-4 sm:my-5 space-y-2.5 sm:space-y-3 pl-4 sm:pl-5 list-disc marker:text-slate-400 text-sm sm:text-[16px] leading-relaxed text-slate-600 font-sans">
+                  {section.bullets.map((b) => (
+                    <li>
+                      <strong class="font-semibold text-slate-900">{b.label}:</strong> {b.text}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {section.closingParagraph && (
+                <p class="text-sm sm:text-[16px] leading-[1.72] text-slate-600 font-sans mt-3 sm:mt-4">
+                  {section.closingParagraph}
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- Right Column: Sticky Table of Contents -->
+      <aside class="hidden lg:block lg:col-span-4 sticky top-28 xl:top-32 self-start">
+        <div class="max-h-[calc(100vh-9rem)] overflow-y-auto pl-8 border-l border-slate-200/90 py-1">
+          <h3 class="text-[11.5px] font-bold tracking-[0.14em] text-slate-900 uppercase font-mono mb-4 select-none">
+            {copy.tocTitle}
+          </h3>
+          <nav aria-label={copy.tocTitle} class="flex flex-col space-y-2.5 text-[13.5px] font-sans">
+            {copy.sections.map((section) => (
+              <a
+                href={`#${section.id}`}
+                data-education-toc-id={section.id}
+                class="education-toc-nav-link text-slate-500 hover:text-slate-950 transition-all duration-200 py-1 pl-3 border-l-2 border-transparent hover:border-slate-400 min-h-[32px] flex items-center"
+              >
+                {section.tocLabel}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupEducationTocHighlight() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-10% 0px -70% 0px',
+      threshold: 0,
+    };
+
+    const sections = document.querySelectorAll<HTMLElement>('.education-editorial-section');
+    const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.education-toc-nav-link');
+
+    if (!sections.length || !tocLinks.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href === `#${id}`) {
+              link.classList.add('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.remove('text-slate-500', 'border-transparent');
+            } else {
+              link.classList.remove('text-slate-950', 'border-slate-900', 'font-semibold');
+              link.classList.add('text-slate-500', 'border-transparent');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((sec) => observer.observe(sec));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupEducationTocHighlight);
+  } else {
+    setupEducationTocHighlight();
+  }
+  document.addEventListener('astro:page-load', setupEducationTocHighlight);
+</script>
