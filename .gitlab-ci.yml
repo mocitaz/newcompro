@@ -22,20 +22,7 @@ deploy:
   stage: deploy
   image: alpine:3.20
   before_script:
-    - |
-      if [ -z "$SSH_PRIVATE_KEY" ] || [ -z "$DEPLOY_HOST" ] || [ -z "$DEPLOY_USER" ] || [ -z "$DEPLOY_PATH" ]; then
-        echo "================================================================"
-        echo "ERROR: Missing required GitLab CI/CD Variables for deployment!"
-        echo "Please configure the following in Settings > CI/CD > Variables:"
-        echo " - SSH_PRIVATE_KEY (Current status: $([ -n "$SSH_PRIVATE_KEY" ] && echo 'SET' || echo 'MISSING'))"
-        echo " - DEPLOY_HOST     (Current status: $([ -n "$DEPLOY_HOST" ] && echo 'SET' || echo 'MISSING'))"
-        echo " - DEPLOY_USER     (Current status: $([ -n "$DEPLOY_USER" ] && echo 'SET' || echo 'MISSING'))"
-        echo " - DEPLOY_PATH     (Current status: $([ -n "$DEPLOY_PATH" ] && echo 'SET' || echo 'MISSING'))"
-        echo " - SSH_PORT        (Current value: ${SSH_PORT:-22})"
-        echo "================================================================"
-        exit 1
-      fi
-    - apk add --no-cache openssh-client rsync bash
+    - apk add --no-cache openssh-client rsync
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
