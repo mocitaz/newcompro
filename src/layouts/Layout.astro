@@ -7,13 +7,79 @@ interface Props {
   title?: string;
   description?: string;
   lang?: Locale;
+  image?: string;
 }
 
 const {
   title = "PT Teknalogi Transformasi Digital | Enterprise Software Engineering",
   description = "Enterprise software engineering solutions, centralized system integration, and sovereign cloud transformation for modern corporations.",
-  lang = "en"
+  lang = "en",
+  image = "/logoweb.png"
 } = Astro.props;
+
+const siteUrl = "https://teknalogi.id";
+const pathname = Astro.url.pathname;
+const cleanPath = pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
+const canonicalUrl = `${siteUrl}${cleanPath === '/' ? '' : cleanPath}`;
+
+// Compute multilingual hreflang alternates
+let enPath = cleanPath;
+let idPath = cleanPath;
+
+if (cleanPath.startsWith('/id')) {
+  idPath = cleanPath;
+  enPath = cleanPath.replace(/^\/id/, '') || '/';
+} else {
+  enPath = cleanPath;
+  idPath = cleanPath === '/' ? '/id' : `/id${cleanPath}`;
+}
+
+const enUrl = `${siteUrl}${enPath === '/' ? '' : enPath}`;
+const idUrl = `${siteUrl}${idPath}`;
+const xDefaultUrl = enUrl;
+
+const ogImage = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? '' : '/'}${image}`;
+
+// Organization & WebSite Schema JSON-LD
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Corporation",
+      "@id": `${siteUrl}/#organization`,
+      "name": "PT Teknalogi Transformasi Digital",
+      "alternateName": "Teknalogi",
+      "url": siteUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${siteUrl}/logoweb.png`,
+        "caption": "PT Teknalogi Transformasi Digital"
+      },
+      "description": "Enterprise software engineering solutions, centralized system integration, and sovereign cloud transformation for modern corporations.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+628517442245",
+        "contactType": "customer service",
+        "areaServed": "ID",
+        "availableLanguage": ["Indonesian", "English"]
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/teknalogi",
+        "https://www.instagram.com/teknalogi.id"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": "Teknalogi",
+      "publisher": {
+        "@id": `${siteUrl}/#organization`
+      },
+      "inLanguage": ["en-US", "id-ID"]
+    }
+  ]
+};
 ---
 
 <!doctype html>
@@ -25,14 +91,37 @@ const {
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <meta name="description" content={description} />
     
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Multilingual Hreflang Alternates -->
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="id" href={idUrl} />
+    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+
     <!-- Open Graph / Meta -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PT Teknalogi Transformasi Digital" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/logo.png" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === 'id' ? 'id_ID' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'id' ? 'en_US' : 'id_ID'} />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Structured Data (Schema.org JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
     <!-- Google Fonts: Inter, Plus Jakarta Sans, DM Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
