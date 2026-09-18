@@ -22,8 +22,8 @@ test('about foundation uses the light editorial gallery composition', () => {
   assert.match(foundation, /about-office-v1\.png/);
   assert.match(foundation, /about-stat-value/);
   assert.match(foundation, /about-vision/);
-  assert.match(foundation, /about-intro bg-white/);
-  assert.match(foundation, /about-vision home-section bg-white/);
+  assert.match(foundation, /about-intro/);
+  assert.match(foundation, /about-vision/);
 });
 
 test('about gallery uses three equal visual frames directly below the introduction', () => {

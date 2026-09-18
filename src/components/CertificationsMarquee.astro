@@ -1,0 +1,206 @@
+---
+// CertificationsMarquee.astro - Moving Certification & Competency Logos Marquee
+import type { Locale } from '../i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isIndonesian = lang === 'id';
+
+interface CertLogo {
+  name: string;
+  logo: string;
+  width: number;
+  height: number;
+  className: string;
+}
+
+const baseCertifications: CertLogo[] = [
+  {
+    name: "BNSP - Badan Nasional Sertifikasi Profesi",
+    logo: "/certifications/BNSP.png",
+    width: 800,
+    height: 303,
+    className: "h-8 sm:h-9 md:h-10 w-auto",
+  },
+  {
+    name: "Amazon Web Services (AWS)",
+    logo: "/certifications/aws.png",
+    width: 713,
+    height: 476,
+    className: "h-8 sm:h-9 md:h-10 w-auto",
+  },
+  {
+    name: "Google Cloud",
+    logo: "/certifications/googlecloud.png",
+    width: 1336,
+    height: 890,
+    className: "h-8 sm:h-9 md:h-10 w-auto",
+  },
+  {
+    name: "Cisco",
+    logo: "/certifications/cisco.png",
+    width: 1280,
+    height: 676,
+    className: "h-7 sm:h-8 md:h-9 w-auto",
+  },
+  {
+    name: "Fortinet",
+    logo: "/certifications/fortinet.png",
+    width: 338,
+    height: 268,
+    className: "h-7 sm:h-8 md:h-9 w-auto",
+  },
+  {
+    name: "HashiCorp",
+    logo: "/certifications/hashicorp.png",
+    width: 1897,
+    height: 571,
+    className: "h-7 sm:h-8 md:h-9 w-auto",
+  },
+  {
+    name: "Digitalent Kominfo",
+    logo: "/certifications/digitalent.png",
+    width: 800,
+    height: 500,
+    className: "h-8 sm:h-9 md:h-10 w-auto",
+  },
+  {
+    name: "Dicoding Indonesia",
+    logo: "/certifications/dicoding.png",
+    width: 794,
+    height: 201,
+    className: "h-6 sm:h-7 md:h-8 w-auto",
+  },
+  {
+    name: "HackerRank",
+    logo: "/certifications/hackerank.png",
+    width: 2917,
+    height: 1667,
+    className: "h-7 sm:h-8 md:h-9 w-auto",
+  },
+];
+
+const title = isIndonesian
+  ? "Kompetensi & Sertifikasi Standar Industri"
+  : "Industry-Standard Competencies & Certifications";
+
+// Duplicate 3x for seamless infinite marquee loop across wide screens
+const certSequence = [
+  ...baseCertifications,
+  ...baseCertifications,
+  ...baseCertifications,
+];
+---
+
+<section
+  id="certifications-compliance"
+  aria-label={title}
+  class="relative z-10 w-full overflow-hidden pt-10 sm:pt-14 pb-4 sm:pb-6 select-none"
+>
+  <div class="home-container mb-6 sm:mb-8 text-center">
+    <h2
+      data-reveal="title"
+      class="text-lg sm:text-xl md:text-2xl lg:text-[1.75rem] font-medium tracking-[-0.035em] text-slate-950 reveal-title-init"
+    >
+      {title}
+    </h2>
+  </div>
+
+  <!-- Infinite Sliding Marquee Track -->
+  <div class="cert-marquee-container relative w-full overflow-hidden">
+    <!-- Continuous Marquee Track -->
+    <div class="cert-marquee-track flex items-center">
+      <!-- First Group -->
+      <div class="cert-marquee-group flex items-center gap-10 sm:gap-16 md:gap-20 shrink-0 px-4 sm:px-8">
+        {
+          certSequence.map((cert) => (
+            <div
+              class="flex items-center justify-center p-2 sm:p-3"
+              title={cert.name}
+            >
+              <img
+                src={cert.logo}
+                alt={`Sertifikasi ${cert.name}`}
+                width={cert.width}
+                height={cert.height}
+                loading="lazy"
+                class:list={[
+                  cert.className,
+                  "object-contain filter grayscale contrast-125 opacity-60"
+                ]}
+              />
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Second Group (Seamless Clone for Infinite Loop) -->
+      <div class="cert-marquee-group flex items-center gap-10 sm:gap-16 md:gap-20 shrink-0 px-4 sm:px-8" aria-hidden="true">
+        {
+          certSequence.map((cert) => (
+            <div
+              class="flex items-center justify-center p-2 sm:p-3"
+              title={cert.name}
+            >
+              <img
+                src={cert.logo}
+                alt=""
+                width={cert.width}
+                height={cert.height}
+                loading="lazy"
+                class:list={[
+                  cert.className,
+                  "object-contain filter grayscale contrast-125 opacity-60"
+                ]}
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Smooth edge feathering mask */
+  .cert-marquee-container {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 3.5%, black 96.5%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 3.5%, black 96.5%, transparent);
+  }
+
+  @keyframes cert-marquee-slide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .cert-marquee-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .cert-marquee-group {
+    display: flex;
+    align-items: center;
+    animation: cert-marquee-slide 32s linear infinite;
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cert-marquee-group {
+      animation: none;
+    }
+    .cert-marquee-track {
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>

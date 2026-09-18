@@ -5,9 +5,10 @@ import type { Locale } from '../i18n/translations';
 
 interface Props {
   lang?: Locale;
+  hideBackground?: boolean;
 }
 
-const { lang = 'id' } = Astro.props;
+const { lang = 'id', hideBackground = false } = Astro.props;
 
 const isEn = lang === 'en';
 
@@ -62,22 +63,24 @@ const row2 = [
   aria-label="Tech Stack and AI Coding Tools"
   class="home-section relative w-full max-w-full overflow-hidden select-none"
 >
-  <!-- Background Image with Ultra-Smooth Radial & Linear Feathering -->
-  <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none tech-bg-feather">
-    <picture>
-      <source srcset="/tech_stack_bg.webp" type="image/webp" />
-      <img
-        src="/tech_stack_bg.jpg"
-        alt=""
-        class="w-full h-full object-cover object-center opacity-25 sm:opacity-30"
-        loading="lazy"
-        decoding="async"
-        aria-hidden="true"
-      />
-    </picture>
-    <!-- Soft top & bottom gradient transition -->
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white pointer-events-none"></div>
-  </div>
+  {/* Background Image with Ultra-Smooth Radial & Linear Feathering */}
+  {!hideBackground && (
+    <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none tech-bg-feather">
+      <picture>
+        <source srcset="/tech_stack_bg.webp" type="image/webp" />
+        <img
+          src="/tech_stack_bg.jpg"
+          alt=""
+          class="w-full h-full object-cover object-center opacity-25 sm:opacity-30"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
+      </picture>
+      {/* Soft top & bottom gradient transition */}
+      <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white pointer-events-none"></div>
+    </div>
+  )}
 
   <!-- Header Area (Tengah & Solid) -->
   <div data-reveal="title" class="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 mb-7 sm:mb-10 text-center reveal-title-init">

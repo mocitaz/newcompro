@@ -41,85 +41,118 @@ const copy = isIndonesian
     };
 ---
 
-<section class="about-intro bg-white pt-24 sm:pt-30 lg:pt-32" aria-labelledby="about-page-title">
-  <div class="home-container">
-    <div class="grid grid-cols-1 gap-9 lg:grid-cols-12 lg:gap-16 xl:gap-20">
-      <h1 id="about-page-title" data-reveal="title" class="max-w-3xl text-3xl font-medium tracking-[-0.045em] text-slate-950 sm:text-5xl lg:col-span-7 lg:text-[4rem] lg:leading-[1.06] reveal-title-init">
-        {copy.title}
-      </h1>
-      <p data-reveal="text" class="max-w-xl text-sm sm:text-lg leading-relaxed text-slate-600 lg:col-span-5 lg:pt-10 reveal-text-init stagger-2">{copy.introduction}</p>
-    </div>
-
-    <div class="mt-10 sm:mt-14 grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-3 md:gap-6">
-      <figure data-reveal="scale" class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200 reveal-scale-init stagger-1">
-        <picture>
-          <source srcset="/about/about-architecture-v1.webp" type="image/webp" />
-          <img
-            src="/about/about-architecture-v1.png"
-            alt={isIndonesian ? 'Komposisi arsitektur modern dengan panel beton geometris' : 'Modern architectural composition with geometric concrete panels'}
-            width="1448"
-            height="1086"
-            class="aspect-[4/3] h-full w-full object-cover grayscale-[0.92] contrast-[0.92] reveal-img-breathe"
-            loading="eager"
-            decoding="async"
-          />
-        </picture>
-      </figure>
-
-      <figure data-reveal="scale" class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200 reveal-scale-init stagger-2">
-        <picture>
-          <source srcset="/about/about-office-v1.webp" type="image/webp" />
-          <img
-            src="/about/about-office-v1.png"
-            alt={isIndonesian ? 'Ruang kantor modern dengan siluet kolaborasi tim' : 'Modern office interior with a team collaborating in silhouette'}
-            width="1448"
-            height="1086"
-            class="aspect-[4/3] h-full w-full object-cover grayscale reveal-img-breathe"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-      </figure>
-
-      <figure data-reveal="scale" class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200 reveal-scale-init stagger-3">
-        <picture>
-          <source srcset="/about/about-office-v2.webp" type="image/webp" />
-          <img
-            src="/about/about-office-v2.png"
-            alt={isIndonesian ? 'Tim engineering berdiskusi di studio kerja modern' : 'Engineering team in discussion at a modern studio'}
-            width="1448"
-            height="1086"
-            class="aspect-[4/3] h-full w-full object-cover grayscale reveal-img-breathe"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-      </figure>
-    </div>
-
-    <dl class="mt-8 sm:mt-10 grid grid-cols-3 gap-2 sm:gap-8 border-t border-slate-300 pt-5 sm:pt-6">
-      {copy.stats.map(([value, label], idx) => (
-        <div data-reveal class={`py-2 sm:py-0 text-center sm:text-left border-r border-slate-200 last:border-r-0 sm:border-r sm:px-8 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0 reveal-init stagger-${idx + 1}`}>
-          <dt class="about-stat-value text-2xl font-medium tracking-[-0.05em] text-lime-700 sm:text-4xl lg:text-5xl">{value}</dt>
-          <dd class="mt-1 sm:mt-2 text-[11px] leading-tight sm:leading-5 text-slate-600 sm:text-sm">{label}</dd>
-        </div>
-      ))}
-    </dl>
+<div class="relative isolate overflow-hidden bg-white">
+  <!-- Background Wave Layer -->
+  <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+    <picture>
+      <source srcset="/ai_disciplines_bg_v3.webp" type="image/webp" />
+      <img
+        src="/ai_disciplines_bg_v3.jpg"
+        alt=""
+        class="about-background-image h-full w-full object-cover object-top opacity-45"
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
+    <div class="about-background-fade absolute inset-0" />
   </div>
-</section>
 
-<section id="about-vision" class="about-vision home-section bg-white" aria-labelledby="about-vision-title">
-  <div class="home-container grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16 xl:gap-20">
-    <div class="lg:col-span-5">
-      <p data-reveal="title" class="inline-flex rounded-full border border-slate-300 px-4 py-2 text-xs font-medium text-slate-600 reveal-title-init">{copy.visionLabel}</p>
-      <h2 id="about-vision-title" data-reveal="title" class="mt-5 sm:mt-7 max-w-md text-2xl font-medium tracking-[-0.045em] text-slate-950 sm:text-4xl lg:text-5xl lg:leading-[1.08] reveal-title-init stagger-1">
-        {copy.visionTitle}
-      </h2>
-    </div>
+  <section class="about-intro relative z-10 pt-24 sm:pt-30 lg:pt-32" aria-labelledby="about-page-title">
+    <div class="home-container">
+      <div class="grid grid-cols-1 gap-9 lg:grid-cols-12 lg:gap-16 xl:gap-20">
+        <h1 id="about-page-title" data-reveal="title" class="max-w-3xl text-3xl font-medium tracking-[-0.045em] text-slate-950 sm:text-5xl lg:col-span-7 lg:text-[4rem] lg:leading-[1.06] reveal-title-init">
+          {copy.title}
+        </h1>
+        <p data-reveal="text" class="max-w-xl text-sm sm:text-lg leading-relaxed text-slate-600 lg:col-span-5 lg:pt-10 reveal-text-init stagger-2">{copy.introduction}</p>
+      </div>
 
-    <div data-reveal="text" class="space-y-4 sm:space-y-6 text-sm sm:text-lg leading-relaxed text-slate-600 lg:col-span-7 lg:pt-12 reveal-text-init stagger-2">
-      <p>{copy.vision}</p>
-      <p>{copy.mission}</p>
+      <div class="mt-10 sm:mt-14 grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-3 md:gap-6">
+        <figure data-reveal="scale" class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200 reveal-scale-init stagger-1 shadow-2xs">
+          <picture>
+            <source srcset="/about/about-architecture-v1.webp" type="image/webp" />
+            <img
+              src="/about/about-architecture-v1.png"
+              alt={isIndonesian ? 'Komposisi arsitektur modern dengan panel beton geometris' : 'Modern architectural composition with geometric concrete panels'}
+              width="1448"
+              height="1086"
+              class="aspect-[4/3] h-full w-full object-cover grayscale-[0.92] contrast-[0.92] reveal-img-breathe"
+              loading="eager"
+              decoding="async"
+            />
+          </picture>
+        </figure>
+
+        <figure data-reveal="scale" class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200 reveal-scale-init stagger-2 shadow-2xs">
+          <picture>
+            <source srcset="/about/about-office-v1.webp" type="image/webp" />
+            <img
+              src="/about/about-office-v1.png"
+              alt={isIndonesian ? 'Ruang kantor modern dengan siluet kolaborasi tim' : 'Modern office interior with a team collaborating in silhouette'}
+              width="1448"
+              height="1086"
+              class="aspect-[4/3] h-full w-full object-cover grayscale reveal-img-breathe"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </figure>
+
+        <figure data-reveal="scale" class="about-gallery-item overflow-hidden rounded-[18px] bg-slate-200 reveal-scale-init stagger-3 shadow-2xs">
+          <picture>
+            <source srcset="/about/about-office-v2.webp" type="image/webp" />
+            <img
+              src="/about/about-office-v2.png"
+              alt={isIndonesian ? 'Tim engineering berdiskusi di studio kerja modern' : 'Engineering team in discussion at a modern studio'}
+              width="1448"
+              height="1086"
+              class="aspect-[4/3] h-full w-full object-cover grayscale reveal-img-breathe"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </figure>
+      </div>
+
+      <dl class="mt-8 sm:mt-10 grid grid-cols-3 gap-2 sm:gap-8 border-t border-slate-300 pt-5 sm:pt-6">
+        {copy.stats.map(([value, label], idx) => (
+          <div data-reveal class={`py-2 sm:py-0 text-center sm:text-left border-r border-slate-200 last:border-r-0 sm:border-r sm:px-8 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0 reveal-init stagger-${idx + 1}`}>
+            <dt class="about-stat-value text-2xl font-medium tracking-[-0.05em] text-lime-700 sm:text-4xl lg:text-5xl">{value}</dt>
+            <dd class="mt-1 sm:mt-2 text-[11px] leading-tight sm:leading-5 text-slate-600 sm:text-sm">{label}</dd>
+          </div>
+        ))}
+      </dl>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section id="about-vision" class="about-vision relative z-10 home-section" aria-labelledby="about-vision-title">
+    <div class="home-container grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16 xl:gap-20">
+      <div class="lg:col-span-5">
+        <h2 id="about-vision-title" data-reveal="title" class="max-w-md text-2xl font-medium tracking-[-0.045em] text-slate-950 sm:text-4xl lg:text-5xl lg:leading-[1.08] reveal-title-init">
+          {copy.visionTitle}
+        </h2>
+      </div>
+
+      <div data-reveal="text" class="space-y-4 sm:space-y-6 text-sm sm:text-lg leading-relaxed text-slate-600 lg:col-span-7 lg:pt-2 reveal-text-init stagger-1">
+        <p>{copy.vision}</p>
+        <p>{copy.mission}</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .about-background-image {
+    -webkit-mask-image: radial-gradient(ellipse 98% 85% at 50% 35%, #000 40%, transparent 100%);
+    mask-image: radial-gradient(ellipse 98% 85% at 50% 35%, #000 40%, transparent 100%);
+  }
+
+  .about-background-fade {
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0) 20%,
+      rgba(255, 255, 255, 0) 80%,
+      #ffffff 100%
+    );
+  }
+</style>

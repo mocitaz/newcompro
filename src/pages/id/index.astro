@@ -7,6 +7,7 @@ import CompanyOverview from "../../components/CompanyOverview.astro";
 import AiDisciplines from "../../components/AiDisciplines.astro";
 import Industries from "../../components/Industries.astro";
 import BusinessNeedCta from "../../components/BusinessNeedCta.astro";
+import CertificationsMarquee from "../../components/CertificationsMarquee.astro";
 import TechStack from "../../components/TechStack.astro";
 import Faq from "../../components/Faq.astro";
 import LetsTalk from "../../components/LetsTalk.astro";
@@ -26,10 +27,38 @@ import BackToTop from "../../components/BackToTop.astro";
     <AiDisciplines lang="id" />
     <Industries lang="id" />
     <BusinessNeedCta lang="id" />
-    <TechStack lang="id" />
+    
+    <!-- Unified Section: Certifications + Tech Stack with Continuous Ambient Background -->
+    <div class="relative isolate overflow-hidden bg-white">
+      <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden tech-unified-bg">
+        <picture>
+          <source srcset="/tech_stack_bg.webp" type="image/webp" />
+          <img
+            src="/tech_stack_bg.jpg"
+            alt=""
+            class="h-full w-full object-cover object-center opacity-25 sm:opacity-30"
+            loading="lazy"
+            decoding="async"
+            aria-hidden="true"
+          />
+        </picture>
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
+      </div>
+
+      <CertificationsMarquee lang="id" />
+      <TechStack lang="id" hideBackground={true} />
+    </div>
+
     <Faq lang="id" />
     <LetsTalk lang="id" />
   </main>
 
   <BackToTop label="Kembali ke atas" />
 </Layout>
+
+<style>
+  .tech-unified-bg {
+    -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, black 30%, transparent 95%);
+    mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, black 30%, transparent 95%);
+  }
+</style>
