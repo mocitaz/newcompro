@@ -4,9 +4,10 @@ import type { Locale } from '../i18n/translations';
 
 interface Props {
   lang?: Locale;
+  class?: string;
 }
 
-const { lang = 'en' } = Astro.props;
+const { lang = 'en', class: className = '' } = Astro.props;
 const isIndonesian = lang === 'id';
 
 interface CertLogo {
@@ -98,7 +99,10 @@ const certSequence = [
 <section
   id="certifications-compliance"
   aria-label={title}
-  class="relative z-10 w-full overflow-hidden pt-2 sm:pt-4 pb-12 sm:pb-16 select-none"
+  class:list={[
+    "relative z-10 w-full overflow-hidden select-none",
+    className || "pt-12 sm:pt-16 lg:pt-20 pb-6 sm:pb-8 lg:pb-10"
+  ]}
 >
   <div class="home-container mb-6 sm:mb-8 text-center">
     <h2

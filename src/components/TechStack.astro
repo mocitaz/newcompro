@@ -61,7 +61,12 @@ const row2 = [
 <section
   id="tech-stack"
   aria-label="Tech Stack and AI Coding Tools"
-  class="home-section relative w-full max-w-full overflow-hidden select-none"
+  class:list={[
+    "relative w-full max-w-full overflow-hidden select-none",
+    hideBackground
+      ? "pt-6 sm:pt-8 lg:pt-10 pb-16 sm:pb-20 lg:pb-24"
+      : "home-section"
+  ]}
 >
   {/* Background Image with Ultra-Smooth Radial & Linear Feathering */}
   {!hideBackground && (
