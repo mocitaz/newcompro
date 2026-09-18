@@ -38,7 +38,7 @@ export const translations = {
             title: 'Banking & Financial Services',
             desc: 'Secure fintech architectures, payment gateways, and regulatory compliance.',
             image: '/industry/perbankan.webp',
-            fallback: '/industry/perbankan.png',
+            fallback: '/industry/perbankan.webp',
             href: '/industries/banking'
           },
           {
@@ -46,7 +46,7 @@ export const translations = {
             title: 'Technology & SaaS',
             desc: 'High-throughput microservices, multi-tenant cloud platforms, and APIs.',
             image: '/industry/teknologi_and_saas.webp',
-            fallback: '/industry/teknologi_and_saas.png',
+            fallback: '/industry/teknologi_and_saas.webp',
             href: '/industries/tech-saas'
           },
           {
@@ -54,7 +54,7 @@ export const translations = {
             title: 'Manufacturing & Industry',
             desc: 'Real-time IoT telemetry, production monitoring, and supply chain automation.',
             image: '/industry/manufaktur.webp',
-            fallback: '/industry/manufaktur.png',
+            fallback: '/industry/manufaktur.webp',
             href: '/industries/manufacturing'
           },
           {
@@ -62,7 +62,7 @@ export const translations = {
             title: 'Healthcare & Life Sciences',
             desc: 'Encrypted clinical records, telemedicine systems, and patient data portals.',
             image: '/industry/kesehatan.webp',
-            fallback: '/industry/kesehatan.png',
+            fallback: '/industry/kesehatan.webp',
             href: '/industries/healthcare'
           },
           {
@@ -70,7 +70,7 @@ export const translations = {
             title: 'Professional & Business Services',
             desc: 'Corporate workflow engines, enterprise ERP, and business management portals.',
             image: '/industry/layananprofesional.webp',
-            fallback: '/industry/layananprofesional.png',
+            fallback: '/industry/layananprofesional.webp',
             href: '/industries/business-services'
           },
           {
@@ -212,7 +212,7 @@ export const translations = {
             name: 'Workspace',
             tag: 'Workspace',
             desc: 'Collaborative enterprise digital workspace and integrated productivity platform.',
-            image: '/resource_workspace.png',
+            image: '/resource_workspace.webp',
             webp: '/resource_workspace.webp',
             href: '/resources/workspace'
           },
@@ -221,7 +221,7 @@ export const translations = {
             name: 'Ticketing',
             tag: 'Helpdesk',
             desc: 'Enterprise service desk, IT ticketing management, and incident resolution workflows.',
-            image: '/resource_ticketing.png',
+            image: '/resource_ticketing.webp',
             webp: '/resource_ticketing.webp',
             href: '/resources/ticketing'
           },
@@ -230,7 +230,7 @@ export const translations = {
             name: 'LIMS',
             tag: 'Enterprise',
             desc: 'Laboratory Information Management System for automated testing and compliance data tracking.',
-            image: '/resource_LIMS.png',
+            image: '/resource_LIMS.webp',
             webp: '/resource_LIMS.webp',
             href: '/resources/lims'
           },
@@ -239,7 +239,7 @@ export const translations = {
             name: 'TraKerja',
             tag: 'HR Tech',
             desc: 'Integrated workforce tracking platform, operational productivity, and enterprise talent solutions.',
-            image: '/resource_trakerja.png',
+            image: '/resource_trakerja.webp',
             webp: '/resource_trakerja.webp',
             href: '/resources/trakerja'
           },
@@ -248,7 +248,7 @@ export const translations = {
             name: 'PixelPlay!',
             tag: 'Creative',
             desc: 'Interactive digital experiences, creative web applications, and gamified enterprise portals.',
-            image: '/resource_pixelplay.png',
+            image: '/resource_pixelplay.webp',
             webp: '/resource_pixelplay.webp',
             href: '/resources/pixelplay'
           }
@@ -340,7 +340,7 @@ export const translations = {
           id: 'banking',
           title: 'Banking & Financial Services',
           image: '/industry/perbankan.webp',
-          fallback: '/industry/perbankan.png',
+          fallback: '/industry/perbankan.webp',
           status: 'available',
           colSpan: 'col-span-12 md:col-span-6'
         },
@@ -348,7 +348,7 @@ export const translations = {
           id: 'tech-saas',
           title: 'Technology & SaaS',
           image: '/industry/teknologi_and_saas.webp',
-          fallback: '/industry/teknologi_and_saas.png',
+          fallback: '/industry/teknologi_and_saas.webp',
           status: 'coming_soon',
           colSpan: 'col-span-12 md:col-span-6'
         },
@@ -356,7 +356,7 @@ export const translations = {
           id: 'manufacturing',
           title: 'Manufacturing & Industry',
           image: '/industry/manufaktur.webp',
-          fallback: '/industry/manufaktur.png',
+          fallback: '/industry/manufaktur.webp',
           status: 'coming_soon',
           colSpan: 'col-span-12 md:col-span-4'
         },
@@ -364,7 +364,7 @@ export const translations = {
           id: 'health',
           title: 'Healthcare & Life Sciences',
           image: '/industry/kesehatan.webp',
-          fallback: '/industry/kesehatan.png',
+          fallback: '/industry/kesehatan.webp',
           status: 'coming_soon',
           colSpan: 'col-span-12 md:col-span-4'
         },
@@ -372,7 +372,7 @@ export const translations = {
           id: 'business-services',
           title: 'Professional & Business Services',
           image: '/industry/layananprofesional.webp',
-          fallback: '/industry/layananprofesional.png',
+          fallback: '/industry/layananprofesional.webp',
           status: 'coming_soon',
           colSpan: 'col-span-12 md:col-span-4'
         }
@@ -390,7 +390,7 @@ export const translations = {
           category: 'Enterprise ERP & Cloud Finance',
           tag: 'Multi-tenant SaaS',
           image: '/works/kelolaaja.webp',
-          fallback: '/works/kelolaaja.png'
+          fallback: '/works/kelolaaja.webp'
         },
         {
           id: 'nikawa',
@@ -398,7 +398,7 @@ export const translations = {
           category: 'Industrial IoT & Automation',
           tag: 'Precision Manufacturing',
           image: '/works/nikawa.webp',
-          fallback: '/works/nikawa.png'
+          fallback: '/works/nikawa.webp'
         },
         {
           id: 'pixelplay',
@@ -406,7 +406,7 @@ export const translations = {
           category: 'Digital Gaming & Entertainment Ecosystem',
           tag: 'Interactive Platform',
           image: '/works/pixelplay.webp',
-          fallback: '/works/pixelplay.png'
+          fallback: '/works/pixelplay.webp'
         },
         {
           id: 'trakerja',
@@ -414,7 +414,7 @@ export const translations = {
           category: 'Talent Infrastructure & Ecosystem',
           tag: 'National Platform',
           image: '/works/trakerja.webp',
-          fallback: '/works/trakerja.png'
+          fallback: '/works/trakerja.webp'
         }
       ]
     },
@@ -2558,7 +2558,7 @@ export const translations = {
           subtitle: 'Product Landing Page & Content Management Platform',
           category: 'enterprise',
           industry: 'SaaS & Product',
-          image: '/case-studies/kelolaaja.png',
+          image: '/case-studies/kelolaaja.webp',
           webp: '/case-studies/kelolaaja.webp',
           alt: 'KelolaAja - CMS-Powered Product Experience',
         },
@@ -2568,7 +2568,7 @@ export const translations = {
           subtitle: 'Corporate Website & Company Profile Experience',
           category: 'enterprise',
           industry: 'Manufacturing',
-          image: '/case-studies/nikawa.png',
+          image: '/case-studies/nikawa.webp',
           webp: '/case-studies/nikawa.webp',
           alt: 'PT Nikawa Teknika Indonesia - Corporate Digital Presence',
         },
@@ -2578,7 +2578,7 @@ export const translations = {
           subtitle: 'Website & Flutter-Based Member Management Application',
           category: 'community',
           industry: 'Fitness & Health',
-          image: '/segera_hadir.png',
+          image: '/segera_hadir.webp',
           webp: '/segera_hadir.webp',
           alt: 'Anytime Fitness - Digital Fitness Management Platform',
         },
@@ -2625,7 +2625,7 @@ export const translations = {
             title: 'Perbankan & Jasa Keuangan',
             desc: 'Arsitektur fintech aman, gateway pembayaran, dan kepatuhan regulasi.',
             image: '/industry/perbankan.webp',
-            fallback: '/industry/perbankan.png',
+            fallback: '/industry/perbankan.webp',
             href: '/id/industri/banking'
           },
           {
@@ -2633,7 +2633,7 @@ export const translations = {
             title: 'Teknologi & SaaS',
             desc: 'Sistem microservices konkurensi tinggi, cloud multi-tenant, dan API.',
             image: '/industry/teknologi_and_saas.webp',
-            fallback: '/industry/teknologi_and_saas.png',
+            fallback: '/industry/teknologi_and_saas.webp',
             href: '/id/industri/tech-saas'
           },
           {
@@ -2641,7 +2641,7 @@ export const translations = {
             title: 'Manufaktur & Industri',
             desc: 'Telemetri IoT real-time, monitoring mesin pabrik, dan otomasi rantai pasok.',
             image: '/industry/manufaktur.webp',
-            fallback: '/industry/manufaktur.png',
+            fallback: '/industry/manufaktur.webp',
             href: '/id/industri/manufacturing'
           },
           {
@@ -2649,7 +2649,7 @@ export const translations = {
             title: 'Kesehatan & Life Sciences',
             desc: 'Platform rekam medis terenkripsi, telemedicine, dan sistem data klinis.',
             image: '/industry/kesehatan.webp',
-            fallback: '/industry/kesehatan.png',
+            fallback: '/industry/kesehatan.webp',
             href: '/id/industri/healthcare'
           },
           {
@@ -2657,7 +2657,7 @@ export const translations = {
             title: 'Layanan Profesional & Bisnis',
             desc: 'Otomasi alur kerja korporat, ERP terintegrasi, dan portal manajemen bisnis.',
             image: '/industry/layananprofesional.webp',
-            fallback: '/industry/layananprofesional.png',
+            fallback: '/industry/layananprofesional.webp',
             href: '/id/industri/business-services'
           },
           {
@@ -2799,7 +2799,7 @@ export const translations = {
             name: 'Workspace',
             tag: 'Workspace',
             desc: 'Ruang kerja digital kolaboratif dan platform produktivitas enterprise terpadu.',
-            image: '/resource_workspace.png',
+            image: '/resource_workspace.webp',
             webp: '/resource_workspace.webp',
             href: '/id/resources/workspace'
           },
@@ -2808,7 +2808,7 @@ export const translations = {
             name: 'Ticketing',
             tag: 'Helpdesk',
             desc: 'Sistem manajemen tiket layanan, helpdesk, dan alur kerja insiden korporat.',
-            image: '/resource_ticketing.png',
+            image: '/resource_ticketing.webp',
             webp: '/resource_ticketing.webp',
             href: '/id/resources/ticketing'
           },
@@ -2817,7 +2817,7 @@ export const translations = {
             name: 'LIMS',
             tag: 'Enterprise',
             desc: 'Sistem informasi manajemen laboratorium untuk otomatisasi pengujian dan pelacakan data.',
-            image: '/resource_LIMS.png',
+            image: '/resource_LIMS.webp',
             webp: '/resource_LIMS.webp',
             href: '/id/resources/lims'
           },
@@ -2826,7 +2826,7 @@ export const translations = {
             name: 'TraKerja',
             tag: 'HR Tech',
             desc: 'Platform terintegrasi manajemen tenaga kerja, pelacakan produktivitas, dan operasional enterprise.',
-            image: '/resource_trakerja.png',
+            image: '/resource_trakerja.webp',
             webp: '/resource_trakerja.webp',
             href: '/id/resources/trakerja'
           },
@@ -2835,7 +2835,7 @@ export const translations = {
             name: 'PixelPlay!',
             tag: 'Creative',
             desc: 'Eksplorasi pengalaman digital interaktif, visual web kreatif, dan modul gamifikasi enterprise.',
-            image: '/resource_pixelplay.png',
+            image: '/resource_pixelplay.webp',
             webp: '/resource_pixelplay.webp',
             href: '/id/resources/pixelplay'
           }
@@ -2927,7 +2927,7 @@ export const translations = {
           id: 'banking',
           title: 'Perbankan',
           image: '/industry/perbankan.webp',
-          fallback: '/industry/perbankan.png',
+          fallback: '/industry/perbankan.webp',
           status: 'available',
           colSpan: 'col-span-12 md:col-span-6'
         },
@@ -2935,7 +2935,7 @@ export const translations = {
           id: 'tech-saas',
           title: 'Teknologi & SaaS',
           image: '/industry/teknologi_and_saas.webp',
-          fallback: '/industry/teknologi_and_saas.png',
+          fallback: '/industry/teknologi_and_saas.webp',
           status: 'coming_soon',
           colSpan: 'col-span-12 md:col-span-6'
         },
@@ -2943,7 +2943,7 @@ export const translations = {
           id: 'manufacturing',
           title: 'Manufaktur & Industri',
           image: '/industry/manufaktur.webp',
-          fallback: '/industry/manufaktur.png',
+          fallback: '/industry/manufaktur.webp',
           status: 'coming_soon',
           colSpan: 'col-span-12 md:col-span-4'
         },
@@ -2951,7 +2951,7 @@ export const translations = {
           id: 'health',
           title: 'Kesehatan & Life Sciences',
           image: '/industry/kesehatan.webp',
-          fallback: '/industry/kesehatan.png',
+          fallback: '/industry/kesehatan.webp',
           status: 'coming_soon',
           colSpan: 'col-span-12 md:col-span-4'
         },
@@ -2959,7 +2959,7 @@ export const translations = {
           id: 'business-services',
           title: 'Layanan Profesional & Bisnis',
           image: '/industry/layananprofesional.webp',
-          fallback: '/industry/layananprofesional.png',
+          fallback: '/industry/layananprofesional.webp',
           status: 'coming_soon',
           colSpan: 'col-span-12 md:col-span-4'
         }
@@ -2977,7 +2977,7 @@ export const translations = {
           category: 'Enterprise ERP & Cloud Finance',
           tag: 'Multi-tenant SaaS',
           image: '/works/kelolaaja.webp',
-          fallback: '/works/kelolaaja.png'
+          fallback: '/works/kelolaaja.webp'
         },
         {
           id: 'nikawa',
@@ -2985,7 +2985,7 @@ export const translations = {
           category: 'Industrial IoT & Otomasi',
           tag: 'Manufaktur & Presisi',
           image: '/works/nikawa.webp',
-          fallback: '/works/nikawa.png'
+          fallback: '/works/nikawa.webp'
         },
         {
           id: 'pixelplay',
@@ -2993,7 +2993,7 @@ export const translations = {
           category: 'Ekosistem Hiburan Digital & Gaming',
           tag: 'Platform Interaktif',
           image: '/works/pixelplay.webp',
-          fallback: '/works/pixelplay.png'
+          fallback: '/works/pixelplay.webp'
         },
         {
           id: 'trakerja',
@@ -3001,7 +3001,7 @@ export const translations = {
           category: 'Infrastruktur & Ekosistem Talenta Kerja',
           tag: 'Platform Nasional',
           image: '/works/trakerja.webp',
-          fallback: '/works/trakerja.png'
+          fallback: '/works/trakerja.webp'
         }
       ]
     },
@@ -5148,7 +5148,7 @@ export const translations = {
           subtitle: 'Product Landing Page & Content Management Platform',
           category: 'enterprise',
           industry: 'Produk & SaaS',
-          image: '/case-studies/kelolaaja.png',
+          image: '/case-studies/kelolaaja.webp',
           webp: '/case-studies/kelolaaja.webp',
           alt: 'KelolaAja - CMS-Powered Product Experience',
         },
@@ -5158,7 +5158,7 @@ export const translations = {
           subtitle: 'Corporate Website & Company Profile Experience',
           category: 'enterprise',
           industry: 'Manufaktur',
-          image: '/case-studies/nikawa.png',
+          image: '/case-studies/nikawa.webp',
           webp: '/case-studies/nikawa.webp',
           alt: 'PT Nikawa Teknika Indonesia - Corporate Digital Presence',
         },
@@ -5168,7 +5168,7 @@ export const translations = {
           subtitle: 'Website & Flutter-Based Member Management Application',
           category: 'community',
           industry: 'Kebugaran',
-          image: '/segera_hadir.png',
+          image: '/segera_hadir.webp',
           webp: '/segera_hadir.webp',
           alt: 'Anytime Fitness - Digital Fitness Management Platform',
         },

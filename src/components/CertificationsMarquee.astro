@@ -20,63 +20,63 @@ interface CertLogo {
 const baseCertifications: CertLogo[] = [
   {
     name: "BNSP - Badan Nasional Sertifikasi Profesi",
-    logo: "/certifications/BNSP.png",
+    logo: "/certifications/BNSP.webp",
     width: 800,
     height: 303,
-    className: "h-8 sm:h-9 md:h-10 w-auto",
+    className: "h-7 sm:h-8 md:h-9 w-auto",
   },
   {
     name: "Amazon Web Services (AWS)",
-    logo: "/certifications/aws.png",
+    logo: "/certifications/aws.webp",
     width: 713,
     height: 476,
-    className: "h-8 sm:h-9 md:h-10 w-auto",
+    className: "h-7 sm:h-8 md:h-9 w-auto",
   },
   {
     name: "Google Cloud",
-    logo: "/certifications/googlecloud.png",
+    logo: "/certifications/googlecloud.webp",
     width: 1336,
     height: 890,
-    className: "h-8 sm:h-9 md:h-10 w-auto",
+    className: "h-7 sm:h-8 md:h-9 w-auto",
   },
   {
     name: "Cisco",
-    logo: "/certifications/cisco.png",
+    logo: "/certifications/cisco.webp",
     width: 1280,
     height: 676,
     className: "h-7 sm:h-8 md:h-9 w-auto",
   },
   {
     name: "Fortinet",
-    logo: "/certifications/fortinet.png",
+    logo: "/certifications/fortinet.webp",
     width: 338,
     height: 268,
     className: "h-7 sm:h-8 md:h-9 w-auto",
   },
   {
     name: "HashiCorp",
-    logo: "/certifications/hashicorp.png",
+    logo: "/certifications/hashicorp.webp",
     width: 1897,
     height: 571,
-    className: "h-7 sm:h-8 md:h-9 w-auto",
+    className: "h-6.5 sm:h-7.5 md:h-8.5 w-auto",
   },
   {
     name: "Digitalent Kominfo",
-    logo: "/certifications/digitalent.png",
+    logo: "/certifications/digitalent.webp",
     width: 800,
     height: 500,
-    className: "h-8 sm:h-9 md:h-10 w-auto",
+    className: "h-7.5 sm:h-8.5 md:h-9.5 w-auto",
   },
   {
     name: "Dicoding Indonesia",
-    logo: "/certifications/dicoding.png",
+    logo: "/certifications/dicoding.webp",
     width: 794,
     height: 201,
     className: "h-6 sm:h-7 md:h-8 w-auto",
   },
   {
     name: "HackerRank",
-    logo: "/certifications/hackerank.png",
+    logo: "/certifications/hackerank.webp",
     width: 2917,
     height: 1667,
     className: "h-7 sm:h-8 md:h-9 w-auto",
@@ -98,7 +98,7 @@ const certSequence = [
 <section
   id="certifications-compliance"
   aria-label={title}
-  class="relative z-10 w-full overflow-hidden pt-10 sm:pt-14 pb-4 sm:pb-6 select-none"
+  class="relative z-10 w-full overflow-hidden pt-2 sm:pt-4 pb-12 sm:pb-16 select-none"
 >
   <div class="home-container mb-6 sm:mb-8 text-center">
     <h2
@@ -114,11 +114,11 @@ const certSequence = [
     <!-- Continuous Marquee Track -->
     <div class="cert-marquee-track flex items-center">
       <!-- First Group -->
-      <div class="cert-marquee-group flex items-center gap-10 sm:gap-16 md:gap-20 shrink-0 px-4 sm:px-8">
+      <div class="cert-marquee-group flex items-center gap-10 sm:gap-14 md:gap-18 shrink-0 px-4 sm:px-8">
         {
           certSequence.map((cert) => (
             <div
-              class="flex items-center justify-center p-2 sm:p-3"
+              class="flex h-12 sm:h-14 items-center justify-center p-1 sm:p-2"
               title={cert.name}
             >
               <img
@@ -129,7 +129,7 @@ const certSequence = [
                 loading="lazy"
                 class:list={[
                   cert.className,
-                  "object-contain filter grayscale contrast-125 opacity-60"
+                  "max-h-full object-contain filter grayscale contrast-125 opacity-60 transition-opacity hover:opacity-100"
                 ]}
               />
             </div>
@@ -138,11 +138,11 @@ const certSequence = [
       </div>
 
       <!-- Second Group (Seamless Clone for Infinite Loop) -->
-      <div class="cert-marquee-group flex items-center gap-10 sm:gap-16 md:gap-20 shrink-0 px-4 sm:px-8" aria-hidden="true">
+      <div class="cert-marquee-group flex items-center gap-10 sm:gap-14 md:gap-18 shrink-0 px-4 sm:px-8" aria-hidden="true">
         {
           certSequence.map((cert) => (
             <div
-              class="flex items-center justify-center p-2 sm:p-3"
+              class="flex h-12 sm:h-14 items-center justify-center p-1 sm:p-2"
               title={cert.name}
             >
               <img
@@ -153,7 +153,7 @@ const certSequence = [
                 loading="lazy"
                 class:list={[
                   cert.className,
-                  "object-contain filter grayscale contrast-125 opacity-60"
+                  "max-h-full object-contain filter grayscale contrast-125 opacity-60 transition-opacity hover:opacity-100"
                 ]}
               />
             </div>

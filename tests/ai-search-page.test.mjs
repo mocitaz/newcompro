@@ -98,7 +98,7 @@ test('ai search hero component includes frosted card and 3D architectural medall
 
   // Partner logos
   assert.match(heroComponent, /partnerLogos\.map/);
-  assert.match(heroComponent, /\/partners\/anytime\.png/);
+  assert.match(heroComponent, /\/partners\/anytime\.(?:webp|png)/);
 });
 
 test('ai search features component reproduces 3-column compact editorial card layout with all 9 capabilities', () => {

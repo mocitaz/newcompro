@@ -235,9 +235,18 @@ const schemaData = {
           updateParallax();
         }
 
+        function disableImageDrag() {
+          document.addEventListener('dragstart', function (e) {
+            if (e.target && (e.target.tagName === 'IMG' || e.target.tagName === 'PICTURE' || e.target.tagName === 'SVG' || e.target.closest('picture') || e.target.closest('figure'))) {
+              e.preventDefault();
+            }
+          });
+        }
+
         function initMotion() {
           setupReveals();
           setupScrollParallax();
+          disableImageDrag();
         }
 
         if (document.readyState === 'loading') {

@@ -91,8 +91,8 @@ test('hero component reproduces reference design elements', () => {
 
   // Partner logos matching Faq.astro on main page
   assert.match(heroComponent, /partnerLogos\.map/);
-  assert.match(heroComponent, /\/partners\/anytime\.png/);
-  assert.match(heroComponent, /\/partners\/kelolaaja\.png/);
+  assert.match(heroComponent, /\/partners\/anytime\.(?:webp|png)/);
+  assert.match(heroComponent, /\/partners\/kelolaaja\.(?:webp|png)/);
 });
 
 test('features component reproduces 3-column compact editorial card layout', () => {

@@ -54,7 +54,55 @@ const t = getTranslations(lang);
       </p>
     </div>
   </div>
+
+  <!-- 3. Scroll Down Mouse Indicator (Centered at Bottom, Fades out on scroll) -->
+  <div
+    id="hero-scroll-indicator-container"
+    class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center transition-all duration-500 ease-out opacity-100 translate-y-0"
+  >
+    <a
+      href="#services"
+      id="hero-scroll-btn"
+      class="group flex flex-col items-center gap-2 text-white/70 hover:text-white transition-colors duration-300 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/50 rounded-full p-1 cursor-pointer"
+      aria-label={lang === 'id' ? 'Gulir ke bawah' : 'Scroll down'}
+    >
+      <div class="mouse-chassis relative w-[22px] h-[36px] sm:w-[24px] sm:h-[38px] rounded-full border-[1.5px] border-white/60 group-hover:border-white transition-colors duration-300 flex justify-center pt-2">
+        <span class="mouse-wheel-dot w-1 h-2 sm:w-1 sm:h-2.5 bg-white rounded-full"></span>
+      </div>
+    </a>
+  </div>
 </section>
+
+<script>
+  const indicator = document.getElementById('hero-scroll-indicator-container');
+  const scrollBtn = document.getElementById('hero-scroll-btn');
+
+  const handleScroll = () => {
+    if (!indicator) return;
+    if (window.scrollY > 40) {
+      indicator.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+      indicator.classList.remove('opacity-100', 'translate-y-0');
+    } else {
+      indicator.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+      indicator.classList.add('opacity-100', 'translate-y-0');
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const nextTarget = document.querySelector('section:nth-of-type(2)') || document.getElementById('services');
+      if (nextTarget) {
+        nextTarget.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+      }
+    });
+  }
+</script>
 
 <style>
   .hero-transition-gradient {
@@ -68,6 +116,31 @@ const t = getTranslations(lang);
       rgba(251, 251, 252, 0.90) 98%,
       #fbfbfc 100%
     );
+  }
+
+  .mouse-wheel-dot {
+    animation: mouse-wheel-roll 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+
+  @keyframes mouse-wheel-roll {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 0.8;
+      transform: translateY(6px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mouse-wheel-dot {
+      animation: none;
+    }
   }
 </style>
 

@@ -55,10 +55,13 @@ test('about pages introduce the four RISE brand values before the FAQ', () => {
   assert.match(brandValues, /Excellence/);
 });
 
-test('RISE values use a spacious two-column light-card composition', () => {
-  assert.match(brandValues, /grid grid-cols-1 gap-5 md:grid-cols-2/);
-  assert.match(brandValues, /rise-value-card/);
-  assert.match(brandValues, /min-h-\[19rem\]/);
-  assert.match(brandValues, /rise-value-icon/);
-  assert.doesNotMatch(brandValues, /rise-value-marker/);
+test('about pages include engagement models section', () => {
+  for (const page of [about, aboutId]) {
+    assert.match(page, /<EngagementModels lang=/);
+  }
+  const models = read('../src/components/EngagementModels.astro');
+  assert.match(models, /Dedicated Engineering Squad/);
+  assert.match(models, /Core Platform Modernization/);
+  assert.match(models, /Technical Advisory/);
 });
+

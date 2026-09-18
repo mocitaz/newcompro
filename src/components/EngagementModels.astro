@@ -1,0 +1,234 @@
+---
+// EngagementModels.astro - Enterprise Partnership and Collaboration Models
+import type { Locale } from "../i18n/translations";
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = "en" } = Astro.props;
+const isIndonesian = lang === "id";
+
+const copy = isIndonesian
+  ? {
+      label: "MODEL KOLABORASI",
+      title: "Struktur Kemitraan yang Dirancang Sesuai Kebutuhan Bisnis.",
+      description:
+        "Pilih format kerja sama yang paling tepat untuk mendukung delivery produk digital, modernisasi sistem lama, atau audit teknis enterprise Anda.",
+      models: [
+        {
+          num: "01",
+          badge: "Delivery Jangka Panjang",
+          title: "Dedicated Engineering Squad",
+          description:
+            "Satu tim rekayasa lintas disiplin lengkap yang didedikasikan penuh untuk mengakselerasi roadmap produk digital korporasi Anda.",
+          features: [
+            "Tech Lead, Senior Engineers, QA, dan DevOps",
+            "Sinkronisasi langsung via Slack, Jira, dan GitLab",
+            "Kecepatan sprint fleksibel dan adaptif",
+            "100% kepemilikan penuh atas seluruh kode sumber"
+          ],
+          cta: "Bahas Kebutuhan Tim",
+          href: "#contact",
+          highlight: false
+        },
+        {
+          num: "02",
+          badge: "Berbasis Milestone",
+          title: "Core Platform Modernization",
+          description:
+            "Proyek terfokus untuk merombak dan mentransformasi sistem monolitik legacy menjadi arsitektur cloud microservices yang tangguh dan scalable.",
+          features: [
+            "Dekomposisi sistem monolitik ke microservices",
+            "Migrasi database bertahap tanpa downtime",
+            "Penerapan container Docker & orkestrasi Kubernetes",
+            "Dokumentasi arsitektur dan transfer pengetahuan lengkap"
+          ],
+          cta: "Modernisasi Sistem",
+          href: "#contact",
+          highlight: true
+        },
+        {
+          num: "03",
+          badge: "Strategis & Kepatuhan",
+          title: "Technical Advisory & Security Audit",
+          description:
+            "Konsultasi strategis, review arsitektur mendalam, dan audit kepatuhan keamanan data sebelum peluncuran sistem berskala masif.",
+          features: [
+            "Audit kualitas kode dan profiling performa database",
+            "Uji penetrasi dan penilaian kepatuhan keamanan data (UU PDP)",
+            "Blueprinting arsitektur sovereign cloud & multi-zone",
+            "Laporan rekomendasi teknis komprehensif dan actionable"
+          ],
+          cta: "Jadwalkan Konsultasi",
+          href: "#contact",
+          highlight: false
+        }
+      ]
+    }
+  : {
+      label: "ENGAGEMENT MODELS",
+      title: "Structured Partnerships Built Around Your Business Stage.",
+      description:
+        "Choose the most effective collaboration structure for continuous product engineering, legacy modernization, or strategic technical review.",
+      models: [
+        {
+          num: "01",
+          badge: "Long-Term Delivery",
+          title: "Dedicated Engineering Squad",
+          description:
+            "A full cross-functional engineering team embedded directly with your internal workflows to accelerate your digital product roadmap.",
+          features: [
+            "Tech Lead, Senior Engineers, QA, and DevOps specialists",
+            "Direct synchronization via Slack, Jira, and GitLab",
+            "Flexible sprint pacing and iterative velocity",
+            "100% ownership and immediate intellectual property transfer"
+          ],
+          cta: "Discuss Squad Setup",
+          href: "#contact",
+          highlight: false
+        },
+        {
+          num: "02",
+          badge: "Milestone-Driven",
+          title: "Core Platform Modernization",
+          description:
+            "Targeted project execution to re-architect legacy monolithic systems into resilient, high-throughput, and cloud-native microservices.",
+          features: [
+            "Modular microservices decomposition and API restructuring",
+            "Zero-downtime database migration and schema refactoring",
+            "Docker containerization and Kubernetes orchestration",
+            "Full architecture documentation and knowledge handover"
+          ],
+          cta: "Plan Modernization",
+          href: "#contact",
+          highlight: true
+        },
+        {
+          num: "03",
+          badge: "Strategic & Compliance",
+          title: "Technical Advisory & Security Audit",
+          description:
+            "High-level strategic consulting, deep architecture reviews, and data compliance audits prior to mission-critical public launches.",
+          features: [
+            "Code quality audits and database query profiling",
+            "Penetration testing and PDP regulatory readiness review",
+            "Sovereign multi-cloud and disaster recovery blueprinting",
+            "Comprehensive technical reports with actionable roadmaps"
+          ],
+          cta: "Schedule Advisory",
+          href: "#contact",
+          highlight: false
+        }
+      ]
+    };
+---
+
+<section
+  id="engagement-models"
+  class="home-section border-t border-slate-200 bg-white !pb-6 sm:!pb-8 lg:!pb-10"
+  aria-labelledby="engagement-models-title"
+>
+  <div class="home-container">
+    <!-- Section Header -->
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
+      <div class="lg:col-span-7">
+        <h2
+          id="engagement-models-title"
+          data-reveal="title"
+          class="max-w-2xl text-3xl font-medium tracking-[-0.045em] text-slate-950 sm:text-4xl lg:text-5xl reveal-title-init"
+        >
+          {copy.title}
+        </h2>
+      </div>
+      <p
+        data-reveal="text"
+        class="max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base lg:col-span-5 reveal-text-init stagger-2"
+      >
+        {copy.description}
+      </p>
+    </div>
+
+    <!-- 3 Engagement Model Cards Grid -->
+    <div class="mt-10 sm:mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-7">
+      {
+        copy.models.map((model, idx) => (
+          <div
+            data-reveal="scale"
+            class:list={[
+              "engagement-card group relative flex flex-col justify-between rounded-[22px] border border-slate-200/90 bg-white p-6 sm:p-8 text-slate-950 shadow-2xs transition-all duration-300 hover:border-slate-300 hover:shadow-md reveal-scale-init",
+              `stagger-${idx + 1}`
+            ]}
+          >
+            <!-- Card Top Header -->
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs font-semibold tracking-wider text-slate-500">
+                  {model.num}
+                </span>
+              </div>
+
+              <h3 class="mt-6 text-xl sm:text-2xl font-medium tracking-[-0.03em] text-slate-950">
+                {model.title}
+              </h3>
+
+              <p class="mt-3 text-sm sm:text-[14.5px] leading-relaxed text-slate-600">
+                {model.description}
+              </p>
+
+              <!-- Feature Bullet List -->
+              <div class="mt-6 pt-6 border-t border-dashed border-slate-200">
+                <ul class="space-y-3">
+                  {model.features.map((feature) => (
+                    <li class="flex items-start gap-3 text-xs sm:text-[13px] leading-snug">
+                      <svg
+                        class="mt-0.5 h-4 w-4 shrink-0 text-lime-700"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                      <span class="text-slate-700">
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <!-- Card Action Footer -->
+            <div class="mt-8 pt-4">
+              <a
+                href={model.href}
+                class="inline-flex w-full items-center justify-center rounded-xl bg-slate-900 py-3 px-4 text-xs sm:text-sm font-medium text-white transition-all duration-200 hover:bg-slate-800 hover:shadow-sm"
+              >
+                {model.cta}
+                <svg
+                  class="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M3.333 8h9.334M8.667 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .engagement-card {
+    isolation: isolate;
+  }
+</style>
